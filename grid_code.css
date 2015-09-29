@@ -1,0 +1,60 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: peachpuff;
+  width: 800px;
+}
+
+.container-one, .container-two {
+  display: flex;
+}
+
+.container-one > div,
+.container-two > div {
+  background-color: orange;
+  border: 1px solid red;
+  margin: 5px;
+  width: 50px;
+}
+
+.container-one > div:nth-child(5) {
+  background-color: red;
+  width: 110px;
+}
+
+<div class="container-one">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>E</div>
+  <div>F</div>
+  <div>G</div>
+  <div>H</div>
+</div>
+
+<div class="container-two">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>E</div>
+  <div>F</div>
+  <div>G</div>
+  <div>H</div>
+</div>

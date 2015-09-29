@@ -1,0 +1,146 @@
+/*
+ * manifest file to be compiled into application.css
+ * includes all the files listed below.
+ * reference from here using relative path.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /*font-family: 'Slackey', cursive;
+ font-family: 'Special Elite', cursive;
+ font-family: 'Fredericka the Great', cursive;
+ font-family: 'Short Stack', cursive;*/
+
+ $colorGenre: #2A52BE; // Cerulean Blue
+ $colorGroup: #bada55; // Jesse Green
+ $colorCategory: Salmon;
+
+ /* ======= general ======= */
+ html {
+   box-sizing: border-box;
+ }
+ ​
+ *, *:before, *:after {
+   box-sizing: inherit;
+ }
+
+ body {
+     font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+ }
+
+/* ======= rows & columns ======= */
+.row, .column {
+    box-sizing: border-box;
+}
+.row {
+    overflow: visible;
+    height: 60px;
+    width: 970px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1px solid rebeccapurple;
+}
+.column {
+    float: left;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border: 1px solid Tomato;
+}
+.column:before {
+    /*content: "\00a0";*/
+}
+
+/* ======= columns ======= */
+/*.column-1 { width: 8.333%; }*/
+.column-2 { width: 16.66%; }
+.column-3 { width: 25%; }
+.column-4 { width: 33.33%; }
+.column-5 { width: 41.66%; }
+.column-6 { width: 50%; }
+.column-7 { width: 58.33%; }
+.column-8 { width: 66.66%; }
+.column-9 { width: 75%; }
+.column-10 { width: 83.33%; }
+.column-11 { width: 91.66%; }
+.column-12 { width: 100%; }
+
+/* ======= master rows ======= */
+/*.header {
+    width: 1290px;
+    margin: 0 auto;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 90%;
+    margin: 0 auto;
+}
+.footer {
+    width: 90%;
+    margin: 0 auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}*/
+
+/* ======= master columns ======= */
+.sidebar {
+    height: 500px;
+    min-width: 90px;
+}
+.display {
+    max-width: 1200px;
+}
+
+ /* ======= main_nav ======= */
+#card {
+    display: block;
+    /*width: 970px;*/
+    background-color: yellow;
+ }
+#card ul {
+    list-style:none;
+    position:relative;
+    width: 970px;
+    float:left;
+    margin:0;
+    padding:0;
+    border: 1px solid gray;
+    z-index: 2;
+}
+#card ul a {
+    display:block;
+    color:#333;
+    text-decoration:none;
+    font-weight:700;
+    font-size: 16px;
+    line-height:60px;
+    font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+ }
+#card ul li {
+    display: inline-block;
+    position:relative;
+    float:left;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    margin:0;
+    padding:0
+ }
+#card ul li.current-menu-item {
+    background:#ddd
+ }
+#card ul li:hover {
+    background:#ddd
+ }
+#card ul #title-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+ }
