@@ -16,21 +16,145 @@
  $colorGroup: #bada55; // Jesse Green
  $colorCategory: Salmon;
 
- /* ======= general ======= */
- html {
-   box-sizing: border-box;
- }
- ​
+/* ======= general ======= */
+html, body, .viewport {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+html {
+  box-sizing: border-box;
+}
  *, *:before, *:after {
    box-sizing: inherit;
- }
+}
 
  body {
-     font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
- }
+    /*font-family: 'Orbitron', sans-serif;*/
+    font-family: 'Michroma', sans-serif;
+    /*font-family: 'Allerta Stencil', sans-serif;*/
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid red;*/
+}
+
+
+/* ======= cells ======= */
+.cell {
+     width: 50px;
+     height: 50px;
+     background-color: #EBEBFF;
+     border: 1px solid rebeccapurple;
+}
+.indexCell {
+     background-color: red;
+}
+.deleteCell {
+     background-color: blue;
+}
+.logo {
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+    font-size: 46px;
+}
+
+/* ======= cardstack ======= */
+.card-d {
+    background-color: #FFB2B2;
+}
+.card-1 {
+    background-color: #FFE0C2;
+}
+.card-2 {
+    background-color: #EBC2FF;
+}
+.card-3 {
+    background-color: #E0D1FF;
+}
+.cardvalue {
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+/* ======= player ======= */
+.playerScore {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+.dealerScore {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    z-index: 9;
+}
+.playerName {
+    padding-right: 10px;
+    padding-top: 2px;
+    vertical-align: middle;
+    text-align: right;
+    font-weight: bold;
+    font-size: 30px;
+}
+.dealerName {
+    padding-right: 10px;
+    padding-top: 2px;
+    vertical-align: middle;
+    text-align: left;
+    font-weight: bold;
+    font-size: 30px;
+}
+.dealerBorder {
+    background: #FFB2B2;
+}
+.playerBorder-1 {
+    background: #FFE0C2;
+}
+.playerBorder-2 {
+    background: #EBC2FF;
+}
+.playerBorder-3 {
+    background: #E0D1FF;
+}
+
+/* ======= buttons ======= */
+.hold {
+    background-color: #85E085;
+}
+.hold:hover {
+    background-color: red;
+}
+.hold:active {
+    background-color: MediumVioletRed;
+}
+.hitme {
+    background-color: #85E085;
+}
+.hitme:hover {
+    background-color: Chartreuse;
+}
+.hitme:active {
+    background-color: MediumSpringGreen;
+}
+
+/* ======= table ======= */
+.table {
+    background-color: #CCFFCC;
+}
 
 /* ======= rows & columns ======= */
-.row, .column {
+/*.row, .column {
     box-sizing: border-box;
 }
 .row {
@@ -51,10 +175,10 @@
 }
 .column:before {
     /*content: "\00a0";*/
-}
+}*/
 
 /* ======= columns ======= */
-/*.column-1 { width: 8.333%; }*/
+/*.column-1 { width: 8.333%; }
 .column-2 { width: 16.66%; }
 .column-3 { width: 25%; }
 .column-4 { width: 33.33%; }
@@ -65,7 +189,7 @@
 .column-9 { width: 75%; }
 .column-10 { width: 83.33%; }
 .column-11 { width: 91.66%; }
-.column-12 { width: 100%; }
+.column-12 { width: 100%; }*/
 
 /* ======= master rows ======= */
 /*.header {
@@ -87,21 +211,12 @@
     line-height: 30px;
 }*/
 
-/* ======= master columns ======= */
-.sidebar {
-    height: 500px;
-    min-width: 90px;
-}
-.display {
-    max-width: 1200px;
-}
-
  /* ======= main_nav ======= */
 #card {
     display: block;
     /*width: 970px;*/
     background-color: yellow;
- }
+}
 #card ul {
     list-style:none;
     position:relative;
@@ -120,7 +235,7 @@
     font-size: 16px;
     line-height:60px;
     font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
- }
+}
 #card ul li {
     display: inline-block;
     position:relative;
@@ -130,17 +245,17 @@
     text-align: center;
     margin:0;
     padding:0
- }
+}
 #card ul li.current-menu-item {
     background:#ddd
- }
+}
 #card ul li:hover {
     background:#ddd
- }
+}
 #card ul #title-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 40px;
- }
+}
