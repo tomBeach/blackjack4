@@ -36,7 +36,7 @@ function initGame() {
             },
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
-                pScore: { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, mmerge: null, class: "pBorder-1", value: null },
+                pScore: { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, mmerge: null, class: "pBorder-1", value: 0 },
                 pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 10, iW: 1, iH: 1, mmerge: null, class: "pBorder-1", value: 100 },
                 pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, mmerge: null, class: "card", value: null }
             },
@@ -59,7 +59,7 @@ function initGame() {
             },
             textParams: {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
-                pScore: { player: 2, name: "pScore_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: null },
+                pScore: { player: 2, name: "pScore_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
                 pBank: { player: 2, name: "pBank_2", type: "text", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
                 pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "card", value: null }
             },
@@ -94,14 +94,13 @@ function initGame() {
         // ======= dealer =======
         var dealerParams = {
             bgParams: {
-                borderH_D: { player: "D", name: "borderH_D", type: "bg", iR: 3, iC: 11, iW: 6, iH: 1, merge: null, class: "dBorder" },
-                borderV_D: { player: "D", name: "borderV_D", type: "bg", iR: 1, iC: 11, iW: 1, iH: 3, merge: null, class: "dBorder" }
+                borderH: { player: "D", name: "borderH_D", type: "bg", iR: 3, iC: 11, iW: 6, iH: 1, merge: null, class: "dBorder" },
+                borderV: { player: "D", name: "borderV_D", type: "bg", iR: 1, iC: 11, iW: 1, iH: 3, merge: null, class: "dBorder" }
             },
             btnParams: {},
             textParams: {
                 dName: { player: "D", name: "dName", type: "text", iR: 8, iC: 5, iW: 3, iH: 1, merge: true, class: "dBorder", value: null },
                 dScore: { player: "D", name: "dScore", type: "text", iR: 8, iC: 8, iW: 1, iH: 1, merge: null, class: "dBorder", value: null },
-                dBank: { player: "D", name: "dBank", type: "text", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "dBorder", value: 0 },
                 dCards: { player: "D", name: "dCards", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "card", value: null }
             },
             inputParams: {},
@@ -272,39 +271,12 @@ function initGame() {
     };
 
 
-    // ======= ======= ======= loadNewPlayer ======= ======= =======
-    Player.prototype.loadNewPlayer = function() {
-        console.log("");
-        console.log("== loadNewPlayer ==");
-
-        var playerCount = game.playerNamesArray.length;
-        var currentPlayer = game.playerObjectsArray[playerCount - 1];
-        console.log("  playerCount: " + playerCount);
-        console.log("  currentPlayer.id: " + currentPlayer.id);
-        console.log("  currentPlayer.name: " + currentPlayer.name);
-        var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.btnParams.betOnesBtn, currentPlayer.btnParams.betFivesBtn, currentPlayer.btnParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank];
-        for (var j = 0; j < playerParamsArray.length; j++) {
-            nextItem = playerParamsArray[j];
-            if (nextItem != null) {
-                display.modifyGridRegion(nextItem, "next");
-            }
-        }
-
-        console.log("  currentPlayer.totalBank: " + currentPlayer.totalBank);
-
-        currentPlayer.btnParams.betOnesBtn.value = "$20";
-        currentPlayer.btnParams.betFivesBtn.value = "$30";
-        currentPlayer.btnParams.betTensBtn.value = "$50";
-        currentPlayer.textParams.pName.value = this.name;
-        currentPlayer.textParams.pScore.value = 0;
-        currentPlayer.textParams.pBank.value = currentPlayer.totalBank;
-
-    }
-
     // ======= ======= ======= Player ======= ======= =======
 
     function Player(name, id) {
-        console.log('Player');
+        console.log('*********Player');
+        console.log('   id: ' + id);
+        console.log('   name: ' + name);
         this.id = id;
         this.name = name;
         this.hand = null;
@@ -318,6 +290,11 @@ function initGame() {
         this.textParams = this.playerParams(id, "text");
         this.inputParams = this.playerParams(id, "input");
         this.imageParams = this.playerParams(id, "image");
+
+        test = this.playerParams(id, "bg");
+        console.log('  test.borderH: ' + test.borderH);
+        console.log('  test.borderH.iR: ' + test.borderH.iR);
+
     }
 
     // ======= ======= ======= Game Object ======= ======= =======
@@ -509,15 +486,21 @@ function initGame() {
     Sequencer.prototype.loadNextGameState = function(prevNext) {
         console.log("loadNextGameState");
 
-        currentGameState = this.currentGameState;
+        var currentGameState = this.currentGameState;
+        console.log("  currentGameState: " + currentGameState);
         var sequencerParams = this.sequencerParams(currentGameState);
+        console.log("  sequencerParams.name: " + sequencerParams.name);
         var itemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
 
         for (var j = 0; j < itemTypesArray.length; j++) {
+            console.log("  typeCount: " + j);
             nextItemTypes = itemTypesArray[j];
+            console.log("  nextItemTypes: " + nextItemTypes);
             if (nextItemTypes != null) {
+                console.log("  nextItemTypes.length: " + nextItemTypes.length);
                 for (var i = 0; i < nextItemTypes.length; i++) {
                     nextItem = nextItemTypes[i];
+                    console.log("      nextItem: " + nextItem);
                     console.log("      nextItem.name: " + nextItem.name);
                     display.modifyGridRegion(nextItem, prevNext);
                 }
@@ -566,6 +549,60 @@ function initGame() {
         }
     }
 
+    // ======= ======= ======= startGame ======= ======= =======
+    Sequencer.prototype.startGame = function() {
+        console.log("startGame");
+        game.loadDealer();
+        this.updateGameState();
+    }
+
+    // ======= ======= ======= loadNewPlayer ======= ======= =======
+    Game.prototype.loadNewPlayer = function() {
+        console.log("");
+        console.log("== loadNewPlayer ==");
+
+        var playerCount = game.playerNamesArray.length;
+        var currentPlayer = game.playerObjectsArray[playerCount - 1];
+        console.log("  playerCount: " + playerCount);
+        console.log("  currentPlayer.id: " + currentPlayer.id);
+        console.log("  currentPlayer.name: " + currentPlayer.name);
+        var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.btnParams.betOnesBtn, currentPlayer.btnParams.betFivesBtn, currentPlayer.btnParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank];
+        for (var j = 0; j < playerParamsArray.length; j++) {
+            nextItem = playerParamsArray[j];
+            if (nextItem != null) {
+                display.modifyGridRegion(nextItem, "next");
+            }
+        }
+
+        console.log("  currentPlayer.totalBank: " + currentPlayer.totalBank);
+
+        currentPlayer.btnParams.betOnesBtn.value = "$20";
+        currentPlayer.btnParams.betFivesBtn.value = "$30";
+        currentPlayer.btnParams.betTensBtn.value = "$50";
+        currentPlayer.textParams.pName.value = this.name;
+        currentPlayer.textParams.pScore.value = 0;
+        currentPlayer.textParams.pBank.value = currentPlayer.totalBank;
+    }
+
+    // ======= ======= ======= loadDealer ======= ======= =======
+    Game.prototype.loadDealer = function() {
+        console.log("");
+        console.log("== loadDealer ==");
+        console.log("  dealer.name: " + dealer.name);
+        console.log("  dealer.bgParams.borderH.name: " + dealer.bgParams.borderH.name);
+
+        var playerParamsArray = [dealer.bgParams.borderH, dealer.bgParams.borderV, dealer.textParams.pName, dealer.textParams.pScore];
+        console.log("  playerParamsArray: " + playerParamsArray);
+        for (var j = 0; j < playerParamsArray.length; j++) {
+            nextItem = playerParamsArray[j];
+            console.log("  nextItem: " + nextItem);
+            console.log("  nextItem.name: " + nextItem.name);
+            display.modifyGridRegion(nextItem, "next");
+        }
+        dealer.textParams.dName.value = this.name;
+        dealer.textParams.dScore.value = 0;
+    }
+
     // ======= ======= ======= saveNewPlayer ======= ======= =======
     Sequencer.prototype.saveNewPlayer = function() {
         console.log("saveNewPlayer");
@@ -578,8 +615,13 @@ function initGame() {
             var playerCount = game.playerNamesArray.length;
             console.log("  playerCount2: " + playerCount);
             console.log("  newPlayer.name: " + newPlayer.name);
-            newPlayer.loadNewPlayer(newPlayer);
+            game.loadNewPlayer(newPlayer);
             this.updateGameState();
+        }
+        if (playerCount == 3) {
+            $("#tooltips").text("Max of 3 players.  Start game!");
+            game.loadDealer();
+            // this.updateGameState();
         }
 
     }
@@ -635,6 +677,20 @@ function initGame() {
     var player2 = new Player(null, 1);
     var player3 = new Player(null, 2);
     var dealer = new Player("dealer", 3);
+
+    p1Bg = dealer.playerParams(0, "bg");
+    console.log("  **********p1Bg: " + p1Bg.borderH.name);
+    console.log("  player1.name: " + player1.name);
+    console.log("  player1.bgParams: " + player1.bgParams);
+    console.log("  player1.bgParams.length: " + player1.bgParams.length);
+    console.log("  player1.bgParams[0]: " + player1.bgParams[0]);
+    console.log("  dealer.name: " + dealer.name);
+    console.log("  dealer.bgParams: " + dealer.bgParams);
+    console.log("  dealer.bgParams.borderH: " + dealer.bgParams.borderH.name);
+    console.log("  dealer.bgParams.borderV: " + dealer.bgParams.borderV.name);
+
+
+
     game.playerObjectsArray = [player1, player2, player3];
     game.dealer = dealer;
     var sequencer = new Sequencer();
