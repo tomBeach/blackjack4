@@ -15,9 +15,9 @@ function initGame() {
 
     // ======= ======= ======= playerParams ======= ======= =======
     Player.prototype.playerParams = function(whichPlayerIndex, whichParams) {
-        console.log("playerParams");
-        console.log("  whichPlayerIndex: " + whichPlayerIndex);
-        console.log("  whichParams: " + whichParams);
+        // console.log("playerParams");
+        // console.log("  whichPlayerIndex: " + whichPlayerIndex);
+        // console.log("  whichParams: " + whichParams);
 
         // == classes: pBorder-1, pBorder-2, dBorder, pBorder-3, button, card
 
@@ -37,7 +37,7 @@ function initGame() {
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
                 pScore: { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, mmerge: null, class: "pBorder-1", value: 0 },
-                pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 10, iW: 1, iH: 1, mmerge: null, class: "pBorder-1", value: 100 },
+                pBank: { player: 1, name: "pBank_1", type: "text", iR: 1, iC: 6, iW: 1, iH: 1, mmerge: null, class: "pBorder-1", value: 100 },
                 pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, mmerge: null, class: "card", value: null }
             },
             inputParams: {},
@@ -60,7 +60,7 @@ function initGame() {
             textParams: {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
                 pScore: { player: 2, name: "pScore_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
-                pBank: { player: 2, name: "pBank_2", type: "text", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
+                pBank: { player: 2, name: "pBank_2", type: "text", iR: 4, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
                 pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "card", value: null }
             },
             inputParams: {},
@@ -84,7 +84,7 @@ function initGame() {
             textParams: {
                 pName: { player: 3, name: "pName_3", type: "text", iR: 8, iC: 5, iW: 3, iH: 1, merge: true, class: "pBorder-3", value: null },
                 pScore: { player: 3, name: "pScore_3", type: "text", iR: 8, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
-                pBank: { player: 3, name: "pBank_3", type: "text", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
+                pBank: { player: 3, name: "pBank_3", type: "text", iR: 7, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
                 pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "card", value: null }
             },
             inputParams: {},
@@ -193,7 +193,6 @@ function initGame() {
 
         var player = game.playerObjectsArray[0];
         var playerIndex = 0;
-        console.log("  player: " + player.name);
 
         // ======= states =======
         var splash = {
@@ -217,13 +216,77 @@ function initGame() {
             bg: null,
             btn: [game.btnParams.enterBtn, game.btnParams.startBtn],
             text: [game.textParams.tooltips],
-            input: null,
+            input: [game.inputParams.playerName],
             image: null
         }
         var deal = {
             name: "deal",
-            bg: [player.bgParams.borderH_1, player.bgParams.borderV_1],
+            bg: null,
             btn: [game.gameParams("btn").dealBtn],
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        playGame = {
+            name: "playGame",
+            bg: null,
+            btn: null,
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        bet = {
+            name: "bet",
+            bg: null,
+            btn: [game.gameParams("btn").retOnesBtn, game.gameParams("btn").retFivesBtn, game.gameParams("btn").retTensBtn, game.gameParams("btn").newGameBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn],
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        hitMe = {
+            name: "hitMe",
+            bg: null,
+            btn: [player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        holdMe = {
+            name: "holdMe",
+            bg: null,
+            btn: [player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        turnOver = {
+            name: "turnOver",
+            bg: null,
+            btn: null,
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        hitDealer = {
+            name: "hitDealer",
+            bg: null,
+            btn: null,
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        gameOver = {
+            name: "gameOver",
+            bg: null,
+            btn: null,
+            text: [game.gameParams("text").tooltips],
+            input: null,
+            image: null
+        }
+        doTheMath = {
+            name: "doTheMath",
+            bg: null,
+            btn: [game.gameParams("btn").newGameBtn],
             text: [game.gameParams("text").tooltips],
             input: null,
             image: null
@@ -244,28 +307,28 @@ function initGame() {
                 return deal;
                 break;
             case "playGame":
-                return sequencerStateParams.playGame;
+                return playGame;
                 break;
             case "bet":
-                return sequencerStateParams.bet;
+                return bet;
                 break;
             case "hitMe":
-                return sequencerStateParams.hitMe;
+                return hitMe;
                 break;
             case "holdMe":
-                return sequencerStateParams.holdMe;
+                return holdMe;
                 break;
             case "turnOver":
-                return sequencerStateParams.turnOver;
+                return turnOver;
                 break;
             case "hitDealer":
-                return sequencerStateParams.hitDealer;
+                return hitDealer;
                 break;
             case "gameOver":
-                return sequencerStateParams.gameOver;
+                return gameOver;
                 break;
             case "doTheMath":
-                return sequencerStateParams.doTheMath;
+                return doTheMath;
                 break;
         }
     };
@@ -274,9 +337,7 @@ function initGame() {
     // ======= ======= ======= Player ======= ======= =======
 
     function Player(name, id) {
-        console.log('*********Player');
-        console.log('   id: ' + id);
-        console.log('   name: ' + name);
+        console.log('Player');
         this.id = id;
         this.name = name;
         this.hand = null;
@@ -290,11 +351,6 @@ function initGame() {
         this.textParams = this.playerParams(id, "text");
         this.inputParams = this.playerParams(id, "input");
         this.imageParams = this.playerParams(id, "image");
-
-        test = this.playerParams(id, "bg");
-        console.log('  test.borderH: ' + test.borderH);
-        console.log('  test.borderH.iR: ' + test.borderH.iR);
-
     }
 
     // ======= ======= ======= Game Object ======= ======= =======
@@ -346,7 +402,7 @@ function initGame() {
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, prevNext) {
         console.log("modifyGridRegion");
-        console.log("  -- prevNext: " + prevNext);
+        console.log("  prevNext: " + prevNext);
 
         var whichMerge;
         if (prevNext == "prev") {
@@ -366,9 +422,6 @@ function initGame() {
         var whichType = whichItem.type;
         var whichValue = whichItem.value;
         var whichName = whichItem.name;
-        console.log("  -- whichType: " + whichType);
-        console.log("  -- whichName: " + whichName);
-        console.log("  -- whichValue: " + whichValue);
 
         if (whichMerge == "merge") {
             indexCell = this.mergeRegion(whichItem);
@@ -386,14 +439,13 @@ function initGame() {
                 break;
             case "btn":
                 $(indexCell).text(whichValue);
-                console.log("  -- whichValue2: " + whichValue);
                 sequencer.activateButton(indexCell, whichItem.callback)
                 break;
             case "text":
                 $(indexCell).text(whichValue);
                 break;
             case "input":
-                newTextInput = "<input id='" + whichItem.name + "' class='" + whichItem.class + "' type='text' value='Tom'>"
+                newTextInput = "<input id='" + whichItem.name + "Input' class='" + whichItem.class + "' type='text' value='Tom'>"
                 $(indexCell).append(newTextInput);
                 $(newTextInput).attr("id", whichItem.name);
             case "image":
@@ -401,9 +453,79 @@ function initGame() {
         }
     }
 
+    // ======= ======= ======= processItemArrays ======= ======= =======
+    Sequencer.prototype.processItemArrays = function(nextItemsParamsObject, prevItemsParamsObject, itemType) {
+        console.log("processItemArrays");
+
+        var REMprevItems = [];
+        var ADDnextItems = [];
+        var tempNamesOld = [];
+        var tempNamesNew = [];
+        nextNewArray = nextItemsParamsObject;
+        nextOldArray = prevItemsParamsObject;
+
+        // == get items names for array processing
+        for (var i = 0; i < nextOldArray.length; i++) {
+            nextItemArray = nextOldArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    tempNamesOld.push(nextItemName);
+                }
+            }
+        }
+        for (var i = 0; i < nextNewArray.length; i++) {
+            nextItemArray = nextNewArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    tempNamesNew.push(nextItemName);
+                }
+            }
+        }
+        console.log("  tempNamesOld: " + tempNamesOld);
+        console.log("  tempNamesNew: " + tempNamesNew);
+
+        // == find array differences
+        ADDnextNames = $(tempNamesNew).not(tempNamesOld).get();
+        REMprevNames = $(tempNamesOld).not(tempNamesNew).get();
+
+        for (var i = 0; i < nextOldArray.length; i++) {
+            nextItemArray = nextOldArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    var found = $.inArray(nextItemName, REMprevNames)
+                    if (found > -1) {
+                        REMprevItems.push(nextItem);
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < nextNewArray.length; i++) {
+            nextItemArray = nextNewArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    var found = $.inArray(nextItemName, ADDnextNames)
+                    if (found > -1) {
+                        ADDnextItems.push(nextItem);
+                    }
+                }
+            }
+        }
+        console.log("  REMprevNames: " + REMprevNames)
+        console.log("  ADDnextNames: " + ADDnextNames)
+        return [REMprevNames, ADDnextNames, REMprevItems, ADDnextItems];
+    }
+
     // ======= ======= ======= mergeRegion ======= ======= =======
     Display.prototype.mergeRegion = function(whichItem) {
-        // console.log("mergeRegion");
+        console.log("mergeRegion");
         var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
@@ -424,10 +546,12 @@ function initGame() {
 
     // ======= ======= ======= unMergeRegion ======= ======= =======
     Display.prototype.unMergeRegion = function(whichItem) {
-        // console.log("unMergeRegion");
+        console.log("unMergeRegion");
+        console.log("  whichItem.name: " + whichItem.name);
         var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
         $(indexCell).attr("colSpan", 1);
         $(indexCell).attr("rowSpan", 1);
+        $(indexCell).text("");
         $(indexCell).removeClass(whichItem.class);
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
@@ -439,21 +563,23 @@ function initGame() {
             }
         }
         $(indexCell).attr("id", "");
-        console.log("  $(indexCell): " + $(indexCell));
-        console.log("  $(indexCell): " + $(indexCell).attr("id", ""));
-        return indexCell;
+        if ($(indexCell).children().length > 0) {
+            console.log("CHILDREN!!!");
+            var newCell = document.createElement("td");
+            $(indexCell).after(newCell);
+            $(newCell).addClass("cell");
+            $(indexCell).remove();
+        }
+        // return newCell;
     }
 
     // ======= ======= ======= selectTableCells ======= ======= =======
     Display.prototype.selectTableCells = function(whichItem) {
         console.log("selectTableCells");
-        console.log("  whichItem.iW: " + whichItem.iW);
         var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
                 nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
-                console.log("  nextCell: " + nextCell);
-                console.log("  whichItem.class: " + whichItem.class);
                 $(nextCell).attr("colSpan", 1);
                 $(nextCell).attr("rowSpan", 1);
                 $(nextCell).addClass(whichItem.class);
@@ -461,8 +587,6 @@ function initGame() {
         }
         $(indexCell).attr("id", whichItem.name);
         $(indexCell).addClass(whichItem.class);
-        console.log("  id: " + $(indexCell).attr("id"));
-        console.log("  class: " + $(indexCell).attr("class"));
         return indexCell;
     }
 
@@ -479,6 +603,7 @@ function initGame() {
         }
         $(indexCell).attr("id", "");
         $(indexCell).removeClass(whichItem.class);
+        $(indexCell).empty();
         return indexCell;
     }
 
@@ -487,23 +612,54 @@ function initGame() {
         console.log("loadNextGameState");
 
         var currentGameState = this.currentGameState;
-        console.log("  currentGameState: " + currentGameState);
         var sequencerParams = this.sequencerParams(currentGameState);
-        console.log("  sequencerParams.name: " + sequencerParams.name);
         var itemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
 
         for (var j = 0; j < itemTypesArray.length; j++) {
-            console.log("  typeCount: " + j);
             nextItemTypes = itemTypesArray[j];
-            console.log("  nextItemTypes: " + nextItemTypes);
             if (nextItemTypes != null) {
-                console.log("  nextItemTypes.length: " + nextItemTypes.length);
                 for (var i = 0; i < nextItemTypes.length; i++) {
                     nextItem = nextItemTypes[i];
-                    console.log("      nextItem: " + nextItem);
-                    console.log("      nextItem.name: " + nextItem.name);
                     display.modifyGridRegion(nextItem, prevNext);
                 }
+            }
+        }
+    }
+
+    // ======= ======= ======= updateGameState ======= ======= =======
+    Sequencer.prototype.updateGameState = function() {
+        console.log("");
+        console.log("== updateGameState ==");
+
+        var currentGameStateIndex = this.gameStatesArray.indexOf(this.currentGameState);
+
+        var currentGameState = this.currentGameState;
+        console.log("== " + currentGameState + " ==");
+        var sequencerParams = this.sequencerParams(currentGameState);
+        var prevItemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
+
+        if (currentGameStateIndex == this.gameStatesArray.length - 1) {
+            currentGameState = this.gameStatesArray[0];
+            this.currentGameState = currentGameState;
+            console.log("== " + currentGameState + " ==");
+            this.loadNextGameState("next");
+        } else {
+            currentGameState = this.gameStatesArray[currentGameStateIndex + 1];
+            this.currentGameState = currentGameState;
+            console.log("== " + currentGameState + " ==");
+            var sequencerParams = this.sequencerParams(currentGameState);
+            var nextItemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
+            var changeItemsArray = this.processItemArrays(nextItemTypesArray, prevItemTypesArray);
+            var removeItemsArray = changeItemsArray[2];
+            var addItemsArray = changeItemsArray[3];
+            // this.loadNextGameState("prev");
+            for (var j = 0; j < removeItemsArray.length; j++) {
+                nextItem = removeItemsArray[j];
+                display.modifyGridRegion(nextItem, "prev");
+            }
+            for (var j = 0; j < addItemsArray.length; j++) {
+                nextItem = addItemsArray[j];
+                display.modifyGridRegion(nextItem, "next");
             }
         }
     }
@@ -516,12 +672,12 @@ function initGame() {
 
         // ======= tooltips =======
         $(indexCell).on("mouseenter", function(event){
-            console.log("-- mouseenter");
+            // console.log("-- mouseenter");
             whichIndexCell = event.target;
             display.tooltips(whichIndexCell, "on");
         });
         $(indexCell).on("mouseout", function(){
-            console.log("-- mouseout");
+            // console.log("-- mouseout");
             whichIndexCell = event.target;
             display.tooltips(whichIndexCell, "off");
         });
@@ -556,16 +712,48 @@ function initGame() {
         this.updateGameState();
     }
 
+    // ======= ======= ======= updatePlayerValues ======= ======= =======
+    Game.prototype.updatePlayerValues = function(whichPlayer, playerId) {
+        console.log("updatePlayerValues");
+        whichPlayer.name = $('#playerNameInput').val();
+        whichPlayer.textParams.pName.value = whichPlayer.name;
+        var playerNameCell = "#pName_" + playerId;
+        $(playerNameCell).text(whichPlayer.name);
+        whichPlayer.textParams.pScore.value = 0;
+    }
+
+    // ======= ======= ======= saveNewPlayer ======= ======= =======
+    Sequencer.prototype.saveNewPlayer = function() {
+        console.log("saveNewPlayer");
+
+        var playerCount = game.playerNamesArray.length;
+        console.log("  ###playerCount1: " + playerCount);
+        if (playerCount < 3) {
+            newPlayer = game.playerObjectsArray[playerCount]
+            game.playerNamesArray.push(newPlayer.name)
+            var playerCount = game.playerNamesArray.length;
+            console.log("  ###playerCount2: " + playerCount);
+            game.loadNewPlayer(newPlayer);
+            game.updatePlayerValues(newPlayer, playerCount);
+        }
+        if (playerCount == 1) {
+            this.updateGameState();
+        }
+        if (playerCount == 3) {
+            $("#tooltips").text("Max of 3 players.  Start game!");
+            this.updateGameState();
+            game.loadDealer();
+            this.updateGameState();
+        }
+
+    }
+
     // ======= ======= ======= loadNewPlayer ======= ======= =======
     Game.prototype.loadNewPlayer = function() {
-        console.log("");
-        console.log("== loadNewPlayer ==");
+        console.log("loadNewPlayer");
 
         var playerCount = game.playerNamesArray.length;
         var currentPlayer = game.playerObjectsArray[playerCount - 1];
-        console.log("  playerCount: " + playerCount);
-        console.log("  currentPlayer.id: " + currentPlayer.id);
-        console.log("  currentPlayer.name: " + currentPlayer.name);
         var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.btnParams.betOnesBtn, currentPlayer.btnParams.betFivesBtn, currentPlayer.btnParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank];
         for (var j = 0; j < playerParamsArray.length; j++) {
             nextItem = playerParamsArray[j];
@@ -573,8 +761,6 @@ function initGame() {
                 display.modifyGridRegion(nextItem, "next");
             }
         }
-
-        console.log("  currentPlayer.totalBank: " + currentPlayer.totalBank);
 
         currentPlayer.btnParams.betOnesBtn.value = "$20";
         currentPlayer.btnParams.betFivesBtn.value = "$30";
@@ -586,60 +772,17 @@ function initGame() {
 
     // ======= ======= ======= loadDealer ======= ======= =======
     Game.prototype.loadDealer = function() {
-        console.log("");
-        console.log("== loadDealer ==");
-        console.log("  dealer.name: " + dealer.name);
-        console.log("  dealer.bgParams.borderH.name: " + dealer.bgParams.borderH.name);
+        console.log("loadDealer");
 
         var playerParamsArray = [dealer.bgParams.borderH, dealer.bgParams.borderV, dealer.textParams.pName, dealer.textParams.pScore];
-        console.log("  playerParamsArray: " + playerParamsArray);
         for (var j = 0; j < playerParamsArray.length; j++) {
             nextItem = playerParamsArray[j];
-            console.log("  nextItem: " + nextItem);
-            console.log("  nextItem.name: " + nextItem.name);
-            display.modifyGridRegion(nextItem, "next");
+            if (nextItem) {
+                display.modifyGridRegion(nextItem, "next");
+            }
         }
         dealer.textParams.dName.value = this.name;
         dealer.textParams.dScore.value = 0;
-    }
-
-    // ======= ======= ======= saveNewPlayer ======= ======= =======
-    Sequencer.prototype.saveNewPlayer = function() {
-        console.log("saveNewPlayer");
-
-        var playerCount = game.playerNamesArray.length;
-        if (playerCount < 3) {
-            newPlayer = game.playerObjectsArray[playerCount]
-            newPlayer.name = $('#playerName').val();
-            game.playerNamesArray.push(newPlayer.name)
-            var playerCount = game.playerNamesArray.length;
-            console.log("  playerCount2: " + playerCount);
-            console.log("  newPlayer.name: " + newPlayer.name);
-            game.loadNewPlayer(newPlayer);
-            this.updateGameState();
-        }
-        if (playerCount == 3) {
-            $("#tooltips").text("Max of 3 players.  Start game!");
-            game.loadDealer();
-            // this.updateGameState();
-        }
-
-    }
-
-    // ======= ======= ======= updateGameState ======= ======= =======
-    Sequencer.prototype.updateGameState = function() {
-        console.log("");
-        console.log("== updateGameState ==");
-
-        var currentGameStateIndex = this.gameStatesArray.indexOf(this.currentGameState);
-        if (currentGameStateIndex == this.gameStatesArray.length - 1) {
-            currentGameState = this.gameStatesArray[0];
-        } else {
-            currentGameState = this.gameStatesArray[currentGameStateIndex + 1];
-        }
-        console.log("== " + currentGameState + " ==");
-        this.currentGameState = currentGameState;
-        this.loadNextGameState("next");
     }
 
     // ======= ======= ======= tooltips ======= ======= =======
@@ -677,19 +820,6 @@ function initGame() {
     var player2 = new Player(null, 1);
     var player3 = new Player(null, 2);
     var dealer = new Player("dealer", 3);
-
-    p1Bg = dealer.playerParams(0, "bg");
-    console.log("  **********p1Bg: " + p1Bg.borderH.name);
-    console.log("  player1.name: " + player1.name);
-    console.log("  player1.bgParams: " + player1.bgParams);
-    console.log("  player1.bgParams.length: " + player1.bgParams.length);
-    console.log("  player1.bgParams[0]: " + player1.bgParams[0]);
-    console.log("  dealer.name: " + dealer.name);
-    console.log("  dealer.bgParams: " + dealer.bgParams);
-    console.log("  dealer.bgParams.borderH: " + dealer.bgParams.borderH.name);
-    console.log("  dealer.bgParams.borderV: " + dealer.bgParams.borderV.name);
-
-
 
     game.playerObjectsArray = [player1, player2, player3];
     game.dealer = dealer;
