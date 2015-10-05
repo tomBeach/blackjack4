@@ -35,8 +35,6 @@ html {
     /*font-family: 'Allerta Stencil', sans-serif;*/
 }
 .container {
-    position: relative;
-    z-index: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,59 +118,34 @@ html {
 .dealerBorder {
     background: #FFB2B2;
 }
-.pBorder-1 {
+.playerBorder-1 {
     background: #FFE0C2;
 }
-.pBorder-2 {
+.playerBorder-2 {
     background: #EBC2FF;
 }
-.pBorder-3 {
+.playerBorder-3 {
     background: #E0D1FF;
 }
 
 /* ======= buttons ======= */
-.orbBtn {
+.hold {
     background-color: #85E085;
 }
-.holdMe {
-    background-color: #85E085;
-}
-.hitMe {
-    background-color: #85E085;
-}
-.enterBtn, .startBtn {
-    background-color: DarkSlateBlue;
-}
-.enterPlayerBtn, .startGameBtn, .dealBtn, .newGameBtn, .button {
-    background-color: DarkCyan;
-}
-.ones, .fives, .tens {
-    background-color: LawnGreen;
-}
-.remove {
-    background-color: black
-}
-
-/* ======= hover/active fx ======= */
 .hold:hover {
     background-color: red;
 }
 .hold:active {
     background-color: MediumVioletRed;
 }
-.hitme:hover, .orbBtn:hover, .enterPlayerBtn:hover, .startGameBtn:hover {
+.hitme {
+    background-color: #85E085;
+}
+.hitme:hover {
     background-color: Chartreuse;
 }
-.hitme:active, .orbBtn:active, .enterPlayerBtn:active, .startGameBtn:active {
+.hitme:active {
     background-color: MediumSpringGreen;
-}
-
-/* ======= text input ======= */
-.playerName {
-    height: 40px;
-    width: 140px;
-    font-size: 18px;
-    margin-left: 2px;
 }
 
 /* ======= table ======= */
