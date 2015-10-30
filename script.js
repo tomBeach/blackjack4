@@ -130,8 +130,8 @@ function initGame() {
 
     // ======= ======= ======= gameParams ======= ======= =======
     Game.prototype.gameParams = function(whichParams) {
-        // console.log("gameParams");
-        // console.log("  whichParams: " + whichParams);
+        console.log("gameParams");
+        console.log("  whichParams: " + whichParams);
 
         var itemParams = {
             bg: {
@@ -143,9 +143,9 @@ function initGame() {
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
                 dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: "merge", class: "dealBtn", value: "deal", tooltip: null },
-                retOnesBtn: { name: "retOnesBtn", callback: "", type: "btn", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltip: null },
-                retFivesBtn: { name: "retFivesBtn", callback: "", type: "btn", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltip: null },
-                retTensBtn: { name: "retTensBtn", callback: "", type: "btn", iR: 5, iC: 16, iW: 1, iH: 1, merge: null, class: "tens", value: "tens", tooltip: null },
+                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltip: null },
+                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltip: null },
+                retTensBtn: { name: "retTensBtn", callback: "retTen", type: "btn", iR: 5, iC: 16, iW: 1, iH: 1, merge: null, class: "tens", value: "tens", tooltip: null },
                 newGameBtn: { name: "newGameBtn", callback: "updateGameState", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
@@ -155,6 +155,9 @@ function initGame() {
                 pBank_1: { name: "pBank_1", type: "text", iR: 8, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 20 },
                 pBank_2: { name: "pBank_2", type: "text", iR: 9, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 40 },
                 pBank_3: { name: "pBank_3", type: "text", iR: 10, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 60 },
+                pBet_1s: { name: "pBet_1s", type: "text", iR: 6, iC: 14, iW: 1, iH: 1, merge: null, class: null, value: 0 },
+                pBet_5s: { name: "pBet_5s", type: "text", iR: 6, iC: 15, iW: 1, iH: 1, merge: null, class: null, value: 0 },
+                pBet_10s: { name: "pBet_10s", type: "text", iR: 6, iC: 16, iW: 1, iH: 1, merge: null, class: null, value: 0 },
                 totalBet: { name: "totalBet", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: null, value: 0 },
                 tooltips: { name: "tooltips", type: "text", iR: 9, iC: 12, iW: 3, iH: 1, merge: "merge", class: "tooltips", value: null }
             },
@@ -195,139 +198,137 @@ function initGame() {
         var playerIndex = 0;
 
         // ======= states =======
-        var splash = {
-            name: "splash",
-            bg: null,
-            btn: [game.btnParams.orbBtn],
-            text: [game.textParams.tooltips],
-            input: null,
-            image: null
-        }
-        var login = {
-            name: "login",
-            bg: null,
-            btn: [game.btnParams.enterBtn],
-            text: [game.textParams.tooltips],
-            input: [game.inputParams.playerName],
-            image: null
-        }
-        var saveStart = {
-            name: "saveStart",
-            bg: null,
-            btn: [game.btnParams.enterBtn, game.btnParams.startBtn],
-            text: [game.textParams.tooltips],
-            input: [game.inputParams.playerName],
-            image: null
-        }
-        var deal = {
-            name: "deal",
-            bg: null,
-            btn: [game.gameParams("btn").dealBtn],
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        bet = {
-            name: "bet",
-            bg: null,
-            btn: [game.gameParams("btn").retOnesBtn, game.gameParams("btn").retFivesBtn, game.gameParams("btn").retTensBtn, game.gameParams("btn").newGameBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn],
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        playGame = {
-            name: "playGame",
-            bg: null,
-            btn: null,
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        hitMe = {
-            name: "hitMe",
-            bg: null,
-            btn: [player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        holdMe = {
-            name: "holdMe",
-            bg: null,
-            btn: [player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        turnOver = {
-            name: "turnOver",
-            bg: null,
-            btn: null,
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        hitDealer = {
-            name: "hitDealer",
-            bg: null,
-            btn: null,
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        gameOver = {
-            name: "gameOver",
-            bg: null,
-            btn: null,
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-        doTheMath = {
-            name: "doTheMath",
-            bg: null,
-            btn: [game.gameParams("btn").newGameBtn],
-            text: [game.gameParams("text").tooltips],
-            input: null,
-            image: null
-        }
-
-        // ======= data connection =======
         switch(whichState) {
             case "splash":
+                var splash = {
+                    name: "splash",
+                    bg: null,
+                    btn: [game.btnParams.orbBtn],
+                    text: [game.textParams.tooltips],
+                    input: null,
+                    image: null
+                }
                 return splash;
                 break;
             case "login":
+                var login = {
+                    name: "login",
+                    bg: null,
+                    btn: [game.btnParams.enterBtn],
+                    text: [game.textParams.tooltips],
+                    input: [game.inputParams.playerName],
+                    image: null
+                }
                 return login;
                 break;
             case "saveStart":
+                var saveStart = {
+                    name: "saveStart",
+                    bg: null,
+                    btn: [game.btnParams.enterBtn, game.btnParams.startBtn],
+                    text: [game.textParams.tooltips],
+                    input: [game.inputParams.playerName],
+                    image: null
+                }
                 return saveStart;
                 break;
             case "deal":
+                var deal = {
+                    name: "deal",
+                    bg: null,
+                    btn: [game.gameParams("btn").dealBtn],
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return deal;
                 break;
-            case "playGame":
-                return playGame;
-                break;
             case "bet":
+                bet = {
+                    name: "bet",
+                    bg: null,
+                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, game.btnParams.newGameBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn],
+                    text: [game.gameParams("text").tooltips, game.textParams.pBet_1s, game.textParams.pBet_5s, game.textParams.pBet_10s],
+                    input: null,
+                    image: null
+                }
                 return bet;
                 break;
+            case "playGame":
+                playGame = {
+                    name: "playGame",
+                    bg: null,
+                    btn: null,
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
+                return playGame;
+                break;
             case "hitMe":
+                hitMe = {
+                    name: "hitMe",
+                    bg: null,
+                    btn: [player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return hitMe;
                 break;
             case "holdMe":
+                holdMe = {
+                    name: "holdMe",
+                    bg: null,
+                    btn: [player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return holdMe;
                 break;
             case "turnOver":
+                turnOver = {
+                    name: "turnOver",
+                    bg: null,
+                    btn: null,
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return turnOver;
                 break;
             case "hitDealer":
+                hitDealer = {
+                    name: "hitDealer",
+                    bg: null,
+                    btn: null,
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return hitDealer;
                 break;
             case "gameOver":
+                gameOver = {
+                    name: "gameOver",
+                    bg: null,
+                    btn: null,
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return gameOver;
                 break;
             case "doTheMath":
+                doTheMath = {
+                    name: "doTheMath",
+                    bg: null,
+                    btn: [game.gameParams("btn").newGameBtn],
+                    text: [game.gameParams("text").tooltips],
+                    input: null,
+                    image: null
+                }
                 return doTheMath;
                 break;
         }
@@ -375,6 +376,9 @@ function initGame() {
         this.prevTexts = [];
         this.prevInputs = [];
         this.prevImages = [];
+        this.onesBet = 0;
+        this.fivesBet = 0;
+        this.tensBet = 0;
         this.display = null;
         this.message = null;
     }
@@ -391,14 +395,14 @@ function initGame() {
     // ======= ======= ======= Sequencer ======= ======= =======
 
     function Sequencer() {
-        console.log('Display');
+        console.log('Sequencer');
         this.name = "Sequencer";
         this.currentGameState = "doTheMath";
         // this.gameStatesArray = ["splash", "login", "saveStart", "deal"];
         this.gameStatesArray = ["splash", "login", "saveStart", "deal", "bet", "playGame", "hitMe", "holdMe", "turnOver", "hitDealer", "gameOver", "doTheMath"];
-        this.splash = this.sequencerParams("splash");
-        this.login = this.sequencerParams("login");
-        this.saveStart = this.sequencerParams("saveStart");
+        // this.splash = this.sequencerParams("splash");
+        // this.login = this.sequencerParams("login");
+        // this.saveStart = this.sequencerParams("saveStart");
     }
 
     // ======= ======= ======= startGame ======= ======= =======
@@ -406,12 +410,13 @@ function initGame() {
         console.log("startGame");
         game.loadDealer();
         game.updatePlayerNames(game.dealer, 4);
+        game.currentPlayer = game.playerObjectsArray[0];
         this.updateGameState();
     }
 
-    // ======= ======= ======= loadNextGameState ======= ======= =======
-    Sequencer.prototype.loadNextGameState = function(prevNext) {
-        console.log("loadNextGameState");
+    // ======= ======= ======= loadStartGameState ======= ======= =======
+    Sequencer.prototype.loadStartGameState = function(prevNext) {
+        console.log("loadStartGameState");
 
         var currentGameState = this.currentGameState;
         var sequencerParams = this.sequencerParams(currentGameState);
@@ -435,6 +440,7 @@ function initGame() {
 
         var currentGameStateIndex = this.gameStatesArray.indexOf(this.currentGameState);
 
+        // == get current state
         var currentGameState = this.currentGameState;
         console.log("== " + currentGameState + " ==");
         var sequencerParams = this.sequencerParams(currentGameState);
@@ -445,20 +451,20 @@ function initGame() {
             currentGameState = this.gameStatesArray[0];
             this.currentGameState = currentGameState;
             console.log("== " + currentGameState + " ==");
-            this.loadNextGameState("next");
-
-        // == load next game state
+            this.loadStartGameState("next");
         } else {
+
+            // == load next game state
             currentGameState = this.gameStatesArray[currentGameStateIndex + 1];
             this.currentGameState = currentGameState;
             console.log("== " + currentGameState + " ==");
             var sequencerParams = this.sequencerParams(currentGameState);
             var nextItemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
 
-            // == get prev items; get next items
+            // == identify items to delete/keep/add
             var changeItemsArray = this.processItemArrays(nextItemTypesArray, prevItemTypesArray);
-            var removeItemsArray = changeItemsArray[2];
-            var addItemsArray = changeItemsArray[3];
+            var removeItemsArray = changeItemsArray[2];     // delete these items
+            var addItemsArray = changeItemsArray[3];        // add these items
 
             // == remove prev items; add next items
             for (var j = 0; j < removeItemsArray.length; j++) {
@@ -470,16 +476,6 @@ function initGame() {
                 display.modifyGridRegion(nextItem, "next");
             }
         }
-    }
-
-    // ======= ======= ======= deActivateButton ======= ======= =======
-    Sequencer.prototype.deActivateButton = function(indexCell, whichAction) {
-        console.log("deActivateButton");
-        console.log("  action: " + whichAction);
-
-        // ======= event listeners =======
-        $(indexCell).off("mouseenter", null);
-        $(indexCell).off("click", null);
     }
 
     // ======= ======= ======= activateButton ======= ======= =======
@@ -545,7 +541,206 @@ function initGame() {
                     game.placeBet("tens");
                 });
                 break;
+            case "retOne":
+                $(indexCell).on("click", function(){
+                    console.log("-- retOne");
+                    game.returnBet("ones");
+                });
+                break;
+            case "retFive":
+                $(indexCell).on("click", function(){
+                    console.log("-- retFive");
+                    game.returnBet("fives");
+                });
+                break;
+            case "retTen":
+                $(indexCell).on("click", function(){
+                    console.log("-- retTen");
+                    game.returnBet("tens");
+                });
+                break;
         }
+    }
+
+    // ======= ======= ======= deActivateButton ======= ======= =======
+    Sequencer.prototype.deActivateButton = function(indexCell, whichAction) {
+        console.log("deActivateButton");
+        console.log("  action: " + whichAction);
+
+        // ======= event listeners =======
+        $(indexCell).off("mouseenter", null);
+        $(indexCell).off("click", null);
+    }
+
+
+
+    // ======= ======= ======= GAME ======= ======= =======
+    // ======= ======= ======= GAME ======= ======= =======
+    // ======= ======= ======= GAME ======= ======= =======
+
+
+
+    // ======= ======= ======= returnBet ======= ======= =======
+    Game.prototype.returnBet = function(whichBet) {
+        // console.log("returnBet");
+
+        var onesBank = game.currentPlayer.onesBank;
+        var fivesBank = game.currentPlayer.fivesBank;
+        var tensBank = game.currentPlayer.tensBank;
+        var onesBet = game.onesBet;
+        var fivesBet = game.fivesBet;
+        var tensBet = game.tensBet;
+        var limitFlag = false;
+
+        switch(whichBet) {
+            case "ones":
+                onesBet = onesBet - 1;
+                if (onesBet < 0) {
+                    onesBet = 0;
+                    limitFlag = true;
+                } else {
+                    onesBank = onesBank + 1;
+                }
+                break;
+            case "fives":
+                fivesBet = fivesBet - 5;
+                if (fivesBet < 0) {
+                    fivesBet = 0;
+                    limitFlag = true;
+                } else {
+                    fivesBank = fivesBank + 5;
+                }
+                break;
+            case "tens":
+                tensBet = tensBet - 10;
+                if (tensBet < 0) {
+                    tensBet = 0;
+                    limitFlag = true;
+                } else {
+                    tensBank = tensBank + 10;
+                }
+                break;
+        }
+
+        if (limitFlag == false) {
+            game.currentPlayer.onesBank = onesBank;
+            game.currentPlayer.fivesBank = fivesBank;
+            game.currentPlayer.tensBank = tensBank;
+            game.onesBet = onesBet;
+            game.fivesBet = fivesBet;
+            game.tensBet = tensBet;
+            game.updateBetButtonText(game.currentPlayer);
+        } else {
+            $("#tooltips").text("Total bet is returned");
+        }
+
+    }
+
+    // ======= ======= ======= placeBet ======= ======= =======
+    Game.prototype.placeBet = function(whichBet) {
+        // console.log("placeBet");
+
+        var onesBank = game.currentPlayer.onesBank;
+        var fivesBank = game.currentPlayer.fivesBank;
+        var tensBank = game.currentPlayer.tensBank;
+        var onesBet = game.onesBet;
+        var fivesBet = game.fivesBet;
+        var tensBet = game.tensBet;
+        var limitFlag = false;
+
+        switch(whichBet) {
+            case "ones":
+                onesBank = onesBank - 1;
+                if (onesBank < 0) {
+                    onesBank = 0;
+                    limitFlag = true;
+                } else {
+                    onesBet = onesBet + 1;
+                }
+                break;
+            case "fives":
+                fivesBank = fivesBank - 5;
+                if (fivesBank < 0) {
+                    fivesBank = 0;
+                    limitFlag = true;
+                } else {
+                    fivesBet = fivesBet + 5;
+                }
+                break;
+            case "tens":
+                tensBank = tensBank - 10;
+                if (tensBank < 0) {
+                    tensBank = 0;
+                    limitFlag = true;
+                } else {
+                    tensBet = tensBet + 10;
+                }
+                break;
+        }
+
+        if (limitFlag == false) {
+            game.currentPlayer.onesBank = onesBank;
+            game.currentPlayer.fivesBank = fivesBank;
+            game.currentPlayer.tensBank = tensBank;
+            game.onesBet = onesBet;
+            game.fivesBet = fivesBet;
+            game.tensBet = tensBet;
+            game.updateBetButtonText(game.currentPlayer);
+        } else {
+            $("#tooltips").text("Oops you're out of money!");
+        }
+
+    }
+
+    // ======= ======= ======= updateBetButtonText ======= ======= =======
+    Game.prototype.updateBetButtonText = function(whichPlayert) {
+        // console.log("updateBetButtonText");
+        $("#" + whichPlayer.btnParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
+        $("#" + whichPlayer.btnParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
+        $("#" + whichPlayer.btnParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
+        $("#pBet_1s").text("$" + game.onesBet);
+        $("#pBet_5s").text("$" + game.fivesBet);
+        $("#pBet_10s").text("$" + game.tensBet);
+    }
+
+    // ======= ======= ======= updatePlayerScoreText ======= ======= =======
+    Game.prototype.updatePlayerScoreText = function(whichPlayer) {
+        console.log("updatePlayerScoreText");
+        if (whichPlayer.name == "dealer") {
+            var playerScoreCell = "#pScore";
+            $(playerScoreCell).text("dealer");
+        } else {
+            var playerScoreCell = "#pScore_" + (whichPlayer.id + 1);
+            whichPlayer.textParams.pScore.value = whichPlayer.score;
+            $(playerScoreCell).text(whichPlayer.score);
+        }
+    }
+
+    // ======= ======= ======= dealNextCard ======= ======= =======
+    Game.prototype.dealNextCard = function(whichPlayer) {
+        console.log("dealNextCard");
+
+        var whichMerge, cardDivString;
+        var whichCardObject = whichPlayer.textParams.pCards;
+        var whichName = whichCardObject.name;
+        var whichClass = whichCardObject.class;
+        var cardCount = whichPlayer.hand.length;
+        var cardValue = whichPlayer.hand[cardCount - 1];
+
+        offsetR = 0;
+        offsetC = -(cardCount - 1);
+
+        if (whichCardObject.merge == "merge") {
+            indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
+        } else {
+            indexCell = display.unMergeRegion(whichCardObject);
+        }
+
+        cardDivString = "<div class='flip-container " + whichClass + "' ontouchstart='this.classList.toggle('hover');'>";
+        cardDivString += "<div class='flipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";
+        cardDivString += "<div class='back'><p class='cardText'>" + cardValue + "</p></div></div></div>";
+
+        $(indexCell).append(cardDivString);
     }
 
     // ======= ======= ======= getNextCard ======= ======= =======
@@ -599,7 +794,7 @@ function initGame() {
                 nextCard = cardPointsArray[0];
                 nextPoints = cardPointsArray[1];
                 nextPlayer.hand.push(nextCard);
-                nextPlayer.score = nextPlayer.score + nextPoints;
+                nextPlayer.score = nextPlayer.score + nextPoints;   // calculate player score
                 this.dealNextCard(nextPlayer);
             }
 
@@ -621,7 +816,7 @@ function initGame() {
                 winnersArray.push(nextPlayer);
             }
 
-            this.updatePlayerScore(nextPlayer);
+            this.updatePlayerScoreText(nextPlayer);
         }
 
         // ======= set default player (unless winner)
@@ -631,56 +826,6 @@ function initGame() {
             this.activePlayer = 1;
             sequencer.updateGameState();
         }
-    }
-
-    // ======= ======= ======= placeBet ======= ======= =======
-    Game.prototype.placeBet = function(whichBet) {
-        console.log("placeBet");
-        console.log("  whichBet: " + whichBet);
-
-    }
-
-    // ======= ======= ======= updatePlayerScore ======= ======= =======
-    Game.prototype.updatePlayerScore = function(whichPlayer) {
-        console.log("updatePlayerScore");
-        if (whichPlayer.name == "dealer") {
-            var playerScoreCell = "#pScore";
-            $(playerScoreCell).text("dealer");
-        } else {
-            var playerScoreCell = "#pScore_" + (whichPlayer.id + 1);
-            whichPlayer.textParams.pScore.value = whichPlayer.score;
-            $(playerScoreCell).text(whichPlayer.score);
-            console.log("  whichPlayer.score: " + whichPlayer.score);
-            console.log("  playerScoreCell: " + playerScoreCell);
-            console.log("  $(playerScoreCell): " + $(playerScoreCell));
-        }
-    }
-
-    // ======= ======= ======= dealNextCard ======= ======= =======
-    Game.prototype.dealNextCard = function(whichPlayer) {
-        console.log("dealNextCard");
-
-        var whichMerge, cardDivString;
-        var whichCardObject = whichPlayer.textParams.pCards;
-        var whichName = whichCardObject.name;
-        var whichClass = whichCardObject.class;
-        var cardCount = whichPlayer.hand.length;
-        var cardValue = whichPlayer.hand[cardCount - 1];
-
-        offsetR = 0;
-        offsetC = -(cardCount - 1);
-
-        if (whichCardObject.merge == "merge") {
-            indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
-        } else {
-            indexCell = display.unMergeRegion(whichCardObject);
-        }
-
-        cardDivString = "<div class='flip-container " + whichClass + "' ontouchstart='this.classList.toggle('hover');'>";
-        cardDivString += "<div class='flipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";
-        cardDivString += "<div class='back'><p class='cardText'>" + cardValue + "</p></div></div></div>";
-
-        $(indexCell).append(cardDivString);
     }
 
     // ======= ======= ======= updatePlayerNames ======= ======= =======
@@ -733,6 +878,12 @@ function initGame() {
             nextItem = playerParamsArray[j];
             if (nextItem != null) {
                 display.modifyGridRegion(nextItem, "next");
+
+                // == player buttons not active yet (display amounts only)
+                if (nextItem.type == "btn") {
+                    var indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
+                    sequencer.deActivateButton(indexCell, "click")
+                }
             }
         }
 
@@ -761,7 +912,7 @@ function initGame() {
 
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, prevNext) {
-        // console.log("modifyGridRegion");
+        console.log("modifyGridRegion");
 
         var whichMerge, buttonActivate;
         if (prevNext == "prev") {
@@ -783,6 +934,7 @@ function initGame() {
         var whichType = whichItem.type;
         var whichValue = whichItem.value;
         var whichName = whichItem.name;
+        console.log("  whichItem.name: " + whichItem.name);
 
         if (whichMerge == "merge") {
             indexCell = this.mergeRegion(whichItem);
@@ -802,6 +954,7 @@ function initGame() {
                 if (buttonActivate == true) {
                     $(indexCell).text(whichValue);
                     sequencer.activateButton(indexCell, whichItem.callback)
+                    console.log("  whichItem.callback: " + whichItem.callback);
                 } else {
                     sequencer.deActivateButton(indexCell, whichItem.callback)
                 }
@@ -891,7 +1044,6 @@ function initGame() {
     // ======= ======= ======= mergeRegion ======= ======= =======
     Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
         console.log("mergeRegion");
-        console.log("  offsetC: " + offsetC);
         if (!offsetR) { offsetR = 0 };
         if (!offsetC) { offsetC = 0 };
         var offsetR = parseInt(offsetR);
