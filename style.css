@@ -12,10 +12,6 @@
  font-family: 'Fredericka the Great', cursive;
  font-family: 'Short Stack', cursive;*/
 
- $colorGenre: #2A52BE; // Cerulean Blue
- $colorGroup: #bada55; // Jesse Green
- $colorCategory: Salmon;
-
 /* ======= general ======= */
 html, body, .viewport {
     width: 100%;
@@ -29,7 +25,7 @@ html {
    box-sizing: inherit;
 }
 
- body {
+body {
     /*font-family: 'Orbitron', sans-serif;*/
     font-family: 'Michroma', sans-serif;
     /*font-family: 'Allerta Stencil', sans-serif;*/
@@ -81,6 +77,9 @@ html {
 }
 .card-3 {
     background-color: #E0D1FF;
+}
+.cardText {
+    padding-top: 20px;
 }
 .cardvalue {
     vertical-align: top;
@@ -180,6 +179,51 @@ html {
 /* ======= table ======= */
 .gameTable {
     background-color: #CCFFCC;
+}
+
+/* ======= card flip ======= */
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 48px;
+	height: 96px;
+    border: 1px solid black;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
 }
 
 /* ======= rows & columns ======= */

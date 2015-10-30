@@ -651,7 +651,10 @@ function initGame() {
             indexCell = display.unMergeRegion(whichCardObject);
         }
 
-        cardDivString = "<div class='" + whichClass + "'>" + cardValue + "</div>";
+        cardDivString = "<div class='flip-container " + whichClass + "' ontouchstart='this.classList.toggle('hover');'>";
+        cardDivString += "<div class='flipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";
+        cardDivString += "<div class='back'><p class='cardText'>" + cardValue + "</p></div></div></div>";
+
         $(indexCell).append(cardDivString);
     }
 
