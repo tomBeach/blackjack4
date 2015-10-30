@@ -38,7 +38,7 @@ function initGame() {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
                 pScore: { player: 1, name: "pScore_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
                 pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 100 },
-                pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 2, merge: "merge", class: "card", value: null }
+                pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -61,7 +61,7 @@ function initGame() {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
                 pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
                 pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
-                pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card", value: null }
+                pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -85,7 +85,7 @@ function initGame() {
                 pName: { player: 3, name: "pName_3", type: "text", iR: 8, iC: 5, iW: 3, iH: 1, merge: true, class: "pBorder-3", value: null },
                 pScore: { player: 3, name: "pScore_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
                 pBank: { player: 3, name: "pBank_3", type: "text", iR: 8, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
-                pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card", value: null }
+                pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -101,7 +101,7 @@ function initGame() {
             textParams: {
                 pName: { player: "D", name: "pName", type: "text", iR: 3, iC: 12, iW: 3, iH: 1, merge: "merge", class: "dBorder", value: null },
                 pScore: { player: "D", name: "pScore", type: "text", iR: 3, iC: 11, iW: 1, iH: 1, merge: null, class: "dBorder", value: 0 },
-                dCards: { player: "D", name: "dCards", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card", value: null }
+                dCards: { player: "D", name: "dCards", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card-d", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -600,8 +600,7 @@ function initGame() {
                 nextPoints = cardPointsArray[1];
                 nextPlayer.hand.push(nextCard);
                 nextPlayer.score = nextPlayer.score + nextPoints;
-                this.dealNextCard(nextCard, nextPlayer);
-                console.log('  nextCard: ' + nextCard);
+                this.dealNextCard(nextPlayer);
             }
 
             // ======= if Ace card and > 21 (2 aces)
@@ -633,29 +632,27 @@ function initGame() {
     }
 
     // ======= ======= ======= dealNextCard ======= ======= =======
-    Game.prototype.dealNextCard = function(cardValue, whichPlayer) {
+    Game.prototype.dealNextCard = function(whichPlayer) {
         console.log("dealNextCard");
 
-        whichCardObject = whichPlayer.textParams.pCards;
-        console.log("  whichCardObject.iR: " + whichCardObject.iR);
-
-        var whichMerge;
-        if (whichCardObject.merge == "merge") {
-            whichMerge = "merge";
-        } else {
-            whichMerge = null;
-        }
-
+        var whichMerge, cardDivString;
+        var whichCardObject = whichPlayer.textParams.pCards;
         var whichName = whichCardObject.name;
-        var whichValue = cardValue;
+        var whichClass = whichCardObject.class;
+        var cardCount = whichPlayer.hand.length;
+        var cardValue = whichPlayer.hand[cardCount - 1];
 
-        if (whichMerge == "merge") {
-            indexCell = display.mergeRegion(whichCardObject);
+        offsetR = 0;
+        offsetC = -(cardCount - 1);
+
+        if (whichCardObject.merge == "merge") {
+            indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
         } else {
             indexCell = display.unMergeRegion(whichCardObject);
         }
 
-        $(indexCell).text(whichValue);
+        cardDivString = "<div class='" + whichClass + "'>" + cardValue + "</div>";
+        $(indexCell).append(cardDivString);
     }
 
     // ======= ======= ======= updatePlayerNames ======= ======= =======
@@ -864,12 +861,17 @@ function initGame() {
     }
 
     // ======= ======= ======= mergeRegion ======= ======= =======
-    Display.prototype.mergeRegion = function(whichItem) {
-        // console.log("mergeRegion");
-        var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
+    Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
+        console.log("mergeRegion");
+        console.log("  offsetC: " + offsetC);
+        if (!offsetR) { offsetR = 0 };
+        if (!offsetC) { offsetC = 0 };
+        var offsetR = parseInt(offsetR);
+        var offsetC = parseInt(offsetC);
+        var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
-                nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
+                nextCell = this.tableCellsArray[whichItem.iR + offsetR + j][whichItem.iC + offsetC + i];
                 if (!((i == 0) && (j == 0))) {
                     $(nextCell).remove();
                 }
