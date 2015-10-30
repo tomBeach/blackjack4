@@ -530,19 +530,19 @@ function initGame() {
             case "betOne":
                 $(indexCell).on("click", function(){
                     console.log("-- betOne");
-                    self.betOne();
+                    game.placeBet("ones");
                 });
                 break;
             case "betFive":
                 $(indexCell).on("click", function(){
                     console.log("-- betFive");
-                    self.betFive();
+                    game.placeBet("fives");
                 });
                 break;
             case "betTen":
                 $(indexCell).on("click", function(){
                     console.log("-- betTen");
-                    self.betTen();
+                    game.placeBet("tens");
                 });
                 break;
         }
@@ -620,6 +620,8 @@ function initGame() {
             if (nextPlayer.score == 21) {
                 winnersArray.push(nextPlayer);
             }
+
+            this.updatePlayerScore(nextPlayer);
         }
 
         // ======= set default player (unless winner)
@@ -627,7 +629,30 @@ function initGame() {
             // calculateWinner();
         } else {
             this.activePlayer = 1;
-            // updateDisplay('deal');
+            sequencer.updateGameState();
+        }
+    }
+
+    // ======= ======= ======= placeBet ======= ======= =======
+    Game.prototype.placeBet = function(whichBet) {
+        console.log("placeBet");
+        console.log("  whichBet: " + whichBet);
+
+    }
+
+    // ======= ======= ======= updatePlayerScore ======= ======= =======
+    Game.prototype.updatePlayerScore = function(whichPlayer) {
+        console.log("updatePlayerScore");
+        if (whichPlayer.name == "dealer") {
+            var playerScoreCell = "#pScore";
+            $(playerScoreCell).text("dealer");
+        } else {
+            var playerScoreCell = "#pScore_" + (whichPlayer.id + 1);
+            whichPlayer.textParams.pScore.value = whichPlayer.score;
+            $(playerScoreCell).text(whichPlayer.score);
+            console.log("  whichPlayer.score: " + whichPlayer.score);
+            console.log("  playerScoreCell: " + playerScoreCell);
+            console.log("  $(playerScoreCell): " + $(playerScoreCell));
         }
     }
 
