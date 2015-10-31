@@ -1,3 +1,14 @@
+case "gameOver":
+    gameOver = {
+        name: "gameOver",
+        bg: null,
+        btn: null,
+        text: [game.gameParams("text").tooltips],
+        input: null,
+        image: null
+    }
+    return gameOver;
+    break;
 
 
 this.deal = this.sequencerParams("deal");

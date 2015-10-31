@@ -28,16 +28,19 @@ function initGame() {
                 borderV: { player: 1, name: "borderV_1", type: "bg", iR: 2, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "", type: "btn", iR: 3, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "", type: "btn", iR: 3, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", value: "$1", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$5", tooltip: null },
-                betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$10", tooltip: null },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 3, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 3, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
+                betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: null },
+                betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: null },
+                betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: null },
             },
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
                 pScore: { player: 1, name: "pScore_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
                 pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 100 },
+                pBet_1s: { name: "pBet_1s_1", type: "text", iR: 0, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_5s: { name: "pBet_5s_1", type: "text", iR: 0, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_10s: { name: "pBet_10s_1", type: "text", iR: 0, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
@@ -51,8 +54,8 @@ function initGame() {
                 borderV: { player: 2, name: "borderV_2", type: "bg", iR: 5, iC: 7, iW: 1, iH: 3, merge: null, class: "pBorder-2" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "", type: "btn", iR: 5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
                 betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$1", tooltip: null },
                 betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$5", tooltip: null },
                 betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 5, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$10", tooltip: null },
@@ -61,6 +64,9 @@ function initGame() {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
                 pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
                 pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
+                pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 12, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
+                pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 13, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
+                pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
                 pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
             },
             inputParams: {},
@@ -74,8 +80,8 @@ function initGame() {
                 borderV: { player: 3, name: "borderV_3", type: "bg", iR: 8, iC: 8, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "holdMe" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hitMe" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "holdMe" },
                 betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:8, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$1", tooltip: "$1" },
                 betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 8, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$5", tooltip: "$5" },
                 betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 8, iC: 11, iW: 1, iH: 1, merge: null, class: "button", value: "$10", tooltip: "$10" },
@@ -85,6 +91,9 @@ function initGame() {
                 pName: { player: 3, name: "pName_3", type: "text", iR: 8, iC: 5, iW: 3, iH: 1, merge: true, class: "pBorder-3", value: null },
                 pScore: { player: 3, name: "pScore_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
                 pBank: { player: 3, name: "pBank_3", type: "text", iR: 8, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
+                pBet_1s: { name: "pBet_1s_3", type: "text", iR: 6, iC: 12, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
+                pBet_5s: { name: "pBet_5s_3", type: "text", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
+                pBet_10s: { name: "pBet_10s_3", type: "text", iR: 6, iC: 14, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
                 pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
             },
             inputParams: {},
@@ -101,7 +110,7 @@ function initGame() {
             textParams: {
                 pName: { player: "D", name: "pName", type: "text", iR: 3, iC: 12, iW: 3, iH: 1, merge: "merge", class: "dBorder", value: null },
                 pScore: { player: "D", name: "pScore", type: "text", iR: 3, iC: 11, iW: 1, iH: 1, merge: null, class: "dBorder", value: 0 },
-                dCards: { player: "D", name: "dCards", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card-d", value: null }
+                pCards: { player: "D", name: "pCards", type: "text", iR: 1, iC: 12, iW: 1, iH: 2, merge: "merge", class: "card-d", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -143,9 +152,10 @@ function initGame() {
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
                 dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: "merge", class: "dealBtn", value: "deal", tooltip: null },
-                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltip: null },
-                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltip: null },
-                retTensBtn: { name: "retTensBtn", callback: "retTen", type: "btn", iR: 5, iC: 16, iW: 1, iH: 1, merge: null, class: "tens", value: "tens", tooltip: null },
+                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 12, iW: 1, iH: 1, merge: "merge", class: "ones", value: "ones", tooltip: null },
+                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 13, iW: 1, iH: 1, merge: "merge", class: "fives", value: "fives", tooltip: null },
+                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 14, iW: 1, iH: 1,  merge: "merge", class: "tens", value: "tens", tooltip: null },
+                playGameBtn: { name: "playGameBtn", callback: "updateGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: "merge", class: "playGameBtn", value: "play game", tooltip: null },
                 newGameBtn: { name: "newGameBtn", callback: "updateGameState", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
@@ -155,9 +165,6 @@ function initGame() {
                 pBank_1: { name: "pBank_1", type: "text", iR: 8, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 20 },
                 pBank_2: { name: "pBank_2", type: "text", iR: 9, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 40 },
                 pBank_3: { name: "pBank_3", type: "text", iR: 10, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 60 },
-                pBet_1s: { name: "pBet_1s", type: "text", iR: 6, iC: 14, iW: 1, iH: 1, merge: null, class: null, value: 0 },
-                pBet_5s: { name: "pBet_5s", type: "text", iR: 6, iC: 15, iW: 1, iH: 1, merge: null, class: null, value: 0 },
-                pBet_10s: { name: "pBet_10s", type: "text", iR: 6, iC: 16, iW: 1, iH: 1, merge: null, class: null, value: 0 },
                 totalBet: { name: "totalBet", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: null, value: 0 },
                 tooltips: { name: "tooltips", type: "text", iR: 9, iC: 12, iW: 3, iH: 1, merge: "merge", class: "tooltips", value: null }
             },
@@ -247,8 +254,8 @@ function initGame() {
                 bet = {
                     name: "bet",
                     bg: null,
-                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, game.btnParams.newGameBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn],
-                    text: [game.gameParams("text").tooltips, game.textParams.pBet_1s, game.textParams.pBet_5s, game.textParams.pBet_10s],
+                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, game.btnParams.playGameBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn],
+                    text: [game.gameParams("text").tooltips],
                     input: null,
                     image: null
                 }
@@ -258,7 +265,7 @@ function initGame() {
                 playGame = {
                     name: "playGame",
                     bg: null,
-                    btn: null,
+                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
                     text: [game.gameParams("text").tooltips],
                     input: null,
                     image: null
@@ -291,7 +298,7 @@ function initGame() {
                 turnOver = {
                     name: "turnOver",
                     bg: null,
-                    btn: null,
+                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
                     text: [game.gameParams("text").tooltips],
                     input: null,
                     image: null
@@ -308,17 +315,6 @@ function initGame() {
                     image: null
                 }
                 return hitDealer;
-                break;
-            case "gameOver":
-                gameOver = {
-                    name: "gameOver",
-                    bg: null,
-                    btn: null,
-                    text: [game.gameParams("text").tooltips],
-                    input: null,
-                    image: null
-                }
-                return gameOver;
                 break;
             case "doTheMath":
                 doTheMath = {
@@ -347,6 +343,9 @@ function initGame() {
         this.fivesBank = 30;
         this.tensBank = 50;
         this.totalBank = this.onesBank + this.fivesBank + this.tensBank;
+        this.onesBet = 0;
+        this.fivesBet = 0;
+        this.tensBet = 0;
         this.bgParams = this.playerParams(id, "bg");
         this.btnParams = this.playerParams(id, "btn");
         this.textParams = this.playerParams(id, "text");
@@ -384,6 +383,15 @@ function initGame() {
     }
 
 
+    // ======= ======= ======= Sequencer ======= ======= =======
+
+    function Sequencer() {
+        console.log('Sequencer');
+        this.name = "Sequencer";
+        this.currentGameState = "doTheMath";
+        this.gameStatesArray = ["splash", "login", "saveStart", "deal", "bet", "playGame", "hitMe", "holdMe", "turnOver", "hitDealer", "doTheMath"];
+    }
+
     // ======= ======= ======= Display ======= ======= =======
 
     function Display(whichDisplay) {
@@ -392,18 +400,13 @@ function initGame() {
         this.tableCellsArray = null;
     }
 
-    // ======= ======= ======= Sequencer ======= ======= =======
 
-    function Sequencer() {
-        console.log('Sequencer');
-        this.name = "Sequencer";
-        this.currentGameState = "doTheMath";
-        // this.gameStatesArray = ["splash", "login", "saveStart", "deal"];
-        this.gameStatesArray = ["splash", "login", "saveStart", "deal", "bet", "playGame", "hitMe", "holdMe", "turnOver", "hitDealer", "gameOver", "doTheMath"];
-        // this.splash = this.sequencerParams("splash");
-        // this.login = this.sequencerParams("login");
-        // this.saveStart = this.sequencerParams("saveStart");
-    }
+
+    // ======= ======= ======= ======= ======= ======= SEQUENCER ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= SEQUENCER ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= SEQUENCER ======= ======= ======= ======= ======= =======
+
+
 
     // ======= ======= ======= startGame ======= ======= =======
     Sequencer.prototype.startGame = function() {
@@ -434,29 +437,35 @@ function initGame() {
     }
 
     // ======= ======= ======= updateGameState ======= ======= =======
-    Sequencer.prototype.updateGameState = function() {
+    Sequencer.prototype.updateGameState = function(whichState) {
         console.log("");
         console.log("== updateGameState ==");
-
-        var currentGameStateIndex = this.gameStatesArray.indexOf(this.currentGameState);
 
         // == get current state
         var currentGameState = this.currentGameState;
         console.log("== " + currentGameState + " ==");
         var sequencerParams = this.sequencerParams(currentGameState);
         var prevItemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
+        var currentGameStateIndex = this.gameStatesArray.indexOf(this.currentGameState);
 
         // == return to start game
-        if (currentGameStateIndex == this.gameStatesArray.length - 1) {
+        if ((currentGameStateIndex == this.gameStatesArray.length - 1) && (!whichState)) {
+            console.log("  ** last game state");
             currentGameState = this.gameStatesArray[0];
             this.currentGameState = currentGameState;
             console.log("== " + currentGameState + " ==");
+            // this.doTheMath();
+            game.clearPrevGameState();
             this.loadStartGameState("next");
         } else {
+            if (whichState) {
+                currentGameState = whichState;
+                this.currentGameState = whichState;
+            } else {
+                currentGameState = this.gameStatesArray[currentGameStateIndex + 1];
+                this.currentGameState = currentGameState;
+            }
 
-            // == load next game state
-            currentGameState = this.gameStatesArray[currentGameStateIndex + 1];
-            this.currentGameState = currentGameState;
             console.log("== " + currentGameState + " ==");
             var sequencerParams = this.sequencerParams(currentGameState);
             var nextItemTypesArray = [sequencerParams.bg, sequencerParams.btn, sequencerParams.text, sequencerParams.input, sequencerParams.image]
@@ -476,6 +485,96 @@ function initGame() {
                 display.modifyGridRegion(nextItem, "next");
             }
         }
+    }
+
+    // ======= ======= ======= saveNewPlayer ======= ======= =======
+    Sequencer.prototype.saveNewPlayer = function() {
+        console.log("saveNewPlayer");
+
+        var playerCount = game.playerNamesArray.length;
+        if (playerCount < 3) {
+            newPlayer = game.playerObjectsArray[playerCount]
+            game.playerNamesArray.push(newPlayer.name)
+            var playerCount = game.playerNamesArray.length;
+            game.loadNewPlayer(newPlayer);
+            game.updatePlayerNames(newPlayer, playerCount);
+        }
+        if (playerCount == 1) {
+            this.updateGameState();
+        }
+        if (playerCount == 3) {
+            $("#tooltips").text("Max of 3 players.  Start game!");
+            game.loadDealer();
+            game.updatePlayerNames(game.dealer, 4);
+            this.updateGameState();
+        }
+
+    }
+
+    // ======= ======= ======= processItemArrays ======= ======= =======
+    Sequencer.prototype.processItemArrays = function(nextItemsParamsObject, prevItemsParamsObject, itemType) {
+        // console.log("processItemArrays");
+
+        var REMprevItems = [];
+        var ADDnextItems = [];
+        var tempNamesOld = [];
+        var tempNamesNew = [];
+        nextNewArray = nextItemsParamsObject;
+        nextOldArray = prevItemsParamsObject;
+
+        // == get items names for array processing
+        for (var i = 0; i < nextOldArray.length; i++) {
+            nextItemArray = nextOldArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    tempNamesOld.push(nextItemName);
+                }
+            }
+        }
+        for (var i = 0; i < nextNewArray.length; i++) {
+            nextItemArray = nextNewArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    tempNamesNew.push(nextItemName);
+                }
+            }
+        }
+
+        // == find array differences
+        ADDnextNames = $(tempNamesNew).not(tempNamesOld).get();
+        REMprevNames = $(tempNamesOld).not(tempNamesNew).get();
+
+        for (var i = 0; i < nextOldArray.length; i++) {
+            nextItemArray = nextOldArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    var found = $.inArray(nextItemName, REMprevNames)
+                    if (found > -1) {
+                        REMprevItems.push(nextItem);
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < nextNewArray.length; i++) {
+            nextItemArray = nextNewArray[i];
+            if (nextItemArray) {
+                for (var j = 0; j < nextItemArray.length; j++) {
+                    nextItem = nextItemArray[j];
+                    nextItemName = nextItem.name;
+                    var found = $.inArray(nextItemName, ADDnextNames)
+                    if (found > -1) {
+                        ADDnextItems.push(nextItem);
+                    }
+                }
+            }
+        }
+        return [REMprevNames, ADDnextNames, REMprevItems, ADDnextItems];
     }
 
     // ======= ======= ======= activateButton ======= ======= =======
@@ -559,6 +658,24 @@ function initGame() {
                     game.returnBet("tens");
                 });
                 break;
+            case "playGame":
+                $(indexCell).on("click", function(){
+                    console.log("-- playGame");
+                    game.updateGameState();
+                });
+                break;
+            case "hitMe":
+                $(indexCell).on("click", function(){
+                    console.log("-- hitMe");
+                    game.hitMe();
+                });
+                break;
+            case "holdMe":
+                $(indexCell).on("click", function(){
+                    console.log("-- holdMe");
+                    game.holdMe();
+                });
+                break;
         }
     }
 
@@ -572,13 +689,190 @@ function initGame() {
         $(indexCell).off("click", null);
     }
 
+    // ======= ======= ======= doTheMath ======= ======= =======
+    Sequencer.prototype.doTheMath = function() {
+	    console.log("doTheMath");
+
+	    var nextPlayer, nextName, winLossLabel;
+	    var dealerScore = game.dealer.score;
+	    var playerWinLoss = 0;
+	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n';
+
+	    // =======
+	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
+	    	nextPlayer = game.playerObjectsArray[i];
+	    	nextName = nextPlayer.name;
+	    	console.log("   nextName: " + nextName);
+
+	    	// ======= calculate win/loss results
+	    	playerWinLoss = (nextPlayer.onesBet) + (nextPlayer.fivesBet) + (nextPlayer.tensBet);
+	    	console.log("   playerWinLoss: " + playerWinLoss);
+
+    		// ======= calculate wins/losses for players
+	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
+	    		winLossLabel = ' and won $';
+	    		nextPlayer.totalBank = nextPlayer.totalBank + playerWinLoss;
+				nextPlayer.onesBank = nextPlayer.onesBank + nextPlayer.onesBet;
+                nextPlayer.fivesBank = nextPlayer.fivesBank + nextPlayer.fivesBet;
+                nextPlayer.tensBank = nextPlayer.tensBank + nextPlayer.tensBet;
+	    	} else {
+	    		winLossLabel = ' and lost $';
+				nextPlayer.totalBal = nextPlayer.totalBal - playerWinLoss;
+                nextPlayer.onesBank = nextPlayer.onesBank - nextPlayer.onesBet;
+                nextPlayer.fivesBank = nextPlayer.fivesBank - nextPlayer.fivesBet;
+                nextPlayer.tensBank = nextPlayer.tensBank - nextPlayer.tensBet;
+	    	}
+
+            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n';
+
+		    // ======= set bet values on player object
+		    nextPlayer.onesBet = 0;
+		    nextPlayer.fivesBet = 0;
+		    nextPlayer.tensBet = 0;
+
+		    // ======= initialize all players/dealer for next hand
+	    	nextPlayer.hand = [];
+			nextPlayer.score = 0;
+	    }
+
+	    // updateDisplay('calculateWinner');
+	    alert(playerWinLossString);
+	    // dealCards();
+	}
 
 
-    // ======= ======= ======= GAME ======= ======= =======
-    // ======= ======= ======= GAME ======= ======= =======
-    // ======= ======= ======= GAME ======= ======= =======
+
+    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
 
 
+
+    // ======= ======= ======= clearPrevGameState ======= ======= =======
+    Game.prototype.clearPrevGameState = function() {
+        console.log("clearPrevGameState");
+
+        if (game.playerNamesArray.length > 0) {
+            var nextPlayer, cardCount, offsetC, whichCardObject, nextItem, indexCell;
+            var offsetR = 0;
+            for (var i = 0; i < game.playerNamesArray.length; i++) {
+                nextPlayer = game.playerObjectsArray[i];
+                cardCount = nextPlayer.hand.length;
+                whichCardObject = nextPlayer.textParams.pCards;
+                offsetC = -(cardCount - 1);
+
+                // == remove prev items; add next items
+                for (var j = 0; j < nextPlayer.hand.length; j++) {
+                    nextItem = nextPlayer.hand[j];
+                    offsetC = offsetC + j;
+                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
+                }
+            }
+            if (game.dealer.hand.length > 0) {
+                cardCount = game.dealer.hand.length;
+                offsetC = cardCount - 1;
+                for (var j = 0; j < game.dealer.hand.length; j++) {
+                    nextItem = game.dealer.hand[j];
+                    offsetC = offsetC + j;
+                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
+                }
+            }
+        }
+    }
+
+    // ======= ======= ======= hitDealer ======= ======= =======
+    Game.prototype.hitDealer = function() {
+	    console.log("hitDealer");
+
+        // == hit dealer again or end hand
+        if (dealer.score < 18) {
+            cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+            nextCard = cardPointsArray[0];
+            nextPoints = cardPointsArray[1];
+            dealer.hand.push(nextCard);
+            dealer.score = dealer.score + nextPoints;           // calculate dealer score
+            console.log("  dealer.score: " + dealer.score);
+            this.dealNextCard(dealer);                          // display new card
+            this.updatePlayerScoreText(dealer);                 // display dealer score
+
+            // == pause between dealer cards
+            // setTimeout(function() {
+            //      console.log("dealer pause");
+            // }, 2000);
+
+            if (dealer.score < 18) {
+                this.hitDealer();
+            } else {
+                sequencer.updateGameState();
+                sequencer.doTheMath();
+            }
+        } else {
+            sequencer.updateGameState();
+            sequencer.doTheMath();
+        }
+    }
+
+    // ======= ======= ======= turnOver ======= ======= =======
+    Game.prototype.turnOver = function() {
+	    console.log("turnOver");
+
+        var currentPlayerIndex = this.currentPlayer.id;
+        console.log("  currentPlayerIndex: " + currentPlayerIndex);
+        console.log("  this.playerNamesArray.length: " + this.playerNamesArray.length);
+        if (currentPlayerIndex < (this.playerNamesArray.length - 1)) {
+            var nextPlayer = this.playerObjectsArray[this.currentPlayer.id];
+            this.currentPlayer = nextPlayer;
+            $("#tooltips").text(nextPlayer.name + "'s turn");
+            sequencer.updateGameState("playGame");
+        } else {
+            this.currentPlayer = this.dealer;
+            $("#tooltips").text("dealer's turn");
+            sequencer.updateGameState("hitDealer");
+            this.hitDealer();
+        }
+    }
+
+    // ======= ======= ======= hitMe ======= ======= =======
+    Game.prototype.hitMe = function() {
+	    console.log("hitMe");
+
+	    var nextPlayer = this.currentPlayer;
+		var cardPoints = this.getNextCard();				// get card from deck; shrink deck
+		var nextCard = cardPoints[0];
+		var nextPoints = cardPoints[1];
+		console.log('  nextCard: ' + nextCard);
+		nextPlayer.hand.push(nextCard);
+		nextPlayer.score = nextPlayer.score + nextPoints;
+        this.dealNextCard(nextPlayer);
+        this.updatePlayerScoreText(nextPlayer);
+
+		// ======= check for Aces and adjust score
+		if (nextPlayer.score > 21) {
+			for (var i = 0; i < nextPlayer.hand.length; i++) {
+				nextCard = nextPlayer.hand[i];
+
+				// ======= change A value to 1 if > 21 score
+				if (nextCard.indexOf("A") > 0) {
+					nextPlayer.score = nextPlayer.score - 10;
+					break;
+				}
+			}
+
+			// ======= score still high after adjustment
+			if (nextPlayer.score > 21) {
+                $("#tooltips").text("Bummer... you're over 21!");
+				nextPlayer.totalBank = nextPlayer.totalBank - (nextPlayer.onesBank + nextPlayer.fivesBank + nextPlayer.tensBank);
+				this.turnOver();
+			}
+		}
+	}
+
+    // ======= ======= ======= holdMe ======= ======= =======
+    Game.prototype.holdMe = function() {
+	    console.log("holdMe");
+        $("#tooltips").text("Next player turn");
+        this.turnOver();
+    }
 
     // ======= ======= ======= returnBet ======= ======= =======
     Game.prototype.returnBet = function(whichBet) {
@@ -587,9 +881,9 @@ function initGame() {
         var onesBank = game.currentPlayer.onesBank;
         var fivesBank = game.currentPlayer.fivesBank;
         var tensBank = game.currentPlayer.tensBank;
-        var onesBet = game.onesBet;
-        var fivesBet = game.fivesBet;
-        var tensBet = game.tensBet;
+        var onesBet = game.currentPlayer.onesBet;
+        var fivesBet = game.currentPlayer.fivesBet;
+        var tensBet = game.currentPlayer.tensBet;
         var limitFlag = false;
 
         switch(whichBet) {
@@ -626,9 +920,9 @@ function initGame() {
             game.currentPlayer.onesBank = onesBank;
             game.currentPlayer.fivesBank = fivesBank;
             game.currentPlayer.tensBank = tensBank;
-            game.onesBet = onesBet;
-            game.fivesBet = fivesBet;
-            game.tensBet = tensBet;
+            game.currentPlayer.onesBet = onesBet;
+            game.currentPlayer.fivesBet = fivesBet;
+            game.currentPlayer.tensBet = tensBet;
             game.updateBetButtonText(game.currentPlayer);
         } else {
             $("#tooltips").text("Total bet is returned");
@@ -643,9 +937,9 @@ function initGame() {
         var onesBank = game.currentPlayer.onesBank;
         var fivesBank = game.currentPlayer.fivesBank;
         var tensBank = game.currentPlayer.tensBank;
-        var onesBet = game.onesBet;
-        var fivesBet = game.fivesBet;
-        var tensBet = game.tensBet;
+        var onesBet = game.currentPlayer.onesBet;
+        var fivesBet = game.currentPlayer.fivesBet;
+        var tensBet = game.currentPlayer.tensBet;
         var limitFlag = false;
 
         switch(whichBet) {
@@ -682,9 +976,9 @@ function initGame() {
             game.currentPlayer.onesBank = onesBank;
             game.currentPlayer.fivesBank = fivesBank;
             game.currentPlayer.tensBank = tensBank;
-            game.onesBet = onesBet;
-            game.fivesBet = fivesBet;
-            game.tensBet = tensBet;
+            game.currentPlayer.onesBet = onesBet;
+            game.currentPlayer.fivesBet = fivesBet;
+            game.currentPlayer.tensBet = tensBet;
             game.updateBetButtonText(game.currentPlayer);
         } else {
             $("#tooltips").text("Oops you're out of money!");
@@ -693,14 +987,14 @@ function initGame() {
     }
 
     // ======= ======= ======= updateBetButtonText ======= ======= =======
-    Game.prototype.updateBetButtonText = function(whichPlayert) {
-        // console.log("updateBetButtonText");
+    Game.prototype.updateBetButtonText = function(whichPlayer) {
+        console.log("updateBetButtonText");
         $("#" + whichPlayer.btnParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
         $("#" + whichPlayer.btnParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
         $("#" + whichPlayer.btnParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
-        $("#pBet_1s").text("$" + game.onesBet);
-        $("#pBet_5s").text("$" + game.fivesBet);
-        $("#pBet_10s").text("$" + game.tensBet);
+        $("#" + whichPlayer.textParams.pBet_1s.name).text("$" + whichPlayer.onesBet);
+        $("#" + whichPlayer.textParams.pBet_5s.name).text("$" + whichPlayer.fivesBet);
+        $("#" + whichPlayer.textParams.pBet_10s.name).text("$" + whichPlayer.tensBet);
     }
 
     // ======= ======= ======= updatePlayerScoreText ======= ======= =======
@@ -708,12 +1002,11 @@ function initGame() {
         console.log("updatePlayerScoreText");
         if (whichPlayer.name == "dealer") {
             var playerScoreCell = "#pScore";
-            $(playerScoreCell).text("dealer");
         } else {
             var playerScoreCell = "#pScore_" + (whichPlayer.id + 1);
-            whichPlayer.textParams.pScore.value = whichPlayer.score;
-            $(playerScoreCell).text(whichPlayer.score);
         }
+        whichPlayer.textParams.pScore.value = whichPlayer.score;
+        $(playerScoreCell).text(whichPlayer.score);
     }
 
     // ======= ======= ======= dealNextCard ======= ======= =======
@@ -727,8 +1020,12 @@ function initGame() {
         var cardCount = whichPlayer.hand.length;
         var cardValue = whichPlayer.hand[cardCount - 1];
 
+        if (whichPlayer.name == "dealer") {
+            offsetC = cardCount - 1;
+        } else {
+            offsetC = -(cardCount - 1);
+        }
         offsetR = 0;
-        offsetC = -(cardCount - 1);
 
         if (whichCardObject.merge == "merge") {
             indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
@@ -815,9 +1112,29 @@ function initGame() {
             if (nextPlayer.score == 21) {
                 winnersArray.push(nextPlayer);
             }
-
             this.updatePlayerScoreText(nextPlayer);
+            var playerParamsArray = [nextPlayer.textParams.pBet_1s, nextPlayer.textParams.pBet_5s, nextPlayer.textParams.pBet_10s];
+            // var playerParamsArray = [nextPlayer.textParams.pBet_10s];
+            for (var j = 0; j < playerParamsArray.length; j++) {
+                nextItem = playerParamsArray[j];
+                console.log("  nextItem.name: " + nextItem.name);
+                if (nextItem != null) {
+                    display.modifyGridRegion(nextItem, "next");
+                }
+            }
         }
+
+        // ======= deal to dealer
+        dealer.hand = []
+        for (var j = 0; j < 2; j++) {
+            cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+            nextCard = cardPointsArray[0];
+            nextPoints = cardPointsArray[1];
+            dealer.hand.push(nextCard);
+            dealer.score = dealer.score + nextPoints;           // calculate player score
+            this.dealNextCard(dealer);
+        }
+        this.updatePlayerScoreText(dealer);
 
         // ======= set default player (unless winner)
         if (winnersArray.length > 0) {
@@ -843,30 +1160,6 @@ function initGame() {
         whichPlayer.textParams.pScore.value = 0;
     }
 
-    // ======= ======= ======= saveNewPlayer ======= ======= =======
-    Sequencer.prototype.saveNewPlayer = function() {
-        console.log("saveNewPlayer");
-
-        var playerCount = game.playerNamesArray.length;
-        if (playerCount < 3) {
-            newPlayer = game.playerObjectsArray[playerCount]
-            game.playerNamesArray.push(newPlayer.name)
-            var playerCount = game.playerNamesArray.length;
-            game.loadNewPlayer(newPlayer);
-            game.updatePlayerNames(newPlayer, playerCount);
-        }
-        if (playerCount == 1) {
-            this.updateGameState();
-        }
-        if (playerCount == 3) {
-            $("#tooltips").text("Max of 3 players.  Start game!");
-            game.loadDealer();
-            game.updatePlayerNames(game.dealer, 4);
-            this.updateGameState();
-        }
-
-    }
-
     // ======= ======= ======= loadNewPlayer ======= ======= =======
     Game.prototype.loadNewPlayer = function() {
         console.log("loadNewPlayer");
@@ -887,9 +1180,6 @@ function initGame() {
             }
         }
 
-        currentPlayer.btnParams.betOnesBtn.value = "$20";
-        currentPlayer.btnParams.betFivesBtn.value = "$30";
-        currentPlayer.btnParams.betTensBtn.value = "$50";
         currentPlayer.textParams.pName.value = this.name;
         currentPlayer.textParams.pScore.value = 0;
         currentPlayer.textParams.pBank.value = currentPlayer.totalBank;
@@ -909,6 +1199,14 @@ function initGame() {
         dealer.textParams.pName.value = this.name;
         dealer.textParams.pScore.value = 0;
     }
+
+
+
+    // ======= ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= ======= =======
+
+
 
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, prevNext) {
@@ -935,6 +1233,8 @@ function initGame() {
         var whichValue = whichItem.value;
         var whichName = whichItem.name;
         console.log("  whichItem.name: " + whichItem.name);
+        console.log("  whichItem.type: " + whichItem.type);
+        console.log("  whichValue: " + whichValue);
 
         if (whichMerge == "merge") {
             indexCell = this.mergeRegion(whichItem);
@@ -945,6 +1245,8 @@ function initGame() {
         } else {
             indexCell = this.selectTableCells(whichItem);
         }
+        console.log("  indexCell: " + indexCell);
+        console.log("  indexCell.attr('class'): " + $(indexCell).attr('class'));
 
         // ======= data connection =======
         switch(whichType) {
@@ -961,6 +1263,7 @@ function initGame() {
                 break;
             case "text":
                 $(indexCell).text(whichValue);
+                console.log("  whichValue: " + whichValue);
                 break;
             case "input":
                 newTextInput = "<input id='" + whichItem.name + "Input' class='" + whichItem.class + "' type='text' value='Tom'>"
@@ -969,76 +1272,6 @@ function initGame() {
             case "image":
                 break;
         }
-    }
-
-    // ======= ======= ======= processItemArrays ======= ======= =======
-    Sequencer.prototype.processItemArrays = function(nextItemsParamsObject, prevItemsParamsObject, itemType) {
-        // console.log("processItemArrays");
-
-        var REMprevItems = [];
-        var ADDnextItems = [];
-        var tempNamesOld = [];
-        var tempNamesNew = [];
-        nextNewArray = nextItemsParamsObject;
-        nextOldArray = prevItemsParamsObject;
-
-        // == get items names for array processing
-        for (var i = 0; i < nextOldArray.length; i++) {
-            nextItemArray = nextOldArray[i];
-            if (nextItemArray) {
-                for (var j = 0; j < nextItemArray.length; j++) {
-                    nextItem = nextItemArray[j];
-                    nextItemName = nextItem.name;
-                    tempNamesOld.push(nextItemName);
-                }
-            }
-        }
-        for (var i = 0; i < nextNewArray.length; i++) {
-            nextItemArray = nextNewArray[i];
-            if (nextItemArray) {
-                for (var j = 0; j < nextItemArray.length; j++) {
-                    nextItem = nextItemArray[j];
-                    nextItemName = nextItem.name;
-                    tempNamesNew.push(nextItemName);
-                }
-            }
-        }
-        // console.log("  tempNamesOld: " + tempNamesOld);
-        // console.log("  tempNamesNew: " + tempNamesNew);
-
-        // == find array differences
-        ADDnextNames = $(tempNamesNew).not(tempNamesOld).get();
-        REMprevNames = $(tempNamesOld).not(tempNamesNew).get();
-
-        for (var i = 0; i < nextOldArray.length; i++) {
-            nextItemArray = nextOldArray[i];
-            if (nextItemArray) {
-                for (var j = 0; j < nextItemArray.length; j++) {
-                    nextItem = nextItemArray[j];
-                    nextItemName = nextItem.name;
-                    var found = $.inArray(nextItemName, REMprevNames)
-                    if (found > -1) {
-                        REMprevItems.push(nextItem);
-                    }
-                }
-            }
-        }
-        for (var i = 0; i < nextNewArray.length; i++) {
-            nextItemArray = nextNewArray[i];
-            if (nextItemArray) {
-                for (var j = 0; j < nextItemArray.length; j++) {
-                    nextItem = nextItemArray[j];
-                    nextItemName = nextItem.name;
-                    var found = $.inArray(nextItemName, ADDnextNames)
-                    if (found > -1) {
-                        ADDnextItems.push(nextItem);
-                    }
-                }
-            }
-        }
-        // console.log("  REMprevNames: " + REMprevNames)
-        // console.log("  ADDnextNames: " + ADDnextNames)
-        return [REMprevNames, ADDnextNames, REMprevItems, ADDnextItems];
     }
 
     // ======= ======= ======= mergeRegion ======= ======= =======
@@ -1067,9 +1300,13 @@ function initGame() {
     }
 
     // ======= ======= ======= unMergeRegion ======= ======= =======
-    Display.prototype.unMergeRegion = function(whichItem) {
+    Display.prototype.unMergeRegion = function(whichItem, offsetR, offsetC) {
         // console.log("unMergeRegion");
-        var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
+        if (!offsetR) { offsetR = 0 };
+        if (!offsetC) { offsetC = 0 };
+        var offsetR = parseInt(offsetR);
+        var offsetC = parseInt(offsetC);
+        var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
         $(indexCell).attr("colSpan", 1);
         $(indexCell).attr("rowSpan", 1);
         $(indexCell).text("");
@@ -1095,7 +1332,7 @@ function initGame() {
 
     // ======= ======= ======= selectTableCells ======= ======= =======
     Display.prototype.selectTableCells = function(whichItem) {
-        // console.log("selectTableCells");
+        console.log("selectTableCells");
         var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
@@ -1103,10 +1340,14 @@ function initGame() {
                 $(nextCell).attr("colSpan", 1);
                 $(nextCell).attr("rowSpan", 1);
                 $(nextCell).addClass(whichItem.class);
+                console.log("  whichItem.iC: " + whichItem.iC);
+                console.log("  whichItem.iR: " + whichItem.iR);
+                console.log("  whichItem.class: " + whichItem.class);
             }
         }
         $(indexCell).attr("id", whichItem.name);
         $(indexCell).addClass(whichItem.class);
+        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr("id"));
         return indexCell;
     }
 
