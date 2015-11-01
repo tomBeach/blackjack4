@@ -144,7 +144,7 @@ body {
 .enterBtn, .startBtn {
     background-color: DarkSlateBlue;
 }
-.enterPlayerBtn, .startGameBtn, .dealBtn, .newGameBtn, .button {
+.enterPlayerBtn, .startGameBtn, .playGameBtn, .dealBtn, .newGameBtn, .button {
     background-color: DarkCyan;
 }
 .ones, .fives, .tens {

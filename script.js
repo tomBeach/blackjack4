@@ -30,17 +30,17 @@ function initGame() {
             btnParams: {
                 hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 3, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
                 holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 3, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: null },
-                betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: null },
+                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: null },
+                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: null },
+                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: null },
             },
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
                 pScore: { player: 1, name: "pScore_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
                 pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 100 },
-                pBet_1s: { name: "pBet_1s_1", type: "text", iR: 0, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pBet_5s: { name: "pBet_5s_1", type: "text", iR: 0, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pBet_10s: { name: "pBet_10s_1", type: "text", iR: 0, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_1s: { name: "pBet_1s_1", type: "text", iR: 4, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_5s: { name: "pBet_5s_1", type: "text", iR: 4, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_10s: { name: "pBet_10s_1", type: "text", iR: 4, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
@@ -54,20 +54,20 @@ function initGame() {
                 borderV: { player: 2, name: "borderV_2", type: "bg", iR: 5, iC: 7, iW: 1, iH: 3, merge: null, class: "pBorder-2" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$1", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$5", tooltip: null },
-                betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 5, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$10", tooltip: null },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
+                betOnesBtn: { name: "betOnesBtn_2", callback: "betOne", type: "btn", iR:5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: null },
+                betFivesBtn: { name: "betFivesBtn_2", callback: "betFive", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: null },
+                betTensBtn: { name: "betTensBtn_2", callback: "betTen", type: "btn", iR: 5, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: null },
             },
             textParams: {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
                 pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
                 pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
-                pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 12, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
-                pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 13, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
-                pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
-                pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
+                pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
+                pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
+                pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
+                pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 6, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -82,19 +82,19 @@ function initGame() {
             btnParams: {
                 hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hitMe" },
                 holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn", callback: "betOne", type: "btn", iR:8, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$1", tooltip: "$1" },
-                betFivesBtn: { name: "betFivesBtn", callback: "betFive", type: "btn", iR: 8, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$5", tooltip: "$5" },
-                betTensBtn: { name: "betTensBtn", callback: "betTen", type: "btn", iR: 8, iC: 11, iW: 1, iH: 1, merge: null, class: "button", value: "$10", tooltip: "$10" },
+                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR:8, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: "$1" },
+                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 8, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: "$5" },
+                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 8, iC: 11, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: "$10" },
 
             },
             textParams: {
                 pName: { player: 3, name: "pName_3", type: "text", iR: 8, iC: 5, iW: 3, iH: 1, merge: true, class: "pBorder-3", value: null },
                 pScore: { player: 3, name: "pScore_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
                 pBank: { player: 3, name: "pBank_3", type: "text", iR: 8, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
-                pBet_1s: { name: "pBet_1s_3", type: "text", iR: 6, iC: 12, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
-                pBet_5s: { name: "pBet_5s_3", type: "text", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
-                pBet_10s: { name: "pBet_10s_3", type: "text", iR: 6, iC: 14, iW: 1, iH: 1, merge: null, class: null, value: "$0" },
-                pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
+                pBet_1s: { name: "pBet_1s_3", type: "text", iR: 6, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
+                pBet_5s: { name: "pBet_5s_3", type: "text", iR: 6, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
+                pBet_10s: { name: "pBet_10s_3", type: "text", iR: 6, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
+                pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -139,8 +139,8 @@ function initGame() {
 
     // ======= ======= ======= gameParams ======= ======= =======
     Game.prototype.gameParams = function(whichParams) {
-        console.log("gameParams");
-        console.log("  whichParams: " + whichParams);
+        // console.log("gameParams");
+        // console.log("  whichParams: " + whichParams);
 
         var itemParams = {
             bg: {
@@ -148,15 +148,15 @@ function initGame() {
                 logo: { name: "logo", type: "bg", iR: 2, iC: 1, iW: 6, iH: 1, merge: false, class: null }
             },
             btn: {
-                orbBtn: { name: "orbBtn", callback: "updateGameState", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "", tooltip: "start playing!" },
+                orbBtn: { name: "orbBtn", callback: "updateGameGrid", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "", tooltip: "start playing!" },
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
                 dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: "merge", class: "dealBtn", value: "deal", tooltip: null },
-                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 12, iW: 1, iH: 1, merge: "merge", class: "ones", value: "ones", tooltip: null },
-                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 13, iW: 1, iH: 1, merge: "merge", class: "fives", value: "fives", tooltip: null },
-                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 14, iW: 1, iH: 1,  merge: "merge", class: "tens", value: "tens", tooltip: null },
-                playGameBtn: { name: "playGameBtn", callback: "updateGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: "merge", class: "playGameBtn", value: "play game", tooltip: null },
-                newGameBtn: { name: "newGameBtn", callback: "updateGameState", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
+                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 15, iW: 1, iH: 1, merge: "merge", class: "ones", value: "ones", tooltip: null },
+                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 16, iW: 1, iH: 1, merge: "merge", class: "fives", value: "fives", tooltip: null },
+                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 17, iW: 1, iH: 1,  merge: "merge", class: "tens", value: "tens", tooltip: null },
+                playGameBtn: { name: "playGameBtn", callback: "updateGameGrid", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: "merge", class: "playGameBtn", value: "play game", tooltip: null },
+                newGameBtn: { name: "newGameBtn", callback: "updateGameGrid", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
                 pName_1: { name: "pName_1", type: "text", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
@@ -389,7 +389,8 @@ function initGame() {
         console.log('Sequencer');
         this.name = "Sequencer";
         this.currentGameState = "doTheMath";
-        this.gameStatesArray = ["splash", "login", "saveStart", "deal", "bet", "playGame", "hitMe", "holdMe", "turnOver", "hitDealer", "doTheMath"];
+        this.gameStatesArray = ["splash", "login", "saveStart", "deal", "bet", "playGame", "turnOver", "hitDealer", "doTheMath"];
+        // this.gameStatesArray = ["splash", "login", "saveStart", "deal", "bet", "playGame", "hitMe", "holdMe", "turnOver", "hitDealer", "doTheMath"];
     }
 
     // ======= ======= ======= Display ======= ======= =======
@@ -407,15 +408,6 @@ function initGame() {
     // ======= ======= ======= ======= ======= ======= SEQUENCER ======= ======= ======= ======= ======= =======
 
 
-
-    // ======= ======= ======= startGame ======= ======= =======
-    Sequencer.prototype.startGame = function() {
-        console.log("startGame");
-        game.loadDealer();
-        game.updatePlayerNames(game.dealer, 4);
-        game.currentPlayer = game.playerObjectsArray[0];
-        this.updateGameState();
-    }
 
     // ======= ======= ======= loadStartGameState ======= ======= =======
     Sequencer.prototype.loadStartGameState = function(prevNext) {
@@ -436,10 +428,255 @@ function initGame() {
         }
     }
 
-    // ======= ======= ======= updateGameState ======= ======= =======
-    Sequencer.prototype.updateGameState = function(whichState) {
+    // ======= ======= ======= clearPrevGameState ======= ======= =======
+    Sequencer.prototype.clearPrevGameState = function() {
+        console.log("clearPrevGameState");
+
+        if (game.playerNamesArray.length > 0) {
+            var nextPlayer, cardCount, offsetC, whichCardObject, nextItem, indexCell;
+            var offsetR = 0;
+            for (var i = 0; i < game.playerNamesArray.length; i++) {
+                nextPlayer = game.playerObjectsArray[i];
+                cardCount = nextPlayer.hand.length;
+                whichCardObject = nextPlayer.textParams.pCards;
+                offsetC = -(cardCount - 1);
+
+                // == remove player cards
+                for (var j = 0; j < nextPlayer.hand.length; j++) {
+                    nextItem = nextPlayer.hand[j];
+                    offsetC = offsetC + j;
+                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
+                }
+            }
+            if (game.dealer.hand.length > 0) {
+                cardCount = game.dealer.hand.length;
+                offsetC = cardCount - 1;
+                for (var j = 0; j < game.dealer.hand.length; j++) {
+                    nextItem = game.dealer.hand[j];
+                    offsetC = offsetC + j;
+                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
+                }
+            }
+        }
+    }
+
+    // ======= ======= ======= activateButton ======= ======= =======
+    Sequencer.prototype.activateButton = function(indexCell, whichAction) {
+        console.log("activateButton");
+        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
+        console.log("  action: " + whichAction);
+
+        self = this;
+
+        // ======= tooltips =======
+        $(indexCell).on("mouseenter", function(event){
+            // console.log("-- mouseenter");
+            whichIndexCell = event.target;
+            display.tooltips(whichIndexCell, "on");
+        });
+        $(indexCell).on("mouseout", function(){
+            // console.log("-- mouseout");
+            whichIndexCell = event.target;
+            display.tooltips(whichIndexCell, "off");
+        });
+
+        // ======= general =======
+        switch(whichAction) {
+            case "updateGameGrid":
+                $(indexCell).on("click", function(){
+                    console.log("-- updateGameGrid");
+                    self.updateGameGrid();
+                });
+                break;
+            case "saveNewPlayer":
+                $(indexCell).on("click", function(){
+                    console.log("-- saveNewPlayer");
+                    game.saveNewPlayer();
+                });
+                break;
+            case "startGame":
+                $(indexCell).on("click", function(){
+                    console.log("-- startGame");
+                    game.startGame();
+                });
+                break;
+            case "deal":
+                $(indexCell).on("click", function(){
+                    console.log("-- deal");
+                    game.deal();
+                });
+                break;
+            case "betOne":
+                $(indexCell).on("click", function(){
+                    console.log("-- betOne");
+                    game.placeBet("ones");
+                });
+                break;
+            case "betFive":
+                $(indexCell).on("click", function(){
+                    console.log("-- betFive");
+                    game.placeBet("fives");
+                });
+                break;
+            case "betTen":
+                $(indexCell).on("click", function(){
+                    console.log("-- betTen");
+                    game.placeBet("tens");
+                });
+                break;
+            case "retOne":
+                $(indexCell).on("click", function(){
+                    console.log("-- retOne");
+                    game.returnBet("ones");
+                });
+                break;
+            case "retFive":
+                $(indexCell).on("click", function(){
+                    console.log("-- retFive");
+                    game.returnBet("fives");
+                });
+                break;
+            case "retTen":
+                $(indexCell).on("click", function(){
+                    console.log("-- retTen");
+                    game.returnBet("tens");
+                });
+                break;
+            case "playGame":
+                $(indexCell).on("click", function(){
+                    console.log("-- playGame");
+                    game.playGame();
+                });
+                break;
+            case "hitMe":
+                $(indexCell).on("click", function(){
+                    console.log("-- hitMe");
+                    game.hitMe();
+                });
+                break;
+            case "holdMe":
+                $(indexCell).on("click", function(){
+                    console.log("-- holdMe");
+                    game.holdMe();
+                });
+                break;
+        }
+    }
+
+    // ======= ======= ======= deActivateButton ======= ======= =======
+    Sequencer.prototype.deActivateButton = function(indexCell, whichAction) {
+        console.log("deActivateButton");
+        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
+        console.log("  action: " + whichAction);
+
+        // ======= event listeners =======
+        // var whichId = $(indexCell).attr("id");
+        // $(indexCell).attr("id", "");
+        $(indexCell).off("mouseenter", null);
+        $(indexCell).off("click", null);
+    }
+
+    // ======= ======= ======= doTheMath ======= ======= =======
+    Sequencer.prototype.doTheMath = function() {
+	    console.log("doTheMath");
+
+	    var nextPlayer, nextName, winLossLabel;
+	    var dealerScore = game.dealer.score;
+	    var playerWinLoss = 0;
+	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n';
+
+	    // =======
+	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
+	    	nextPlayer = game.playerObjectsArray[i];
+	    	nextName = nextPlayer.name;
+	    	console.log("   nextName: " + nextName);
+
+	    	// ======= calculate win/loss results
+	    	playerWinLoss = (nextPlayer.onesBet) + (nextPlayer.fivesBet) + (nextPlayer.tensBet);
+	    	console.log("   playerWinLoss: " + playerWinLoss);
+
+    		// ======= calculate wins/losses for players
+	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
+	    		winLossLabel = ' and won $';
+	    		nextPlayer.totalBank = nextPlayer.totalBank + playerWinLoss;
+				nextPlayer.onesBank = nextPlayer.onesBank + nextPlayer.onesBet;
+                nextPlayer.fivesBank = nextPlayer.fivesBank + nextPlayer.fivesBet;
+                nextPlayer.tensBank = nextPlayer.tensBank + nextPlayer.tensBet;
+	    	} else {
+	    		winLossLabel = ' and lost $';
+				nextPlayer.totalBal = nextPlayer.totalBal - playerWinLoss;
+                nextPlayer.onesBank = nextPlayer.onesBank - nextPlayer.onesBet;
+                nextPlayer.fivesBank = nextPlayer.fivesBank - nextPlayer.fivesBet;
+                nextPlayer.tensBank = nextPlayer.tensBank - nextPlayer.tensBet;
+	    	}
+
+            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n';
+
+		    // ======= set bet values on player object
+		    nextPlayer.onesBet = 0;
+		    nextPlayer.fivesBet = 0;
+		    nextPlayer.tensBet = 0;
+
+		    // ======= initialize all players/dealer for next hand
+	    	nextPlayer.hand = [];
+			nextPlayer.score = 0;
+	    }
+
+	    // updateDisplay('calculateWinner');
+	    alert(playerWinLossString);
+	    // dealCards();
+	}
+
+    // ======= ======= ======= updatePlayerGrid ======= ======= =======
+    Sequencer.prototype.updatePlayerGrid = function() {
         console.log("");
-        console.log("== updateGameState ==");
+        console.log("== updatePlayerGrid ==");
+
+        // == get prev player info
+        var indexCell;
+        var prevPlayer = game.currentPlayer;
+        var prevPlayerHitHold = [prevPlayer.btnParams.hitMeBtn, prevPlayer.btnParams.holdMeBtn];
+        var prevPlayerBetBtns = [prevPlayer.btnParams.betOnesBtn, prevPlayer.btnParams.betFivesBtn, prevPlayer.btnParams.betTensBtn];
+        var prevPlayerIndex = prevPlayer.id;
+        console.log("== " + prevPlayer.name + " ==");
+
+        // == remove prev player hitMe/holdMe and deactivate bet buttons
+        for (var i = 0; i < prevPlayerHitHold.length; i++) {
+            nextItem = prevPlayerHitHold[i];
+            display.modifyGridRegion(nextItem, "prev");
+        }
+        for (var j = 0; j < prevPlayerBetBtns.length; j++) {
+            nextItem = prevPlayerBetBtns[j];
+            indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
+            sequencer.deActivateButton(indexCell, nextItem.callback)
+        }
+
+        // == activate dealer if last player turn over
+        if (prevPlayerIndex != game.playerNamesArray.length - 1) {
+
+            // == get next player info
+            var nextPlayer = game.playerObjectsArray[prevPlayerIndex + 1];
+            var nextPlayerHitHold = [nextPlayer.btnParams.hitMeBtn, nextPlayer.btnParams.holdMeBtn];
+            var nextPlayerBetBtns = [nextPlayer.btnParams.betOnesBtn, nextPlayer.btnParams.betFivesBtn, nextPlayer.btnParams.betTensBtn];
+            console.log("== " + nextPlayer.name + " ==");
+
+            // == add next player hitMe/holdMe and activate bet buttons
+            for (var j = 0; j < nextPlayerHitHold.length; j++) {
+                nextItem = nextPlayerHitHold[j];
+                display.modifyGridRegion(nextItem, "next");
+            }
+            for (var j = 0; j < nextPlayerBetBtns.length; j++) {
+                nextItem = nextPlayerBetBtns[j];
+                indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
+                sequencer.activateButton(indexCell, nextItem.callback)
+            }
+        }
+    }
+
+    // ======= ======= ======= updateGameGrid ======= ======= =======
+    Sequencer.prototype.updateGameGrid = function(whichState) {
+        console.log("");
+        console.log("== updateGameGrid ==");
 
         // == get current state
         var currentGameState = this.currentGameState;
@@ -450,18 +687,21 @@ function initGame() {
 
         // == return to start game
         if ((currentGameStateIndex == this.gameStatesArray.length - 1) && (!whichState)) {
-            console.log("  ** last game state");
             currentGameState = this.gameStatesArray[0];
             this.currentGameState = currentGameState;
             console.log("== " + currentGameState + " ==");
             // this.doTheMath();
-            game.clearPrevGameState();
+            this.clearPrevGameState();
             this.loadStartGameState("next");
         } else {
+
+            // == maintain state for player changes
             if (whichState) {
                 currentGameState = whichState;
                 this.currentGameState = whichState;
             } else {
+
+                // == advance to next game state
                 currentGameState = this.gameStatesArray[currentGameStateIndex + 1];
                 this.currentGameState = currentGameState;
             }
@@ -485,30 +725,6 @@ function initGame() {
                 display.modifyGridRegion(nextItem, "next");
             }
         }
-    }
-
-    // ======= ======= ======= saveNewPlayer ======= ======= =======
-    Sequencer.prototype.saveNewPlayer = function() {
-        console.log("saveNewPlayer");
-
-        var playerCount = game.playerNamesArray.length;
-        if (playerCount < 3) {
-            newPlayer = game.playerObjectsArray[playerCount]
-            game.playerNamesArray.push(newPlayer.name)
-            var playerCount = game.playerNamesArray.length;
-            game.loadNewPlayer(newPlayer);
-            game.updatePlayerNames(newPlayer, playerCount);
-        }
-        if (playerCount == 1) {
-            this.updateGameState();
-        }
-        if (playerCount == 3) {
-            $("#tooltips").text("Max of 3 players.  Start game!");
-            game.loadDealer();
-            game.updatePlayerNames(game.dealer, 4);
-            this.updateGameState();
-        }
-
     }
 
     // ======= ======= ======= processItemArrays ======= ======= =======
@@ -577,207 +793,53 @@ function initGame() {
         return [REMprevNames, ADDnextNames, REMprevItems, ADDnextItems];
     }
 
-    // ======= ======= ======= activateButton ======= ======= =======
-    Sequencer.prototype.activateButton = function(indexCell, whichAction) {
-        console.log("activateButton");
-        console.log("  action: " + whichAction);
 
-        self = this;
 
-        // ======= tooltips =======
-        $(indexCell).on("mouseenter", function(event){
-            // console.log("-- mouseenter");
-            whichIndexCell = event.target;
-            display.tooltips(whichIndexCell, "on");
-        });
-        $(indexCell).on("mouseout", function(){
-            // console.log("-- mouseout");
-            whichIndexCell = event.target;
-            display.tooltips(whichIndexCell, "off");
-        });
+    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
 
-        // ======= general =======
-        switch(whichAction) {
-            case "updateGameState":
-                $(indexCell).on("click", function(){
-                    console.log("-- updateGameState");
-                    self.updateGameState();
-                });
-                break;
-            case "saveNewPlayer":
-                $(indexCell).on("click", function(){
-                    console.log("-- saveNewPlayer");
-                    self.saveNewPlayer();
-                });
-                break;
-            case "startGame":
-                $(indexCell).on("click", function(){
-                    console.log("-- startGame");
-                    self.startGame();
-                });
-                break;
-            case "deal":
-                $(indexCell).on("click", function(){
-                    console.log("-- deal");
-                    game.deal();
-                });
-                break;
-            case "betOne":
-                $(indexCell).on("click", function(){
-                    console.log("-- betOne");
-                    game.placeBet("ones");
-                });
-                break;
-            case "betFive":
-                $(indexCell).on("click", function(){
-                    console.log("-- betFive");
-                    game.placeBet("fives");
-                });
-                break;
-            case "betTen":
-                $(indexCell).on("click", function(){
-                    console.log("-- betTen");
-                    game.placeBet("tens");
-                });
-                break;
-            case "retOne":
-                $(indexCell).on("click", function(){
-                    console.log("-- retOne");
-                    game.returnBet("ones");
-                });
-                break;
-            case "retFive":
-                $(indexCell).on("click", function(){
-                    console.log("-- retFive");
-                    game.returnBet("fives");
-                });
-                break;
-            case "retTen":
-                $(indexCell).on("click", function(){
-                    console.log("-- retTen");
-                    game.returnBet("tens");
-                });
-                break;
-            case "playGame":
-                $(indexCell).on("click", function(){
-                    console.log("-- playGame");
-                    game.updateGameState();
-                });
-                break;
-            case "hitMe":
-                $(indexCell).on("click", function(){
-                    console.log("-- hitMe");
-                    game.hitMe();
-                });
-                break;
-            case "holdMe":
-                $(indexCell).on("click", function(){
-                    console.log("-- holdMe");
-                    game.holdMe();
-                });
-                break;
-        }
+
+
+    // ======= ======= ======= startGame ======= ======= =======
+    Game.prototype.startGame = function() {
+        console.log("startGame");
+        this.loadDealer();
+        this.updatePlayerNames(this.dealer, 4);
+        this.currentPlayer = this.playerObjectsArray[0];
+        sequencer.updateGameGrid();
     }
 
-    // ======= ======= ======= deActivateButton ======= ======= =======
-    Sequencer.prototype.deActivateButton = function(indexCell, whichAction) {
-        console.log("deActivateButton");
-        console.log("  action: " + whichAction);
+    // ======= ======= ======= saveNewPlayer ======= ======= =======
+    Game.prototype.saveNewPlayer = function() {
+        console.log("saveNewPlayer");
 
-        // ======= event listeners =======
-        $(indexCell).off("mouseenter", null);
-        $(indexCell).off("click", null);
+        var playerCount = this.playerNamesArray.length;
+        if (playerCount < 3) {
+            newPlayer = this.playerObjectsArray[playerCount];
+            this.playerNamesArray.push(newPlayer.name);
+            var playerCount = this.playerNamesArray.length;
+            this.loadNewPlayer(newPlayer);
+            this.updatePlayerNames(newPlayer, playerCount);
+        }
+        if (playerCount == 1) {
+            sequencer.updateGameGrid();
+        }
+        if (playerCount == 3) {
+            $("#tooltips").text("Max of 3 players.  Start game!");
+            this.loadDealer();
+            this.updatePlayerNames(this.dealer, 4);
+            this.currentPlayer = game.playerObjectsArray[0];
+            sequencer.updateGameGrid();
+        }
+        $("#playerNameInput").val("");
     }
 
-    // ======= ======= ======= doTheMath ======= ======= =======
-    Sequencer.prototype.doTheMath = function() {
-	    console.log("doTheMath");
-
-	    var nextPlayer, nextName, winLossLabel;
-	    var dealerScore = game.dealer.score;
-	    var playerWinLoss = 0;
-	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n';
-
-	    // =======
-	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
-	    	nextPlayer = game.playerObjectsArray[i];
-	    	nextName = nextPlayer.name;
-	    	console.log("   nextName: " + nextName);
-
-	    	// ======= calculate win/loss results
-	    	playerWinLoss = (nextPlayer.onesBet) + (nextPlayer.fivesBet) + (nextPlayer.tensBet);
-	    	console.log("   playerWinLoss: " + playerWinLoss);
-
-    		// ======= calculate wins/losses for players
-	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
-	    		winLossLabel = ' and won $';
-	    		nextPlayer.totalBank = nextPlayer.totalBank + playerWinLoss;
-				nextPlayer.onesBank = nextPlayer.onesBank + nextPlayer.onesBet;
-                nextPlayer.fivesBank = nextPlayer.fivesBank + nextPlayer.fivesBet;
-                nextPlayer.tensBank = nextPlayer.tensBank + nextPlayer.tensBet;
-	    	} else {
-	    		winLossLabel = ' and lost $';
-				nextPlayer.totalBal = nextPlayer.totalBal - playerWinLoss;
-                nextPlayer.onesBank = nextPlayer.onesBank - nextPlayer.onesBet;
-                nextPlayer.fivesBank = nextPlayer.fivesBank - nextPlayer.fivesBet;
-                nextPlayer.tensBank = nextPlayer.tensBank - nextPlayer.tensBet;
-	    	}
-
-            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n';
-
-		    // ======= set bet values on player object
-		    nextPlayer.onesBet = 0;
-		    nextPlayer.fivesBet = 0;
-		    nextPlayer.tensBet = 0;
-
-		    // ======= initialize all players/dealer for next hand
-	    	nextPlayer.hand = [];
-			nextPlayer.score = 0;
-	    }
-
-	    // updateDisplay('calculateWinner');
-	    alert(playerWinLossString);
-	    // dealCards();
-	}
-
-
-
-    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= ======= =======
-
-
-
-    // ======= ======= ======= clearPrevGameState ======= ======= =======
-    Game.prototype.clearPrevGameState = function() {
-        console.log("clearPrevGameState");
-
-        if (game.playerNamesArray.length > 0) {
-            var nextPlayer, cardCount, offsetC, whichCardObject, nextItem, indexCell;
-            var offsetR = 0;
-            for (var i = 0; i < game.playerNamesArray.length; i++) {
-                nextPlayer = game.playerObjectsArray[i];
-                cardCount = nextPlayer.hand.length;
-                whichCardObject = nextPlayer.textParams.pCards;
-                offsetC = -(cardCount - 1);
-
-                // == remove prev items; add next items
-                for (var j = 0; j < nextPlayer.hand.length; j++) {
-                    nextItem = nextPlayer.hand[j];
-                    offsetC = offsetC + j;
-                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
-                }
-            }
-            if (game.dealer.hand.length > 0) {
-                cardCount = game.dealer.hand.length;
-                offsetC = cardCount - 1;
-                for (var j = 0; j < game.dealer.hand.length; j++) {
-                    nextItem = game.dealer.hand[j];
-                    offsetC = offsetC + j;
-                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
-                }
-            }
-        }
+    // ======= ======= ======= playGame ======= ======= =======
+    Game.prototype.playGame = function() {
+        console.log("playGame");
+        this.currentPlayer = this.playerObjectsArray[0];
+        sequencer.updateGameGrid();
     }
 
     // ======= ======= ======= hitDealer ======= ======= =======
@@ -803,11 +865,11 @@ function initGame() {
             if (dealer.score < 18) {
                 this.hitDealer();
             } else {
-                sequencer.updateGameState();
+                sequencer.updateGameGrid();
                 sequencer.doTheMath();
             }
         } else {
-            sequencer.updateGameState();
+            sequencer.updateGameGrid();
             sequencer.doTheMath();
         }
     }
@@ -817,17 +879,18 @@ function initGame() {
 	    console.log("turnOver");
 
         var currentPlayerIndex = this.currentPlayer.id;
-        console.log("  currentPlayerIndex: " + currentPlayerIndex);
-        console.log("  this.playerNamesArray.length: " + this.playerNamesArray.length);
+        var currentPlayer = this.currentPlayer;
+        sequencer.updatePlayerGrid();
+
         if (currentPlayerIndex < (this.playerNamesArray.length - 1)) {
-            var nextPlayer = this.playerObjectsArray[this.currentPlayer.id];
+            var nextPlayer = this.playerObjectsArray[currentPlayerIndex + 1];
             this.currentPlayer = nextPlayer;
             $("#tooltips").text(nextPlayer.name + "'s turn");
-            sequencer.updateGameState("playGame");
         } else {
             this.currentPlayer = this.dealer;
             $("#tooltips").text("dealer's turn");
-            sequencer.updateGameState("hitDealer");
+            sequencer.updatePlayerGrid();
+            sequencer.updateGameGrid("hitDealer");
             this.hitDealer();
         }
     }
@@ -932,7 +995,7 @@ function initGame() {
 
     // ======= ======= ======= placeBet ======= ======= =======
     Game.prototype.placeBet = function(whichBet) {
-        // console.log("placeBet");
+        console.log("placeBet");
 
         var onesBank = game.currentPlayer.onesBank;
         var fivesBank = game.currentPlayer.fivesBank;
@@ -1117,7 +1180,7 @@ function initGame() {
             // var playerParamsArray = [nextPlayer.textParams.pBet_10s];
             for (var j = 0; j < playerParamsArray.length; j++) {
                 nextItem = playerParamsArray[j];
-                console.log("  nextItem.name: " + nextItem.name);
+                // console.log("  nextItem.name: " + nextItem.name);
                 if (nextItem != null) {
                     display.modifyGridRegion(nextItem, "next");
                 }
@@ -1141,7 +1204,7 @@ function initGame() {
             // calculateWinner();
         } else {
             this.activePlayer = 1;
-            sequencer.updateGameState();
+            sequencer.updateGameGrid();
         }
     }
 
@@ -1210,7 +1273,7 @@ function initGame() {
 
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, prevNext) {
-        console.log("modifyGridRegion");
+        // console.log("modifyGridRegion");
 
         var whichMerge, buttonActivate;
         if (prevNext == "prev") {
@@ -1232,9 +1295,9 @@ function initGame() {
         var whichType = whichItem.type;
         var whichValue = whichItem.value;
         var whichName = whichItem.name;
-        console.log("  whichItem.name: " + whichItem.name);
-        console.log("  whichItem.type: " + whichItem.type);
-        console.log("  whichValue: " + whichValue);
+        // console.log("  whichItem.name: " + whichItem.name);
+        // console.log("  whichItem.type: " + whichItem.type);
+        // console.log("  whichValue: " + whichValue);
 
         if (whichMerge == "merge") {
             indexCell = this.mergeRegion(whichItem);
@@ -1245,8 +1308,8 @@ function initGame() {
         } else {
             indexCell = this.selectTableCells(whichItem);
         }
-        console.log("  indexCell: " + indexCell);
-        console.log("  indexCell.attr('class'): " + $(indexCell).attr('class'));
+        // console.log("  indexCell: " + indexCell);
+        // console.log("  indexCell.attr('class'): " + $(indexCell).attr('class'));
 
         // ======= data connection =======
         switch(whichType) {
@@ -1256,14 +1319,14 @@ function initGame() {
                 if (buttonActivate == true) {
                     $(indexCell).text(whichValue);
                     sequencer.activateButton(indexCell, whichItem.callback)
-                    console.log("  whichItem.callback: " + whichItem.callback);
+                    // console.log("  whichItem.callback: " + whichItem.callback);
                 } else {
                     sequencer.deActivateButton(indexCell, whichItem.callback)
                 }
                 break;
             case "text":
                 $(indexCell).text(whichValue);
-                console.log("  whichValue: " + whichValue);
+                // console.log("  whichValue: " + whichValue);
                 break;
             case "input":
                 newTextInput = "<input id='" + whichItem.name + "Input' class='" + whichItem.class + "' type='text' value='Tom'>"
@@ -1296,6 +1359,7 @@ function initGame() {
         if (whichItem.type != "input") {
             $(indexCell).attr("id", whichItem.name);
         }
+        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
         return indexCell;
     }
 
@@ -1309,6 +1373,7 @@ function initGame() {
         var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
         $(indexCell).attr("colSpan", 1);
         $(indexCell).attr("rowSpan", 1);
+        $(indexCell).attr("id", "");
         $(indexCell).text("");
         $(indexCell).removeClass(whichItem.class);
         for (var j = 0; j < whichItem.iH; j++) {
@@ -1332,7 +1397,7 @@ function initGame() {
 
     // ======= ======= ======= selectTableCells ======= ======= =======
     Display.prototype.selectTableCells = function(whichItem) {
-        console.log("selectTableCells");
+        // console.log("selectTableCells");
         var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
@@ -1340,14 +1405,11 @@ function initGame() {
                 $(nextCell).attr("colSpan", 1);
                 $(nextCell).attr("rowSpan", 1);
                 $(nextCell).addClass(whichItem.class);
-                console.log("  whichItem.iC: " + whichItem.iC);
-                console.log("  whichItem.iR: " + whichItem.iR);
-                console.log("  whichItem.class: " + whichItem.class);
             }
         }
         $(indexCell).attr("id", whichItem.name);
         $(indexCell).addClass(whichItem.class);
-        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr("id"));
+        // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr("id"));
         return indexCell;
     }
 
@@ -1365,6 +1427,7 @@ function initGame() {
         $(indexCell).attr("id", "");
         $(indexCell).removeClass(whichItem.class);
         $(indexCell).empty();
+        // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr("id"));
         return indexCell;
     }
 
@@ -1409,7 +1472,7 @@ function initGame() {
     game.dealer = dealer;
     var sequencer = new Sequencer();
     display.initGridElements();
-    sequencer.updateGameState();
+    sequencer.updateGameGrid();
 
 
 
