@@ -1,4 +1,15 @@
 
+// cardDivString = "<div class='flip-container " + whichClass + "' ontouchstart='this.classList.toggle('hover');'>";
+cardDivString = "<div class='flip-container " + whichClass + "'>";
+// cardDivString += "<div class='flipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";
+cardDivString += "<div class='preflipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";
+cardDivString += "<div class='back'><p class='cardText'>" + cardValue + "</p></div></div></div>";
+
+$(indexCell).append(cardDivString);
+// $(indexCell).children().toggleClass("flipper");
+// console.log("  $(indexCell).children().length: " + $(indexCell).children().length);
+
+
 var textType = whichName.substring(0, 5);
 if (textType == "pBank") {
     whichValue = "$" + whichValue;
