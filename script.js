@@ -28,16 +28,16 @@ function initGame() {
                 borderV: { player: 1, name: "borderV_1", type: "bg", iR: 2, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 3, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 3, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: null },
-                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: null },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 3, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 3, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "bet $1" },
+                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "bet $5" },
+                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "bet $10" },
             },
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
                 pScore: { player: 1, name: "pScore_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
-                pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 100 },
+                pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "100" },
                 pBet_1s: { name: "pBet_1s_1", type: "text", iR: 4, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pBet_5s: { name: "pBet_5s_1", type: "text", iR: 4, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pBet_10s: { name: "pBet_10s_1", type: "text", iR: 4, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
@@ -54,16 +54,16 @@ function initGame() {
                 borderV: { player: 2, name: "borderV_2", type: "bg", iR: 5, iC: 7, iW: 1, iH: 3, merge: null, class: "pBorder-2" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn_2", callback: "betOne", type: "btn", iR:5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn_2", callback: "betFive", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: null },
-                betTensBtn: { name: "betTensBtn_2", callback: "betTen", type: "btn", iR: 5, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: null },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_2", callback: "betOne", type: "btn", iR:5, iC: 8, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: null },
+                betFivesBtn: { name: "betFivesBtn_2", callback: "betFive", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: null },
+                betTensBtn: { name: "betTensBtn_2", callback: "betTen", type: "btn", iR: 5, iC: 10, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: null },
             },
             textParams: {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
                 pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
-                pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 100 },
+                pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "100" },
                 pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
                 pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
                 pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
@@ -80,11 +80,11 @@ function initGame() {
                 borderV: { player: 3, name: "borderV_3", type: "bg", iR: 8, iC: 8, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hitMe" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "holdMe" },
-                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR:8, iC: 9, iW: 1, iH: 1, merge: null, class: "button", value: "$20", tooltip: "$1" },
-                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 8, iC: 10, iW: 1, iH: 1, merge: null, class: "button", value: "$30", tooltip: "$5" },
-                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 8, iC: 11, iW: 1, iH: 1, merge: null, class: "button", value: "$50", tooltip: "$10" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR:8, iC: 9, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "$1" },
+                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 8, iC: 10, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "$5" },
+                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 8, iC: 11, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "$10" },
 
             },
             textParams: {
@@ -148,15 +148,15 @@ function initGame() {
                 logo: { name: "logo", type: "bg", iR: 2, iC: 1, iW: 6, iH: 1, merge: false, class: null }
             },
             btn: {
-                orbBtn: { name: "orbBtn", callback: "updateGameGrid", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "", tooltip: "start playing!" },
+                orbBtn: { name: "orbBtn", callback: "updateGameGrid", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "start", tooltip: "start" },
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
-                dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: "merge", class: "dealBtn", value: "deal", tooltip: null },
-                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 15, iW: 1, iH: 1, merge: "merge", class: "ones", value: "ones", tooltip: null },
-                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 16, iW: 1, iH: 1, merge: "merge", class: "fives", value: "fives", tooltip: null },
-                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 17, iW: 1, iH: 1,  merge: "merge", class: "tens", value: "tens", tooltip: null },
+                dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: "merge", class: "dealBtn", value: "deal", tooltip: "deal cards" },
+                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 15, iW: 1, iH: 1, merge: "merge", class: "ones", value: "ones", tooltip: "return to player" },
+                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 16, iW: 1, iH: 1, merge: "merge", class: "fives", value: "fives", tooltip: "return to player" },
+                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 17, iW: 1, iH: 1,  merge: "merge", class: "tens", value: "tens", tooltip: "return to player" },
                 playGameBtn: { name: "playGameBtn", callback: "updateGameGrid", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: "merge", class: "playGameBtn", value: "play game", tooltip: null },
-                newGameBtn: { name: "newGameBtn", callback: "updateGameGrid", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
+                newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
                 pName_1: { name: "pName_1", type: "text", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
@@ -438,6 +438,7 @@ function initGame() {
             var nextPlayer, cardCount, offsetC, whichCardObject, nextItem, indexCell;
             var offsetR = 0;
 
+            // == clear previous hand for players and dealer
             for (var i = 0; i < game.playerNamesArray.length; i++) {
                 nextPlayer = game.playerObjectsArray[i];
                 cardCount = nextPlayer.hand.length;
@@ -446,9 +447,12 @@ function initGame() {
                 cardsCol = whichCardObject.iC - cardCount + 1;
                 cardsCells = tableRows[cardsRow];
 
+                // == identify first card cell in table row and remove
                 for (var j = 0; j < cardCount; j++) {
                     $(tableRows[cardsRow]).children()[cardsCol].remove();
                 }
+
+                // == add new single cells for each row/column of card
                 for (var k = 0; k < cardCount; k++) {
                     for (var h = 0; h < 2; h++) {
                         var indexCell = $(tableRows[cardsRow + h]).children()[cardsCol - 1 + k];
@@ -459,15 +463,16 @@ function initGame() {
                     }
                 }
 
-    		    // ======= set bet values on player object
+    		    // ======= initialize values on player object
     		    nextPlayer.onesBet = 0;
     		    nextPlayer.fivesBet = 0;
     		    nextPlayer.tensBet = 0;
-
-    		    // ======= initialize all players/dealer for next hand
     	    	nextPlayer.hand = [];
     			nextPlayer.score = 0;
+                game.updatePlayerScoreText(nextPlayer);
             }
+
+            // == clear dealer cards
             if (game.dealer.hand.length > 0) {
                 cardCount = game.dealer.hand.length;
                 whichCardObject = game.dealer.textParams.pCards;
@@ -488,6 +493,9 @@ function initGame() {
                     }
                 }
             }
+            game.dealer.hand = [];
+            game.dealer.score = 0;
+            game.updatePlayerScoreText(game.dealer);
         }
     }
 
@@ -833,6 +841,7 @@ function initGame() {
 	    console.log("newGame");
 
         sequencer.clearPrevGameState();
+        sequencer.updateGameGrid("deal");
     }
 
     // ======= ======= ======= startGame ======= ======= =======
@@ -1171,7 +1180,7 @@ function initGame() {
             }
         }
 
-        // ======= clear previous player hand
+        // ======= clear previous player hands
         for (var i = 0; i < (this.playerNamesArray.length); i++) {
             var nextPlayer = this.playerObjectsArray[i];
             nextPlayer.hand = [];
@@ -1221,6 +1230,7 @@ function initGame() {
                     display.modifyGridRegion(nextItem, "next");
                 }
             }
+            display.tooltips("place bets", "on");
         }
 
         // ======= deal to dealer
@@ -1331,9 +1341,10 @@ function initGame() {
         var whichType = whichItem.type;
         var whichValue = whichItem.value;
         var whichName = whichItem.name;
-        // console.log("  whichItem.name: " + whichItem.name);
-        // console.log("  whichItem.type: " + whichItem.type);
-        // console.log("  whichValue: " + whichValue);
+        var textType = whichName.substring(0, 5);
+        if (textType == "pBank") {
+            whichValue = "$" + whichValue;
+        }
 
         if (whichMerge == "merge") {
             indexCell = this.mergeRegion(whichItem);
@@ -1381,6 +1392,8 @@ function initGame() {
         var offsetR = parseInt(offsetR);
         var offsetC = parseInt(offsetC);
         var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
+        console.log("  indexCell: " + indexCell);
+        console.log("  $(indexCell).attr('class'): " + $(indexCell).attr('class'));
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
                 nextCell = this.tableCellsArray[whichItem.iR + offsetR + j][whichItem.iC + offsetC + i];
@@ -1498,7 +1511,18 @@ function initGame() {
     // ======= ======= ======= tooltips ======= ======= =======
     Display.prototype.tooltips = function(whichItem, onOff) {
         // console.log("tooltips");
-        var nextTooltip = whichItem.id
+        var nextTooltip;
+        if (whichItem !== null && typeof whichItem === 'object') {
+            if (whichItem.tooltip) {
+                nextTooltip = whichItem.tooltip;
+            } else if (whichItem.value) {
+                nextTooltip = whichItem.value;
+            } else {
+                nextTooltip = whichItem.id;
+            }
+        } else {
+            nextTooltip = whichItem;
+        }
         var tooltipIndexCell = this.tableCellsArray[9][12];
         if (onOff == "on") {
             $(tooltipIndexCell).text(nextTooltip);

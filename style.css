@@ -135,37 +135,37 @@ body {
 .orbBtn {
     background-color: #85E085;
 }
-.holdMe {
-    background-color: #85E085;
+#hitMeBtn {
+    background-color: chartreuse;
 }
-.hitMe {
-    background-color: #85E085;
+#holdMeBtn {
+    background-color: chartreuse;
 }
-.enterBtn, .startBtn {
-    background-color: DarkSlateBlue;
-}
-.enterPlayerBtn, .startGameBtn, .playGameBtn, .dealBtn, .newGameBtn, .button {
+.enterBtn, .startBtn, .playGameBtn, .dealBtn, .newGameBtn {
     background-color: DarkCyan;
 }
 .ones, .fives, .tens {
-    background-color: LawnGreen;
+    background-color: lawngreen;
 }
 .remove {
     background-color: black
 }
 
 /* ======= hover/active fx ======= */
-.hold:hover {
-    background-color: red;
+#hitMeBtn:hover, #holdMeBtn:hover {
+    background-color: mediumvioletred;
 }
-.hold:active {
-    background-color: MediumVioletRed;
+#hitMeBtn:active, #holdMeBtn:active {
+    background-color: orangered;
 }
-.hitme:hover, .orbBtn:hover, .enterPlayerBtn:hover, .startGameBtn:hover {
-    background-color: Chartreuse;
+.ones:hover, .fives:hover, .tens:hover {
+    background-color: greenyellow;
 }
-.hitme:active, .orbBtn:active, .enterPlayerBtn:active, .startGameBtn:active {
-    background-color: MediumSpringGreen;
+.orbBtn:hover, .enterBtn:hover, .startBtn:hover, .dealBtn:hover  {
+    background-color: chartreuse;
+}
+.orbBtn:active, .enterBtn:active, .startBtn:active, .dealBtn:active {
+    background-color: mediumspringgreen;
 }
 
 /* ======= text input ======= */
@@ -248,7 +248,6 @@ body {
 }
 .column:before {
     /*content: "\00a0";*/
-}*/
 
 /* ======= columns ======= */
 /*.column-1 { width: 8.333%; }

@@ -1,3 +1,11 @@
+
+var textType = whichName.substring(0, 5);
+if (textType == "pBank") {
+    whichValue = "$" + whichValue;
+}
+
+
+
 case "gameOver":
     gameOver = {
         name: "gameOver",
