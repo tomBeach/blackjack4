@@ -41,7 +41,7 @@ function initGame() {
                 pBet_1s: { name: "pBet_1s_1", type: "text", iR: 4, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pBet_5s: { name: "pBet_5s_1", type: "text", iR: 4, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pBet_10s: { name: "pBet_10s_1", type: "text", iR: 4, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
+                pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 5, iW: 1, iH: 3, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -432,6 +432,12 @@ function initGame() {
     Sequencer.prototype.clearPrevGameState = function() {
         console.log("clearPrevGameState");
 
+        var tableRows = $(".row");
+        console.log("  tableRows.length: " + tableRows.length);
+        console.log("  tableRows[3]: " + tableRows[3]);
+        console.log("  $(tableRows[3]).children(): " + $(tableRows[3]).children());
+        console.log("  $(tableRows[3]).children().length1: " + $(tableRows[3]).children().length);
+
         if (game.playerNamesArray.length > 0) {
             var nextPlayer, cardCount, offsetC, whichCardObject, nextItem, indexCell;
             var offsetR = 0;
@@ -439,21 +445,60 @@ function initGame() {
                 nextPlayer = game.playerObjectsArray[i];
                 cardCount = nextPlayer.hand.length;
                 whichCardObject = nextPlayer.textParams.pCards;
-                offsetC = -(cardCount - 1);
+                cardsRow = whichCardObject.iR;
+                cardsCol = whichCardObject.iC - cardCount + 1;
+                cardsCells = tableRows[cardsRow];
 
-                // == remove player cards
-                for (var j = 0; j < nextPlayer.hand.length; j++) {
-                    nextItem = nextPlayer.hand[j];
-                    offsetC = offsetC + j;
-                    indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
+                for (var i = 0; i < cardCount; i++) {
+                    $(tableRows[3]).children()[cardsCol].remove();
                 }
+                for (var i = 0; i < cardCount; i++) {
+                    for (var j = 0; j < 3; j++) {
+                        var indexCell = $(tableRows[3 + j]).children()[cardsCol - 1 + i];
+                        var newCell = document.createElement("td");
+                        $(indexCell).after(newCell);
+                        $(newCell).addClass("cell");
+                        $(newCell).attr("id", (cardsRow) + "-" + (cardsCol + i));
+                    }
+                }
+
+
+                // $(tableRows[3]).children()[cardsCol].remove();
+                // console.log("  $(tableRows[3]).children().length2: " + $(tableRows[3]).children().length);
+                // var indexCell = this.tableCellsArray[cardsRow][cardsCol];
+
+
+
+                // var tableRows = $(".row");
+                // nextRow = tableRows[indexR + offsetR];
+                // tableCols = $(nextRow).children(".cell");
+
+                // offsetCinit = -(cardCount - 1);
+                //
+                // // == remove player cards
+                // for (var j = 0; j < nextPlayer.hand.length; j++) {
+                //     nextItem = nextPlayer.hand[j];
+                //     offsetC = offsetCinit + j;
+                //     indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
+                // }
+
+    		    // ======= set bet values on player object
+    		    nextPlayer.onesBet = 0;
+    		    nextPlayer.fivesBet = 0;
+    		    nextPlayer.tensBet = 0;
+
+    		    // ======= initialize all players/dealer for next hand
+    	    	nextPlayer.hand = [];
+    			nextPlayer.score = 0;
             }
             if (game.dealer.hand.length > 0) {
+                nextPlayer = game.dealer;
                 cardCount = game.dealer.hand.length;
-                offsetC = cardCount - 1;
+                whichCardObject = nextPlayer.textParams.pCards;
+                offsetCinit = cardCount - 1;
                 for (var j = 0; j < game.dealer.hand.length; j++) {
                     nextItem = game.dealer.hand[j];
-                    offsetC = offsetC + j;
+                    offsetC = j;
                     indexCell = display.unMergeRegion(whichCardObject, offsetR, offsetC);
                 }
             }
@@ -560,6 +605,12 @@ function initGame() {
                     game.holdMe();
                 });
                 break;
+            case "newGame":
+                $(indexCell).on("click", function(){
+                    console.log("-- newGame");
+                    game.newGame();
+                });
+                break;
         }
     }
 
@@ -609,17 +660,7 @@ function initGame() {
                 nextPlayer.fivesBank = nextPlayer.fivesBank - nextPlayer.fivesBet;
                 nextPlayer.tensBank = nextPlayer.tensBank - nextPlayer.tensBet;
 	    	}
-
             playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n';
-
-		    // ======= set bet values on player object
-		    nextPlayer.onesBet = 0;
-		    nextPlayer.fivesBet = 0;
-		    nextPlayer.tensBet = 0;
-
-		    // ======= initialize all players/dealer for next hand
-	    	nextPlayer.hand = [];
-			nextPlayer.score = 0;
 	    }
 
 	    // updateDisplay('calculateWinner');
@@ -801,6 +842,13 @@ function initGame() {
 
 
 
+    // ======= ======= ======= newGame ======= ======= =======
+    Game.prototype.newGame = function() {
+	    console.log("newGame");
+
+        sequencer.clearPrevGameState();
+    }
+
     // ======= ======= ======= startGame ======= ======= =======
     Game.prototype.startGame = function() {
         console.log("startGame");
@@ -877,19 +925,20 @@ function initGame() {
     // ======= ======= ======= turnOver ======= ======= =======
     Game.prototype.turnOver = function() {
 	    console.log("turnOver");
+        console.log("  this.currentPlayer: " + this.currentPlayer);
 
         var currentPlayerIndex = this.currentPlayer.id;
         var currentPlayer = this.currentPlayer;
-        sequencer.updatePlayerGrid();
 
         if (currentPlayerIndex < (this.playerNamesArray.length - 1)) {
+            sequencer.updatePlayerGrid();
             var nextPlayer = this.playerObjectsArray[currentPlayerIndex + 1];
             this.currentPlayer = nextPlayer;
             $("#tooltips").text(nextPlayer.name + "'s turn");
         } else {
+            sequencer.updatePlayerGrid();
             this.currentPlayer = this.dealer;
             $("#tooltips").text("dealer's turn");
-            sequencer.updatePlayerGrid();
             sequencer.updateGameGrid("hitDealer");
             this.hitDealer();
         }
@@ -916,6 +965,7 @@ function initGame() {
 
 				// ======= change A value to 1 if > 21 score
 				if (nextCard.indexOf("A") > 0) {
+                    $("#tooltips").text("Your're okay with ace value = 1");
 					nextPlayer.score = nextPlayer.score - 10;
 					break;
 				}
@@ -1359,34 +1409,58 @@ function initGame() {
         if (whichItem.type != "input") {
             $(indexCell).attr("id", whichItem.name);
         }
-        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
+        // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
         return indexCell;
     }
 
     // ======= ======= ======= unMergeRegion ======= ======= =======
     Display.prototype.unMergeRegion = function(whichItem, offsetR, offsetC) {
-        // console.log("unMergeRegion");
+        console.log("unMergeRegion");
         if (!offsetR) { offsetR = 0 };
         if (!offsetC) { offsetC = 0 };
         var offsetR = parseInt(offsetR);
         var offsetC = parseInt(offsetC);
-        var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
+        var indexR = parseInt(whichItem.iR);
+        var indexC = parseInt(whichItem.iC);
+        var rowCell = indexR + offsetR;
+        var colCell = indexC + offsetC;
+        var cellString = rowCell + "/" + colCell;
+        var indexCell = this.tableCellsArray[rowCell][colCell];
+        $(indexCell).attr("id", cellString);
         $(indexCell).attr("colSpan", 1);
         $(indexCell).attr("rowSpan", 1);
-        $(indexCell).attr("id", "");
         $(indexCell).text("");
         $(indexCell).removeClass(whichItem.class);
+
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
-                if (!((i == 0) && (j == 0))) {
+                if (i != 0) {
+                    // var tableRows = $(".row");
+                    // nextRow = tableRows[indexR + offsetR];
+                    // tableCols = $(nextRow).children(".cell");
                     var newCell = document.createElement("td");
                     $(indexCell).after(newCell);
                     $(newCell).addClass("cell");
+                    $(newCell).attr("id", (rowCell+ j) + "-" + (colCell + i));
+                }
+                if ((j > 0) && (i == 0)) {
+                    indexCell = this.tableCellsArray[rowCell+ j][colCell - 1];
+                    $(indexCell).addClass("ones");
+                    // var tableRows = $(".row");
+                    // nextRow = tableRows[indexR + offsetR];
+                    // tableCols = $(nextRow).children(".cell");
+                    var newCell = document.createElement("td");
+                    $(indexCell).after(newCell);
+                    $(newCell).addClass("cell");
+                    $(newCell).attr("id", (rowCell+ j) + "-" + (colCell + i));
                 }
             }
         }
+
+        // == remove content (e.g. input element) if required
         $(indexCell).attr("id", "");
         if ($(indexCell).children().length > 0) {
+            console.log("  $(indexCell).children().length: " + $(indexCell).children().length);
             var newCell = document.createElement("td");
             $(indexCell).after(newCell);
             $(newCell).addClass("cell");
@@ -1402,8 +1476,8 @@ function initGame() {
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
                 nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
-                $(nextCell).attr("colSpan", 1);
-                $(nextCell).attr("rowSpan", 1);
+                // $(nextCell).attr("colSpan", 1);
+                // $(nextCell).attr("rowSpan", 1);
                 $(nextCell).addClass(whichItem.class);
             }
         }
@@ -1415,19 +1489,23 @@ function initGame() {
 
     // ======= ======= ======= deselectTableCells ======= ======= =======
     Display.prototype.deselectTableCells = function(whichItem) {
-        // console.log("deselectTableCells");
+        console.log("deselectTableCells");
         var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
         for (var j = 0; j < whichItem.iH; j++) {
             for (var i = 0; i < whichItem.iW; i++) {
-                nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
-                $(nextCell).attr("colSpan", 1);
-                $(nextCell).attr("rowSpan", 1);
+                var rowCell = whichItem.iR + j;
+                var colCell = whichItem.iC + i;
+                var rowStrg = rowCell.toString();
+                var colStrg = colCell.toString();
+                nextCell = this.tableCellsArray[rowCell][colCell];
+                $(nextCell).removeClass(whichItem.class);
+                $(nextCell).addClass("cell");
+                $(indexCell).attr("id", (rowStrg + "-" + colStrg));
             }
         }
-        $(indexCell).attr("id", "");
         $(indexCell).removeClass(whichItem.class);
+        $(indexCell).attr("id", "");
         $(indexCell).empty();
-        // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr("id"));
         return indexCell;
     }
 
@@ -1455,6 +1533,11 @@ function initGame() {
             nextRow = tableRows[i];
             tableCols = $(nextRow).children(".cell");
             tableCellsArray.push(tableCols);
+            for (var j = 0; j < tableCols.length; j++) {
+                nextCell = tableCols[j];
+                $(nextCell).attr("id", i + "-" + j);
+                // console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
+            }
         }
         this.tableCellsArray = tableCellsArray;
     }
