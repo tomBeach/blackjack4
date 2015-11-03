@@ -146,12 +146,12 @@ function initGame() {
                 orbBtn: { name: "orbBtn", callback: "nextGameState", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "start", tooltip: "start" },
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
-                dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "dealBtn", value: "deal", tooltip: "deal cards" },
+                dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "dealBtn", value: "deal", tooltip: "deal cards" },
                 retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 12, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltip: "return to player" },
                 retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 13, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltip: "return to player" },
                 retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 14, iW: 1, iH: 1,  merge: null, class: "tens", value: "tens", tooltip: "return to player" },
                 playGameBtn: { name: "playGameBtn", callback: "nextGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "playGameBtn", value: "play game", tooltip: "place bets" },
-                newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "new game", tooltip: null }
+                newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
                 pName_1: { name: "pName_1", type: "text", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
@@ -594,20 +594,42 @@ function initGame() {
     Sequencer.prototype.clearPlayerCardstack = function(nextPlayer) {
         console.log("clearPlayerCardstack");
 
+        // == identify card cells in table row and remove
+        // var cardCount = nextPlayer.hand.length;
+        // var whichCardObject = nextPlayer.textParams.pCards;
+        // if (nextPlayer == game.dealer) {
+        //     var offsetC = 0;
+        // } else {
+        //     var offsetC = -(cardCount + 1);
+        // }
+        // var offsetR = 0;
+        // for (var card = 0; card < cardCount; card++) {
+        //     display.unMergeRegion(whichCardObject, offsetR, offsetC);
+        // }
+
+
         var tableRows = $(".row");
         var cardCount = nextPlayer.hand.length;
         var whichCardObject = nextPlayer.textParams.pCards;
         var cardsRow = whichCardObject.iR;
+        var cardsRowObject = tableRows[cardsRow];
         if (nextPlayer == game.dealer) {
             var cardsCol = whichCardObject.iC;
         } else {
             var cardsCol = whichCardObject.iC - cardCount + 1;
         }
-        var cardsCells = tableRows[cardsRow];
+        colspans = display.checkColumnSpans(cardsRowObject, cardsRow, cardsCol);
+        rowspans = display.checkRowSpans(cardsRow, cardsCol);
+        console.log("  cardCount: " + cardCount);
+        console.log("  colspans: " + colspans);
+        console.log("  rowspans: " + rowspans);
+        var cardsCol = cardsCol - (colspans + rowspans);
 
         // == identify card cells in table row and remove
         for (var card = 0; card < cardCount; card++) {
+            console.log("  $(tableRows...length: " + $(tableRows[cardsRow]).children().length);
             $(tableRows[cardsRow]).children()[cardsCol].remove();
+            console.log("  cardsRow/Col: " + cardsRow + "/" + cardsCol);
         }
 
         // == add new single cells for each row/column of card
@@ -820,7 +842,7 @@ function initGame() {
 	    	} else if ((dealerScore > 21) && (nextPlayer.score < 22)) {
                 winLossLabel = ' and won $';
 	    		nextPlayer.pBank = nextPlayer.pBank + playerWinLoss;
-	    	} else if (dealerScore < 22) {
+	    	} else if ((nextPlayer.score > 21) && (dealerScore < 22)) {
                 winLossLabel = ' and lost $';
 				nextPlayer.pBank = nextPlayer.pBank - playerWinLoss;
             } else {
@@ -1270,9 +1292,11 @@ function initGame() {
         offsetR = 0;
 
         if (whichCardObject.merge == "merge") {
-            indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
+            indexCell = display.processGridCells(whichCardObject, offsetR, offsetC, "merge")
+            // indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
         } else {
-            indexCell = display.unMergeRegion(whichCardObject);
+            // indexCell = display.unMergeRegion(whichCardObject);
+            indexCell = display.processGridCells(whichCardObject, 0, 0, "unmerge")
         }
 
         // cardDivString = "<div class='flip-container " + whichClass + "'>";
@@ -1361,13 +1385,17 @@ function initGame() {
         }
 
         if (whichMerge == "merge") {
-            indexCell = this.mergeRegion(whichItem);
+            indexCell = display.processGridCells(whichItem, 0, 0, "merge")
+            // indexCell = this.mergeRegion(whichItem);
         } else if (whichMerge == "unmerge") {
-            indexCell = this.unMergeRegion(whichItem);
+            indexCell = display.processGridCells(whichItem, 0, 0, "unmerge")
+            // indexCell = this.unMergeRegion(whichItem);
         } else if (whichMerge == "restore") {
-            indexCell = this.deselectTableCells(whichItem);
+            indexCell = display.processGridCells(whichItem, 0, 0, "deselect")
+            // indexCell = this.deselectTableCells(whichItem);
         } else {
-            indexCell = this.selectTableCells(whichItem);
+            indexCell = display.processGridCells(whichItem, 0, 0, "select")
+            // indexCell = this.selectTableCells(whichItem);
         }
         // console.log("  indexCell: " + indexCell);
         // console.log("  indexCell.attr('class'): " + $(indexCell).attr('class'));
@@ -1398,15 +1426,107 @@ function initGame() {
         }
     }
 
-    // ======= ======= ======= mergeRegion ======= ======= =======
-    Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
-        console.log("mergeRegion");
+    // ======= ======= ======= processGridCells ======= ======= =======
+    Display.prototype.processGridCells = function(whichItem, offsetR, offsetC, whichProcess) {
+        console.log("processGridCells");
+        console.log("  ======= PROCESS: " + whichProcess + " =======");
         console.log("  ======= ======= ======= item: " + whichItem.name);
         console.log("  offsetC: " + offsetC);
 
         if (!offsetR) { offsetR = 0 };
         if (!offsetC) { offsetC = 0 };
         var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+
+        // == record rowspan elements
+        if (whichProcess == "merge") {
+            this.toggleRowspans(whichItem, offsetR, offsetC, "on");
+        } else if (whichProcess == "unmerge") {
+            this.toggleRowspans(whichItem, offsetR, offsetC, "off");
+        }
+
+        // == get index cell location (check row/colspans in index row)
+        var tableRows = $("tr");
+        indexRow = whichItem.iR + offsetR;
+        indexCol = whichItem.iC + offsetC;
+        indexRowObject = tableRows[indexRow];
+        colspans = this.checkColumnSpans(indexRowObject, indexRow, indexCol);
+        rowspans = this.checkRowSpans(indexRow, indexCol);
+        totalColOffset = indexCol - colspans - rowspans;
+        indexCell = $(indexRowObject).children()[totalColOffset];
+        console.log("  Index indexCol: " + indexCol);
+        console.log("  Index colspans: " + colspans);
+        console.log("  Index rowspans: " + rowspans);
+        console.log("  Index totalColOffset: " + totalColOffset);
+
+        // == remove cells from merge area (check row/colspans in each row)
+        for (var row = 0; row < whichItem.iH; row++) {
+            nextRowObject = tableRows[indexRow + row];
+            nextRow = indexRow + row;
+            colspans = this.checkColumnSpans(nextRowObject, nextRow, indexCol);
+            rowspans = this.checkRowSpans(nextRow, indexCol);
+            totalColOffset = indexCol - colspans - rowspans;
+
+            if (whichProcess == "merge") {
+                for (var col = 0; col < whichItem.iW; col++) {
+                    nextCell = $(nextRowObject).children()[totalColOffset + col];
+
+                    // == remove all but index cell in merge area
+                    if (!((row == 0) && (col == 0))) {
+                        console.log("  remove cell: " + $(nextCell).attr("id"));
+                        $(nextCell).remove();
+                    }
+                }
+            } else if (whichProcess == "unmerge")  {
+                $(indexCell).remove();
+                console.log("  indexCell GONE?: " + $(indexCell).attr("id"));
+                indexRowCell = $(nextRowObject).children()[totalColOffset - 1];
+                for (var col = 0; col < whichItem.iW; col++) {
+                    var newCell = document.createElement("td");
+                    $(indexRowCell).after(newCell);
+                    $(newCell).addClass("cell");
+                    $(newCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
+                }
+            } else if (whichProcess == "select") {
+                for (var col = 0; col < whichItem.iW; col++) {
+                    nextCell = $(nextRowObject).children()[totalColOffset + col];
+                    $(nextCell).addClass(whichItem.class);
+                    if ((row == 0) && (col == 0)) {
+                        $(nextCell).attr("id", whichItem.name);
+                        indexCell = $(nextRowObject).children()[totalColOffset];
+                    }
+                    $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
+                }
+            } else if (whichProcess == "deselect") {
+                for (var col = 0; col < whichItem.iW; col++) {
+                    nextCell = $(nextRowObject).children()[totalColOffset + col];
+                    $(nextCell).removeClass(whichItem.class);
+                    $(nextCell).addClass("cell");
+                    $(nextCell).text("");
+                    if ((row == 0) && (col == 0)) {
+                        // $(nextCell).attr("id", whichItem.name);
+                        indexCell = $(nextRowObject).children()[totalColOffset];
+                        $(indexCell).empty();
+                    }
+                    $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
+                }
+            }
+        }
+
+        // == set row/colspans on index cell to fill space
+        if (whichProcess == "merge") {
+            $(indexCell).attr("colSpan", whichItem.iW);
+            $(indexCell).attr("rowSpan", whichItem.iH);
+            $(indexCell).addClass(whichItem.class);
+            if (whichItem.type != "input") {
+                $(indexCell).attr("id", whichItem.name);
+            }
+        }
+        return indexCell;
+    }
+
+    // ======= ======= ======= toggleRowspans ======= ======= =======
+    Display.prototype.toggleRowspans = function(whichItem, offsetR, offsetC, onOff) {
+        console.log("toggleRowspans");
 
         // == record rowspan elements
         if (whichItem.iH > 1) {
@@ -1416,174 +1536,17 @@ function initGame() {
                         tableRow = whichItem.iR + offsetR + row;
                         tableCol = whichItem.iC + offsetC + col;
                         rowspanSpanObject = this.tableRowspansArray[tableRow][tableCol];
-                        rowspanSpanObject.rspan = true;
-                        console.log("  SET rowspan: " + tableRow + "/" +  tableCol);
+                        if (onOff == "on") {
+                            rowspanSpanObject.rspan = true;
+                            console.log("  rowspan SET: " + tableRow + "/" +  tableCol);
+                        } else {
+                            rowspanSpanObject.rspan = false;
+                            console.log("  rowspan CLEARED: " + tableRow + "/" +  tableCol);
+                        }
                     }
                 }
             }
         }
-
-        // == get index cell location (check row/colspans in index row)
-        var tableRows = $("tr");
-        indexRow = whichItem.iR + offsetR;
-        indexCol = whichItem.iC + offsetC;
-        indexRowObject = tableRows[indexRow];
-        colspans = this.checkColumnSpans(indexRowObject, indexCol);
-        rowspans = this.checkRowSpans(indexRow, indexCol);
-        totalColOffset = indexCol - colspans - rowspans;
-        console.log("  totalColOffset1: " + totalColOffset);
-        indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
-
-        // == remove cells from merge area (check row/colspans in each row)
-        for (var row = 0; row < whichItem.iH; row++) {
-            nextRowObject = tableRows[whichItem.iR + offsetR + row];
-            console.log("  nextRowObject.length: " + nextRowObject.length);
-            nextRow = whichItem.iR + offsetR + row;
-            nextCol = whichItem.iC + offsetC;
-            colspans = this.checkColumnSpans(nextRowObject, nextCol);
-            rowspans = this.checkRowSpans(nextRow, nextCol);
-            for (var col = 0; col < whichItem.iW; col++) {
-                // console.log("  whichItem.iC: " + whichItem.iC);
-                // console.log("  nextCol: " + nextCol);
-                // console.log("  col: " + col);
-                // console.log("  colspans: " + colspans);
-                // console.log("  rowspans: " + rowspans);
-                totalColOffset = nextCol + col - colspans - rowspans;
-                console.log("  totalColOffset2: " + totalColOffset);
-                nextCell = $(nextRowObject).children()[totalColOffset];
-
-                // == remove all but index cell in merge area
-                if (!((row == 0) && (col == 0))) {
-                    $(nextCell).remove();
-                }
-            }
-        }
-
-        // == set row/colspans on index cell to fill space
-        $(indexCell).attr("colSpan", whichItem.iW);
-        $(indexCell).attr("rowSpan", whichItem.iH);
-        $(indexCell).addClass(whichItem.class);
-        if (whichItem.type != "input") {
-            $(indexCell).attr("id", whichItem.name);
-        }
-        return indexCell;
-    }
-
-    // ======= ======= ======= unMergeRegion ======= ======= =======
-    Display.prototype.unMergeRegion = function(whichItem, offsetR, offsetC) {
-        console.log("unMergeRegion");
-        console.log("  ======= ======= ======= item: " + whichItem.name);
-
-        if (!offsetR) { offsetR = 0 };
-        if (!offsetC) { offsetC = 0 };
-        var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
-
-        // == remove rowspan elements from record
-        if (whichItem.iH > 1) {
-            for (row = 0; row < whichItem.iH; row++) {
-                for (col = 0; col < whichItem.iW; col++) {
-                    rowspanSpanObject = this.tableRowspansArray[whichItem.iR + row][whichItem.iC + col];
-                    rowspanSpanObject.rspan = false;
-                }
-            }
-        }
-
-        // == get index cell location (check row/colspans in index row)
-        var tableRows = $("tr");
-        indexRow = whichItem.iR + offsetR;
-        indexCol = whichItem.iC + offsetC;
-        indexRowObject = tableRows[indexRow];
-        colspans = this.checkColumnSpans(indexRowObject, indexCol);
-        rowspans = this.checkRowSpans(indexRow, indexCol);
-        indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
-
-        // == remove merged index cell
-        $(indexCell).remove();
-
-        for (var row = 0; row < whichItem.iH; row++) {
-            nextRowObject = tableRows[indexRow + row];
-            colspans = this.checkColumnSpans(nextRowObject, indexCol);
-            rowspans = this.checkRowSpans(row, indexCol);
-
-            // == set index to cell adjacent to (left of) removed cell
-            indexRowCell = $(nextRowObject).children()[indexCol - colspans - rowspans - 1];
-            for (var col = 0; col < whichItem.iW; col++) {
-                var newCell = document.createElement("td");
-                $(indexRowCell).after(newCell);
-                $(newCell).addClass("cell");
-                $(newCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
-            }
-        }
-    }
-
-    // ======= ======= ======= selectTableCells ======= ======= =======
-    Display.prototype.selectTableCells = function(whichItem, offsetR, offsetC) {
-        console.log("selectTableCells");
-        console.log("  ======= ======= ======= item: " + whichItem.name);
-
-        if (!offsetR) { offsetR = 0 };
-        if (!offsetC) { offsetC = 0 };
-        var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
-
-        var tableRows = $("tr");
-        indexRow = whichItem.iR + offsetR;
-        indexCol = whichItem.iC + offsetC;
-        indexRowObject = tableRows[indexRow];
-
-        for (var row = 0; row < whichItem.iH; row++) {
-            nextRowObject = tableRows[indexRow + row];
-            colspans = this.checkColumnSpans(nextRowObject, indexCol);
-            rowspans = this.checkRowSpans(indexRow + row, indexCol);
-            for (var col = 0; col < whichItem.iW; col++) {
-                nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
-                $(nextCell).addClass(whichItem.class);
-                if ((row == 0) && (col == 0)) {
-                    $(nextCell).attr("id", whichItem.name);
-                    indexCell = $(nextRowObject).children()[indexCol - colspans - rowspans];
-                }
-            }
-        }
-
-        return indexCell;
-    }
-
-    // ======= ======= ======= deselectTableCells ======= ======= =======
-    Display.prototype.deselectTableCells = function(whichItem, offsetR, offsetC) {
-        console.log("deselectTableCells");
-        console.log("  ======= ======= ======= item: " + whichItem.name);
-
-        if (!offsetR) { offsetR = 0 };
-        if (!offsetC) { offsetC = 0 };
-        var indexRow, indexCell, nextCell, indexRowObject, colspans, rowspans, rowCell, colCell;
-
-        // == get index cell location (check row/colspans in index row)
-        var tableRows = $("tr");
-        indexRow = whichItem.iR + offsetR;
-        indexCol = whichItem.iC + offsetC;
-        indexRowObject = tableRows[indexRow];
-        colspans = this.checkColumnSpans(indexRowObject, indexCol);
-        rowspans = this.checkRowSpans(indexRow, indexCol);
-        indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
-
-        for (var row = 0; row < whichItem.iH; row++) {
-            nextRowObject = tableRows[indexRow + row];
-            colspans = this.checkColumnSpans(nextRowObject, indexCol);
-            rowspans = this.checkRowSpans(row, indexCol);
-            for (var col = 0; col < whichItem.iW; col++) {
-                nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
-                $(nextCell).removeClass(whichItem.class);
-                $(nextCell).addClass("cell");
-                $(nextCell).text("");
-                rowCell = whichItem.iR + row;
-                colCell = whichItem.iC + col;
-            }
-        }
-
-        $(indexCell).attr("id", (rowCell + "-" + colCell));
-        $(indexCell).removeClass(whichItem.class);
-        $(indexCell).empty();
-
-        return indexCell;
     }
 
     // ======= ======= ======= checkRowSpans ======= ======= =======
@@ -1596,7 +1559,7 @@ function initGame() {
         for (var col = 0; col < 18; col++) {
             if (col < whichCol) {
                 rowspanSpanObject = this.tableRowspansArray[whichRow][col];
-                console.log("  rowspan_R/C: " + rowspanSpanObject.R + "/" + rowspanSpanObject.C);
+                // console.log("  rowspan_R/C: " + rowspanSpanObject.R + "/" + rowspanSpanObject.C);
                 if (rowspanSpanObject.rspan == true) {
                     rowspans++;
                 }
@@ -1607,16 +1570,20 @@ function initGame() {
     }
 
     // ======= ======= ======= checkColumnSpans ======= ======= =======
-    Display.prototype.checkColumnSpans = function(whichRowObject, whichCol) {
+    Display.prototype.checkColumnSpans = function(whichRowObject, whichRow, whichCol) {
         console.log("checkColumnSpans");
         console.log("  whichRowObject.length: " + $(whichRowObject).children().length);
+        console.log("  whichRow " + whichRow);
+        console.log("  whichCol " + whichCol);
 
         var colspans = 0;
         var indexCol = 0;
         for (var col = 0; col < $(whichRowObject).children().length; col++) {
             nextColumnObject = $(whichRowObject).children()[col];
             nextColspan = $(nextColumnObject).attr('colSpan');
-            // console.log("  nextColspan " + nextColspan);
+            nextColId = $(nextColumnObject).attr('id');
+            console.log("  id/colspan " + nextColId + " /  " +  + nextColspan);
+            // if ((nextColspan > 1) && (col < (whichCol))) {
             if ((nextColspan > 1) && (col < (whichCol - colspans))) {
                 colspans += nextColspan - 1;
             }
@@ -1694,3 +1661,192 @@ function initGame() {
 
 
 // ======== ======= ======= ARCHIVE ======= ======= =======
+
+
+// // ======= ======= ======= mergeRegion ======= ======= =======
+// Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
+//     console.log("mergeRegion");
+//     console.log("  ======= ======= ======= item: " + whichItem.name);
+//     console.log("  offsetC: " + offsetC);
+//
+//     if (!offsetR) { offsetR = 0 };
+//     if (!offsetC) { offsetC = 0 };
+//     var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+//
+//     // == record rowspan elements
+//     if (whichItem.iH > 1) {
+//         for (row = 0; row < whichItem.iH; row++) {
+//             for (col = 0; col < whichItem.iW; col++) {
+//                 if (row != 0) {
+//                     tableRow = whichItem.iR + offsetR + row;
+//                     tableCol = whichItem.iC + offsetC + col;
+//                     rowspanSpanObject = this.tableRowspansArray[tableRow][tableCol];
+//                     rowspanSpanObject.rspan = true;
+//                     console.log("  SET rowspan: " + tableRow + "/" +  tableCol);
+//                 }
+//             }
+//         }
+//     }
+//
+//     // == get index cell location (check row/colspans in index row)
+//     var tableRows = $("tr");
+//     indexRow = whichItem.iR + offsetR;
+//     indexCol = whichItem.iC + offsetC;
+//     indexRowObject = tableRows[indexRow];
+//     colspans = this.checkColumnSpans(indexRowObject, indexCol);
+//     rowspans = this.checkRowSpans(indexRow, indexCol);
+//     totalColOffset = indexCol - colspans - rowspans;
+//     console.log("  totalColOffset1: " + totalColOffset);
+//     indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+//
+//     // == remove cells from merge area (check row/colspans in each row)
+//     for (var row = 0; row < whichItem.iH; row++) {
+//         nextRowObject = tableRows[whichItem.iR + offsetR + row];
+//         console.log("  nextRowObject.length: " + nextRowObject.length);
+//         nextRow = whichItem.iR + offsetR + row;
+//         nextCol = whichItem.iC + offsetC;
+//         colspans = this.checkColumnSpans(nextRowObject, nextCol);
+//         rowspans = this.checkRowSpans(nextRow, nextCol);
+//         for (var col = 0; col < whichItem.iW; col++) {
+//             // console.log("  whichItem.iC: " + whichItem.iC);
+//             // console.log("  nextCol: " + nextCol);
+//             // console.log("  col: " + col);
+//             // console.log("  colspans: " + colspans);
+//             // console.log("  rowspans: " + rowspans);
+//             totalColOffset = nextCol + col - colspans - rowspans;
+//             console.log("  totalColOffset2: " + totalColOffset);
+//             nextCell = $(nextRowObject).children()[totalColOffset];
+//
+//             // == remove all but index cell in merge area
+//             if (!((row == 0) && (col == 0))) {
+//                 $(nextCell).remove();
+//             }
+//         }
+//     }
+//
+//     // == set row/colspans on index cell to fill space
+//     $(indexCell).attr("colSpan", whichItem.iW);
+//     $(indexCell).attr("rowSpan", whichItem.iH);
+//     $(indexCell).addClass(whichItem.class);
+//     if (whichItem.type != "input") {
+//         $(indexCell).attr("id", whichItem.name);
+//     }
+//     return indexCell;
+// }
+//
+// // ======= ======= ======= unMergeRegion ======= ======= =======
+// Display.prototype.unMergeRegion = function(whichItem, offsetR, offsetC) {
+//     console.log("unMergeRegion");
+//     console.log("  ======= ======= ======= item: " + whichItem.name);
+//
+//     if (!offsetR) { offsetR = 0 };
+//     if (!offsetC) { offsetC = 0 };
+//     var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+//
+//     // == remove rowspan elements from record
+//     if (whichItem.iH > 1) {
+//         for (row = 0; row < whichItem.iH; row++) {
+//             for (col = 0; col < whichItem.iW; col++) {
+//                 rowspanSpanObject = this.tableRowspansArray[whichItem.iR + row][whichItem.iC + col];
+//                 rowspanSpanObject.rspan = false;
+//             }
+//         }
+//     }
+//
+//     // == get index cell location (check row/colspans in index row)
+//     var tableRows = $("tr");
+//     indexRow = whichItem.iR + offsetR;
+//     indexCol = whichItem.iC + offsetC;
+//     indexRowObject = tableRows[indexRow];
+//     colspans = this.checkColumnSpans(indexRowObject, indexCol);
+//     rowspans = this.checkRowSpans(indexRow, indexCol);
+//     indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+//
+//     // == remove merged index cell
+//     $(indexCell).remove();
+//
+//     for (var row = 0; row < whichItem.iH; row++) {
+//         nextRowObject = tableRows[indexRow + row];
+//         colspans = this.checkColumnSpans(nextRowObject, indexCol);
+//         rowspans = this.checkRowSpans(row, indexCol);
+//
+//         // == set index to cell adjacent to (left of) removed cell
+//         indexRowCell = $(nextRowObject).children()[indexCol - colspans - rowspans - 1];
+//         for (var col = 0; col < whichItem.iW; col++) {
+//             var newCell = document.createElement("td");
+//             $(indexRowCell).after(newCell);
+//             $(newCell).addClass("cell");
+//             $(newCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
+//         }
+//     }
+// }
+//
+// // ======= ======= ======= selectTableCells ======= ======= =======
+// Display.prototype.selectTableCells = function(whichItem, offsetR, offsetC) {
+//     console.log("selectTableCells");
+//     console.log("  ======= ======= ======= item: " + whichItem.name);
+//
+//     if (!offsetR) { offsetR = 0 };
+//     if (!offsetC) { offsetC = 0 };
+//     var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+//
+//     var tableRows = $("tr");
+//     indexRow = whichItem.iR + offsetR;
+//     indexCol = whichItem.iC + offsetC;
+//     indexRowObject = tableRows[indexRow];
+//
+//     for (var row = 0; row < whichItem.iH; row++) {
+//         nextRowObject = tableRows[indexRow + row];
+//         colspans = this.checkColumnSpans(nextRowObject, indexCol);
+//         rowspans = this.checkRowSpans(indexRow + row, indexCol);
+//         for (var col = 0; col < whichItem.iW; col++) {
+//             nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
+//             $(nextCell).addClass(whichItem.class);
+//             if ((row == 0) && (col == 0)) {
+//                 $(nextCell).attr("id", whichItem.name);
+//                 indexCell = $(nextRowObject).children()[indexCol - colspans - rowspans];
+//             }
+//         }
+//     }
+//
+//     return indexCell;
+// }
+//
+// // ======= ======= ======= deselectTableCells ======= ======= =======
+// Display.prototype.deselectTableCells = function(whichItem, offsetR, offsetC) {
+//     console.log("deselectTableCells");
+//     console.log("  ======= ======= ======= item: " + whichItem.name);
+//
+//     if (!offsetR) { offsetR = 0 };
+//     if (!offsetC) { offsetC = 0 };
+//     var indexRow, indexCell, nextCell, indexRowObject, colspans, rowspans, rowCell, colCell;
+//
+//     // == get index cell location (check row/colspans in index row)
+//     var tableRows = $("tr");
+//     indexRow = whichItem.iR + offsetR;
+//     indexCol = whichItem.iC + offsetC;
+//     indexRowObject = tableRows[indexRow];
+//     colspans = this.checkColumnSpans(indexRowObject, indexCol);
+//     rowspans = this.checkRowSpans(indexRow, indexCol);
+//     indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+//
+//     for (var row = 0; row < whichItem.iH; row++) {
+//         nextRowObject = tableRows[indexRow + row];
+//         colspans = this.checkColumnSpans(nextRowObject, indexCol);
+//         rowspans = this.checkRowSpans(row, indexCol);
+//         for (var col = 0; col < whichItem.iW; col++) {
+//             nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
+//             $(nextCell).removeClass(whichItem.class);
+//             $(nextCell).addClass("cell");
+//             $(nextCell).text("");
+//             rowCell = whichItem.iR + row;
+//             colCell = whichItem.iC + col;
+//         }
+//     }
+//
+//     $(indexCell).attr("id", (rowCell + "-" + colCell));
+//     $(indexCell).removeClass(whichItem.class);
+//     $(indexCell).empty();
+//
+//     return indexCell;
+// }

@@ -1,124 +1,123 @@
-// ======= ======= ======= updateGameState ======= ======= =======
-Sequencer.prototype.updateGameState = function(whichState) {
-    console.log("");
-    console.log("== updateGameState ==");
 
-    ...
+// ======= ======= ======= clearAllCardStacks ======= ======= =======
+Sequencer.prototype.clearAllCardstacks = function() {
+    console.log("clearAllCardstacks");
 
-    // == remove prev items; add next items
-    for (var j = 0; j < removeItemsArray.length; j++) {
-        nextItem = removeItemsArray[j];
-        display.modifyGridRegion(nextItem, "prev");
-    }
-    for (var j = 0; j < addItemsArray.length; j++) {
-        nextItem = addItemsArray[j];
-        display.modifyGridRegion(nextItem, "next");
-    }
-    ...
+    var tableRows = $(".row");
+    if (game.playerNamesArray.length > 0) {
 
-// ======= ======= ======= loadNewPlayer ======= ======= =======
-Game.prototype.loadNewPlayer = function() {
-    console.log("loadNewPlayer");
+        // == clear previous hand for players and dealer
+        for (var i = 0; i < game.playerNamesArray.length; i++) {
+            nextPlayer = game.playerObjectsArray[i];
+            this.clearPlayerCardstack(nextPlayer);
+        }
 
-    var playerCount = game.playerNamesArray.length;
-    var currentPlayer = game.playerObjectsArray[playerCount - 1];
-    var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.btnParams.betOnesBtn, currentPlayer.btnParams.betFivesBtn, currentPlayer.btnParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank, currentPlayer.textParams.pBet_1s, currentPlayer.textParams.pBet_5s, currentPlayer.textParams.pBet_10s];
-    for (var j = 0; j < playerParamsArray.length; j++) {
-        nextItem = playerParamsArray[j];
-        if (nextItem != null) {
-            display.modifyGridRegion(nextItem, "next");
-
-            // == player buttons not active yet (display amounts only)
-            if (nextItem.type == "btn") {
-                var indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
-                sequencer.deActivateButton(indexCell, "click")
-            }
+        // == clear dealer cards
+        if (game.dealer.hand.length > 0) {
+            this.clearPlayerCardstack(game.dealer);
         }
     }
-
-    currentPlayer.textParams.pName.value = this.name;
-    currentPlayer.textParams.pScore.value = 0;
-    currentPlayer.textParams.pBank.value = currentPlayer.totalBank;
 }
 
+// ======= ======= ======= clearPlayerCardstack ======= ======= =======
+Sequencer.prototype.clearPlayerCardstack = function(nextPlayer) {
+    console.log("clearPlayerCardstack");
 
-// ======= ======= ======= modifyGridRegion ======= ======= =======
-Display.prototype.modifyGridRegion = function(whichItem, prevNext) {
-    console.log("modifyGridRegion");
-
-    var whichMerge, buttonActivate;
-    if (prevNext == "prev") {
-        if (whichItem.merge == "merge") {
-            whichMerge = "unmerge";
-        } else {
-            whichMerge = "restore";
-        }
-        buttonActivate = false;
+    var tableRows = $(".row");
+    var cardCount = nextPlayer.hand.length;
+    var whichCardObject = nextPlayer.textParams.pCards;
+    var cardsRow = whichCardObject.iR;
+    var cardsRowObject = tableRows[cardsRow];
+    if (nextPlayer == game.dealer) {
+        var cardsCol = whichCardObject.iC;
     } else {
-        if (whichItem.merge == "merge") {
-            whichMerge = "merge";
-        } else {
-            whichMerge = null;
+        var cardsCol = whichCardObject.iC - cardCount + 1;
+    }
+    colspans = display.checkColumnSpans(cardsRowObject, cardsCol);
+    rowspans = display.checkRowSpans(cardsRow, cardsCol);
+    var cardsCol = cardsCol - (colspans + rowspans);
+
+    // == identify card cells in table row and remove
+    for (var card = 0; card < cardCount; card++) {
+        $(tableRows[cardsRow]).children()[cardsCol].remove();
+    }
+
+    // == add new single cells for each row/column of card
+    for (var col = 0; col < cardCount; col++) {
+        for (var row = 0; row < 2; row++) {
+            var indexCell = $(tableRows[cardsRow + row]).children()[cardsCol - 1 + col];
+            var newCell = document.createElement("td");
+            $(indexCell).after(newCell);
+            $(newCell).addClass("cell");
+            $(newCell).attr("id", (cardsRow) + "-" + (cardsCol + col));
         }
-        buttonActivate = true;
     }
 
-    var whichType = whichItem.type;
-    var whichValue = whichItem.value;
-    var whichName = whichItem.name;
-    console.log("  whichItem.name: " + whichItem.name);
-
-    if (whichMerge == "merge") {
-        indexCell = this.mergeRegion(whichItem);
-    } else if (whichMerge == "unmerge") {
-        indexCell = this.unMergeRegion(whichItem);
-    } else if (whichMerge == "restore") {
-        indexCell = this.deselectTableCells(whichItem);
-    } else {
-        indexCell = this.selectTableCells(whichItem);
+    // ======= initialize values on player object
+    if (nextPlayer != game.dealer) {
+        nextPlayer.onesBet = 0;
+        nextPlayer.fivesBet = 0;
+        nextPlayer.tensBet = 0;
+        game.updateBetButtonText(nextPlayer);
     }
-
-    // ======= data connection =======
-    switch(whichType) {
-        case "bg":
-            break;
-        case "btn":
-            if (buttonActivate == true) {
-                $(indexCell).text(whichValue);
-                sequencer.activateButton(indexCell, whichItem.callback)
-                console.log("  whichItem.callback: " + whichItem.callback);
-            } else {
-                sequencer.deActivateButton(indexCell, whichItem.callback)
-            }
-            break;
-        case "text":
-            $(indexCell).text(whichValue);
-            break;
-        case "input":
-            newTextInput = "<input id='" + whichItem.name + "Input' class='" + whichItem.class + "' type='text' value='Tom'>"
-            $(indexCell).append(newTextInput);
-            $(newTextInput).attr("id", whichItem.name);
-        case "image":
-            break;
-    }
+    nextPlayer.hand = [];
+    nextPlayer.score = 0;
+    game.updatePlayerScoreText(nextPlayer);
 }
+
 
 // ======= ======= ======= mergeRegion ======= ======= =======
 Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
     console.log("mergeRegion");
+    console.log("  ======= ======= ======= item: " + whichItem.name);
+
     if (!offsetR) { offsetR = 0 };
     if (!offsetC) { offsetC = 0 };
-    var offsetR = parseInt(offsetR);
-    var offsetC = parseInt(offsetC);
-    var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
-    for (var j = 0; j < whichItem.iH; j++) {
-        for (var i = 0; i < whichItem.iW; i++) {
-            nextCell = this.tableCellsArray[whichItem.iR + offsetR + j][whichItem.iC + offsetC + i];
-            if (!((i == 0) && (j == 0))) {
+    var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+
+    // == record rowspan elements
+    if (whichItem.iH > 1) {
+        for (row = 0; row < whichItem.iH; row++) {
+            for (col = 0; col < whichItem.iW; col++) {
+                if (row != 0) {
+                    tableRow = whichItem.iR + offsetR + row;
+                    tableCol = whichItem.iC + offsetC + col;
+                    rowspanSpanObject = this.tableRowspansArray[tableRow][tableCol];
+                    rowspanSpanObject.rspan = true;
+                }
+            }
+        }
+    }
+
+    // == get index cell location (check row/colspans in index row)
+    var tableRows = $("tr");
+    indexRow = whichItem.iR + offsetR;
+    indexCol = whichItem.iC + offsetC;
+    indexRowObject = tableRows[indexRow];
+    colspans = this.checkColumnSpans(indexRowObject, indexCol);
+    rowspans = this.checkRowSpans(indexRow, indexCol);
+    totalColOffset = indexCol - colspans - rowspans;
+    indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+
+    // == remove cells from merge area (check row/colspans in each row)
+    for (var row = 0; row < whichItem.iH; row++) {
+        nextRowObject = tableRows[whichItem.iR + offsetR + row];
+        nextRow = whichItem.iR + offsetR + row;
+        nextCol = whichItem.iC + offsetC;
+        colspans = this.checkColumnSpans(nextRowObject, nextCol);
+        rowspans = this.checkRowSpans(nextRow, nextCol);
+        for (var col = 0; col < whichItem.iW; col++) {
+            totalColOffset = nextCol + col - colspans - rowspans;
+            nextCell = $(nextRowObject).children()[totalColOffset];
+
+            // == remove all but index cell in merge area
+            if (!((row == 0) && (col == 0))) {
                 $(nextCell).remove();
             }
         }
     }
+
+    // == set row/colspans on index cell to fill space
     $(indexCell).attr("colSpan", whichItem.iW);
     $(indexCell).attr("rowSpan", whichItem.iH);
     $(indexCell).addClass(whichItem.class);
@@ -130,65 +129,154 @@ Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
 
 // ======= ======= ======= unMergeRegion ======= ======= =======
 Display.prototype.unMergeRegion = function(whichItem, offsetR, offsetC) {
-    // console.log("unMergeRegion");
+    console.log("unMergeRegion");
+    console.log("  ======= ======= ======= item: " + whichItem.name);
+
     if (!offsetR) { offsetR = 0 };
     if (!offsetC) { offsetC = 0 };
-    var offsetR = parseInt(offsetR);
-    var offsetC = parseInt(offsetC);
-    var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
-    $(indexCell).attr("colSpan", 1);
-    $(indexCell).attr("rowSpan", 1);
-    $(indexCell).text("");
-    $(indexCell).removeClass(whichItem.class);
-    for (var j = 0; j < whichItem.iH; j++) {
-        for (var i = 0; i < whichItem.iW; i++) {
-            if (!((i == 0) && (j == 0))) {
-                var newCell = document.createElement("td");
-                $(indexCell).after(newCell);
-                $(newCell).addClass("cell");
+    var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+
+    // == remove rowspan elements from record
+    if (whichItem.iH > 1) {
+        for (row = 0; row < whichItem.iH; row++) {
+            for (col = 0; col < whichItem.iW; col++) {
+                rowspanSpanObject = this.tableRowspansArray[whichItem.iR + row][whichItem.iC + col];
+                rowspanSpanObject.rspan = false;
             }
         }
     }
-    $(indexCell).attr("id", "");
-    if ($(indexCell).children().length > 0) {
-        var newCell = document.createElement("td");
-        $(indexCell).after(newCell);
-        $(newCell).addClass("cell");
-        $(indexCell).remove();
+
+    // == get index cell location (check row/colspans in index row)
+    var tableRows = $("tr");
+    indexRow = whichItem.iR + offsetR;
+    indexCol = whichItem.iC + offsetC;
+    indexRowObject = tableRows[indexRow];
+    colspans = this.checkColumnSpans(indexRowObject, indexCol);
+    rowspans = this.checkRowSpans(indexRow, indexCol);
+    indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+
+    // == remove merged index cell
+    $(indexCell).remove();
+
+    for (var row = 0; row < whichItem.iH; row++) {
+        nextRowObject = tableRows[indexRow + row];
+        colspans = this.checkColumnSpans(nextRowObject, indexCol);
+        rowspans = this.checkRowSpans(row, indexCol);
+
+        // == set index to cell adjacent to (left of) removed cell
+        indexRowCell = $(nextRowObject).children()[indexCol - colspans - rowspans - 1];
+        for (var col = 0; col < whichItem.iW; col++) {
+            var newCell = document.createElement("td");
+            $(indexRowCell).after(newCell);
+            $(newCell).addClass("cell");
+            $(newCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
+        }
     }
-    // return newCell;
 }
 
 // ======= ======= ======= selectTableCells ======= ======= =======
-Display.prototype.selectTableCells = function(whichItem) {
-    // console.log("selectTableCells");
-    var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
-    for (var j = 0; j < whichItem.iH; j++) {
-        for (var i = 0; i < whichItem.iW; i++) {
-            nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
-            $(nextCell).attr("colSpan", 1);
-            $(nextCell).attr("rowSpan", 1);
+Display.prototype.selectTableCells = function(whichItem, offsetR, offsetC) {
+    console.log("selectTableCells");
+    console.log("  ======= ======= ======= item: " + whichItem.name);
+
+    if (!offsetR) { offsetR = 0 };
+    if (!offsetC) { offsetC = 0 };
+    var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+
+    var tableRows = $("tr");
+    indexRow = whichItem.iR + offsetR;
+    indexCol = whichItem.iC + offsetC;
+    indexRowObject = tableRows[indexRow];
+
+    for (var row = 0; row < whichItem.iH; row++) {
+        nextRowObject = tableRows[indexRow + row];
+        colspans = this.checkColumnSpans(nextRowObject, indexCol);
+        rowspans = this.checkRowSpans(indexRow + row, indexCol);
+        for (var col = 0; col < whichItem.iW; col++) {
+            nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
             $(nextCell).addClass(whichItem.class);
+            if ((row == 0) && (col == 0)) {
+                $(nextCell).attr("id", whichItem.name);
+                indexCell = $(nextRowObject).children()[indexCol - colspans - rowspans];
+            }
         }
     }
-    $(indexCell).attr("id", whichItem.name);
-    $(indexCell).addClass(whichItem.class);
+
     return indexCell;
 }
 
 // ======= ======= ======= deselectTableCells ======= ======= =======
-Display.prototype.deselectTableCells = function(whichItem) {
-    // console.log("deselectTableCells");
-    var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
-    for (var j = 0; j < whichItem.iH; j++) {
-        for (var i = 0; i < whichItem.iW; i++) {
-            nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
-            $(nextCell).attr("colSpan", 1);
-            $(nextCell).attr("rowSpan", 1);
+Display.prototype.deselectTableCells = function(whichItem, offsetR, offsetC) {
+    console.log("deselectTableCells");
+    console.log("  ======= ======= ======= item: " + whichItem.name);
+
+    if (!offsetR) { offsetR = 0 };
+    if (!offsetC) { offsetC = 0 };
+    var indexRow, indexCell, nextCell, indexRowObject, colspans, rowspans, rowCell, colCell;
+
+    // == get index cell location (check row/colspans in index row)
+    var tableRows = $("tr");
+    indexRow = whichItem.iR + offsetR;
+    indexCol = whichItem.iC + offsetC;
+    indexRowObject = tableRows[indexRow];
+    colspans = this.checkColumnSpans(indexRowObject, indexCol);
+    rowspans = this.checkRowSpans(indexRow, indexCol);
+    indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+
+    for (var row = 0; row < whichItem.iH; row++) {
+        nextRowObject = tableRows[indexRow + row];
+        colspans = this.checkColumnSpans(nextRowObject, indexCol);
+        rowspans = this.checkRowSpans(row, indexCol);
+        for (var col = 0; col < whichItem.iW; col++) {
+            nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
+            $(nextCell).removeClass(whichItem.class);
+            $(nextCell).addClass("cell");
+            $(nextCell).text("");
+            rowCell = whichItem.iR + row;
+            colCell = whichItem.iC + col;
         }
     }
-    $(indexCell).attr("id", "");
+
+    $(indexCell).attr("id", (rowCell + "-" + colCell));
     $(indexCell).removeClass(whichItem.class);
     $(indexCell).empty();
+
     return indexCell;
+}
+
+// ======= ======= ======= checkRowSpans ======= ======= =======
+Display.prototype.checkRowSpans = function(whichRow, whichCol) {
+    console.log("checkRowSpans");
+
+    var rowspans = 0;
+    var indexRow = 0;
+    for (var col = 0; col < 18; col++) {
+        if (col < whichCol) {
+            rowspanSpanObject = this.tableRowspansArray[whichRow][col];
+            if (rowspanSpanObject.rspan == true) {
+                rowspans++;
+            }
+        }
+    }
+    console.log("  rowspans: " + rowspans);
+    return rowspans;
+}
+
+// ======= ======= ======= checkColumnSpans ======= ======= =======
+Display.prototype.checkColumnSpans = function(whichRowObject, whichCol) {
+    console.log("checkColumnSpans");
+
+    var colspans = 0;
+    var indexCol = 0;
+    for (var col = 0; col < $(whichRowObject).children().length; col++) {
+        nextColumnObject = $(whichRowObject).children()[col];
+        nextColspan = $(nextColumnObject).attr('colSpan');
+        nextColId = $(nextColumnObject).attr('id');
+        console.log("  id/colspan " + nextColId + "/" +  + nextColspan);
+        if ((nextColspan > 1) && (col < (whichCol - colspans))) {
+            colspans += nextColspan - 1;
+        }
+    }
+    console.log("  colspans: " + colspans);
+    return colspans;
 }
