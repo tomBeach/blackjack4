@@ -20,24 +20,24 @@ function initGame() {
         // ======= player1 =======
         var playerParams1 = {
             bgParams: {
-                borderH: { player: 1, name: "borderH_1", type: "bg", iR: 2, iC: 1, iW: 6, iH: 1, merge: null, class: "pBorder-1" },
-                borderV: { player: 1, name: "borderV_1", type: "bg", iR: 2, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
+                borderH: { player: 1, name: "borderH_1", type: "bg", iR: 1, iC: 1, iW: 6, iH: 1, merge: null, class: "pBorder-1" },
+                borderV: { player: 1, name: "borderV_1", type: "bg", iR: 1, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 3, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 3, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:2, iC: 7, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "bet $1" },
-                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "bet $5" },
-                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 2, iC: 9, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "bet $10" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:1, iC: 7, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "bet $1" },
+                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 1, iC: 8, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "bet $5" },
+                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 1, iC: 9, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "bet $10" },
             },
             textParams: {
-                pName: { player: 1, name: "pName_1", type: "text", iR: 2, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
-                pScore: { player: 1, name: "pScore_1", type: "text", iR: 3, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
-                pBank: { player: 1, name: "pBank_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "100" },
-                pBet_1s: { name: "pBet_1s_1", type: "text", iR: 4, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pBet_5s: { name: "pBet_5s_1", type: "text", iR: 4, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pBet_10s: { name: "pBet_10s_1", type: "text", iR: 4, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pCards: { player: 1, name: "pCards_1", type: "text", iR: 3, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
+                pName: { player: 1, name: "pName_1", type: "text", iR: 1, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
+                pScore: { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
+                pBank: { player: 1, name: "pBank_1", type: "text", iR: 1, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "100" },
+                pBet_1s: { name: "pBet_1s_1", type: "text", iR: 4, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_5s: { name: "pBet_5s_1", type: "text", iR: 4, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pBet_10s: { name: "pBet_10s_1", type: "text", iR: 4, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
+                pCards: { player: 1, name: "pCards_1", type: "text", iR: 2, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -60,9 +60,9 @@ function initGame() {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
                 pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
                 pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "100" },
-                pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
-                pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
-                pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
+                pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
+                pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
+                pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
                 pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 6, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
             },
             inputParams: {},
@@ -72,25 +72,25 @@ function initGame() {
         // ======= player3 =======
         var playerParams3 = {
             bgParams: {
-                borderH: { player: 3, name: "borderH_3", type: "bg", iR: 8, iC: 3, iW: 6, iH: 1, merge: null, class: "pBorder-3" },
-                borderV: { player: 3, name: "borderV_3", type: "bg", iR: 8, iC: 8, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
+                borderH: { player: 3, name: "borderH_3", type: "bg", iR: 9, iC: 3, iW: 6, iH: 1, merge: null, class: "pBorder-3" },
+                borderV: { player: 3, name: "borderV_3", type: "bg", iR: 9, iC: 8, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR:8, iC: 9, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "$1" },
-                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 8, iC: 10, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "$5" },
-                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 8, iC: 11, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "$10" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 10, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 10, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "$1" },
+                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "$5" },
+                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 9, iC: 11, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "$10" },
 
             },
             textParams: {
-                pName: { player: 3, name: "pName_3", type: "text", iR: 8, iC: 5, iW: 3, iH: 1, merge: true, class: "pBorder-3", value: null },
-                pScore: { player: 3, name: "pScore_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
-                pBank: { player: 3, name: "pBank_3", type: "text", iR: 8, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
-                pBet_1s: { name: "pBet_1s_3", type: "text", iR: 6, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
-                pBet_5s: { name: "pBet_5s_3", type: "text", iR: 6, iC: 16, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
-                pBet_10s: { name: "pBet_10s_3", type: "text", iR: 6, iC: 17, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
-                pCards: { player: 3, name: "pCards_3", type: "text", iR: 9, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
+                pName: { player: 3, name: "pName_3", type: "text", iR: 9, iC: 5, iW: 3, iH: 1, merge: "merge", class: "pBorder-3", value: null },
+                pScore: { player: 3, name: "pScore_3", type: "text", iR: 10, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
+                pBank: { player: 3, name: "pBank_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
+                pBet_1s: { name: "pBet_1s_3", type: "text", iR: 6, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
+                pBet_5s: { name: "pBet_5s_3", type: "text", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
+                pBet_10s: { name: "pBet_10s_3", type: "text", iR: 6, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
+                pCards: { player: 3, name: "pCards_3", type: "text", iR: 10, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -146,12 +146,12 @@ function initGame() {
                 orbBtn: { name: "orbBtn", callback: "nextGameState", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "start", tooltip: "start" },
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
-                dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: "merge", class: "dealBtn", value: "deal", tooltip: "deal cards" },
-                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 15, iW: 1, iH: 1, merge: "merge", class: "ones", value: "ones", tooltip: "return to player" },
-                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 16, iW: 1, iH: 1, merge: "merge", class: "fives", value: "fives", tooltip: "return to player" },
-                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 17, iW: 1, iH: 1,  merge: "merge", class: "tens", value: "tens", tooltip: "return to player" },
-                playGameBtn: { name: "playGameBtn", callback: "nextGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: "merge", class: "playGameBtn", value: "play game", tooltip: null },
-                newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: "merge", class: "newGameBtn", value: "new game", tooltip: null }
+                dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "dealBtn", value: "deal", tooltip: "deal cards" },
+                retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 12, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltip: "return to player" },
+                retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 13, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltip: "return to player" },
+                retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 14, iW: 1, iH: 1,  merge: null, class: "tens", value: "tens", tooltip: "return to player" },
+                playGameBtn: { name: "playGameBtn", callback: "nextGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "playGameBtn", value: "play game", tooltip: "place bets" },
+                newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
                 pName_1: { name: "pName_1", type: "text", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
@@ -538,6 +538,7 @@ function initGame() {
         console.log('Display');
         this.name = whichDisplay;
         this.tableCellsArray = null;
+        this.tableRowspansArray = null;
     }
 
 
@@ -630,87 +631,6 @@ function initGame() {
         nextPlayer.hand = [];
         nextPlayer.score = 0;
         game.updatePlayerScoreText(nextPlayer);
-    }
-
-    // ======= ======= ======= doTheMath ======= ======= =======
-    Sequencer.prototype.doTheMath = function() {
-	    console.log("doTheMath");
-
-	    var nextPlayer, nextName, winLossLabel;
-	    var dealerScore = game.dealer.score;
-	    var playerWinLoss = 0;
-	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n\n';
-
-	    // =======
-	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
-	    	nextPlayer = game.playerObjectsArray[i];
-	    	nextName = nextPlayer.name;
-	    	console.log("   nextName: " + nextName);
-
-	    	// ======= calculate win/loss results
-	    	playerWinLoss = (nextPlayer.onesBet) + (nextPlayer.fivesBet) + (nextPlayer.tensBet);
-	    	console.log("   playerWinLoss: " + playerWinLoss);
-
-    		// ======= calculate wins/losses for players
-	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
-	    		winLossLabel = ' and won $';
-	    		nextPlayer.pBank = nextPlayer.pBank + playerWinLoss;
-	    	} else if ((dealerScore > 21) && (nextPlayer.score < 22)) {
-                winLossLabel = ' and won $';
-	    		nextPlayer.pBank = nextPlayer.pBank + playerWinLoss;
-	    	} else if (dealerScore < 22) {
-                winLossLabel = ' and lost $';
-				nextPlayer.pBank = nextPlayer.pBank - playerWinLoss;
-            } else {
-                winLossLabel = ' tie game' + '\n';
-                playerWinLoss = ' no wins/losses' + '\n';
-            }
-            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n\n';
-	    }
-
-	    alert(playerWinLossString);
-	}
-
-    // ======= ======= ======= nextPlayerTurn ======= ======= =======
-    Sequencer.prototype.nextPlayerTurn = function() {
-        console.log("== nextPlayerTurn ==");
-
-        var indexCell;
-
-        // == get prev player info
-        var prevPlayer = game.currentPlayer;
-        var prevPlayerIndex = prevPlayer.id;
-        var prevPlayerBetBtns = [prevPlayer.btnParams.betOnesBtn, prevPlayer.btnParams.betFivesBtn, prevPlayer.btnParams.betTensBtn];
-
-        // == clear prev player info
-        console.log("== " + prevPlayer.name + " ==");
-        display.modifyGridRegion(prevPlayer.btnParams.hitMeBtn, "prev");
-        display.modifyGridRegion(prevPlayer.btnParams.holdMeBtn, "prev");
-
-        for (var j = 0; j < prevPlayerBetBtns.length; j++) {
-            nextItem = prevPlayerBetBtns[j];
-            indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
-            sequencer.deActivateButton(indexCell, nextItem.callback)
-        }
-
-        // == activate dealer if last player turn over
-        if (prevPlayerIndex != game.playerNamesArray.length - 1) {
-
-            // == get next player info
-            var nextPlayer = game.playerObjectsArray[prevPlayerIndex + 1];
-            var nextPlayerBetBtns = [nextPlayer.btnParams.betOnesBtn, nextPlayer.btnParams.betFivesBtn, nextPlayer.btnParams.betTensBtn];
-
-            // == add next player hitMe/holdMe and activate bet buttons
-            console.log("== " + nextPlayer.name + " ==");
-            display.modifyGridRegion(nextPlayer.btnParams.hitMeBtn, "next");
-            display.modifyGridRegion(nextPlayer.btnParams.holdMeBtn, "next");
-
-            for (var j = 0; j < nextPlayerBetBtns.length; j++) {
-                nextItem = nextPlayerBetBtns[j];
-                indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
-                sequencer.activateButton(indexCell, nextItem.callback)
-            }
-        }
     }
 
     // ======= ======= ======= nextGameState ======= ======= =======
@@ -831,6 +751,87 @@ function initGame() {
         }
         return [REMprevNames, ADDnextNames, REMprevItems, ADDnextItems];
     }
+
+    // ======= ======= ======= nextPlayerTurn ======= ======= =======
+    Sequencer.prototype.nextPlayerTurn = function() {
+        console.log("== nextPlayerTurn ==");
+
+        var indexCell;
+
+        // == get prev player info
+        var prevPlayer = game.currentPlayer;
+        var prevPlayerIndex = prevPlayer.id;
+        var prevPlayerBetBtns = [prevPlayer.btnParams.betOnesBtn, prevPlayer.btnParams.betFivesBtn, prevPlayer.btnParams.betTensBtn];
+
+        // == clear prev player info
+        console.log("== " + prevPlayer.name + " ==");
+        display.modifyGridRegion(prevPlayer.btnParams.hitMeBtn, "prev");
+        display.modifyGridRegion(prevPlayer.btnParams.holdMeBtn, "prev");
+
+        for (var j = 0; j < prevPlayerBetBtns.length; j++) {
+            nextItem = prevPlayerBetBtns[j];
+            indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
+            sequencer.deActivateButton(indexCell, nextItem.callback)
+        }
+
+        // == activate dealer if last player turn over
+        if (prevPlayerIndex != game.playerNamesArray.length - 1) {
+
+            // == get next player info
+            var nextPlayer = game.playerObjectsArray[prevPlayerIndex + 1];
+            var nextPlayerBetBtns = [nextPlayer.btnParams.betOnesBtn, nextPlayer.btnParams.betFivesBtn, nextPlayer.btnParams.betTensBtn];
+
+            // == add next player hitMe/holdMe and activate bet buttons
+            console.log("== " + nextPlayer.name + " ==");
+            display.modifyGridRegion(nextPlayer.btnParams.hitMeBtn, "next");
+            display.modifyGridRegion(nextPlayer.btnParams.holdMeBtn, "next");
+
+            for (var j = 0; j < nextPlayerBetBtns.length; j++) {
+                nextItem = nextPlayerBetBtns[j];
+                indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
+                sequencer.activateButton(indexCell, nextItem.callback)
+            }
+        }
+    }
+
+    // ======= ======= ======= doTheMath ======= ======= =======
+    Sequencer.prototype.doTheMath = function() {
+	    console.log("doTheMath");
+
+	    var nextPlayer, nextName, winLossLabel;
+	    var dealerScore = game.dealer.score;
+	    var playerWinLoss = 0;
+	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n\n';
+
+	    // =======
+	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
+	    	nextPlayer = game.playerObjectsArray[i];
+	    	nextName = nextPlayer.name;
+	    	console.log("   nextName: " + nextName);
+
+	    	// ======= calculate win/loss results
+	    	playerWinLoss = (nextPlayer.onesBet) + (nextPlayer.fivesBet) + (nextPlayer.tensBet);
+	    	console.log("   playerWinLoss: " + playerWinLoss);
+
+    		// ======= calculate wins/losses for players
+	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
+	    		winLossLabel = ' and won $';
+	    		nextPlayer.pBank = nextPlayer.pBank + playerWinLoss;
+	    	} else if ((dealerScore > 21) && (nextPlayer.score < 22)) {
+                winLossLabel = ' and won $';
+	    		nextPlayer.pBank = nextPlayer.pBank + playerWinLoss;
+	    	} else if (dealerScore < 22) {
+                winLossLabel = ' and lost $';
+				nextPlayer.pBank = nextPlayer.pBank - playerWinLoss;
+            } else {
+                winLossLabel = ' tie game' + '\n';
+                playerWinLoss = ' no wins/losses' + '\n';
+            }
+            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n\n';
+	    }
+
+	    alert(playerWinLossString);
+	}
 
 
 
@@ -1078,7 +1079,7 @@ function initGame() {
             game.currentPlayer.onesBet = onesBet;
             game.currentPlayer.fivesBet = fivesBet;
             game.currentPlayer.tensBet = tensBet;
-            game.currentPlayer.totalBank = game.currentPlayer.totalBank - (onesBet + fivesBet + tensBet);
+            game.currentPlayer.totalBank = onesBank + fivesBank + tensBank;
             game.updateBetButtonText(game.currentPlayer);
         } else {
             $("#tooltips").text("Oops you're out of money!");
@@ -1135,7 +1136,7 @@ function initGame() {
             game.currentPlayer.onesBet = onesBet;
             game.currentPlayer.fivesBet = fivesBet;
             game.currentPlayer.tensBet = tensBet;
-            game.currentPlayer.totalBank = game.currentPlayer.totalBank + (onesBet + fivesBet + tensBet);
+            game.currentPlayer.totalBank = onesBank + fivesBank + tensBank;
             game.updateBetButtonText(game.currentPlayer);
         } else {
             $("#tooltips").text("Total bet is returned");
@@ -1257,7 +1258,7 @@ function initGame() {
         var whichMerge, cardDivString;
         var whichCardObject = whichPlayer.textParams.pCards;
         var whichName = whichCardObject.name;
-        var whichClass = whichCardObject.class;
+        var whichClass = whichPlayer.textParams.pName.class;
         var cardCount = whichPlayer.hand.length;
         var cardValue = whichPlayer.hand[cardCount - 1];
 
@@ -1276,8 +1277,8 @@ function initGame() {
 
         // cardDivString = "<div class='flip-container " + whichClass + "'>";
         cardDivString = "<div class='flip-container'>";
-        cardDivString += "<div class='flipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";
-        cardDivString += "<div class='back'><p class='cardText'>" + cardValue + "</p></div></div></div>";
+        cardDivString += "<div class='flipper'><div class='front " + whichClass + "'><p class='cardText'>" + cardValue + "</p></div>";
+        cardDivString += "<div class='back " + whichClass + "'><p class='cardText'>" + cardValue + "</p></div></div></div>";
 
         $(indexCell).append(cardDivString);
 
@@ -1400,126 +1401,228 @@ function initGame() {
     // ======= ======= ======= mergeRegion ======= ======= =======
     Display.prototype.mergeRegion = function(whichItem, offsetR, offsetC) {
         console.log("mergeRegion");
+        console.log("  ======= ======= ======= item: " + whichItem.name);
+        console.log("  offsetC: " + offsetC);
+
         if (!offsetR) { offsetR = 0 };
         if (!offsetC) { offsetC = 0 };
-        var offsetR = parseInt(offsetR);
-        var offsetC = parseInt(offsetC);
-        var indexCell = this.tableCellsArray[whichItem.iR + offsetR][whichItem.iC + offsetC];
-        console.log("  indexCell: " + indexCell);
-        console.log("  whichItem.iR/C: " + whichItem.iR + "/" + whichItem.iC);
-        console.log("  $(indexCell).attr('class'): " + $(indexCell).attr('class'));
-        for (var j = 0; j < whichItem.iH; j++) {
-            for (var i = 0; i < whichItem.iW; i++) {
-                nextCell = this.tableCellsArray[whichItem.iR + offsetR + j][whichItem.iC + offsetC + i];
-                if (!((i == 0) && (j == 0))) {
+        var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+
+        // == record rowspan elements
+        if (whichItem.iH > 1) {
+            for (row = 0; row < whichItem.iH; row++) {
+                for (col = 0; col < whichItem.iW; col++) {
+                    if (row != 0) {
+                        tableRow = whichItem.iR + offsetR + row;
+                        tableCol = whichItem.iC + offsetC + col;
+                        rowspanSpanObject = this.tableRowspansArray[tableRow][tableCol];
+                        rowspanSpanObject.rspan = true;
+                        console.log("  SET rowspan: " + tableRow + "/" +  tableCol);
+                    }
+                }
+            }
+        }
+
+        // == get index cell location (check row/colspans in index row)
+        var tableRows = $("tr");
+        indexRow = whichItem.iR + offsetR;
+        indexCol = whichItem.iC + offsetC;
+        indexRowObject = tableRows[indexRow];
+        colspans = this.checkColumnSpans(indexRowObject, indexCol);
+        rowspans = this.checkRowSpans(indexRow, indexCol);
+        totalColOffset = indexCol - colspans - rowspans;
+        console.log("  totalColOffset1: " + totalColOffset);
+        indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+
+        // == remove cells from merge area (check row/colspans in each row)
+        for (var row = 0; row < whichItem.iH; row++) {
+            nextRowObject = tableRows[whichItem.iR + offsetR + row];
+            console.log("  nextRowObject.length: " + nextRowObject.length);
+            nextRow = whichItem.iR + offsetR + row;
+            nextCol = whichItem.iC + offsetC;
+            colspans = this.checkColumnSpans(nextRowObject, nextCol);
+            rowspans = this.checkRowSpans(nextRow, nextCol);
+            for (var col = 0; col < whichItem.iW; col++) {
+                // console.log("  whichItem.iC: " + whichItem.iC);
+                // console.log("  nextCol: " + nextCol);
+                // console.log("  col: " + col);
+                // console.log("  colspans: " + colspans);
+                // console.log("  rowspans: " + rowspans);
+                totalColOffset = nextCol + col - colspans - rowspans;
+                console.log("  totalColOffset2: " + totalColOffset);
+                nextCell = $(nextRowObject).children()[totalColOffset];
+
+                // == remove all but index cell in merge area
+                if (!((row == 0) && (col == 0))) {
                     $(nextCell).remove();
                 }
             }
         }
+
+        // == set row/colspans on index cell to fill space
         $(indexCell).attr("colSpan", whichItem.iW);
         $(indexCell).attr("rowSpan", whichItem.iH);
         $(indexCell).addClass(whichItem.class);
         if (whichItem.type != "input") {
             $(indexCell).attr("id", whichItem.name);
         }
-        // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
         return indexCell;
     }
 
     // ======= ======= ======= unMergeRegion ======= ======= =======
     Display.prototype.unMergeRegion = function(whichItem, offsetR, offsetC) {
         console.log("unMergeRegion");
+        console.log("  ======= ======= ======= item: " + whichItem.name);
+
         if (!offsetR) { offsetR = 0 };
         if (!offsetC) { offsetC = 0 };
-        var offsetR = parseInt(offsetR);
-        var offsetC = parseInt(offsetC);
-        var indexR = parseInt(whichItem.iR);
-        var indexC = parseInt(whichItem.iC);
-        var rowCell = indexR + offsetR;
-        var colCell = indexC + offsetC;
-        var cellString = rowCell + "/" + colCell;
-        var indexCell = this.tableCellsArray[rowCell][colCell];
-        $(indexCell).attr("id", cellString);
-        $(indexCell).attr("colSpan", 1);
-        $(indexCell).attr("rowSpan", 1);
-        $(indexCell).text("");
-        $(indexCell).removeClass(whichItem.class);
+        var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
 
-        for (var j = 0; j < whichItem.iH; j++) {
-            for (var i = 0; i < whichItem.iW; i++) {
-                if (i != 0) {
-                    // var tableRows = $(".row");
-                    // nextRow = tableRows[indexR + offsetR];
-                    // tableCols = $(nextRow).children(".cell");
-                    var newCell = document.createElement("td");
-                    $(indexCell).after(newCell);
-                    $(newCell).addClass("cell");
-                    $(newCell).attr("id", (rowCell+ j) + "-" + (colCell + i));
-                }
-                if ((j > 0) && (i == 0)) {
-                    indexCell = this.tableCellsArray[rowCell+ j][colCell - 1];
-                    $(indexCell).addClass("ones");
-                    // var tableRows = $(".row");
-                    // nextRow = tableRows[indexR + offsetR];
-                    // tableCols = $(nextRow).children(".cell");
-                    var newCell = document.createElement("td");
-                    $(indexCell).after(newCell);
-                    $(newCell).addClass("cell");
-                    $(newCell).attr("id", (rowCell+ j) + "-" + (colCell + i));
+        // == remove rowspan elements from record
+        if (whichItem.iH > 1) {
+            for (row = 0; row < whichItem.iH; row++) {
+                for (col = 0; col < whichItem.iW; col++) {
+                    rowspanSpanObject = this.tableRowspansArray[whichItem.iR + row][whichItem.iC + col];
+                    rowspanSpanObject.rspan = false;
                 }
             }
         }
 
-        // == remove content (e.g. input element) if required
-        $(indexCell).attr("id", "");
-        if ($(indexCell).children().length > 0) {
-            console.log("  $(indexCell).children().length: " + $(indexCell).children().length);
-            var newCell = document.createElement("td");
-            $(indexCell).after(newCell);
-            $(newCell).addClass("cell");
-            $(indexCell).remove();
+        // == get index cell location (check row/colspans in index row)
+        var tableRows = $("tr");
+        indexRow = whichItem.iR + offsetR;
+        indexCol = whichItem.iC + offsetC;
+        indexRowObject = tableRows[indexRow];
+        colspans = this.checkColumnSpans(indexRowObject, indexCol);
+        rowspans = this.checkRowSpans(indexRow, indexCol);
+        indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+
+        // == remove merged index cell
+        $(indexCell).remove();
+
+        for (var row = 0; row < whichItem.iH; row++) {
+            nextRowObject = tableRows[indexRow + row];
+            colspans = this.checkColumnSpans(nextRowObject, indexCol);
+            rowspans = this.checkRowSpans(row, indexCol);
+
+            // == set index to cell adjacent to (left of) removed cell
+            indexRowCell = $(nextRowObject).children()[indexCol - colspans - rowspans - 1];
+            for (var col = 0; col < whichItem.iW; col++) {
+                var newCell = document.createElement("td");
+                $(indexRowCell).after(newCell);
+                $(newCell).addClass("cell");
+                $(newCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
+            }
         }
-        // return newCell;
     }
 
     // ======= ======= ======= selectTableCells ======= ======= =======
-    Display.prototype.selectTableCells = function(whichItem) {
-        // console.log("selectTableCells");
-        var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
-        for (var j = 0; j < whichItem.iH; j++) {
-            for (var i = 0; i < whichItem.iW; i++) {
-                nextCell = this.tableCellsArray[whichItem.iR + j][whichItem.iC + i];
-                // $(nextCell).attr("colSpan", 1);
-                // $(nextCell).attr("rowSpan", 1);
+    Display.prototype.selectTableCells = function(whichItem, offsetR, offsetC) {
+        console.log("selectTableCells");
+        console.log("  ======= ======= ======= item: " + whichItem.name);
+
+        if (!offsetR) { offsetR = 0 };
+        if (!offsetC) { offsetC = 0 };
+        var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+
+        var tableRows = $("tr");
+        indexRow = whichItem.iR + offsetR;
+        indexCol = whichItem.iC + offsetC;
+        indexRowObject = tableRows[indexRow];
+
+        for (var row = 0; row < whichItem.iH; row++) {
+            nextRowObject = tableRows[indexRow + row];
+            colspans = this.checkColumnSpans(nextRowObject, indexCol);
+            rowspans = this.checkRowSpans(indexRow + row, indexCol);
+            for (var col = 0; col < whichItem.iW; col++) {
+                nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
                 $(nextCell).addClass(whichItem.class);
+                if ((row == 0) && (col == 0)) {
+                    $(nextCell).attr("id", whichItem.name);
+                    indexCell = $(nextRowObject).children()[indexCol - colspans - rowspans];
+                }
             }
         }
-        $(indexCell).attr("id", whichItem.name);
-        $(indexCell).addClass(whichItem.class);
-        // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr("id"));
+
         return indexCell;
     }
 
     // ======= ======= ======= deselectTableCells ======= ======= =======
-    Display.prototype.deselectTableCells = function(whichItem) {
+    Display.prototype.deselectTableCells = function(whichItem, offsetR, offsetC) {
         console.log("deselectTableCells");
-        var indexCell = this.tableCellsArray[whichItem.iR][whichItem.iC];
-        for (var j = 0; j < whichItem.iH; j++) {
-            for (var i = 0; i < whichItem.iW; i++) {
-                var rowCell = whichItem.iR + j;
-                var colCell = whichItem.iC + i;
-                var rowStrg = rowCell.toString();
-                var colStrg = colCell.toString();
-                nextCell = this.tableCellsArray[rowCell][colCell];
+        console.log("  ======= ======= ======= item: " + whichItem.name);
+
+        if (!offsetR) { offsetR = 0 };
+        if (!offsetC) { offsetC = 0 };
+        var indexRow, indexCell, nextCell, indexRowObject, colspans, rowspans, rowCell, colCell;
+
+        // == get index cell location (check row/colspans in index row)
+        var tableRows = $("tr");
+        indexRow = whichItem.iR + offsetR;
+        indexCol = whichItem.iC + offsetC;
+        indexRowObject = tableRows[indexRow];
+        colspans = this.checkColumnSpans(indexRowObject, indexCol);
+        rowspans = this.checkRowSpans(indexRow, indexCol);
+        indexCell = $(indexRowObject).children()[indexCol - colspans - rowspans];
+
+        for (var row = 0; row < whichItem.iH; row++) {
+            nextRowObject = tableRows[indexRow + row];
+            colspans = this.checkColumnSpans(nextRowObject, indexCol);
+            rowspans = this.checkRowSpans(row, indexCol);
+            for (var col = 0; col < whichItem.iW; col++) {
+                nextCell = $(nextRowObject).children()[indexCol + col - colspans - rowspans];
                 $(nextCell).removeClass(whichItem.class);
                 $(nextCell).addClass("cell");
-                $(indexCell).attr("id", (rowStrg + "-" + colStrg));
+                $(nextCell).text("");
+                rowCell = whichItem.iR + row;
+                colCell = whichItem.iC + col;
             }
         }
+
+        $(indexCell).attr("id", (rowCell + "-" + colCell));
         $(indexCell).removeClass(whichItem.class);
-        $(indexCell).attr("id", "");
         $(indexCell).empty();
+
         return indexCell;
+    }
+
+    // ======= ======= ======= checkRowSpans ======= ======= =======
+    Display.prototype.checkRowSpans = function(whichRow, whichCol) {
+        console.log("checkRowSpans");
+        console.log("  which_R/C: " + whichRow + "/" + whichCol);
+
+        var rowspans = 0;
+        var indexRow = 0;
+        for (var col = 0; col < 18; col++) {
+            if (col < whichCol) {
+                rowspanSpanObject = this.tableRowspansArray[whichRow][col];
+                console.log("  rowspan_R/C: " + rowspanSpanObject.R + "/" + rowspanSpanObject.C);
+                if (rowspanSpanObject.rspan == true) {
+                    rowspans++;
+                }
+            }
+        }
+        console.log("  rowspans: " + rowspans);
+        return rowspans;
+    }
+
+    // ======= ======= ======= checkColumnSpans ======= ======= =======
+    Display.prototype.checkColumnSpans = function(whichRowObject, whichCol) {
+        console.log("checkColumnSpans");
+        console.log("  whichRowObject.length: " + $(whichRowObject).children().length);
+
+        var colspans = 0;
+        var indexCol = 0;
+        for (var col = 0; col < $(whichRowObject).children().length; col++) {
+            nextColumnObject = $(whichRowObject).children()[col];
+            nextColspan = $(nextColumnObject).attr('colSpan');
+            // console.log("  nextColspan " + nextColspan);
+            if ((nextColspan > 1) && (col < (whichCol - colspans))) {
+                colspans += nextColspan - 1;
+            }
+        }
+        console.log("  colspans: " + colspans);
+        return colspans;
     }
 
     // ======= ======= ======= tooltips ======= ======= =======
@@ -1549,20 +1652,26 @@ function initGame() {
     Display.prototype.initGridElements = function() {
         // console.log("initGridElements");
 
-        var tableCols;
+        var tableCol, cellRCs;
         var tableCellsArray = [];
+        var tableRowspansArray = [];
         var tableRows = $(".row");
-        for (var i = 0; i < tableRows.length; i++) {
-            nextRow = tableRows[i];
+        for (var row = 0; row < tableRows.length; row++) {
+            nextRow = tableRows[row];
+            nextRowArray = [];
             tableCols = $(nextRow).children(".cell");
             tableCellsArray.push(tableCols);
-            for (var j = 0; j < tableCols.length; j++) {
-                nextCell = tableCols[j];
-                $(nextCell).attr("id", i + "-" + j);
+            for (var col = 0; col < tableCols.length; col++) {
+                cellRC = { R:row, C:col, rspan:false };
+                nextRowArray.push(cellRC);
+                nextCell = tableCols[col];
+                $(nextCell).attr("id", row + "-" + col);
                 // console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
             }
+            tableRowspansArray.push(nextRowArray);
         }
         this.tableCellsArray = tableCellsArray;
+        this.tableRowspansArray = tableRowspansArray;
     }
 
 
