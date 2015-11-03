@@ -325,6 +325,7 @@ function initGame() {
     // ======= ======= ======= getTargetTooltip ======= ======= =======
     Display.prototype.getTargetTooltip = function(whichElement) {
         console.log("getTargetTooltip");
+        console.log("  whichElement: "+ whichElement.id);
 
         for (var key in game.btnParams) {
             nextId = game.btnParams[key].name;
@@ -808,9 +809,18 @@ function initGame() {
             display.modifyGridRegion(nextPlayer.btnParams.hitMeBtn, "next");
             display.modifyGridRegion(nextPlayer.btnParams.holdMeBtn, "next");
 
+            // == get index cell location (check row/colspans in index row)
+            var tableRows = $("tr");
+
             for (var j = 0; j < nextPlayerBetBtns.length; j++) {
                 nextItem = nextPlayerBetBtns[j];
-                indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
+                indexRowObject = tableRows[nextItem.iR];
+                colspans = display.checkColumnSpans(indexRowObject, nextItem.iR, nextItem.iC);
+                rowspans = display.checkRowSpans(nextItem.iR, nextItem.iC);
+                totalColOffset = nextItem.iC - colspans - rowspans;
+                indexCell = $(indexRowObject).children()[totalColOffset];
+                console.log("  indexCell: " + $(indexCell).attr('id'));
+                // indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
                 sequencer.activateButton(indexCell, nextItem.callback)
             }
         }
@@ -1476,6 +1486,13 @@ function initGame() {
                         $(nextCell).remove();
                     }
                 }
+                $(indexCell).attr("colSpan", whichItem.iW);
+                $(indexCell).attr("rowSpan", whichItem.iH);
+                $(indexCell).addClass(whichItem.class);
+                if (whichItem.type != "input") {
+                    $(indexCell).attr("id", whichItem.name);
+                }
+
             } else if (whichProcess == "unmerge")  {
                 $(indexCell).remove();
                 console.log("  indexCell GONE?: " + $(indexCell).attr("id"));
@@ -1486,28 +1503,34 @@ function initGame() {
                     $(newCell).addClass("cell");
                     $(newCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                 }
+
             } else if (whichProcess == "select") {
                 for (var col = 0; col < whichItem.iW; col++) {
                     nextCell = $(nextRowObject).children()[totalColOffset + col];
                     $(nextCell).addClass(whichItem.class);
                     if ((row == 0) && (col == 0)) {
-                        $(nextCell).attr("id", whichItem.name);
                         indexCell = $(nextRowObject).children()[totalColOffset];
+                        $(indexCell).attr("id", whichItem.name);
+                    } else {
+                        $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                     }
-                    $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                 }
+
             } else if (whichProcess == "deselect") {
                 for (var col = 0; col < whichItem.iW; col++) {
                     nextCell = $(nextRowObject).children()[totalColOffset + col];
+                    console.log("  $(nextCell).attr('class')1: " + $(nextCell).attr('class'));
                     $(nextCell).removeClass(whichItem.class);
                     $(nextCell).addClass("cell");
+                    console.log("  $(nextCell).attr('class')2: " + $(nextCell).attr('class'));
                     $(nextCell).text("");
                     if ((row == 0) && (col == 0)) {
-                        // $(nextCell).attr("id", whichItem.name);
                         indexCell = $(nextRowObject).children()[totalColOffset];
+                        $(indexCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                         $(indexCell).empty();
+                    } else {
+                        $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                     }
-                    $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                 }
             }
         }
