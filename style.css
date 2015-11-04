@@ -147,6 +147,13 @@ body {
 .ones, .fives, .tens {
     background-color: lawngreen;
 }
+.green_grid {
+    background-color: lawngreen;
+    width: 20px;
+    height: 20px;
+    background-color: #EBEBFF;
+    border: 1px solid red;
+}
 .remove {
     background-color: black
 }
