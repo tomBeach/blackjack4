@@ -17,24 +17,24 @@ function initGame() {
         // ======= player1 =======
         var playerParams1 = {
             bgParams: {
-                borderH: { player: 1, name: "borderH_1", type: "bg", iR: 1, iC: 1, iW: 6, iH: 1, merge: null, class: "pBorder-1" },
-                borderV: { player: 1, name: "borderV_1", type: "bg", iR: 1, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
+                borderH: { player: 1, name: "borderH_1", type: "bg", iR: 1, iC: 0, iW: 6, iH: 1, merge: null, class: "pBorder-1" },
+                borderV: { player: 1, name: "borderV_1", type: "bg", iR: 1, iC: 5, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 2, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:1, iC: 7, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "bet $1" },
-                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 1, iC: 8, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "bet $5" },
-                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 1, iC: 9, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "bet $10" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:1, iC: 6, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "bet $1" },
+                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 1, iC: 7, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "bet $5" },
+                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 1, iC: 8, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "bet $10" },
             },
             textParams: {
-                pName: { player: 1, name: "pName_1", type: "text", iR: 1, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
-                pScore: { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
-                pBank: { player: 1, name: "pBank_1", type: "text", iR: 1, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "100" },
+                pName: { player: 1, name: "pName_1", type: "text", iR: 1, iC: 2, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
+                pScore: { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 5, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
+                pBank: { player: 1, name: "pBank_1", type: "text", iR: 1, iC: 5, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "100" },
                 pBet_1s: { name: "pBet_1s_1", type: "text", iR: 4, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pBet_5s: { name: "pBet_5s_1", type: "text", iR: 4, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
                 pBet_10s: { name: "pBet_10s_1", type: "text", iR: 4, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: "$0" },
-                pCards: { player: 1, name: "pCards_1", type: "text", iR: 2, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
+                pCards: { player: 1, name: "pCards_1", type: "text", iR: 2, iC: 4, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -43,24 +43,24 @@ function initGame() {
         // ======= player2 =======
         var playerParams2 = {
             bgParams: {
-                borderH: { player: 2, name: "borderH_2", type: "bg", iR: 5, iC: 2, iW: 6, iH: 1, merge: null, class: "pBorder-2" },
-                borderV: { player: 2, name: "borderV_2", type: "bg", iR: 5, iC: 7, iW: 1, iH: 3, merge: null, class: "pBorder-2" }
+                borderH: { player: 2, name: "borderH_2", type: "bg", iR: 5, iC: 1, iW: 6, iH: 1, merge: null, class: "pBorder-2" },
+                borderV: { player: 2, name: "borderV_2", type: "bg", iR: 5, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-2" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_2", callback: "betOne", type: "btn", iR:5, iC: 8, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn_2", callback: "betFive", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: null },
-                betTensBtn: { name: "betTensBtn_2", callback: "betTen", type: "btn", iR: 5, iC: 10, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: null },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_2", callback: "betOne", type: "btn", iR:5, iC: 7, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: null },
+                betFivesBtn: { name: "betFivesBtn_2", callback: "betFive", type: "btn", iR: 5, iC: 8, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: null },
+                betTensBtn: { name: "betTensBtn_2", callback: "betTen", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: null },
             },
             textParams: {
-                pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
-                pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
-                pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "100" },
+                pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
+                pScore: { player: 2, name: "pScore_2", type: "text", iR: 6, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: 0 },
+                pBank: { player: 2, name: "pBank_2", type: "text", iR: 5, iC: 6, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "100" },
                 pBet_1s: { name: "pBet_1s_2", type: "text", iR: 5, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
                 pBet_5s: { name: "pBet_5s_2", type: "text", iR: 5, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
                 pBet_10s: { name: "pBet_10s_2", type: "text", iR: 5, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-2", value: "$0" },
-                pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 6, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
+                pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -69,25 +69,25 @@ function initGame() {
         // ======= player3 =======
         var playerParams3 = {
             bgParams: {
-                borderH: { player: 3, name: "borderH_3", type: "bg", iR: 9, iC: 3, iW: 6, iH: 1, merge: null, class: "pBorder-3" },
-                borderV: { player: 3, name: "borderV_3", type: "bg", iR: 9, iC: 8, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
+                borderH: { player: 3, name: "borderH_3", type: "bg", iR: 9, iC: 2, iW: 6, iH: 1, merge: null, class: "pBorder-3" },
+                borderV: { player: 3, name: "borderV_3", type: "bg", iR: 9, iC: 7, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 10, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 10, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "$1" },
-                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "$5" },
-                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 9, iC: 11, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "$10" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 10, iC: 8, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMe.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 10, iC: 9, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMe.png", value: "hold" },
+                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "$1" },
+                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "$5" },
+                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "$10" },
 
             },
             textParams: {
-                pName: { player: 3, name: "pName_3", type: "text", iR: 9, iC: 5, iW: 3, iH: 1, merge: "merge", class: "pBorder-3", value: null },
-                pScore: { player: 3, name: "pScore_3", type: "text", iR: 10, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
-                pBank: { player: 3, name: "pBank_3", type: "text", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
+                pName: { player: 3, name: "pName_3", type: "text", iR: 9, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-3", value: null },
+                pScore: { player: 3, name: "pScore_3", type: "text", iR: 10, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 0 },
+                pBank: { player: 3, name: "pBank_3", type: "text", iR: 9, iC: 7, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: 100 },
                 pBet_1s: { name: "pBet_1s_3", type: "text", iR: 6, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
                 pBet_5s: { name: "pBet_5s_3", type: "text", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
                 pBet_10s: { name: "pBet_10s_3", type: "text", iR: 6, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-3", value: "$0" },
-                pCards: { player: 3, name: "pCards_3", type: "text", iR: 10, iC: 7, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
+                pCards: { player: 3, name: "pCards_3", type: "text", iR: 10, iC: 6, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
             },
             inputParams: {},
             imageParams: {}
@@ -140,14 +140,14 @@ function initGame() {
                 logo: { name: "logo", type: "bg", iR: 2, iC: 1, iW: 6, iH: 1, merge: false, class: null }
             },
             btn: {
-                orbBtn: { name: "orbBtn", callback: "nextGameState", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "start", tooltip: "start" },
+                orbBtn: { name: "orbBtn", callback: "nextGameState", type: "btn", iR: 6, iC: 13, iW: 1, iH: 1, merge: null, class: "orbBtn", value: "start", tooltip: "start the game!" },
                 enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "enter", tooltip:  "click to save player" },
                 startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "start", tooltip: "start game" },
                 dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "dealBtn", value: "deal", tooltip: "deal cards" },
                 retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 12, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltip: "return to player" },
                 retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 13, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltip: "return to player" },
                 retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 14, iW: 1, iH: 1,  merge: null, class: "tens", value: "tens", tooltip: "return to player" },
-                playGameBtn: { name: "playGameBtn", callback: "nextGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "playGameBtn", value: "play game", tooltip: "place bets" },
+                playGameBtn: { name: "playGameBtn", callback: "nextGameState", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "playGameBtn", value: "play game", tooltip: "click to place bets" },
                 newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 8, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "new game", tooltip: null }
             },
             text: {
@@ -158,7 +158,7 @@ function initGame() {
                 pBank_2: { name: "pBank_2", type: "text", iR: 9, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 40 },
                 pBank_3: { name: "pBank_3", type: "text", iR: 10, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 60 },
                 totalBet: { name: "totalBet", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: null, value: 0 },
-                tooltips: { name: "tooltips", type: "text", iR: 9, iC: 12, iW: 3, iH: 1, merge: "merge", class: "tooltips", value: "" }
+                tooltips: { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" }
             },
             input: {
                 playerName: { name: "playerName", type: "input", iR: 4, iC: 12, iW: 3, iH: 1, merge: "merge", class: "inputText", value: "playerName" }
@@ -329,6 +329,7 @@ function initGame() {
             nextTooltip = game.btnParams[key].tooltip;
             if (nextId == whichElement.id) {
                 sendTooltip = game.btnParams[key].tooltip;
+                console.log("  sendTooltip: "+ sendTooltip);
                 break;
             }
         }
@@ -338,7 +339,7 @@ function initGame() {
 
     // ======= ======= ======= activateButton ======= ======= =======
     Sequencer.prototype.activateButton = function(indexCell, whichAction) {
-        console.log("activateButton");
+        console.log("ACTIVATE_button");
         console.log("  btn_id: " + $(indexCell).attr('id'));
         console.log("  action: " + whichAction);
 
@@ -349,6 +350,7 @@ function initGame() {
             // console.log("-- mouseenter");
             whichIndexCell = event.target;
             targetTooltip = display.getTargetTooltip(whichIndexCell);
+            console.log("  targetTooltip: " + targetTooltip);
             display.tooltips(targetTooltip, "on");
         });
         $(indexCell).on("mouseout", function(){
@@ -369,91 +371,91 @@ function initGame() {
             case "saveNewPlayer":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- saveNewPlayer");
+                    console.log("-- -- -- saveNewPlayer -- -- -- ");
                     game.saveNewPlayer();
                 });
                 break;
             case "startGame":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- startGame");
+                    console.log("-- -- -- startGame -- -- -- ");
                     game.startGame();
                 });
                 break;
             case "deal":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- deal");
+                    console.log("-- -- -- deal -- -- -- ");
                     game.deal();
+                });
+                break;
+            case "playGame":
+                $(indexCell).on("click", function(){
+                    console.log("");
+                    console.log("-- -- -- playGame -- -- -- ");
+                    game.playGame();
                 });
                 break;
             case "betOne":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- betOne");
+                    console.log("-- -- -- betOne -- -- -- ");
                     game.placeBet("ones");
                 });
                 break;
             case "betFive":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- betFive");
+                    console.log("-- -- -- betFive -- -- -- ");
                     game.placeBet("fives");
                 });
                 break;
             case "betTen":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- betTen");
+                    console.log("-- -- -- betTen -- -- -- ");
                     game.placeBet("tens");
                 });
                 break;
             case "retOne":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- retOne");
+                    console.log("-- -- -- retOne -- -- -- ");
                     game.returnBet("ones");
                 });
                 break;
             case "retFive":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- retFive");
+                    console.log("-- -- -- retFive -- -- -- ");
                     game.returnBet("fives");
                 });
                 break;
             case "retTen":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- retTen");
+                    console.log("-- -- -- retTen -- -- -- ");
                     game.returnBet("tens");
                 });
                 break;
             case "hitMe":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- hitMe");
+                    console.log("-- -- -- hitMe -- -- -- ");
                     game.hitMe();
                 });
                 break;
             case "holdMe":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- holdMe");
+                    console.log("-- -- -- holdMe -- -- -- ");
                     game.holdMe();
-                });
-                break;
-            case "playGame":
-                $(indexCell).on("click", function(){
-                    console.log("");
-                    console.log("-- playGame");
-                    game.playGame();
                 });
                 break;
             case "newGame":
                 $(indexCell).on("click", function(){
                     console.log("");
-                    console.log("-- newGame");
+                    console.log("-- -- -- -- -- newGame -- -- -- -- -- ");
                     game.newGame();
                 });
                 break;
@@ -462,7 +464,7 @@ function initGame() {
 
     // ======= ======= ======= deActivateButton ======= ======= =======
     Sequencer.prototype.deActivateButton = function(indexCell, whichAction) {
-        console.log("deActivateButton");
+        console.log("DEACTIVATE_button");
 
         // ======= event listeners =======
         $(indexCell).off("mouseenter", null);
@@ -594,51 +596,63 @@ function initGame() {
     Sequencer.prototype.clearPlayerCardstack = function(nextPlayer) {
         console.log("clearPlayerCardstack");
 
-        var tableRows = $(".row");
-        var cardCount = nextPlayer.hand.length;
-        var whichCardObject = nextPlayer.textParams.pCards;
-        var cardsRow = whichCardObject.iR;
-        var cardsRowObject = tableRows[cardsRow];
-        if (nextPlayer == game.dealer) {
-            var cardsCol = whichCardObject.iC;
-        } else {
-            var cardsCol = whichCardObject.iC - cardCount + 1;
-        }
-        colspans = display.checkColumnSpans(cardsRowObject, cardsRow, cardsCol);
-        rowspans = display.checkRowSpans(cardsRow, cardsCol);
-        console.log("  cardCount: " + cardCount);
-        console.log("  colspans: " + colspans);
-        console.log("  rowspans: " + rowspans);
-        var cardsCol = cardsCol - (colspans + rowspans);
+        var colIndex, colspans, rowspans, totalSpanOffset, indexCell, indexRowCell;
 
         // == identify card cells in table row and remove
-        for (var card = 0; card < cardCount; card++) {
-            console.log("  $(tableRows...length: " + $(tableRows[cardsRow]).children().length);
-            $(tableRows[cardsRow]).children()[cardsCol].remove();
-            console.log("  cardsRow/Col: " + cardsRow + "/" + cardsCol);
+        var cardCount = nextPlayer.hand.length;
+        var playerCardObject = nextPlayer.textParams.pCards;     //pCards:  { player:1,name:"pCards_1",type:"text",iR:2,iC:5,iW:1,iH:2,merge:"merge",c... }
+        var cards_iR = playerCardObject.iR;
+        var cards_iC = playerCardObject.iC;
+
+        var tableRows = $("tr");                               // table rows
+        var indexRowCollection = tableRows[cards_iR];           // row columns (collection)
+
+        if (nextPlayer == game.dealer) {
+            colIndex = playerCardObject.iC;
+        } else {
+            colIndex = playerCardObject.iC - cardCount + 1;
         }
 
-        // == add new single cells for each row/column of card
+        for (var i = 0; i < cardCount; i++) {
+            colspans = display.checkColumnSpans(indexRowCollection, cards_iR, colIndex);
+            rowspans = display.checkRowSpans(cards_iR, colIndex);
+            totalSpanOffset = colIndex - colspans - rowspans;
+            indexCell = $(indexRowCollection).children()[totalSpanOffset];       // <td> element
+            $(indexCell).remove();
+        }
+
+        // == add new single cells for each row/column of i
+        var tableRows = $("tr");                               // table rows
+        var indexRowCollection = tableRows[cards_iR];           // row columns (collection)
+        if (nextPlayer == game.dealer) {
+            colIndex = playerCardObject.iC;
+        } else {
+            colIndex = playerCardObject.iC - cardCount + 1;
+        }
+
+        // ======= replace cells in card slots
         for (var col = 0; col < cardCount; col++) {
-            for (var row = 0; row < 2; row++) {
-                var indexCell = $(tableRows[cardsRow + row]).children()[cardsCol - 1 + col];
+            for (var row = 0; row < playerCardObject.iH; row++) {
+                nextRowCollection = tableRows[cards_iR + row];
+                colspans = display.checkColumnSpans(nextRowCollection, cards_iR, colIndex);
+                rowspans = display.checkRowSpans(cards_iR, colIndex);
+                totalSpanOffset = colIndex - colspans - rowspans;
+                indexRowCell = $(nextRowCollection).children()[totalSpanOffset + col - 1];
                 var newCell = document.createElement("td");
-                $(indexCell).after(newCell);
+                $(indexRowCell).after(newCell);
                 $(newCell).addClass("cell");
-                $(newCell).attr("id", (cardsRow) + "-" + (cardsCol + col));
+                $(newCell).attr("id", (cards_iR) + "-" + (totalSpanOffset + col));
             }
         }
 
-        // ======= initialize values on player object
-        if (nextPlayer != game.dealer) {
-            nextPlayer.onesBet = 0;
-            nextPlayer.fivesBet = 0;
-            nextPlayer.tensBet = 0;
-            game.updateBetButtonText(nextPlayer);
-        }
+        game.updateBetButtonText(nextPlayer);
+        game.updatePlayerScoreText(nextPlayer);
+        nextPlayer.onesBet = 0;
+        nextPlayer.fivesBet = 0;
+        nextPlayer.tensBet = 0;
         nextPlayer.hand = [];
         nextPlayer.score = 0;
-        game.updatePlayerScoreText(nextPlayer);
+
     }
 
     // ======= ======= ======= nextGameState ======= ======= =======
@@ -925,13 +939,6 @@ function initGame() {
         sequencer.nextGameState();
     }
 
-    // ======= ======= ======= playGame ======= ======= =======
-    Game.prototype.playGame = function() {
-        console.log("playGame");
-        this.currentPlayer = this.playerObjectsArray[0];
-        sequencer.nextGameState();
-    }
-
     // ======= ======= ======= displayPlayer ======= ======= =======
     Game.prototype.displayPlayer = function() {
         console.log("displayPlayer");
@@ -1043,7 +1050,7 @@ function initGame() {
                     display.modifyGridRegion(nextItem, "next");
                 }
             }
-            display.tooltips("place bets", "on");
+            display.tooltips("Click Play Game button to place bets.", "on");
         }
 
         // ======= deal to dealer
@@ -1062,9 +1069,18 @@ function initGame() {
         if (winnersArray.length > 0) {
             // calculateWinner();
         } else {
+            console.log("  ** to playGame");
             this.activePlayer = 1;
             sequencer.nextGameState();
         }
+    }
+
+    // ======= ======= ======= playGame ======= ======= =======
+    Game.prototype.playGame = function() {
+        console.log("playGame");
+        this.currentPlayer = this.playerObjectsArray[0];
+        sequencer.nextGameState();
+        display.tooltips(this.currentPlayer.name + " can place bets with player bet buttons (green). Return chips with buttons below game table.", "on");
     }
 
     // ======= ======= ======= placeBet ======= ======= =======
@@ -1306,11 +1322,11 @@ function initGame() {
         offsetR = 0;
 
         if (whichCardObject.merge == "merge") {
-            indexCell = display.processGridCells(whichCardObject, offsetR, offsetC, "merge")
+            indexCell = display.modifyGridAreas(whichCardObject, offsetR, offsetC, "merge")
             // indexCell = display.mergeRegion(whichCardObject, offsetR, offsetC);
         } else {
             // indexCell = display.unMergeRegion(whichCardObject);
-            indexCell = display.processGridCells(whichCardObject, 0, 0, "unmerge")
+            indexCell = display.modifyGridAreas(whichCardObject, 0, 0, "UNMERGE")
         }
 
         // cardDivString = "<div class='flip-container " + whichClass + "'>";
@@ -1337,6 +1353,10 @@ function initGame() {
     // ======= ======= ======= updateBetButtonText ======= ======= =======
     Game.prototype.updateBetButtonText = function(whichPlayer) {
         console.log("updateBetButtonText");
+        console.log("  whichPlayer: " + whichPlayer);
+        console.log("  whichPlayer.name: " + whichPlayer.name);
+        console.log("  whichPlayer.btnParams: " + whichPlayer.btnParams);
+        console.log("  whichPlayer.btnParams.betOnesBtn.name: " + whichPlayer.btnParams.betOnesBtn.name);
         $("#" + whichPlayer.btnParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
         $("#" + whichPlayer.btnParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
         $("#" + whichPlayer.btnParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
@@ -1408,16 +1428,16 @@ function initGame() {
         }
 
         if (whichMerge == "merge") {
-            indexCell = display.processGridCells(whichItem, 0, 0, "merge")
+            indexCell = display.modifyGridAreas(whichItem, 0, 0, "merge")
             // indexCell = this.mergeRegion(whichItem);
         } else if (whichMerge == "unmerge") {
-            indexCell = display.processGridCells(whichItem, 0, 0, "unmerge")
+            indexCell = display.modifyGridAreas(whichItem, 0, 0, "UNMERGE")
             // indexCell = this.unMergeRegion(whichItem);
         } else if (whichMerge == "restore") {
-            indexCell = display.processGridCells(whichItem, 0, 0, "deselect")
+            indexCell = display.modifyGridAreas(whichItem, 0, 0, "deselect")
             // indexCell = this.deselectTableCells(whichItem);
         } else {
-            indexCell = display.processGridCells(whichItem, 0, 0, "select")
+            indexCell = display.modifyGridAreas(whichItem, 0, 0, "select")
             // indexCell = this.selectTableCells(whichItem);
         }
         // console.log("  indexCell: " + indexCell);
@@ -1449,33 +1469,38 @@ function initGame() {
         }
     }
 
-    // ======= ======= ======= processGridCells ======= ======= =======
-    Display.prototype.processGridCells = function(whichItem, offsetR, offsetC, whichProcess) {
-        console.log("processGridCells");
-        console.log("  ======= PROCESS ======= ======= " + whichProcess);
+    // ======= ======= ======= modifyGridAreas ======= ======= =======
+    Display.prototype.modifyGridAreas = function(whichItem, offsetR, offsetC, whichProcess) {
+        console.log("modifyGridAreas");
+        console.log("  ======= PROCESS ======= " + whichProcess);
         console.log("  ======= ======= ======= item: " + whichItem.name);
+        console.log("  offsetC: " + offsetC);
 
         if (!offsetR) { offsetR = 0 };
         if (!offsetC) { offsetC = 0 };
-        var indexRow, indexCell, indexRowObject, rowspanSpanObject, colspans, rowspans;
+        var tableRows, indexRow, indexCol, indexRowObject, colspans, rowspans, indexColOffset, indexCell;
+        var nextRowObject, nextRow, totalSpanOffset, totalColOffset, nextCell;
 
         // == record rowspan elements
         if (whichProcess == "merge") {
             this.toggleRowspans(whichItem, offsetR, offsetC, "on");
-        } else if (whichProcess == "unmerge") {
+        } else if (whichProcess == "UNMERGE") {
             this.toggleRowspans(whichItem, offsetR, offsetC, "off");
         }
 
         // == get index cell location (check row/colspans in index row)
-        var tableRows = $("tr");
+        tableRows = $("tr");
         indexRow = whichItem.iR + offsetR;
         indexCol = whichItem.iC + offsetC;
         indexRowObject = tableRows[indexRow];
         colspans = this.checkColumnSpans(indexRowObject, indexRow, indexCol);
         rowspans = this.checkRowSpans(indexRow, indexCol);
-        totalColOffset = indexCol - colspans - rowspans;
-        indexCell = $(indexRowObject).children()[totalColOffset];
-        console.log("  INDEX_cell: " + $(indexCell).attr("id"));
+        indexColOffset = indexCol - colspans - rowspans;
+        indexCell = $(indexRowObject).children()[indexColOffset];
+        // console.log("  INDEX_id: " + $(indexCell).attr("id"));
+        // console.log("  INDEX_colspans: " + colspans);
+        // console.log("  INDEX_rowspans: " + rowspans);
+        // console.log("  $(indexRowObject).children().length: " + $(indexRowObject).children().length);
 
         // == remove cells from merge area (check row/colspans in each row)
         for (var row = 0; row < whichItem.iH; row++) {
@@ -1483,29 +1508,36 @@ function initGame() {
             nextRow = indexRow + row;
             colspans = this.checkColumnSpans(nextRowObject, nextRow, indexCol);
             rowspans = this.checkRowSpans(nextRow, indexCol);
-            totalColOffset = indexCol - colspans - rowspans;
+            // console.log("  colspans: " + colspans);
+            // console.log("  rowspans: " + rowspans);
+            totalSpanOffset = indexCol - colspans - rowspans;
+            // console.log("  totalSpanOffset: " + totalSpanOffset);
 
             if (whichProcess == "merge") {
-                for (var col = 0; col < whichItem.iW; col++) {
-                    nextCell = $(nextRowObject).children()[totalColOffset + col];
+                for (var col = 0; col < (whichItem.iW); col++) {
+                    if (((row == 0) && (col == 1))) {
+                        totalColOffset = parseInt(totalSpanOffset + col);
+                        // totalColOffset = parseInt(totalSpanOffset);
+                    }
+                    if (row > 0) {
+                        totalColOffset = parseInt(totalSpanOffset);
+                    }
 
                     // == remove all but index cell in merge area
                     if (!((row == 0) && (col == 0))) {
-                        console.log("  remove_cell: " + $(nextCell).attr("id"));
+                        // console.log("  totalColOffset: " + (totalColOffset));
+                        // console.log("  target_cell: " + $(nextRowObject).children()[totalColOffset].id);
+                        nextCell = $(nextRowObject).children()[totalColOffset];
+                        // console.log("  remove_cell: " + $(nextCell).attr("id"));
                         $(nextCell).remove();
+                        // totalColOffset = totalColOffset - 2;
                     }
                 }
-                $(indexCell).attr("colSpan", whichItem.iW);
-                $(indexCell).attr("rowSpan", whichItem.iH);
-                $(indexCell).addClass(whichItem.class);
-                if (whichItem.type != "input") {
-                    $(indexCell).attr("id", whichItem.name);
-                }
 
-            } else if (whichProcess == "unmerge")  {
-                console.log("  remove_index: " + $(indexCell).attr("id"));
+            } else if (whichProcess == "UNMERGE")  {
+                // console.log("  remove_index: " + $(indexCell).attr("id"));
                 $(indexCell).remove();
-                indexRowCell = $(nextRowObject).children()[totalColOffset - 1];
+                indexRowCell = $(nextRowObject).children()[totalSpanOffset - 1];
                 for (var col = 0; col < whichItem.iW; col++) {
                     var newCell = document.createElement("td");
                     $(indexRowCell).after(newCell);
@@ -1515,11 +1547,11 @@ function initGame() {
 
             } else if (whichProcess == "select") {
                 for (var col = 0; col < whichItem.iW; col++) {
-                    nextCell = $(nextRowObject).children()[totalColOffset + col];
+                    nextCell = $(nextRowObject).children()[totalSpanOffset + col];
                     $(nextCell).addClass(whichItem.class);
-                    console.log("  cell_class: " + $(nextCell).attr('class'));
+                    // console.log("  cell_class: " + $(nextCell).attr('class'));
                     if ((row == 0) && (col == 0)) {
-                        indexCell = $(nextRowObject).children()[totalColOffset];
+                        indexCell = $(nextRowObject).children()[totalSpanOffset];
                         $(indexCell).attr("id", whichItem.name);
                     } else {
                         $(nextCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
@@ -1528,13 +1560,13 @@ function initGame() {
 
             } else if (whichProcess == "deselect") {
                 for (var col = 0; col < whichItem.iW; col++) {
-                    nextCell = $(nextRowObject).children()[totalColOffset + col];
+                    nextCell = $(nextRowObject).children()[totalSpanOffset + col];
                     $(nextCell).removeClass(whichItem.class);
                     $(nextCell).addClass("cell");
-                    console.log("  cell_class: " + $(nextCell).attr('class'));
+                    // console.log("  cell_class: " + $(nextCell).attr('class'));
                     $(nextCell).text("");
                     if ((row == 0) && (col == 0)) {
-                        indexCell = $(nextRowObject).children()[totalColOffset];
+                        indexCell = $(nextRowObject).children()[totalSpanOffset];
                         $(indexCell).attr("id", (indexRow + row) + "-" + (indexCol + col));
                         $(indexCell).empty();
                     } else {
@@ -1558,7 +1590,7 @@ function initGame() {
 
     // ======= ======= ======= toggleRowspans ======= ======= =======
     Display.prototype.toggleRowspans = function(whichItem, offsetR, offsetC, onOff) {
-        console.log("toggleRowspans");
+        // console.log("toggleRowspans");
 
         // == record rowspan elements
         if (whichItem.iH > 1) {
@@ -1583,7 +1615,7 @@ function initGame() {
 
     // ======= ======= ======= checkRowSpans ======= ======= =======
     Display.prototype.checkRowSpans = function(whichRow, whichCol) {
-        console.log("checkRowSpans");
+        // console.log("checkRowSpans");
         // console.log("  which_R/C: " + whichRow + "/" + whichCol);
 
         var rowspans = 0;
@@ -1603,7 +1635,7 @@ function initGame() {
 
     // ======= ======= ======= checkColumnSpans ======= ======= =======
     Display.prototype.checkColumnSpans = function(whichRowObject, whichRow, whichCol) {
-        console.log("checkColumnSpans");
+        // console.log("checkColumnSpans");
 
         var colspans = 0;
         var indexCol = 0;
@@ -1624,6 +1656,7 @@ function initGame() {
     // ======= ======= ======= tooltips ======= ======= =======
     Display.prototype.tooltips = function(whichItem, onOff) {
         console.log("tooltips");
+
         var nextTooltip;
         if (whichItem !== null && typeof whichItem === 'object') {
             console.log("  whichItem.id: " + whichItem.id);
@@ -1636,12 +1669,13 @@ function initGame() {
             }
         } else {
             nextTooltip = whichItem;
+            console.log("  nextTooltip: " + nextTooltip);
         }
-        var tooltipIndexCell = this.tableCellsArray[9][12];
+
         if (onOff == "on") {
-            $(tooltipIndexCell).text(nextTooltip);
+            $("#tooltips").text(nextTooltip);
         } else {
-            $(tooltipIndexCell).text("");
+            $("#tooltips").text("");
         }
     }
 
