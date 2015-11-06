@@ -1,4 +1,32 @@
 
+// ======= ======= ======= reportRowspans ======= ======= =======
+Display.prototype.reportRowspans = function(whichRow) {
+    console.log("------- reportRowspans ------- row: " + whichRow);
+    console.log("   this.tableRowspansArray.length: " + this.tableRowspansArray.length);
+
+    // == display rowspan status for targeted row
+    targetRow = 7;
+    if (whichRow == targetRow) {
+        for (row = 0; row < this.tableRowspansArray.length; row++) {
+            nextRow = this.tableRowspansArray[row];
+            if (row == whichRow) {
+                console.log("   nextRow.length: " + nextRow.length);
+                for (col = 0; col < nextRow.length; col++) {
+                    nextCol = nextRow[col];
+                    if (nextCol.rspan == true) {
+                        console.log("  rowspan TRUE: " + row + "/" +  col);
+                    } else {
+                        console.log("  rowspan FALSE: " + row + "/" +  col);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
 // cardDivString = "<div class='flip-container " + whichClass + "' ontouchstart='this.classList.toggle('hover');'>";
 cardDivString = "<div class='flip-container " + whichClass + "'>";
 // cardDivString += "<div class='flipper'><div class='front'><p class='cardText'>" + cardValue + "</p></div>";

@@ -144,6 +144,9 @@ body {
 .enterBtn, .startBtn, .playGameBtn, .dealBtn, .newGameBtn {
     background-color: DarkCyan;
 }
+.playAgainBtn {
+    background-color: orangered;
+}
 .ones, .fives, .tens {
     background-color: lawngreen;
 }
