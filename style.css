@@ -29,6 +29,7 @@ body {
     /*font-family: 'Orbitron', sans-serif;*/
     font-family: 'Michroma', sans-serif;
     /*font-family: 'Allerta Stencil', sans-serif;*/
+    background-color: #EBEBFF;
 }
 .container {
     position: relative;
@@ -50,7 +51,7 @@ body {
      width: 50px;
      height: 50px;
      background-color: #EBEBFF;
-     border: 1px solid rebeccapurple;
+     /*border: 1px solid rebeccapurple;*/
 }
 .indexCell {
      background-color: red;
@@ -63,6 +64,10 @@ body {
     text-align: center;
     font-weight: bold;
     font-size: 46px;
+}
+.tooltips {
+    background-color: white;
+    border: 4px solid rebeccapurple;
 }
 
 /* ======= cardstack ======= */
@@ -79,7 +84,11 @@ body {
     background-color: #E0D1FF;
 }*/
 .cardText {
-    padding-top: 20px;
+    margin-top: -5px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
 }
 .cardvalue {
     vertical-align: top;
@@ -130,6 +139,9 @@ body {
 .pBorder-3 {
     background: #E0D1FF;
 }
+.bet, .bank {
+    border: 2px solid red;
+}
 
 /* ======= buttons ======= */
 .orbBtn {
@@ -149,6 +161,21 @@ body {
 }
 .ones, .fives, .tens {
     background-color: lawngreen;
+    z-index: 9;
+}
+/* ======= table ======= */
+#gameTable {
+    position: absolute;
+    /*left: 900px;
+    top: 300px;*/
+    height: 216px;
+    width: 320px;
+    background-color: #6EFFB7;
+    border: 4px solid #C9F1C9;
+    z-index: 0;
+}
+.table {
+    z-index: 9;
 }
 .green_grid {
     background-color: lawngreen;
@@ -186,24 +213,25 @@ body {
     margin-left: 2px;
 }
 
-/* ======= table ======= */
-.gameTable {
-    background-color: #CCFFCC;
-}
-
 /* ======= card flip ======= */
 .flip-container, .front, .back {
 	width: 48px;
 	height: 96px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 /* entire container, keeps perspective */
 .flip-container {
 	perspective: 1000;
+    border-radius: 8px;
 }
 /* flip the pane when hovered */
-.flip-container:hover .flipper {
+.flip-container .flipper {
+    /*.flip-container:hover .flipper {*/
 	transform: rotateY(180deg);
+    border-radius: 8px;
+}
+.cardFlip {
+    position: relative;
 }
 /* flip speed goes here */
 .flipper {
@@ -217,10 +245,13 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px #888888;
 }
 /* front pane, placed above back */
 .front {
 	z-index: 2;
+    background-color: mediumvioletred;
 	/* for firefox 31 */
 	transform: rotateY(0deg);
 }

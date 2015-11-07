@@ -1,4 +1,80 @@
 
+flipCards = setInterval(function() {
+    console.log("  playerIndex: " + playerIndex);
+    cardCount++;
+    cardIndex++;
+    if (!nextPlayer) {
+        nextPlayer = self.playerObjectsArray[playerIndex];
+        totalCards += nextPlayer.hand.length;
+    } else if ((playerIndex > self.playerNamesArray.length - 1) && (dealerFlag == false)) {
+        nextPlayer = self.dealer;
+        dealerFlag = true;
+        playerIndex = 0;
+        cardIndex = 0;
+        totalCards += nextPlayer.hand.length;
+    }
+
+    console.log("  nextPlayer.name: " + nextPlayer.name);
+
+    if (cardIndex > nextPlayer.hand.length - 1) {
+        console.log("  -- next player1 -- ");
+        if (dealerFlag == false) {
+            console.log("  -- next player2 -- ");
+            playerIndex++;
+            cardIndex = -1;
+            nextPlayer = self.playerObjectsArray[playerIndex];
+            totalCards += nextPlayer.hand.length;
+        } else {
+            stopFlips();
+        }
+    } else {
+        nextCard = nextPlayer.hand[cardIndex];
+        $("#" + nextCard).addClass('flipper');
+    }
+    // if (cardCount > totalCards) {
+    //     stopFlips();
+    // }
+
+
+
+
+        // var flipCardsP;
+        // for (var i = 0; i < (this.playerNamesArray.length); i++) {
+        //     nextPlayer = this.playerObjectsArray[i];
+        //     console.log("  nextPlayer: " + nextPlayer.name);
+        //
+        //     interval = 200;
+        //     cardIndex = -1;
+        //     flipCardsP = setInterval(function() {
+        //         cardIndex++;
+        //         console.log("  cardIndexP: " + cardIndex);
+        //         interval += 200;
+        //         if (cardIndex > nextPlayer.hand.length - 1) {
+        //             if (cardIndex > nextPlayer.hand.length) {
+        //                 // stopFlips();
+        //                 console.log("  nextPlayer: " + dealer.name);
+        //                 interval = 800;
+        //                 cardIndex = -1;
+        //                 var flipCardsD = setInterval(function(){
+        //                     cardIndex++;
+        //                     console.log("  cardIndexD: " + cardIndex);
+        //                     interval += 200;
+        //                     if (cardIndex > dealer.hand.length - 1) {
+        //                         stopFlips();
+        //                     }
+        //                     nextCard = dealer.hand[cardIndex];
+        //                      $("#" + nextCard).addClass('flipper');
+        //                 }, interval);
+        //             }
+        //             interval += 500;
+        //         } else {
+        //             nextCard = nextPlayer.hand[cardIndex];
+        //              $("#" + nextCard).addClass('flipper');
+        //         }
+        //     }, interval);
+        // }
+
+
 // ======= ======= ======= reportRowspans ======= ======= =======
 Display.prototype.reportRowspans = function(whichRow) {
     console.log("------- reportRowspans ------- row: " + whichRow);
