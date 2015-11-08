@@ -1,4 +1,11 @@
 
+
+
+dealerFlag = false;
+totalCards = 0;
+cardCount = 0;
+
+
 flipCards = setInterval(function() {
     console.log("  playerIndex: " + playerIndex);
     cardCount++;

@@ -1198,9 +1198,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.2117578"
-     inkscape:cx="666.33851"
-     inkscape:cy="-329.14595"
+     inkscape:zoom="4.5421114"
+     inkscape:cx="632.43089"
+     inkscape:cy="-371.38455"
      inkscape:document-units="px"
      inkscape:current-layer="layer11"
      showgrid="false"
@@ -5880,6 +5880,46 @@
          id="path6335"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       transform="matrix(0.65246449,0,0,0.65246449,271.87294,387.71968)"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/Users/thomasbeach/Desktop/_WEB_DEV/_WEB_PROJECTS/_blackjack4/images/chipsOut.png"
+       id="g5390">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5392"
+         d="M 579.2639,289.67567 556.33124,266.74312 579.2639,243.81056"
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="/Users/thomasbeach/_wdi/_projects2.0/blackjack2/hitmeBW.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.36522871px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         d="m 525.2481,266.40739 0.0681,0"
+         id="path5394"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g5396"
+       inkscape:export-filename="/Users/thomasbeach/Desktop/_WEB_DEV/_WEB_PROJECTS/_blackjack4/images/chipsIn.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="matrix(-0.65246449,0,0,0.65246449,1038.6845,387.71968)">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/Users/thomasbeach/_wdi/_projects2.0/blackjack2/hitmeBW.png"
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="M 579.2639,289.67567 556.33124,266.74312 579.2639,243.81056"
+         id="path5398"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5400"
+         d="m 525.2481,266.40739 0.0681,0"
+         style="fill:none;stroke:#000000;stroke-width:0.36522871px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
     </g>
   </g>
 </svg>

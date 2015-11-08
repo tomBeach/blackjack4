@@ -23,9 +23,6 @@ function initGame() {
             btnParams: {
                 hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
                 holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_1", callback: "betOne", type: "btn", iR:1, iC: 6, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "bet $1" },
-                betFivesBtn: { name: "betFivesBtn_1", callback: "betFive", type: "btn", iR: 1, iC: 7, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "bet $5" },
-                betTensBtn: { name: "betTensBtn_1", callback: "betTen", type: "btn", iR: 1, iC: 8, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "bet $10" },
             },
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 1, iC: 2, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
@@ -38,7 +35,12 @@ function initGame() {
                 pCards: { player: 1, name: "pCards_1", type: "text", iR: 2, iC: 4, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }
             },
             inputParams: {},
-            imageParams: {}
+            imageParams: {},
+            sliderParams: {
+                betOnesBtn: { name:"betOnesBtn_1", callback:"betOne", type:"slider", iR:1, iC:6, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
+                betFivesBtn:{ name:"betFivesBtn_1", callback:"betFive", type:"slider", iR:2, iC:6, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
+                betTensBtn:{ name:"betTensBtn_1", callback:"betTen", type:"slider", iR:3, iC:6, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
+            }
         };
 
         // ======= player2 =======
@@ -49,10 +51,7 @@ function initGame() {
             },
             btnParams: {
                 hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_2", callback: "betOne", type: "btn", iR:5, iC: 7, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: null },
-                betFivesBtn: { name: "betFivesBtn_2", callback: "betFive", type: "btn", iR: 5, iC: 8, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: null },
-                betTensBtn: { name: "betTensBtn_2", callback: "betTen", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: null },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" }
             },
             textParams: {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
@@ -65,7 +64,12 @@ function initGame() {
                 pCards: { player: 2, name: "pCards_2", type: "text", iR: 6, iC: 5, iW: 1, iH: 2, merge: "merge", class: "card-2", value: null }
             },
             inputParams: {},
-            imageParams: {}
+            imageParams: {},
+            sliderParams: {
+                betOnesBtn: { name:"betOnesBtn_2", callback:"betOne", type:"slider", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
+                betFivesBtn:{ name:"betFivesBtn_2", callback:"betFive", type:"slider", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
+                betTensBtn:{ name:"betTensBtn_2", callback:"betTen", type:"slider", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
+            }
         };
 
         // ======= player3 =======
@@ -76,11 +80,7 @@ function initGame() {
             },
             btnParams: {
                 hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 10, iC: 8, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMeBW.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 10, iC: 9, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMeBW.png", value: "hold" },
-                betOnesBtn: { name: "betOnesBtn_3", callback: "betOne", type: "btn", iR: 9, iC: 8, iW: 1, iH: 1, merge: null, class: "ones", value: "$20", tooltip: "$1" },
-                betFivesBtn: { name: "betFivesBtn_3", callback: "betFive", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "fives", value: "$30", tooltip: "$5" },
-                betTensBtn: { name: "betTensBtn_3", callback: "betTen", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "tens", value: "$50", tooltip: "$10" },
-
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 10, iC: 9, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMeBW.png", value: "hold" }
             },
             textParams: {
                 pName: { player: 3, name: "pName_3", type: "text", iR: 9, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-3", value: null },
@@ -93,7 +93,12 @@ function initGame() {
                 pCards: { player: 3, name: "pCards_3", type: "text", iR: 10, iC: 6, iW: 1, iH: 2, merge: "merge", class: "card-3", value: null }
             },
             inputParams: {},
-            imageParams: {}
+            imageParams: {},
+            sliderParams: {
+                betOnesBtn: { name:"betOnesBtn_3", callback:"betOne", type:"slider", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
+                betFivesBtn:{ name:"betFivesBtn_3", callback:"betFive", type:"slider", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
+                betTensBtn:{ name:"betTensBtn_3", callback:"betTen", type:"slider", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
+            }
         };
 
         // ======= dealer =======
@@ -109,7 +114,8 @@ function initGame() {
                 pCards: { player: "D", name: "pCards", type: "text", iR: 1, iC: 12, iW: 1, iH: 2, merge: "merge", class: "card-d", value: null }
             },
             inputParams: {},
-            imageParams: {}
+            imageParams: {},
+            sliderParams: {}
         };
 
         var paramsArray = [playerParams1, playerParams2, playerParams3, dealerParams];
@@ -129,6 +135,9 @@ function initGame() {
                 break;
             case "image":
                 return paramsArray[whichPlayerIndex].imageParams;
+                break;
+            case "slider":
+                return paramsArray[whichPlayerIndex].sliderParams;
                 break;
         }
     }
@@ -249,7 +258,7 @@ function initGame() {
                 var bet = {
                     name: "bet",
                     bg: null,
-                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, game.btnParams.playGameBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn],
+                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, game.btnParams.playGameBtn, player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn],
                     text: [game.gameParams("text").tooltips],
                     input: null,
                     image: null
@@ -260,7 +269,7 @@ function initGame() {
                 var playGame = {
                     name: "playGame",
                     bg: null,
-                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, player.btnParams.betOnesBtn, player.btnParams.betFivesBtn, player.btnParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+                    btn: [game.btnParams.retOnesBtn, game.btnParams.retFivesBtn, game.btnParams.retTensBtn, player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
                     text: [game.gameParams("text").tooltips],
                     input: null,
                     image: null
@@ -388,10 +397,13 @@ function initGame() {
                 });
                 break;
             case "betOne":
-                $(indexCell).off("click").on("click", function(){
-                    console.log("");
-                    console.log("-- -- -- betOne -- -- -- ");
-                    game.placeBet("ones");
+                // $(indexCell).off("click").on("click", function(){
+                $(indexCell).off("mousedown").on("mousedown", function(){
+                    console.log("-- -- -- -- -- slider -- -- -- -- -- ");
+                    display.activateScreenSlider(event);
+                    // console.log("");
+                    // console.log("-- -- -- betOne -- -- -- ");
+                    // game.placeBet("ones");
                 });
                 break;
             case "betFive":
@@ -457,6 +469,12 @@ function initGame() {
                     game.newGame();
                 });
                 break;
+            // case "slider":
+            //     $(indexCell).off("mousedown").on("mousedown", function(){
+            //         console.log("-- -- -- -- -- slider -- -- -- -- -- ");
+            //         display.activateScreenSlider(event);
+            //     });
+            //     break;
         }
     }
 
@@ -491,6 +509,7 @@ function initGame() {
         this.textParams = this.playerParams(id, "text");
         this.inputParams = this.playerParams(id, "input");
         this.imageParams = this.playerParams(id, "image");
+        this.sliderParams = this.playerParams(id, "slider");
     }
 
     // ======= ======= ======= Game Object ======= ======= =======
@@ -738,10 +757,10 @@ function initGame() {
 
         var firstPlayer = game.playerObjectsArray[0];
         console.log("  firstPlayer.name: " + firstPlayer.name);
-        var firstPlayerBetBtns = [firstPlayer.btnParams.betOnesBtn, firstPlayer.btnParams.betFivesBtn, firstPlayer.btnParams.betTensBtn];
+        var firstPlayerSliders = [firstPlayer.sliderParams.betOnesBtn, firstPlayer.sliderParams.betFivesBtn, firstPlayer.sliderParams.betTensBtn];
 
-        for (var j = 0; j < firstPlayerBetBtns.length; j++) {
-            nextItem = firstPlayerBetBtns[j];
+        for (var j = 0; j < firstPlayerSliders.length; j++) {
+            nextItem = firstPlayerSliders[j];
             indexRowObject = tableRows[nextItem.iR];
             colspans = display.checkColumnSpans(indexRowObject, nextItem.iR, nextItem.iC);
             rowspans = display.checkRowSpans(nextItem.iR, nextItem.iC);
@@ -830,12 +849,12 @@ function initGame() {
         // == deactivate/remove prev player buttons
         var prevPlayer = game.currentPlayer;
         var prevPlayerIndex = prevPlayer.id;
-        var prevPlayerBetBtns = [prevPlayer.btnParams.betOnesBtn, prevPlayer.btnParams.betFivesBtn, prevPlayer.btnParams.betTensBtn];
+        var prevPlayerSliders = [prevPlayer.sliderParams.betOnesBtn, prevPlayer.sliderParams.betFivesBtn, prevPlayer.sliderParams.betTensBtn];
         display.modifyGridRegion(prevPlayer.btnParams.hitMeBtn, "prev");
         display.modifyGridRegion(prevPlayer.btnParams.holdMeBtn, "prev");
 
-        for (var j = 0; j < prevPlayerBetBtns.length; j++) {
-            nextItem = prevPlayerBetBtns[j];
+        for (var j = 0; j < prevPlayerSliders.length; j++) {
+            nextItem = prevPlayerSliders[j];
             indexRowObject = tableRows[nextItem.iR];
             colspans = display.checkColumnSpans(indexRowObject, nextItem.iR, nextItem.iC);
             rowspans = display.checkRowSpans(nextItem.iR, nextItem.iC);
@@ -851,12 +870,12 @@ function initGame() {
             // == activate next player buttons
             var nextPlayer = game.playerObjectsArray[prevPlayerIndex + 1];
             console.log("== NEXT: " + nextPlayer.name + " ==");
-            var nextPlayerBetBtns = [nextPlayer.btnParams.betOnesBtn, nextPlayer.btnParams.betFivesBtn, nextPlayer.btnParams.betTensBtn];
+            var nextPlayerSliders = [nextPlayer.sliderParams.betOnesBtn, nextPlayer.sliderParams.betFivesBtn, nextPlayer.sliderParams.betTensBtn];
             display.modifyGridRegion(nextPlayer.btnParams.hitMeBtn, "next");
             display.modifyGridRegion(nextPlayer.btnParams.holdMeBtn, "next");
 
-            for (var j = 0; j < nextPlayerBetBtns.length; j++) {
-                nextItem = nextPlayerBetBtns[j];
+            for (var j = 0; j < nextPlayerSliders.length; j++) {
+                nextItem = nextPlayerSliders[j];
                 indexRowObject = tableRows[nextItem.iR];
                 colspans = display.checkColumnSpans(indexRowObject, nextItem.iR, nextItem.iC);
                 rowspans = display.checkRowSpans(nextItem.iR, nextItem.iC);
@@ -1033,6 +1052,7 @@ function initGame() {
     Game.prototype.displayPlayer = function() {
         console.log("displayPlayer");
 
+        // == display player components (unique for each player)
         var playerCount = game.playerNamesArray.length;
         var currentPlayer = game.playerObjectsArray[playerCount - 1];
         var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.btnParams.betOnesBtn, currentPlayer.btnParams.betFivesBtn, currentPlayer.btnParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank];
@@ -1042,7 +1062,7 @@ function initGame() {
                 display.modifyGridRegion(nextItem, "next");
 
                 // == player buttons not active yet (display amounts only)
-                if (nextItem.type == "btn") {
+                if ((nextItem.type == "btn") || (nextItem.type == "2wayBtn")) {
                     var indexCell = display.tableCellsArray[nextItem.iR][nextItem.iC];
                     sequencer.deActivateButton(indexCell, "click")
                 }
@@ -1393,7 +1413,6 @@ function initGame() {
     // ======= ======= ======= placeBet ======= ======= =======
     Game.prototype.placeBet = function(whichBet) {
         console.log("placeBet");
-        console.log("  game.currentPlayer: " + game.currentPlayer);
         console.log("  game.currentPlayer.name: " + game.currentPlayer.name);
 
         var onesBank = game.currentPlayer.onesBank;
@@ -1451,7 +1470,7 @@ function initGame() {
 
     // ======= ======= ======= returnBet ======= ======= =======
     Game.prototype.returnBet = function(whichBet) {
-        // console.log("returnBet");
+        console.log("returnBet");
 
         var onesBank = game.currentPlayer.onesBank;
         var fivesBank = game.currentPlayer.fivesBank;
@@ -1521,9 +1540,9 @@ function initGame() {
     // ======= ======= ======= updateBetButtonText ======= ======= =======
     Game.prototype.updateBetButtonText = function(whichPlayer) {
         console.log("updateBetButtonText");
-        $("#" + whichPlayer.btnParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
-        $("#" + whichPlayer.btnParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
-        $("#" + whichPlayer.btnParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
+        $("#" + whichPlayer.sliderParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
+        $("#" + whichPlayer.sliderParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
+        $("#" + whichPlayer.sliderParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
         $("#" + whichPlayer.textParams.pBet_1s.name).text("$" + whichPlayer.onesBet);
         $("#" + whichPlayer.textParams.pBet_5s.name).text("$" + whichPlayer.fivesBet);
         $("#" + whichPlayer.textParams.pBet_10s.name).text("$" + whichPlayer.tensBet);
@@ -1618,6 +1637,33 @@ function initGame() {
                 if (buttonActivate == true) {
                     if (whichItem.image == null) {
                         $(indexCell).text(whichValue);
+                    }
+                    sequencer.activateButton(indexCell, whichItem.callback)
+                    // console.log("  whichItem.callback: " + whichItem.callback);
+                } else {
+                    sequencer.deActivateButton(indexCell, whichItem.callback)
+                }
+                break;
+            case "slider":
+                if (buttonActivate == true) {
+                    if (whichItem.image == null) {
+                        $(indexCell).text(whichValue);
+                    }
+                    sequencer.activateButton(indexCell, whichItem.callback)
+                    // console.log("  whichItem.callback: " + whichItem.callback);
+                } else {
+                    sequencer.deActivateButton(indexCell, whichItem.callback)
+                }
+                break;
+            case "2wayBtn":
+                if (buttonActivate == true) {
+                    if (whichItem.image == null) {
+                        $(indexCell).text(whichValue);
+                    } else {
+                        btnL = $(new Image()).attr('src', ("images/" + whichItem.image + "In.png")).appendTo($(indexCell));
+                        btnR = $(new Image()).attr('src', ("images/" + whichItem.image + "Out.png")).appendTo($(indexCell));
+                        $(btnL).attr("id", whichItem.name + "In");
+                        $(btnR).attr("id", whichItem.name + "Out");
                     }
                     sequencer.activateButton(indexCell, whichItem.callback)
                     // console.log("  whichItem.callback: " + whichItem.callback);
@@ -1722,7 +1768,7 @@ function initGame() {
                     $(nextCell).addClass(whichItem.class);
                     if ((row == 0) && (col == 0)) {
                         indexCell = $(nextRowObject).children()[totalSpanOffset];
-                        if (whichItem.image != null) {
+                        if ((whichItem.image != null) && (whichItem.type != "2wayBtn")) {
                             newImage = $(new Image()).attr('src', "images/" + whichItem.image).appendTo($(indexCell));
                             $(newImage).attr("id", whichItem.name);
                         } else {
@@ -1962,6 +2008,202 @@ function initGame() {
         this.tableCellsArray = tableCellsArray;
         this.tableRowspansArray = tableRowspansArray;
     }
+
+
+    // ======= ======= ======= activateScreenSlider ======= ======= =======
+    Display.prototype.activateScreenSlider = function(event) {
+	    console.log("-- activateScreenSlider");
+
+	    var dX, dY;
+	    var maxY = 100;
+	    var minY = 100;
+	    var updateChips;
+	    var triggerFlag = true;
+		var whichSlider = event.target;
+
+	    // ======= selected slider object ======= ======= ======= ======= =======
+	    var slider = {
+	        slider_id: whichSlider.id,
+	        slider_element: whichSlider,
+	        player_chips: whichSlider.className.split(/\s+/)[0],
+	        player_index: parseInt(whichSlider.id.charAt(whichSlider.id.length-1)),
+	        start_mouseX: 0,
+	        start_elementX: 0,
+	        drag_elementX: 0,
+	        zLevel: 3,
+
+	        // ======= MOUSE_DOWN ======= MOUSE_DOWN ======= MOUSE_DOWN ======= MOUSE_DOWN =======
+			initSlider: function (newEvent) {
+			    // console.log("  initSlider");
+                console.log("   this.slider_id: " + this.slider_id);
+                console.log("   this.player_chips: " + this.player_chips);
+                console.log("   this.player_index: " + this.player_index);
+
+			    event.preventDefault();
+		        var evt = newEvent || window.event;
+	            this.start_mouseX = newEvent.clientX;
+	            this.start_elementX = this.slider_element.offsetTop;
+
+		        removeEventSimple(document, 'mousedown', display.activateScreenSlider);
+	            addEventSimple(document, 'mousemove', slider.dragSlider);
+	            addEventSimple(document, 'mouseup', slider.dropSlider);
+	        },
+
+	        // ======= MOUSE_MOVE ======= MOUSE_MOVE ======= MOUSE_MOVE ======= MOUSE_MOVE =======
+	        dragSlider: function (newEvent) {
+	            // console.log('dragSlider');
+
+		        var evt = newEvent || window.event;
+	            dX = parseInt(evt.clientX) - parseInt(slider.start_mouseX);
+	            if (dX < -20) {
+	            	dX = -20;
+	            }
+	            if (dX > 20) {
+	            	dX = 20;
+	            }
+	            slider.updateSlider(dX);
+	            if (triggerFlag == true) {
+		            slider.updateSvgs(dX);
+		            triggerFlag = false;
+	            }
+	        },
+	        updateSlider: function (dX) {
+	            // console.log('updateSlider');
+	            slider.slider_element.style.top = slider.start_elementY + dX + 'px';
+	            slider.drag_elementY = slider.start_elementY + dX;
+	        },
+	        updateSvgs: function (dX) {
+	            console.log('updateSvgs');
+	            currentPlayer = game.playerObjectsArray[slider.player_index - 1];
+                console.log("   currentPlayer.name: " + currentPlayer.name);
+	            currentChips = slider.player_chips;
+
+	            // ======= adding / removing $1 chips
+	            if (currentChips == 'ones') {
+	            	if (dX < 0) {
+	            		updateChips = setInterval(function() {
+                            console.log("   dX-: " + dX);
+	            			// nextPlayer.onesBank = nextPlayer.onesBank - 1;
+	            			// if (nextPlayer.onesBank > 0) {
+		            		// 	nextPlayer.onesBet = nextPlayer.onesBet + 1;
+                                game.placeBet(currentChips);
+		            			// getBetBal(newPlayerIndex);
+			        			// updateDisplay("chips", slider.player_index);
+		            			console.log('betting $' + nextPlayer.onesBet);
+	            			// } else {
+	            			// 	console.log('NO MORE CHIPS!');
+	            			// }
+	            		}, 300);
+	            	} else {
+	            		updateChips = setInterval(function() {
+                            console.log("   dX+: " + dX);
+	            			// nextPlayer.onesBank = nextPlayer.onesBank + 1;
+	            			// if (nextPlayer.onesBet <= 0) {
+	            			// 	console.log('NO $1 CHIPS BET');
+	            			// } else {
+		            		// 	nextPlayer.onesBet = nextPlayer.onesBet - 1;
+                                game.returnBet(currentChips);
+			        			// updateDisplay("chips", slider.player_index);
+		            			console.log('taking back $' + nextPlayer.onesBet);
+	            			// }
+		            	}, 300);
+		            }
+
+	            // ======= adding / removing $5 chips
+            } else if (currentChips == 'fives') {
+	            	if (dX < 0) {
+	            		updateChips = setInterval(function() {
+	            			nextPlayer.chipsBal_5 = nextPlayer.chipsBal_5 - 1;
+	            			if (nextPlayer.chipsBal_5 > 0) {
+		            			nextPlayer.chipsBet_5 = nextPlayer.chipsBet_5 + 1;
+		            			getBetBal(newPlayerIndex);
+			        			updateDisplay("chips", slider.player_index);
+		            			console.log('betting $' + nextPlayer.chipsBet_5);
+	            			} else {
+	            				console.log('NO MORE CHIPS!');
+	            			}
+	            		}, 300);
+	            	} else {
+	            		updateChips = setInterval(function() {
+	            			nextPlayer.chipsBal_5 = nextPlayer.chipsBal_5 + 1;
+	            			if (nextPlayer.chipsBet_5 <= 0) {
+	            				console.log('NO $5 CHIPS BET');
+	            			} else {
+		            			nextPlayer.chipsBet_5 = nextPlayer.chipsBet_5 - 1;
+			        			updateDisplay("chips", slider.player_index);
+		            			console.log('taking back $' + nextPlayer.chipsBet_5);
+	            			}
+		            	}, 300);
+		            }
+
+	            // ======= adding / removing $10 chips
+	            } else {
+	            	if (dX < 0) {
+	            		updateChips = setInterval(function() {
+	            			nextPlayer.chipsBal_10 = nextPlayer.chipsBal_10 - 1;
+	            			if (nextPlayer.chipsBal_10 > 0) {
+		            			nextPlayer.chipsBet_10 = nextPlayer.chipsBet_10 + 1;
+		            			getBetBal(newPlayerIndex);
+			        			updateDisplay("chips", slider.player_index);
+		            			console.log('betting $' + nextPlayer.chipsBet_10);
+	            			} else {
+	            				console.log('NO MORE CHIPS!');
+	            			}
+	            		}, 300);
+	            	} else {
+	            		updateChips = setInterval(function() {
+	            			nextPlayer.chipsBal_10 = nextPlayer.chipsBal_10 + 1;
+	            			if (nextPlayer.chipsBet_10 <= 0) {
+	            				console.log('NO $10 CHIPS BET');
+	            			} else {
+		            			nextPlayer.chipsBet_10 = nextPlayer.chipsBet_10 - 1;
+			        			updateDisplay("chips", slider.player_index);
+		            			console.log('taking back $' + nextPlayer.chipsBet_10);
+	            			}
+		            	}, 300);
+		            }
+	            }
+	        },
+
+	        // ======= MOUSE_UP ======= MOUSE_UP ======= MOUSE_UP ======= MOUSE_UP =======
+	        dropSlider: function(newEvent) {
+	            console.log('dropSlider');
+	            clearInterval(updateChips);
+	            slider.slider_element.style.top = '60px';
+
+	            // currentDisplay = game.displaysArray[slider.player_index]
+		    	// currentDataset = [nextPlayer.chipsBet_1, nextPlayer.chipsBet_5, nextPlayer.chipsBet_10, nextPlayer.chipsBal_1, nextPlayer.chipsBal_5, nextPlayer.chipsBal_10]
+	            // currentSvg = game.chipsArray[slider.player_index];
+	            // console.log('currentSvg: ' + currentSvg);
+
+		        removeEventSimple(document, 'mouseup', slider.dropSlider);
+		        removeEventSimple(document, 'mousemove', slider.dragSlider);
+	        }
+ 		}
+
+        // ======= events ======= ======= ======= ======= ======= ======= =======
+    	function addEventSimple(obj,evt,fn) {
+    	    console.log('addEventSimple');
+    	    console.log('  obj: ' + obj.id);
+    	    if (obj.addEventListener)
+    	        obj.addEventListener(evt,fn,false);
+    	    else if (obj.attachEvent)
+    	        obj.attachEvent('on'+evt,fn);
+    	}
+
+    	function removeEventSimple(obj,evt,fn) {
+    	    // console.log('removeEventSimple');
+    	    if (obj.removeEventListener)
+    	        obj.removeEventListener(evt,fn,false);
+    	    else if (obj.detachEvent)
+    	        obj.detachEvent('on'+evt,fn);
+    	}
+
+		slider.initSlider(event);
+ 		return slider;
+	}
+
+
 
 
     // ======= ======= ======= init ======= ======= =======
