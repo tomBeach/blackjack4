@@ -1,4 +1,33 @@
 
+case "slider":
+    if (buttonActivate == true) {
+        if (whichItem.image == null) {
+            $(indexCell).text(whichValue);
+        }
+        sequencer.activateButton(indexCell, whichItem.callback)
+        // console.log("  whichItem.callback: " + whichItem.callback);
+    } else {
+        sequencer.deActivateButton(indexCell, whichItem.callback)
+    }
+    break;
+case "2wayBtn":
+    if (buttonActivate == true) {
+        if (whichItem.image == null) {
+            $(indexCell).text(whichValue);
+        } else {
+            btnL = $(new Image()).attr('src', ("images/" + whichItem.image + "In.png")).appendTo($(indexCell));
+            btnR = $(new Image()).attr('src', ("images/" + whichItem.image + "Out.png")).appendTo($(indexCell));
+            $(btnL).attr("id", whichItem.name + "In");
+            $(btnR).attr("id", whichItem.name + "Out");
+        }
+        sequencer.activateButton(indexCell, whichItem.callback)
+        // console.log("  whichItem.callback: " + whichItem.callback);
+    } else {
+        sequencer.deActivateButton(indexCell, whichItem.callback)
+    }
+    break;
+
+
 
 
 dealerFlag = false;

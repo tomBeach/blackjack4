@@ -141,8 +141,11 @@ body {
 }
 .bet, .bank {
     border: 2px solid red;
+    box-shadow: inset 5px 5px 5px 5px #888;
+    -webkit-box-shadow: inset 4px 4px 6px 0px #888;
+    -moz-box-shadow: inset 4px 4px 6px 0px #888;
+    -o-box-shadow: inset 4px 4px 6px 0px #888;
 }
-
 /* ======= buttons ======= */
 .orbBtn {
     background-color: #85E085;
@@ -161,6 +164,13 @@ body {
 }
 .ones, .fives, .tens {
     background-color: lawngreen;
+    z-index: 9;
+}
+.slider {
+    position: absolute;
+    height: 50px;
+    width: 20px;
+    background-color: red;
     z-index: 9;
 }
 /* ======= table ======= */
