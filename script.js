@@ -21,8 +21,8 @@ function initGame() {
                 borderV: { player: 1, name: "borderV_1", type: "bg", iR: 1, iC: 5, iW: 1, iH: 3, merge: null, class: "pBorder-1" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 2, iC: 6, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 2, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" },
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 1, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 1, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" },
             },
             textParams: {
                 pName: { player: 1, name: "pName_1", type: "text", iR: 1, iC: 2, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
@@ -37,9 +37,9 @@ function initGame() {
             inputParams: {},
             imageParams: {},
             sliderParams: {
-                betOnesBtn: { name:"betOnesBtn_1", callback:"betOne", type:"slider", iR:1, iC:6, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
-                betFivesBtn:{ name:"betFivesBtn_1", callback:"betFive", type:"slider", iR:2, iC:6, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
-                betTensBtn:{ name:"betTensBtn_1", callback:"betTen", type:"slider", iR:3, iC:6, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
+                betOnesBtn: { name:"betOnesBtn_1", callback:"mngBets", type:"slider", iR:1, iC:6, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
+                betFivesBtn:{ name:"betFivesBtn_1", callback:"mngBets", type:"slider", iR:2, iC:6, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
+                betTensBtn:{ name:"betTensBtn_1", callback:"mngBets", type:"slider", iR:3, iC:6, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
             }
         };
 
@@ -50,8 +50,8 @@ function initGame() {
                 borderV: { player: 2, name: "borderV_2", type: "bg", iR: 5, iC: 6, iW: 1, iH: 3, merge: null, class: "pBorder-2" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 6, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 6, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" }
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 5, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 5, iC: 9, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" }
             },
             textParams: {
                 pName: { player: 2, name: "pName_2", type: "text", iR: 5, iC: 3, iW: 3, iH: 1, merge: "merge", class: "pBorder-2", value: null },
@@ -66,9 +66,9 @@ function initGame() {
             inputParams: {},
             imageParams: {},
             sliderParams: {
-                betOnesBtn: { name:"betOnesBtn_2", callback:"betOne", type:"slider", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
-                betFivesBtn:{ name:"betFivesBtn_2", callback:"betFive", type:"slider", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
-                betTensBtn:{ name:"betTensBtn_2", callback:"betTen", type:"slider", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
+                betOnesBtn: { name:"betOnesBtn_2", callback:"mngBets", type:"slider", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
+                betFivesBtn:{ name:"betFivesBtn_2", callback:"mngBets", type:"slider", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
+                betTensBtn:{ name:"betTensBtn_2", callback:"mngBets", type:"slider", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
             }
         };
 
@@ -79,8 +79,8 @@ function initGame() {
                 borderV: { player: 3, name: "borderV_3", type: "bg", iR: 9, iC: 7, iW: 1, iH: 3, merge: null, class: "pBorder-3" }
             },
             btnParams: {
-                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 10, iC: 8, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMeBW.png", value: "hit me!" },
-                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 10, iC: 9, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMeBW.png", value: "hold" }
+                hitMeBtn: { name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 9, iC: 9, iW: 1, iH: 1, merge: null, class: "hitMe", image: "hitMeBW.png", value: "hit me!" },
+                holdMeBtn: { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 9, iC: 10, iW: 1, iH: 1, merge: null, class: "holdMe", image: "holdMeBW.png", value: "hold" }
             },
             textParams: {
                 pName: { player: 3, name: "pName_3", type: "text", iR: 9, iC: 4, iW: 3, iH: 1, merge: "merge", class: "pBorder-3", value: null },
@@ -95,9 +95,9 @@ function initGame() {
             inputParams: {},
             imageParams: {},
             sliderParams: {
-                betOnesBtn: { name:"betOnesBtn_3", callback:"betOne", type:"slider", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
-                betFivesBtn:{ name:"betFivesBtn_3", callback:"betFive", type:"slider", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
-                betTensBtn:{ name:"betTensBtn_3", callback:"betTen", type:"slider", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
+                betOnesBtn: { name:"betOnesBtn_3", callback:"mngBets", type:"slider", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltip:"$1" },
+                betFivesBtn:{ name:"betFivesBtn_3", callback:"mngBets", type:"slider", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltip:"$5" },
+                betTensBtn:{ name:"betTensBtn_3", callback:"mngBets", type:"slider", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltip:"$10" }
             }
         };
 
@@ -396,49 +396,10 @@ function initGame() {
                     game.playGame();
                 });
                 break;
-            case "betOne":
-                // $(indexCell).off("click").on("click", function(){
+            case "mngBets":
                 $(indexCell).off("mousedown").on("mousedown", function(){
-                    console.log("-- -- -- -- -- slider -- -- -- -- -- ");
+                    console.log("-- -- -- -- -- mngBets -- -- -- -- -- ");
                     display.activateScreenSlider(event);
-                    // console.log("");
-                    // console.log("-- -- -- betOne -- -- -- ");
-                    // game.placeBet("ones");
-                });
-                break;
-            case "betFive":
-                $(indexCell).off("click").on("click", function(){
-                    console.log("");
-                    console.log("-- -- -- betFive -- -- -- ");
-                    game.placeBet("fives");
-                });
-                break;
-            case "betTen":
-                $(indexCell).off("click").on("click", function(){
-                    console.log("");
-                    console.log("-- -- -- betTen -- -- -- ");
-                    game.placeBet("tens");
-                });
-                break;
-            case "retOne":
-                $(indexCell).off("click").on("click", function(){
-                    console.log("");
-                    console.log("-- -- -- retOne -- -- -- ");
-                    game.returnBet("ones");
-                });
-                break;
-            case "retFive":
-                $(indexCell).off("click").on("click", function(){
-                    console.log("");
-                    console.log("-- -- -- retFive -- -- -- ");
-                    game.returnBet("fives");
-                });
-                break;
-            case "retTen":
-                $(indexCell).off("click").on("click", function(){
-                    console.log("");
-                    console.log("-- -- -- retTen -- -- -- ");
-                    game.returnBet("tens");
                 });
                 break;
             case "hitMe":
@@ -1055,7 +1016,7 @@ function initGame() {
         // == display player components (unique for each player)
         var playerCount = game.playerNamesArray.length;
         var currentPlayer = game.playerObjectsArray[playerCount - 1];
-        var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.btnParams.betOnesBtn, currentPlayer.btnParams.betFivesBtn, currentPlayer.btnParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank];
+        var playerParamsArray = [currentPlayer.bgParams.borderH, currentPlayer.bgParams.borderV, currentPlayer.sliderParams.betOnesBtn, currentPlayer.sliderParams.betFivesBtn, currentPlayer.sliderParams.betTensBtn, currentPlayer.textParams.pName, currentPlayer.textParams.pScore, currentPlayer.textParams.pBank];
         for (var j = 0; j < playerParamsArray.length; j++) {
             nextItem = playerParamsArray[j];
             if (nextItem != null) {
@@ -2078,90 +2039,16 @@ function initGame() {
                 console.log("   currentPlayer.name: " + currentPlayer.name);
 	            currentChips = slider.player_chips;
 
-	            // ======= adding / removing $1 chips
-	            if (currentChips == 'ones') {
-	            	if (dX < 0) {
-	            		updateChips = setInterval(function() {
-                            console.log("   dX-: " + dX);
-	            			// nextPlayer.onesBank = nextPlayer.onesBank - 1;
-	            			// if (nextPlayer.onesBank > 0) {
-		            		// 	nextPlayer.onesBet = nextPlayer.onesBet + 1;
-                                game.placeBet(currentChips);
-		            			// getBetBal(newPlayerIndex);
-			        			// updateDisplay("chips", slider.player_index);
-		            			console.log('betting $' + nextPlayer.onesBet);
-	            			// } else {
-	            			// 	console.log('NO MORE CHIPS!');
-	            			// }
-	            		}, 300);
-	            	} else {
-	            		updateChips = setInterval(function() {
-                            console.log("   dX+: " + dX);
-	            			// nextPlayer.onesBank = nextPlayer.onesBank + 1;
-	            			// if (nextPlayer.onesBet <= 0) {
-	            			// 	console.log('NO $1 CHIPS BET');
-	            			// } else {
-		            		// 	nextPlayer.onesBet = nextPlayer.onesBet - 1;
-                                game.returnBet(currentChips);
-			        			// updateDisplay("chips", slider.player_index);
-		            			console.log('taking back $' + nextPlayer.onesBet);
-	            			// }
-		            	}, 300);
-		            }
-
-	            // ======= adding / removing $5 chips
-            } else if (currentChips == 'fives') {
-	            	if (dX < 0) {
-	            		updateChips = setInterval(function() {
-	            			nextPlayer.chipsBal_5 = nextPlayer.chipsBal_5 - 1;
-	            			if (nextPlayer.chipsBal_5 > 0) {
-		            			nextPlayer.chipsBet_5 = nextPlayer.chipsBet_5 + 1;
-		            			getBetBal(newPlayerIndex);
-			        			updateDisplay("chips", slider.player_index);
-		            			console.log('betting $' + nextPlayer.chipsBet_5);
-	            			} else {
-	            				console.log('NO MORE CHIPS!');
-	            			}
-	            		}, 300);
-	            	} else {
-	            		updateChips = setInterval(function() {
-	            			nextPlayer.chipsBal_5 = nextPlayer.chipsBal_5 + 1;
-	            			if (nextPlayer.chipsBet_5 <= 0) {
-	            				console.log('NO $5 CHIPS BET');
-	            			} else {
-		            			nextPlayer.chipsBet_5 = nextPlayer.chipsBet_5 - 1;
-			        			updateDisplay("chips", slider.player_index);
-		            			console.log('taking back $' + nextPlayer.chipsBet_5);
-	            			}
-		            	}, 300);
-		            }
-
-	            // ======= adding / removing $10 chips
-	            } else {
-	            	if (dX < 0) {
-	            		updateChips = setInterval(function() {
-	            			nextPlayer.chipsBal_10 = nextPlayer.chipsBal_10 - 1;
-	            			if (nextPlayer.chipsBal_10 > 0) {
-		            			nextPlayer.chipsBet_10 = nextPlayer.chipsBet_10 + 1;
-		            			getBetBal(newPlayerIndex);
-			        			updateDisplay("chips", slider.player_index);
-		            			console.log('betting $' + nextPlayer.chipsBet_10);
-	            			} else {
-	            				console.log('NO MORE CHIPS!');
-	            			}
-	            		}, 300);
-	            	} else {
-	            		updateChips = setInterval(function() {
-	            			nextPlayer.chipsBal_10 = nextPlayer.chipsBal_10 + 1;
-	            			if (nextPlayer.chipsBet_10 <= 0) {
-	            				console.log('NO $10 CHIPS BET');
-	            			} else {
-		            			nextPlayer.chipsBet_10 = nextPlayer.chipsBet_10 - 1;
-			        			updateDisplay("chips", slider.player_index);
-		            			console.log('taking back $' + nextPlayer.chipsBet_10);
-	            			}
-		            	}, 300);
-		            }
+            	if (dX > 0) {
+            		updateChips = setInterval(function() {
+                        console.log("   dX+: " + dX);
+                        game.placeBet(currentChips);
+            		}, 300);
+            	} else {
+            		updateChips = setInterval(function() {
+                        console.log("   dX-: " + dX);
+                        game.returnBet(currentChips);
+	            	}, 300);
 	            }
 	        },
 
