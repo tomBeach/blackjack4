@@ -1,4 +1,87 @@
 
+// ======= ======= ======= loadStartGameScreen ======= ======= =======
+Sequencer.prototype.loadStartGameScreen = function(prevNext) {
+    console.log("loadStartGameScreen");
+
+    var nextItemTypes, nextItem, nextType;
+    var currentGameScreen = this.currentGameScreen;
+    var gameScreens = this.gameScreens(currentGameScreen);
+    var itemTypesArray = [gameScreens.bg, gameScreens.btn, gameScreens.text, gameScreens.input, gameScreens.image]
+
+    for (var j = 0; j < itemTypesArray.length; j++) {
+        nextItemTypes = itemTypesArray[j];
+        if (nextItemTypes != null) {
+            for (var i = 0; i < nextItemTypes.length; i++) {
+                nextItem = nextItemTypes[i];
+                nextType = nextItem.type;
+                display.modifyGridRegion(nextItem, prevNext);
+            }
+        }
+    }
+
+}
+
+
+
+player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn
+
+
+
+case "playGame":
+    var playGame = {
+        name: "playGame",
+        bg: null,
+        btn: [player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+        text: [game.gameParams("text").tooltips],
+        input: null,
+        image: null
+    }
+    return playGame;
+    break;
+case "hitMe":
+    var hitMe = {
+        name: "hitMe",
+        bg: null,
+        btn: [player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+        text: [game.gameParams("text").tooltips],
+        input: null,
+        image: null
+    }
+    return hitMe;
+    break;
+case "holdMe":
+    var holdMe = {
+        name: "holdMe",
+        bg: null,
+        btn: [player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+        text: [game.gameParams("text").tooltips],
+        input: null,
+        image: null
+    }
+    return holdMe;
+    break;
+case "turnOver":
+    var turnOver = {
+        name: "turnOver",
+        bg: null,
+        btn: [player.sliderParams.betOnesBtn, player.sliderParams.betFivesBtn, player.sliderParams.betTensBtn, player.btnParams.hitMeBtn, player.btnParams.holdMeBtn],
+        text: [game.gameParams("text").tooltips],
+        input: null,
+        image: null
+    }
+    return turnOver;
+    break;
+
+
+
+
+
+
+
+
+
+
+
 case "slider":
     if (buttonActivate == true) {
         if (whichItem.image == null) {

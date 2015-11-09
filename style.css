@@ -51,7 +51,7 @@ body {
      width: 50px;
      height: 50px;
      background-color: #EBEBFF;
-     /*border: 1px solid rebeccapurple;*/
+     border: 1px solid rebeccapurple;
 }
 .indexCell {
      background-color: red;
@@ -168,9 +168,10 @@ body {
 }
 .slider {
     position: absolute;
-    height: 50px;
+    height: 25px;
     width: 20px;
     background-color: red;
+    box-shadow: 4px 4px 4px #888888;
     z-index: 9;
 }
 /* ======= table ======= */
