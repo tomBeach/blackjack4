@@ -51,7 +51,7 @@ body {
      width: 50px;
      height: 50px;
      background-color: #EBEBFF;
-     border: 1px solid rebeccapurple;
+     /*border: 1px solid rebeccapurple;*/
 }
 .indexCell {
      background-color: red;
