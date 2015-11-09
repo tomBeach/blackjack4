@@ -1,0 +1,378 @@
+/*
+ * manifest file to be compiled into application.css
+ * includes all the files listed below.
+ * reference from here using relative path.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /*font-family: 'Slackey', cursive;
+ font-family: 'Special Elite', cursive;
+ font-family: 'Fredericka the Great', cursive;
+ font-family: 'Short Stack', cursive;*/
+
+/* ======= general ======= */
+html, body, .viewport {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+html {
+  box-sizing: border-box;
+}
+ *, *:before, *:after {
+   box-sizing: inherit;
+}
+
+body {
+    /*font-family: 'Orbitron', sans-serif;*/
+    font-family: 'Michroma', sans-serif;
+    /*font-family: 'Allerta Stencil', sans-serif;*/
+    background-color: #EBEBFF;
+}
+.container {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    /*border: 1px solid red;*/
+}
+
+
+/* ======= cells ======= */
+.cell {
+     width: 50px;
+     height: 50px;
+     background-color: #EBEBFF;
+     /*border: 1px solid rebeccapurple;*/
+}
+.indexCell {
+     background-color: red;
+}
+.deleteCell {
+     background-color: blue;
+}
+.logo {
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+    font-size: 46px;
+}
+.tooltips {
+    background-color: white;
+    border: 4px solid rebeccapurple;
+}
+
+/* ======= cardstack ======= */
+/*.card-d {
+    background-color: #FFB2B2;
+}
+.card-1 {
+    background-color: #FFE0C2;
+}
+.card-2 {
+    background-color: #EBC2FF;
+}
+.card-3 {
+    background-color: #E0D1FF;
+}*/
+.cardText {
+    margin-top: -5px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+.cardvalue {
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+/* ======= player ======= */
+.playerScore {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+.dealerScore {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    z-index: 9;
+}
+.playerName {
+    padding-right: 10px;
+    padding-top: 2px;
+    vertical-align: middle;
+    text-align: right;
+    font-weight: bold;
+    font-size: 30px;
+}
+.dealerName {
+    padding-right: 10px;
+    padding-top: 2px;
+    vertical-align: middle;
+    text-align: left;
+    font-weight: bold;
+    font-size: 30px;
+}
+.dBorder {
+    background: #FFB2B2;
+}
+.pBorder-1 {
+    background: #FFE0C2;
+}
+.pBorder-2 {
+    background: #EBC2FF;
+}
+.pBorder-3 {
+    background: #E0D1FF;
+}
+.bet, .bank {
+    border: 2px solid red;
+    box-shadow: inset 5px 5px 5px 5px #888;
+    -webkit-box-shadow: inset 4px 4px 6px 0px #888;
+    -moz-box-shadow: inset 4px 4px 6px 0px #888;
+    -o-box-shadow: inset 4px 4px 6px 0px #888;
+}
+/* ======= buttons ======= */
+.orbBtn {
+    background-color: #85E085;
+}
+#hitMeBtn {
+    background-color: chartreuse;
+}
+#holdMeBtn {
+    background-color: chartreuse;
+}
+.enterBtn, .startBtn, .playGameBtn, .dealBtn, .newGameBtn {
+    background-color: DarkCyan;
+}
+.playAgainBtn {
+    background-color: orangered;
+}
+.ones, .fives, .tens {
+    background-color: lawngreen;
+    z-index: 9;
+}
+.slider {
+    position: absolute;
+    height: 25px;
+    width: 20px;
+    background-color: red;
+    box-shadow: 4px 4px 4px #888888;
+    z-index: 9;
+}
+/* ======= table ======= */
+#gameTable {
+    position: absolute;
+    /*left: 900px;
+    top: 300px;*/
+    height: 216px;
+    width: 320px;
+    background-color: #6EFFB7;
+    border: 4px solid #C9F1C9;
+    z-index: 0;
+}
+.table {
+    z-index: 9;
+}
+.green_grid {
+    background-color: lawngreen;
+    width: 20px;
+    height: 20px;
+    background-color: #EBEBFF;
+    border: 1px solid red;
+}
+.remove {
+    background-color: black
+}
+
+/* ======= hover/active fx ======= */
+#hitMeBtn:hover, #holdMeBtn:hover {
+    background-color: mediumvioletred;
+}
+#hitMeBtn:active, #holdMeBtn:active {
+    background-color: orangered;
+}
+.ones:hover, .fives:hover, .tens:hover {
+    background-color: greenyellow;
+}
+.orbBtn:hover, .enterBtn:hover, .startBtn:hover, .dealBtn:hover  {
+    background-color: chartreuse;
+}
+.orbBtn:active, .enterBtn:active, .startBtn:active, .dealBtn:active {
+    background-color: mediumspringgreen;
+}
+
+/* ======= text input ======= */
+.playerName {
+    height: 40px;
+    width: 140px;
+    font-size: 18px;
+    margin-left: 2px;
+}
+
+/* ======= card flip ======= */
+.flip-container, .front, .back {
+	width: 48px;
+	height: 96px;
+    /*border: 1px solid black;*/
+}
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000;
+    border-radius: 8px;
+}
+/* flip the pane when hovered */
+.flip-container .flipper {
+    /*.flip-container:hover .flipper {*/
+	transform: rotateY(180deg);
+    border-radius: 8px;
+}
+.cardFlip {
+    position: relative;
+}
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px #888888;
+}
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+    background-color: mediumvioletred;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+/* ======= rows & columns ======= */
+/*.row, .column {
+    box-sizing: border-box;
+}
+.row {
+    overflow: visible;
+    height: 60px;
+    width: 970px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1px solid rebeccapurple;
+}
+.column {
+    float: left;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border: 1px solid Tomato;
+}
+.column:before {
+    /*content: "\00a0";*/
+
+/* ======= columns ======= */
+/*.column-1 { width: 8.333%; }
+.column-2 { width: 16.66%; }
+.column-3 { width: 25%; }
+.column-4 { width: 33.33%; }
+.column-5 { width: 41.66%; }
+.column-6 { width: 50%; }
+.column-7 { width: 58.33%; }
+.column-8 { width: 66.66%; }
+.column-9 { width: 75%; }
+.column-10 { width: 83.33%; }
+.column-11 { width: 91.66%; }
+.column-12 { width: 100%; }*/
+
+/* ======= master rows ======= */
+/*.header {
+    width: 1290px;
+    margin: 0 auto;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 90%;
+    margin: 0 auto;
+}
+.footer {
+    width: 90%;
+    margin: 0 auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}*/
+
+ /* ======= main_nav ======= */
+#card {
+    display: block;
+    /*width: 970px;*/
+    background-color: yellow;
+}
+#card ul {
+    list-style:none;
+    position:relative;
+    width: 970px;
+    float:left;
+    margin:0;
+    padding:0;
+    border: 1px solid gray;
+    z-index: 2;
+}
+#card ul a {
+    display:block;
+    color:#333;
+    text-decoration:none;
+    font-weight:700;
+    font-size: 16px;
+    line-height:60px;
+    font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+#card ul li {
+    display: inline-block;
+    position:relative;
+    float:left;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    margin:0;
+    padding:0
+}
+#card ul li.current-menu-item {
+    background:#ddd
+}
+#card ul li:hover {
+    background:#ddd
+}
+#card ul #title-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
