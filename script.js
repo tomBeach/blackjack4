@@ -160,7 +160,7 @@ function initGame() {
                 // retOnesBtn: { name: "retOnesBtn", callback: "retOne", type: "btn", iR: 7, iC: 12, iW: 1, iH: 1, merge: null, class: "ones", value: "ones", tooltipOver: "return $1 chips to player", tooltipOut: "" },
                 // retFivesBtn: { name: "retFivesBtn", callback: "retFive", type: "btn", iR: 7, iC: 13, iW: 1, iH: 1, merge: null, class: "fives", value: "fives", tooltipOver: "return $5 chips to player", tooltipOut: "" },
                 // retTensBtn:  { name: "retTensBtn",  callback: "retTen", type: "btn", iR: 7, iC: 14, iW: 1, iH: 1,  merge: null, class: "tens", value: "tens", tooltipOver: "return $10 chips to player", tooltipOut: "" },
-                playGameBtn: { name: "playGameBtn", callback: "playGame", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playGameBtn", value: "START HAND", tooltipOver: "Click after placing bets", tooltipOut: "" },
+                playGameBtn: { name: "playGameBtn", callback: "playGame", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playGameBtn", value: "HIT or HOLD", tooltipOver: "Click after placing bets", tooltipOut: "" },
                 playAgainBtn: { name: "playAgainBtn", callback: "playAgain", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playAgainBtn", value: "AGAIN", tooltipOver: "play another hand", tooltipOut: "" },
                 newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "NEW", tooltipOver: "start a new game", tooltipOut: "" }
             },
