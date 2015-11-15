@@ -1,4 +1,253 @@
 
+
+
+        // if (nextScreen.bg) {
+        //     bgs = Array.isArray(nextScreen.bg);
+        //     console.log("  bgs: " + bgs);
+        //     if (bgs) {
+        //         for (var j = 0; j < nextScreen.bg.length; j++) {
+        //             nextBg = nextScreen.bg[j];
+        //             display.makeGridRegion(nextBg);
+        //         }
+        //     } else {
+        //         display.makeGridRegion(nextScreen.bg);
+        //     }
+        // }
+        // if (nextScreen.btn) {
+        //     buttons = Array.isArray(nextScreen.btn);
+        //     if (buttons) {
+        //         for (var j = 0; j < nextScreen.btn.length; j++) {
+        //             nextBtn = nextScreen.btn[j];
+        //             display.makeGridRegion(nextBtn);
+        //         }
+        //     } else {
+        //         display.makeGridRegion(nextScreen.btn);
+        //     }
+        // }
+        // if (nextScreen.subScr) {
+        //     display.getNextSubScreens(nextScreen.subScr);
+        // }
+        // this.slider = slider;
+        // this.text = text;
+        // this.input = input;
+        // this.image = image;
+        // this.subScr = subScr;
+
+
+
+
+
+
+var screenNames = game.allScreens.map(function(nextItem, index) {
+    nextName = nextItem.name;
+    console.log(index + "  nextName: " + nextName);
+    return nextName;
+});
+
+console.log("  screenNames: " + screenNames);
+
+
+
+// this.allScreens = [splash, nameEnter, enterPlay, placeBets, player1_scr, player2_scr, player3_scr, dealer_scr, gameOver, inactive, active, placeBets, hitMeHoldMe, turnOver, handOver];
+this.gameScreens = ["splash", "nameEnter", "enterPlay", "placeBets", "players", "dealer", "gameOver"];
+this.subScreens = ["inactive", "active", "placeBets", "hitMeHoldMe", "turnOver", "handOver"];
+
+
+
+// ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
+// ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
+// ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
+
+
+
+var display = {
+    bgs: {
+        table: { name: "table", type: "bg", iR: 4, iC: 11, iW: 6, iH: 4, merge: null, class: "table" },
+        logo: { name: "logo", type: "bg", iR: 2, iC: 1, iW: 6, iH: 1, merge: null, class: null }
+    },
+    btns: {
+        orbBtn: { name: "orbBtn", callback: "nextGameState", type: "btn", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "orbBtn", value: "START", tooltipOver: "start the game!", tooltipOut: "" },
+        enterBtn: { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR: 6, iC: 12, iW: 3, iH: 1, merge: "merge", class: "enterBtn", value: "ENTER", tooltipOver:  "click ENTER to save player", tooltipOut: "" },
+        startBtn: { name: "startBtn", callback: "startGame", type: "btn", iR: 7, iC: 12, iW: 3, iH: 1, merge: "merge", class: "startBtn", value: "START", tooltipOver: "start game", tooltipOut: "click DEAL to deal cards" },
+        dealBtn: { name: "dealBtn", callback: "deal", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "dealBtn", value: "DEAL", tooltipOver: "deal cards", tooltipOut: "click PLAY when first player is ready" },
+        playGameBtn: { name: "playGameBtn", callback: "playGame", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playGameBtn", value: "HIT or HOLD", tooltipOver: "Click after placing bets", tooltipOut: "" },
+        playAgainBtn: { name: "playAgainBtn", callback: "playAgain", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playAgainBtn", value: "AGAIN", tooltipOver: "play another hand", tooltipOut: "" },
+        newGameBtn: { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "NEW", tooltipOver: "start a new game", tooltipOut: "" }
+    },
+    texts: {
+        pName_1: { name: "pName_1", type: "text", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
+        pName_2: { name: "pName_2", type: "text", iR: 9, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
+        pName_3: { name: "pName_3", type: "text", iR: 10, iC: 12, iW: 3, iH: 1, merge: "merge", class: null, value: null },
+        pBank_1: { name: "pBank_1", type: "text", iR: 8, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 20 },
+        pBank_2: { name: "pBank_2", type: "text", iR: 9, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 40 },
+        pBank_3: { name: "pBank_3", type: "text", iR: 10, iC: 15, iW: 3, iH: 2, merge: null, class: null, value: 60 },
+        totalBet: { name: "totalBet", type: "text", iR: 5, iC: 15, iW: 1, iH: 1, merge: null, class: null, value: 0 },
+        tooltips: { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" }
+    },
+    inputs: {
+        playerName: { name: "playerName", type: "input", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "inputText", value: "playerName" }
+    },
+    images: {},
+    regions: {},
+    gameScreen: {},
+    playerScreens: {}
+}
+
+// == PLAYER SCREENS ==
+display.subScreens = {
+    player_start_1: [player1.bgs.borderH, player1.bgs.borderV, player1.texts.pName, player1.texts.pScore, player1.texts.pBank],
+    player_bet_1: [player1.bgs.borderH, player1.bgs.borderV, player1.texts.pName, player1.texts.pScore, player1.texts.pBank, player1.sliders.betOnes, player1.sliders.betFives, player1.sliders.betTens]
+}
+
+// == GAME SCREENS ==
+display.mainScreens = {
+    splash: [display.btns.orbBtn],
+    enterName: [display.inputs.playerName, display.btns.enterBtn],
+    enterStart: [display.inputs.playerName, display.btns.enterBtn, display.btns.startBtn],
+    gameStartPlayers: [display.inputs.playerName, display.btns.enterBtn, display.btns.startBtn, display.subScreens.player_start_1]
+}
+
+
+
+// ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= =======
+// ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= =======
+// ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= =======
+
+
+
+var game = {
+    currentPlayer: null,
+    currentSubScreen: null,
+    currentGameScreen: null,
+    allPlayers: null,
+    allSubScreens: null,
+    allMainScreens: [display.mainScreens.splash, display.mainScreens.enterName, display.mainScreens.enterStart, display.mainScreens.gameStartPlayers]
+}
+
+
+
+// ======= ======= ======= screenTest ======= ======= =======
+game.screenTest = function() {
+    console.log("screenTest");
+    prevScreen = game.allMainScreens[0];
+    nextScreen = game.allMainScreens[1];
+    console.log("  prevScreen: " + prevScreen);
+    console.log("  nextScreen: " + nextScreen);
+
+    var user = {};
+
+    function setUsers(data) {
+        for (var k in data) {
+            if (data.hasOwnProperty(k)) {
+               user[k] = data[k];
+            }
+        }
+    }
+
+
+
+    for (var i = 0; i < nextScreen.length; i++) {
+        nextItem = nextScreen[i];
+        console.log(" ");
+        for (var key in nextItem)
+            console.log("  key: " + key);
+            if (key == "name") {
+                console.log("  name: " + nextItem[key]);
+            }
+            if (key == "type") {
+                console.log("  type: " + nextItem[key]);
+            }
+    }
+}
+
+// ======= ======= ======= functionTest ======= ======= =======
+game.functionTest = function() {
+    console.log("functionTest");
+
+    console.log("player1.texts.pName.name: " + player1.texts.pName.name);
+    console.log("display.mainScreens.splash[0].callback: " + display.mainScreens.splash[0].callback);
+    console.log("display.mainScreens.gameStartPlayers[3]: " + display.mainScreens.gameStartPlayers[3]);
+    console.log("display.mainScreens.gameStartPlayers[3][2]: " + display.mainScreens.gameStartPlayers[3][2]);
+    console.log("display.mainScreens.gameStartPlayers[3][2].name: " + display.mainScreens.gameStartPlayers[3][2].name);
+    console.log("game.allMainScreens[3]: " + game.allMainScreens[3]);
+    console.log("game.allMainScreens[3][3]: " + game.allMainScreens[3][3]);
+    console.log("game.allMainScreens[3][3][2]: " + game.allMainScreens[3][3][2]);
+    console.log("game.allMainScreens[3][3][2].name: " + game.allMainScreens[3][3][2].name);
+}
+
+game.screenTest();
+game.functionTest();
+
+
+
+
+var dealer_scr = new Screen(
+    /* name:   */ "dealer",
+    /* bg:     */ null,
+    /* btn:    */ null,
+    /* slider: */ null,
+    /* text:   */ null,
+    /* input:  */ null,
+    /* image:  */ null);
+var player2_scr = new Screen(
+    /* name:   */ "player2",
+    bg: null,
+    btn: null,
+    /* slider: */ null,
+    text: null,
+    input: null,
+    image: null);
+var player3_scr = new Screen(
+    /* name:   */ "player3",
+    bg: null,
+    btn: null,
+    /* slider: */ null,
+    text: null,
+    input: null,
+    image: null);
+var scordboard_scr = new Screen(
+    /* name:   */ "scordboard",
+    bg: null,
+    btn: null,
+    /* slider: */ null,
+    text: null,
+    input: null,
+    image: null);
+
+    var placeBets = new Screen(
+        /* name:   */ null,
+        bg: null,
+        btn: null,
+        /* slider: */ null,
+        text: { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" },
+        input: null,
+        image: null,
+        scrArea: [player1_scr, player2_scr, player3_scr, dealer_scr, ]);
+    var players = new Screen(
+        /* name:   */ null,
+        bg: null,
+        btn: null,
+        /* slider: */ null,
+        text: { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" },
+        input: null,
+        image: null,
+        scrArea: [player1, player2, player3, dealer]);
+    var gameOver = new Screen(
+        /* name:   */ null,
+        bg: null,
+        btn: [{ name: "playAgainBtn", callback: "playAgain", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playAgainBtn", value: "AGAIN", tooltipOver: "play another hand", tooltipOut: "" }, { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "NEW", tooltipOver: "start a new game", tooltipOut: "" }],
+        /* slider: */ null,
+        text: { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" },
+        input: null,
+        image: null,
+        scrArea: [player1_scr, player2_scr, player3_scr, dealer_scr, scordboard_scr]);
+
+
+
+
+
+
+
 // ======= ======= ======= loadStartGameScreen ======= ======= =======
 Sequencer.prototype.loadStartGameScreen = function(prevNext) {
     console.log("loadStartGameScreen");
