@@ -41,17 +41,17 @@ function initGame() {
         /* btn:    */ [{ name: "hitMeBtn", callback: "hitMe", type: "btn", iR: 1, iC: 7, iW: 1, iH: 1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" },
             { name: "holdMeBtn", callback: "holdMe", type: "btn", iR: 1, iC: 8, iW: 1, iH: 1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" }],
         /* slider: */ [
-            { name:"betOnesBtn_1", callback:"mngBets", type:"slider", iR:1, iC:6, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "slide to bet $1", tooltipOut: ""  },
-            { name:"betFivesBtn_1", callback:"mngBets", type:"slider", iR:2, iC:6, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "slide to bet $5", tooltipOut: ""  },
-            { name:"betTensBtn_1", callback:"mngBets", type:"slider", iR:3, iC:6, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "slide to bet $10", tooltipOut: ""  }],
+            { name:"betOnesSlider_1", callback:"mngBets", type:"slider", iR:1, iC:6, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "slide to bet $1", tooltipOut: ""  },
+            { name:"betFivesSlider_1", callback:"mngBets", type:"slider", iR:2, iC:6, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "slide to bet $5", tooltipOut: ""  },
+            { name:"betTensSlider_1", callback:"mngBets", type:"slider", iR:3, iC:6, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "slide to bet $10", tooltipOut: ""  }],
         /* text:   */ [
             { player: 1, name: "pName_1", type: "text", iR: 1, iC: 2, iW: 3, iH: 1, merge: "merge", class: "pBorder-1", value: null },
             { player: 1, name: "pScore_1", type: "text", iR: 2, iC: 5, iW: 1, iH: 1, merge: null, class: "pBorder-1", value: 0 },
             { player: 1, name: "pBank_1", type: "text", iR: 1, iC: 5, iW: 1, iH: 1, merge: null, class: "pBorder-1 bank", value: "100" },
-            { player: 1, name: "pBet_1", type: "text", iR: 4, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-1 bet", value: "$0" },
-            { name: "pBet_1s_1", type: "text", iR: 4, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-1 table", value: "$0" },
-            { name: "pBet_5s_1", type: "text", iR: 4, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-1 table", value: "$0" },
-            { name: "pBet_10s_1", type: "text", iR: 4, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-1 table", value: "$0" },
+            { player: 1, name: "pBet_1", type: "text", iR: 4, iC: 15, iW: 1, iH: 1, merge: null, class: "pBorder-1 bet", value: "0" },
+            { name: "pBet_1s_1", type: "text", iR: 4, iC: 12, iW: 1, iH: 1, merge: null, class: "pBorder-1 table", value: "0" },
+            { name: "pBet_5s_1", type: "text", iR: 4, iC: 13, iW: 1, iH: 1, merge: null, class: "pBorder-1 table", value: "0" },
+            { name: "pBet_10s_1", type: "text", iR: 4, iC: 14, iW: 1, iH: 1, merge: null, class: "pBorder-1 table", value: "0" },
             { player: 1, name: "pCards_1", type: "text", iR: 2, iC: 4, iW: 1, iH: 2, merge: "merge", class: "card-1", value: null }],
         /* input:  */ null,
         /* image:  */ null);
@@ -65,7 +65,8 @@ function initGame() {
         /* text:   */ { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" },
         /* input:  */ null,
         /* image:  */ null,
-        /* subScr: */ [player1_scr]);
+        /* subScr: */ ["player", "scoreboard"]);
+
     var nameEnter = new Screen(
         /* name:   */ "nameEnter",
         /* type:   */ "game",
@@ -75,7 +76,8 @@ function initGame() {
         /* text:   */ { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" },
         /* input:  */ { name: "playerName", type: "input", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "inputText", value: "playerName" },
         /* image:  */ null,
-        /* scrArea: */ null);
+        /* subScr: */ ["player"]);
+
     var enterPlay = new Screen(
         /* name:   */ "enterPlay",
         /* type:   */ "game",
@@ -85,7 +87,7 @@ function initGame() {
         /* text:   */ { name: "tooltips", type: "text", iR: 9, iC: 11, iW: 5, iH: 2, merge: "merge", class: "tooltips", value: "" },
         /* input:  */ { name: "playerName", type: "input", iR: 5, iC: 12, iW: 3, iH: 1, merge: "merge", class: "inputText", value: "playerName" },
         /* image:  */ null,
-        /* subScr: */ player1_scr);
+        /* subScr: */ ["player", "scoreboard"]);
 
 
 
@@ -122,32 +124,17 @@ function initGame() {
         console.log('Display');
         this.name = whichDisplay;
         this.rowSpansArray = null;
+        this.inactive = ["borderH_1", "borderV_1", "pName_1", "pScore_1", "pBank_1"];
+        this.active = ["borderH_1", "borderV_1", "pName_1", "pScore_1", "pBank_1", "pCards_1"];
+        this.placeBets = ["borderH_1", "borderV_1", "pName_1", "pScore_1", "pBank_1", "pCards_1", "pBet_1", "pBet_1s_1", "pBet_5s_1", "pBet_10s_1", "betOnesSlider_1", "betFivesSlider_1", "betTensSlider_1"];
+        this.hitMeHoldMe = ["borderH_1", "borderV_1", "pName_1", "pScore_1", "pBank_1", "pCards_1", "pBet_1", "pBet_1s_1", "pBet_5s_1", "pBet_10s_1", "hitMeBtn", "holdMeBtn"];
+        this.turnOver = ["borderH_1", "borderV_1", "pName_1", "pScore_1", "pBank_1", "pCards_1"];
+        this.handOver = ["borderH_1", "borderV_1", "pName_1", "pScore_1", "pBank_1"];
     }
 
-    // ======= ======= ======= modifyGridRegion ======= ======= =======
-    Display.prototype.modifyGridRegion = function(nextItem, prevNext) {
-        console.log("modifyGridRegion: " + nextItem.name);
-    }
-
-    // ======= ======= ======= processScreenItems ======= ======= =======
-    Display.prototype.processScreenItems = function(removeItemsArray, addItemsArray) {
-        console.log("processScreenItems");
-
-        // == remove prev items/add next items
-        if (removeItemsArray) {
-            for (var j = 0; j < removeItemsArray.length; j++) {
-                nextItem = removeItemsArray[j];
-                console.log("REMOVE.name: " + nextItem.name);
-                nextType = nextItem.type;
-                display.modifyGridRegion(nextItem, "prev");
-            }
-        }
-        for (var j = 0; j < addItemsArray.length; j++) {
-            nextItem = addItemsArray[j];
-            console.log("ADD.name: " + nextItem.name);
-            nextType = nextItem.type;
-            display.modifyGridRegion(nextItem, "next");
-        }
+    // ======= ======= ======= getNextSubScreen ======= ======= =======
+    Display.prototype.getNextSubScreen = function() {
+        console.log("getNextSubScreen");
     }
 
     // ======= ======= ======= getNextScreen ======= ======= =======
@@ -271,6 +258,126 @@ function initGame() {
         return [REMprevItems, ADDnextItems];
     }
 
+    // ======= ======= ======= processScreenItems ======= ======= =======
+    Display.prototype.processScreenItems = function(removeItemsArray, addItemsArray) {
+        console.log("processScreenItems");
+
+        // == remove prev items/add next items
+        if (removeItemsArray) {
+            for (var j = 0; j < removeItemsArray.length; j++) {
+                nextItem = removeItemsArray[j];
+                nextType = nextItem.type;
+                display.deActivateNextItem(nextItem);
+                display.unModifyGridRegion(nextItem);
+            }
+        }
+        for (var j = 0; j < addItemsArray.length; j++) {
+            nextItem = addItemsArray[j];
+            nextType = nextItem.type;
+            display.modifyGridRegion(nextItem);
+            display.activateNextItem(nextItem);
+        }
+    }
+
+    // ======= ======= ======= modifyGridRegion ======= ======= =======
+    Display.prototype.modifyGridRegion = function(whichItem, offsetR, offsetC) {
+        console.log("modifyGridRegion: " + whichItem.name);
+
+        if (!offsetR) { offsetR = 0 };
+        if (!offsetC) { offsetC = 0 };
+        var tableRows = $("tr");
+        var regionType = whichItem.merge;
+        // console.log("  whichItem.merge: " + whichItem.merge);
+
+        // == remove cells from merge area (check row/colspans in each row)
+        for (var row = 0; row < whichItem.iH; row++) {
+            nextRow = whichItem.iR + offsetR + row;
+            nextCol = whichItem.iC + offsetC;
+            nextRowObject = tableRows[nextRow];
+            colspans = this.checkColumnSpans(nextRowObject, nextRow, nextCol);
+            rowspans = this.checkRowSpans(nextRow, nextCol);
+            totalSpanOffset = nextCol - colspans - rowspans;
+
+            if (regionType == "merge") {
+                for (var col = 0; col < (whichItem.iW); col++) {
+                    if (((row == 0) && (col == 1))) {
+                        totalColOffset = totalSpanOffset + col;
+                    }
+                    if (row > 0) {
+                        totalColOffset = totalSpanOffset;
+                    }
+
+                    // remove all but index cell in merge area
+                    if ((row == 0) && (col == 0)) {
+                        indexCell = $(nextRowObject).children()[totalSpanOffset];
+                        console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
+                    } else {
+                        nextCell = $(nextRowObject).children()[totalColOffset];
+                        $(nextCell).remove();
+                    }
+
+                }
+            }
+        }
+        // == set row/colspans on index cell to fill space
+        $(indexCell).attr("colSpan", whichItem.iW);
+        $(indexCell).attr("rowSpan", whichItem.iH);
+        $(indexCell).addClass(whichItem.class);
+        if (whichItem.type != "input") {
+            $(indexCell).attr("id", whichItem.name);
+        }
+    }
+
+    // ======= ======= ======= activateNextItem ======= ======= =======
+    Display.prototype.activateNextItem = function(whichItem) {
+        console.log("activateNextItem: " + whichItem.name);
+    }
+
+    // ======= ======= ======= unModifyGridRegion ======= ======= =======
+    Display.prototype.unModifyGridRegion = function(whichItem) {
+        console.log("unModifyGridRegion: " + whichItem.name);
+    }
+
+    // ======= ======= ======= checkRowSpans ======= ======= =======
+    Display.prototype.checkRowSpans = function(whichRow, whichCol) {
+        // console.log("checkRowSpans");
+        // console.log("  which_R/C: " + whichRow + "/" + whichCol);
+
+        var rowspans = 0;
+        var indexRow = 0;
+        for (var col = 0; col < 18; col++) {
+            if (col < whichCol) {
+                rowspanSpanObject = this.rowSpansArray[whichRow][col];
+                // console.log("  rowspan_R/C: " + rowspanSpanObject.R + "/" + rowspanSpanObject.C);
+                if (rowspanSpanObject.rspan == true) {
+                    rowspans++;
+                }
+            }
+        }
+        // console.log("  rowspans: " + rowspans);
+        return rowspans;
+    }
+
+    // ======= ======= ======= checkColumnSpans ======= ======= =======
+    Display.prototype.checkColumnSpans = function(whichRowObject, whichRow, whichCol) {
+        // console.log("checkColumnSpans");
+
+        var colspans = 0;
+        var indexCol = 0;
+        for (var col = 0; col < $(whichRowObject).children().length; col++) {
+            nextColumnObject = $(whichRowObject).children()[col];
+            nextColspan = $(nextColumnObject).attr('colSpan');
+            nextColId = $(nextColumnObject).attr('id');
+            // console.log("  id/colspan " + nextColId + " /  " +  + nextColspan);
+            // if ((nextColspan > 1) && (col < (whichCol))) {
+            if ((nextColspan > 1) && (col < (whichCol - colspans))) {
+                colspans += nextColspan - 1;
+            }
+        }
+        // console.log("  colspans: " + colspans);
+        return colspans;
+    }
+
     // ======= ======= ======= initRowSpans ======= ======= =======
     Display.prototype.initRowSpans = function() {
         console.log("initRowSpans");
@@ -336,6 +443,7 @@ function initGame() {
 
     display.initRowSpans();
     display.getNextScreen();
+    display.getNextSubScreen();
 
 }
 

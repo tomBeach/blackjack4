@@ -1,3 +1,15 @@
+colSpanOffset = totalSpanOffset + col;
+console.log("  colSpanOffset: " + colSpanOffset);
+
+// remove all but index cell in merge area
+if ((row == 0) && (col == 0)) {
+    indexCell = $(nextRowObject).children()[colSpanOffset];
+    console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
+} else {
+    nextCell = $(nextRowObject).children()[colSpanOffset];
+    // console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
+    $(nextCell).remove();
+}
 
 
 
