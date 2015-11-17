@@ -10,15 +10,6 @@ $(document).ready(function(){
 function initGame() {
     console.log('initGame');
 
-
-
-    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
-
-
-
-
     function Screen(name, type, bg, btn, slider, text, input, image, subScr) {
         console.log('Screen');
         this.name = name;
@@ -31,6 +22,66 @@ function initGame() {
         this.image = image;
         this.subScr = subScr;
     }
+
+    function Player(id, name) {
+        console.log('Player');
+        this.id = id;
+        this.name = name;
+        this.state = "inactive";
+        this.hand = null;
+        this.score = 0;
+        this.onesBet = 0;
+        this.fivesBet = 0;
+        this.tensBet = 0;
+        this.onesBank = 20;
+        this.fivesBank = 30;
+        this.tensBank = 50;
+    }
+
+    function Display(whichDisplay) {
+        console.log('Display');
+        this.name = whichDisplay;
+        this.rowSpansArray = null;
+        this.playerStateItems = {
+            inactive: ["borderH", "borderV", "pName", "pScore", "pBank"],
+            active: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
+            placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "betOnesSlider", "betFivesSlider", "betTensSlider"],
+            hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "hitMeBtn", "holdMeBtn"],
+            turnOver: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
+            handOver: ["borderH", "borderV", "pName", "pScore", "pBank"]
+        };
+        this.gameStateItems = {
+            splash: ["orbBtn", "tooltips"],
+            nameEnter: ["enterBtn", "playerName", "tooltips"],
+            enterPlay: ["enterBtn", "startBtn", "playerName", "tooltips"],
+            playGame: ["playBtn", "tooltips"]
+        };
+    }
+
+    function Game(whichGame) {
+        console.log('Game');
+        this.name = whichGame;
+        this.deckArray = [];
+        this.deckPointsArray = [];
+        this.currentPlayer = 0;
+        this.currentScreen = null;
+        this.playerNamesArray = [];
+        this.playerObjectsArray = [player1, player2, player3, dealer];
+        this.screenObjectsArray = [splash, nameEnter, enterPlay, playGame];
+        this.subcreenObjectsArray = [player1_scr, player2_scr, player3_scr, dealer_scr, scoreboard_scr];
+        this.onesBet = 0;
+        this.fivesBet = 0;
+        this.tensBet = 0;
+    }
+
+
+
+    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
+
+
+
 
     var player1_scr = new Screen(
         /* name:   */ "player1",
@@ -160,7 +211,7 @@ function initGame() {
         /* name:   */ "playGame",
         /* type:   */ "game",
         /* bg:     */ null,
-        /* btn:    */ null,
+        /* btn:    */ [{ name: "playBtn", callback: "playGame", type: "btn", iR:7, iC:12, iW:3, iH:1, merge: "merge", class: "startBtn", value: "BET", tooltipOver: "place bets", tooltipOut: "" }],
         /* slider: */ null,
         /* text:   */ { name: "tooltips", type: "text", iR:9, iC:11, iW:5, iH:2, merge: "merge", class: "tooltips", value: "" },
         /* input:  */ null,
@@ -169,49 +220,11 @@ function initGame() {
 
 
 
-
-    // ======= ======= ======= ======= ======= PLAYERS ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= PLAYERS ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= PLAYERS ======= ======= ======= ======= =======
-
-
-
-    function Player(id, name) {
-        console.log('Player');
-        this.id = id;
-        this.name = name;
-        this.state = "inactive";
-        this.hand = null;
-        this.score = 0;
-        this.onesBet = 0;
-        this.fivesBet = 0;
-        this.tensBet = 0;
-        this.onesBank = 20;
-        this.fivesBank = 30;
-        this.tensBank = 50;
-    }
-
-
-
     // ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
     // ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
     // ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
 
 
-
-    function Display(whichDisplay) {
-        console.log('Display');
-        this.name = whichDisplay;
-        this.rowSpansArray = null;
-        this.playerStateItems = {
-            inactive: ["borderH", "borderV", "pName", "pScore", "pBank"],
-            active: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
-            placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "betOnesSlider", "betFivesSlider", "betTensSlider"],
-            hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "hitMeBtn", "holdMeBtn"],
-            turnOver: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
-            handOver: ["borderH", "borderV", "pName", "pScore", "pBank"]
-        };
-    }
 
     // ======= ======= ======= makeSlider ======= ======= =======
     Display.prototype.makeSlider = function(whichItem, playerIndex) {
@@ -580,26 +593,29 @@ function initGame() {
             nextRowObject = tableRows[nextRow];
             colspans = this.checkColumnSpans(nextRowObject, nextRow, nextCol);
             rowspans = this.checkRowSpans(nextRow, nextCol);
-            // console.log("  rowspans: " + rowspans);
-            totalSpanOffset = nextCol - colspans - rowspans;
+            temp_iC = nextCol - colspans - rowspans;
+            console.log("  colspans: " + colspans);
+            console.log("  rowspans: " + rowspans);
+            console.log("  temp_iC: " + temp_iC);
 
             if (regionType == "merge") {
                 for (var col = 0; col < whichItem.iW; col++) {
                     if (((row == 0) && (col == 1))) {
-                        totalColOffset = totalSpanOffset + col;
+                        totalColOffset = temp_iC + col;
                     }
                     if (row > 0) {
-                        totalColOffset = totalSpanOffset;
+                        totalColOffset = temp_iC;
+                        display.toggleRowspans(whichItem, offsetR, offsetC, "on")
                     }
 
                     // remove all but index cell in merge area
                     if ((row == 0) && (col == 0)) {
-                        indexCell = $(nextRowObject).children()[totalSpanOffset];
+                        indexCell = $(nextRowObject).children()[temp_iC];
                     } else {
                         nextCell = $(nextRowObject).children()[totalColOffset];
+                        console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
                         $(nextCell).remove();
                     }
-
                 }
 
                 // == set row/colspans on index cell to fill space
@@ -609,16 +625,15 @@ function initGame() {
                 if (whichItem.type != "input") {
                     $(indexCell).attr("id", whichItem.name + playerIndex);
                 }
-                display.toggleRowspans(whichItem, offsetR, offsetC, "on")
 
                 // == modify item class via item class parameters
             } else {
                 for (var col = 0; col < whichItem.iW; col++) {
-                    nextCell = $(nextRowObject).children()[totalSpanOffset + col];
+                    nextCell = $(nextRowObject).children()[temp_iC + col];
                     $(nextCell).removeClass();
                     $(nextCell).addClass(whichItem.class);
                     if ((row == 0) && (col == 0)) {
-                        indexCell = $(nextRowObject).children()[totalSpanOffset];
+                        indexCell = $(nextRowObject).children()[temp_iC];
                         $(indexCell).attr("id", whichItem.name + playerIndex);
                     } else {
                         $(nextCell).attr("id", (nextRow) + "-" + (nextCol + col));
@@ -645,17 +660,17 @@ function initGame() {
             nextRowObject = tableRows[nextRow];
             colspans = this.checkColumnSpans(nextRowObject, nextRow, nextCol);
             rowspans = this.checkRowSpans(nextRow, nextCol);
-            totalSpanOffset = nextCol - colspans - rowspans;
-            // console.log("  totalSpanOffset: " + totalSpanOffset);
+            temp_iC = nextCol - colspans - rowspans;
+            // console.log("  temp_iC: " + temp_iC);
 
             if (regionType == "merge") {
                 for (var col = 0; col < (whichItem.iW); col++) {
                     if ((row == 0) && (col == 0)) {
-                        indexCell = $(nextRowObject).children()[totalSpanOffset];
+                        indexCell = $(nextRowObject).children()[temp_iC];
                         $(indexCell).remove();
                         // console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
                     }
-                    indexRowCell = $(nextRowObject).children()[totalSpanOffset - 1];
+                    indexRowCell = $(nextRowObject).children()[temp_iC - 1];
                     for (var col = 0; col < whichItem.iW; col++) {
                         var newCell = document.createElement("td");
                         $(indexRowCell).after(newCell);
@@ -844,22 +859,163 @@ function initGame() {
 
 
 
-    function Game(whichGame) {
-        console.log('Game');
-        this.name = whichGame;
-        this.deckArray = [];
-        this.deckPointsArray = [];
-        this.currentPlayer = 0;
-        this.currentScreen = null;
-        this.playerNamesArray = [];
-        this.playerObjectsArray = [player1, player2, player3, dealer];
-        this.screenObjectsArray = [splash, nameEnter, enterPlay, playGame];
-        this.subcreenObjectsArray = [player1_scr, player2_scr, player3_scr, dealer_scr, scoreboard_scr];
-        this.onesBet = 0;
-        this.fivesBet = 0;
-        this.tensBet = 0;
+
+    // ======= ======= ======= dealCards ======= ======= =======
+    Game.prototype.dealCards = function(indexCell, whichAction) {
+        console.log("");
+        console.log("dealCards");
+
+        var winnersArray = [];
+        var dealer = this.playerObjectsArray[3];
+        var dealerScreen = this.subcreenObjectsArray[3];
+        var nextPlayer, nextSuit, nextValue, nextPoints, cardPointsArray, nextCard, nextPoints;
+
+        // ======= initialize deck
+        var suitArray = ['C','D','H','S'];
+        var valueArray = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+        var pointsArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+        var tableString, nextValue, nextPoints, cardPoints, nextCard, nextPlayer;
+
+        for (var i = 0; i < suitArray.length; i++) {
+            nextSuit = suitArray[i];
+            for (var j = 0; j < valueArray.length; j++) {
+                nextValue = valueArray[j];
+                nextPoints = pointsArray[j];
+                this.deckArray.push(nextValue + nextSuit);
+                this.deckPointsArray.push(nextPoints);
+            }
+        }
+
+        // ======= clear previous player hands
+        for (var i = 0; i < (this.playerNamesArray.length); i++) {
+            nextPlayer = this.playerObjectsArray[i];
+            nextPlayer.hand = [];
+        }
+
+        // ======= deal cards to each player and dealer
+        console.log('  this.playerNamesArray.length: ' + this.playerNamesArray.length);
+        console.log('  this.playerNamesArray[3]: ' + this.playerNamesArray[3]);
+        for (var i = 0; i < (this.playerNamesArray.length); i++) {
+            nextPlayer = this.playerObjectsArray[i];
+            nextPlayerScreen = this.subcreenObjectsArray[i];
+            console.log('');
+            console.log('  ******* nextPlayer.name: ' + nextPlayer.name);
+
+            // ======= getNextCard
+            for (var j = 0; j < 2; j++) {
+                cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+                nextCard = cardPointsArray[0];
+                nextPoints = cardPointsArray[1];
+                nextPlayer.hand.push(nextCard);
+                nextPlayer.score = nextPlayer.score + nextPoints;   // calculate player score
+                this.displayNextCard(nextPlayer, nextPlayerScreen);
+            }
+
+            // ======= if Ace card and > 21 (2 aces)
+            if (nextPlayer.score > 21) {
+                console.log('  2 aces: ' + nextPlayer.score);
+                for (var k = 0; k < nextPlayer.hand.length; k++) {
+                    nextCard = nextPlayer.hand[k];
+
+                    // ======= change Ace value to 1
+                    if (nextCard.indexOf("A") > 0) {
+                        nextPlayer.score = nextPlayer.score - 10;
+                        console.log('  found ace: ' + nextPlayer.score);
+                        break;
+                    }
+                }
+            }
+
+            // ======= instant winner
+            if (nextPlayer.score == 21) {
+                winnersArray.push(nextPlayer);
+            }
+
+            // this.updatePlayerScoreText(nextPlayer);
+
+            $("#tooltips").text("Click PLAY button to place bets");
+        }
+        
+        // ======= deal to dealer
+        dealer.hand = []
+        for (var j = 0; j < 2; j++) {
+            cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+            nextCard = cardPointsArray[0];
+            nextPoints = cardPointsArray[1];
+            dealer.hand.push(nextCard);
+            dealer.score = dealer.score + nextPoints;           // calculate player score
+            this.displayNextCard(dealer, dealerScreen);
+        }
+        // this.updatePlayerScoreText(dealer);
+        this.flipCards();
     }
 
+    // ======= ======= ======= displayNextCard ======= ======= =======
+    Game.prototype.displayNextCard = function(whichPlayer, whichSubscreen) {
+        console.log("displayNextCard");
+
+        var whichMerge, cardDivString;
+        var playerIndex = whichPlayer.id;
+        var subscreenTextObjects = whichSubscreen.text;
+        for (var i = 0; i < subscreenTextObjects.length; i++) {
+            nextTextObject = subscreenTextObjects[i];
+            nextTextObjectName = subscreenTextObjects[i].name;
+            nextTextObjectClass = subscreenTextObjects[i].class;
+            if (nextTextObjectName == "pCards") {
+                whichCardObject = nextTextObject;
+                whichClass = nextTextObjectClass;
+                break;
+            }
+        }
+        var whichName = whichCardObject.name;
+        var cardCount = whichPlayer.hand.length;
+        var cardValue = whichPlayer.hand[cardCount - 1];
+
+        var whichSuit = cardValue.substr(cardValue.length - 1);
+        var whichValue = cardValue.substring(0, cardValue.length - 1);
+        switch(whichSuit) {
+            case "C":
+                imageString = "<img src='images/clubs.png' alt='clubs'>";
+                break;
+            case "D":
+                imageString = "<img src='images/diamonds.png' alt='diamonds'>";
+                break;
+            case "H":
+                imageString = "<img src='images/hearts.png' alt='hearts'>";
+                break;
+            case "S":
+                imageString = "<img src='images/spades.png' alt='spades'>";
+                break;
+        }
+
+        if (whichPlayer.name == "dealer") {
+            offsetC = cardCount - 1;
+        } else {
+            offsetC = -(cardCount - 1);
+        }
+        offsetR = 0;
+
+        indexCell = display.modifyGridRegion(whichCardObject, playerIndex, offsetR, offsetC)
+
+        cardDivString = "<div class='flip-container'>";
+        cardDivString += "<div id='" + cardValue + "' class='cardFlip'><div class='front " + whichClass + "'><p class='cardText'>&nbsp;</p></div>";
+        // cardDivString += "<div class='back " + whichClass + "'><p class='cardText'>" + cardValue + "</p></div></div></div>";
+        cardDivString += "<div class='back " + whichClass + "'>" + imageString + "<p class='cardText'>" + whichValue + "</p></div></div></div>";
+
+        $(indexCell).append(cardDivString);
+
+    }
+
+    // ======= ======= ======= getNextCard ======= ======= =======
+    Game.prototype.getNextCard = function() {
+        // console.log("getNextCard");
+		var cardIndex = parseInt(Math.random() * this.deckArray.length);
+		var nextCard = this.deckArray[cardIndex];
+		var nextPoints = this.deckPointsArray[cardIndex];
+		this.deckArray.splice(cardIndex, 1);
+		this.deckPointsArray.splice(cardIndex, 1);
+		return [nextCard, nextPoints];
+	}
 
     // ======= ======= ======= startGame ======= ======= =======
     Game.prototype.startGame = function() {
@@ -873,11 +1029,8 @@ function initGame() {
             nextPlayerId = nextPlayer.id;
             display.updateSubscreen(nextPlayerId, "placeBets");
         }
-
-
-        // this.currentPlayer = game.playerObjectsArray[0];
-        // deal()
-        // activatePlayer1()
+        this.currentPlayer = game.playerObjectsArray[0];
+        game.dealCards();
 
     }
 
@@ -910,6 +1063,45 @@ function initGame() {
             $("#playerNameInput").val("");
         } else {
             $("#tooltips").text("Enter name or press 'start'");
+        }
+    }
+
+    // ======= ======= ======= flipCards ======= ======= =======
+    Game.prototype.flipCards = function() {
+        console.log("flipCards");
+
+        self = this;
+        interval = 400;
+        cardIndex = -1;
+        cardCount = 0;
+        playerIndex = 0;
+        nextPlayer = this.playerObjectsArray[0];
+        // console.log("  nextPlayer.name: " + nextPlayer.name);
+
+        flipCards = setInterval(function() {
+            cardCount++;
+            if (cardCount > 20) {
+                stopFlips();
+            }
+            if (interval > 400) {
+                stopFlips();
+            }
+            cardIndex++;
+            if (cardIndex > nextPlayer.hand.length - 1) {
+                if (nextPlayer.name == "dealer") {
+                    interval = 1000;
+                } else {
+                    playerIndex++;
+                    nextPlayer = self.playerObjectsArray[playerIndex];
+                }
+                cardIndex = 0;
+            }
+            nextCard = nextPlayer.hand[cardIndex];
+            $("#" + nextCard).addClass('flipper');
+        }, interval);
+
+        function stopFlips() {
+            clearInterval(flipCards);
         }
     }
 
