@@ -49,9 +49,9 @@ function initGame() {
             { player: 1, name: "pBank", type: "text", iR:1, iC:5, iW:1, iH:1, merge: null, class: "pBorder-1 bank", value: "100" },
             { player: 1, name: "pScore", type: "text", iR:2, iC:5, iW:1, iH:1, merge: null, class: "pBorder-1", value: 0 },
             { player: 1, name: "pBet", type: "text", iR:4, iC:15, iW:1, iH:1, merge: null, class: "pBorder-1 bet", value: "0" },
-            { name: "pBet_1s", type: "text", iR:4, iC:12, iW:1, iH:1, merge: null, class: "pBorder-1 table", value: "0" },
+            { name: "pBets", type: "text", iR:4, iC:12, iW:1, iH:1, merge: null, class: "pBorder-1 table", value: "0" },
             { name: "pBet_5s", type: "text", iR:4, iC:13, iW:1, iH:1, merge: null, class: "pBorder-1 table", value: "0" },
-            { name: "pBet_10s", type: "text", iR:4, iC:14, iW:1, iH:1, merge: null, class: "pBorder-1 table", value: "0" },
+            { name: "pBet0s", type: "text", iR:4, iC:14, iW:1, iH:1, merge: null, class: "pBorder-1 table", value: "0" },
             { player: 1, name: "pCards", type: "text", iR:2, iC:4, iW:1, iH:2, merge: "merge", class: "card-1", value: null }],
         /* input:  */ null,
         /* image:  */ null);
@@ -180,7 +180,7 @@ function initGame() {
         console.log('Player');
         this.id = id;
         this.name = name;
-        this.state = "inactive";
+        this.state = "active";
         this.hand = null;
         this.score = 0;
         this.onesBet = 0;
@@ -206,183 +206,51 @@ function initGame() {
         this.playerStateItems = {
             inactive: ["borderH", "borderV", "pName", "pScore", "pBank"],
             active: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
-            placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "betOnesSlider", "betFivesSlider", "betTensSlider"],
-            hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "hitMeBtn", "holdMeBtn"],
+            placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBets", "pBet_5s", "pBet0s", "betOnesSlider", "betFivesSlider", "betTensSlider"],
+            hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBets", "pBet_5s", "pBet0s", "hitMeBtn", "holdMeBtn"],
             turnOver: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
             handOver: ["borderH", "borderV", "pName", "pScore", "pBank"]
         };
     }
 
-    // ======= ======= ======= makeSlider ======= ======= =======
-    Display.prototype.makeSlider = function(whichItem, playerIndex) {
-        console.log("makeSlider");
-        console.log("  whichItem: " + whichItem.name);
-        console.log("  playerIndex: " + playerIndex);
-
-        var sliderLoc = $("#" + whichItem.name + "_" + playerIndex).offset();   // location of grid cell
-        var locX =  sliderLoc.left + 100;
-        var locY =  sliderLoc.top + 15;
-        var sliderId = "slider_" + whichItem.name;
-
-        sliderString = "<div id='" + sliderId + "' class='slider " + whichItem.class + "'>&nbsp;</div>";
-        $("body").append(sliderString);
-        $("#" + sliderId).css("left", locX);
-        $("#" + sliderId).css("top", locY);
-        // console.log("  sliderId.eq: " + $(sliderId).eq(0));
-        // console.log("  sliderId.eq: " + $(sliderId).eq(1));
-        var sliderDiv = $("#" + sliderId);
-
-        return sliderDiv;
-    }
-
-    // ======= ======= ======= updateSubscreen ======= ======= =======
-    Display.prototype.updateSubscreen = function(playerIndex, nextPlayerState) {
-        console.log("");
-        console.log("updateSubscreen");
-        console.log("  playerIndex: " + playerIndex);
-
-        var prevScreen, nextScreen;
-        var REMprevItems = [];
-        var ADDnextItems = [];
-        var whichPlayer = game.playerObjectsArray[playerIndex - 1];
-        var whichPlayerScreen = game.subcreenObjectsArray[playerIndex - 1];
-        var prevPlayerState = whichPlayer.state;
-        prevPlayerItems = this.playerStateItems[prevPlayerState];
-        whichPlayer.state = nextPlayerState;
-        nextPlayerItems = this.playerStateItems[nextPlayerState];
-
-        var REMprevNames = $(prevPlayerItems).not(nextPlayerItems).get();
-        var ADDnextNames = $(nextPlayerItems).not(prevPlayerItems).get();
-        console.log("  prevPlayerItems: " + prevPlayerItems);
-        console.log("  nextPlayerItems: " + nextPlayerItems);
-        console.log("  REMprevNames: " + REMprevNames);
-        console.log("  ADDnextNames: " + ADDnextNames);
-
-        itemTypesArray = ["bg", "btn", "slider", "text", "input", "image"];
-        for (var i = 0; i < itemTypesArray.length; i++) {
-            nextItemType = itemTypesArray[i];
-            if (whichPlayerScreen[nextItemType]) {
-                items = Array.isArray(whichPlayerScreen[nextItemType]);
-                if (items) {
-                    for (var j = 0; j < whichPlayerScreen[nextItemType].length; j++) {
-                        nextItem = whichPlayerScreen[nextItemType][j];
-                        nextItemName = nextItem.name;
-                        var found = $.inArray(nextItemName, REMprevNames) > -1;
-                        if (found) {
-                            console.log("  nextItemName: " + nextItemName);
-                            REMprevItems.push(nextItem);
-                        }
-                    }
-                } else {
-                    nextItem = whichPlayerScreen[nextItemType];
-                    nextItemName = nextItem.name;
-                    var found = $.inArray(nextItemName, REMprevNames) > -1;
-                    if (found) {
-                        console.log("  nextItemName: " + nextItemName);
-                        REMprevItems.push(nextItem);
-                    }
-                }
-            }
-        }
-
-        for (var i = 0; i < itemTypesArray.length; i++) {
-            nextItemType = itemTypesArray[i];
-            if (whichPlayerScreen[nextItemType]) {
-                items = Array.isArray(whichPlayerScreen[nextItemType]);
-                if (items) {
-                    for (var j = 0; j < whichPlayerScreen[nextItemType].length; j++) {
-                        nextItem = whichPlayerScreen[nextItemType][j];
-                        nextItemName = nextItem.name;
-                        var found = $.inArray(nextItemName, ADDnextNames) > -1;
-                        if (found) {
-                            console.log("  nextItemName: " + nextItemName);
-                            ADDnextItems.push(nextItem);
-                        }
-                    }
-                } else {
-                    nextItem = whichPlayerScreen[nextItemType];
-                    nextItemName = nextItem.name;
-                    var found = $.inArray(nextItemName, ADDnextNames) > -1;
-                    if (found) {
-                        console.log("  nextItemName: " + nextItemName);
-                        ADDnextItems.push(nextItem);
-                    }
-                }
-            }
-        }
-        console.log("  REMprevItems: " + REMprevItems);
-        console.log("  ADDnextItems: " + ADDnextItems);
-
-        this.addRemoveScreenItems(REMprevItems, ADDnextItems, playerIndex);
-    }
-
     // ======= ======= ======= nextSubscreen ======= ======= =======
-    Display.prototype.nextSubscreen = function(playerIndex) {
+    Display.prototype.nextSubscreen = function(playerIndex, nextSubscreenName) {
         console.log("nextSubscreen");
         console.log("  playerIndex: " + playerIndex);
+        console.log("  nextSubscreenName: " + nextSubscreenName);
 
-        // == player screen items include player index as suffix (e.g. "_1")
-        // == makePlayerItems adds current player suffix to generic item names
-        currentPlayerScreen = game.subcreenObjectsArray[playerIndex - 1];
-        console.log("  currentPlayerScreen.name: " + currentPlayerScreen.name);
+        // identify where we are in the game (prev screen/next screen/selected screen)
+        // use current screen name to identify current screen index
+        // increment screen index to get next screen object
 
-        // == check for special case of dealer
-        if (playerIndex == 4) {
-            playerIndex = "D";
+        var prevScreen, nextScreen;
+
+        // == game start initialize first screen ("splash")
+        if (game.currentSubcreenIndex == null) {
+            game.currentSubcreenIndex = 0;
+            prevSubscreen = "inactive";
+            nextScreenIndex = 0;
+
+        // == get prev and next screen objects
+        } else {
+            prevSubscreen = game.playerStatesArray[game.currentSubcreenIndex];
+            prevSubscreenItems = display.playerStateItems[prevSubscreen];
+            console.log("  prevSubscreenItems: " + prevSubscreenItems);
         }
-        subscreenItems = this.playerStateItems["inactive"];
-        // subscreenPlayerItems = subscreenItems.map(makePlayerItems);
-        // console.log("  subscreenPlayerItems: " + subscreenPlayerItems);
-        // function makePlayerItems(itemName) {
-        //     var nextItemName = itemName + "_" + playerIndex;
-        //     return nextItemName;
-        // }
-
-        var nextItemType, items, nextItem, nextItemName;
-        var tempItemsNext = [];
-        var tempNamesNext = [];
-        itemTypesArray = ["bg", "btn", "slider", "text", "input", "image"];
-        for (var i = 0; i < itemTypesArray.length; i++) {
-            nextItemType = itemTypesArray[i];
-            if (currentPlayerScreen[nextItemType]) {
-                items = Array.isArray(currentPlayerScreen[nextItemType]);
-                if (items) {
-                    for (var j = 0; j < currentPlayerScreen[nextItemType].length; j++) {
-                        nextItem = currentPlayerScreen[nextItemType][j];
-                        nextItemName = nextItem.name;
-                        // console.log("  nextItemName: " + nextItemName);
-                        var found = $.inArray(nextItemName, subscreenItems) > -1;
-                        if (found) {
-                            tempItemsNext.push(nextItem);
-                            tempNamesNext.push(nextItemName);
-                        }
-                    }
-                } else {
-                    nextItem = currentPlayerScreen[nextItemType];
-                    nextItemName = nextItem.name;
-                    var found = $.inArray(nextItemName, subscreenItems) > -1;
-                    if (found) {
-                        tempItemsNext.push(nextItem);
-                        tempNamesNext.push(nextItemName);
-                    }
-                }
-            }
-        }
-
-        // == put items from current player state onto screen
-        for (var j = 0; j < tempItemsNext.length; j++) {
-            nextItem = tempItemsNext[j];
-            nextType = nextItem.type;
-            indexCell = display.modifyGridRegion(nextItem, playerIndex);
-            if (nextType == "input") {
-                newTextInput = "<input id='" + nextItem.name + "Input' class='" + nextItem.class + "' type='text' value='Tom'>"
-                $(indexCell).append(newTextInput);
-                $(newTextInput).attr("id", nextItem.name);
-            }
-            if ((nextType == "btn") || (nextType == "slider")) {
-                display.activateNextItem(nextItem, indexCell);
-            }
-        }
+        nextSubscreenItems = display.playerStateItems[nextSubscreenName];
+        console.log("  nextSubscreenItems: " + nextSubscreenItems);
+        // game.currentScreen = nextScreen;
+        // console.log("== " + prevScreen.name + " ==");
+        // console.log("== " + nextScreen.name + " ==");
+        //
+        //
+        // // == identify items to remove, add or keep
+        // var changeItemsArray = this.sortPrevNextItems(prevScreen, nextScreen);
+        // var removeItemsArray = changeItemsArray[0];     // delete these items
+        // var addItemsArray = changeItemsArray[1];        // add these items
+        //
+        // // == send screen data to screen building functions
+        // this.addRemoveScreenItems(removeItemsArray, addItemsArray);
     }
 
     // ======= ======= ======= nextGameScreen ======= ======= =======
@@ -488,10 +356,10 @@ function initGame() {
         // == identify items to add or remove (by comparison of NAME strings)
         REMprevNames = $(tempNamesPrev).not(tempNamesNext).get();
         ADDnextNames = $(tempNamesNext).not(tempNamesPrev).get();
-        // console.log("  tempNamesPrev: " + tempNamesPrev);
-        // console.log("  tempNamesNext: " + tempNamesNext);
-        // console.log("  REMprevNames: " + REMprevNames);
-        // console.log("  ADDnextNames: " + ADDnextNames);
+        console.log("  tempNamesPrev: " + tempNamesPrev);
+        console.log("  tempNamesNext: " + tempNamesNext);
+        console.log("  REMprevNames: " + REMprevNames);
+        console.log("  ADDnextNames: " + ADDnextNames);
 
         // == get screen item OBJECTS from lists of screen item NAMES
         if (tempItemsPrev) {
@@ -516,9 +384,8 @@ function initGame() {
     }
 
     // ======= ======= ======= addRemoveScreenItems ======= ======= =======
-    Display.prototype.addRemoveScreenItems = function(removeItemsArray, addItemsArray, playerIndex) {
+    Display.prototype.addRemoveScreenItems = function(removeItemsArray, addItemsArray) {
         console.log("addRemoveScreenItems");
-        // console.log("  removeItemsArray: " + removeItemsArray);
 
         var nextItem, nextType, indexCell, newTextInput;
 
@@ -538,7 +405,7 @@ function initGame() {
         for (var j = 0; j < addItemsArray.length; j++) {
             nextItem = addItemsArray[j];
             nextType = nextItem.type;
-            indexCell = display.modifyGridRegion(nextItem, playerIndex);
+            indexCell = display.modifyGridRegion(nextItem);
 
             // append child elements (inputs, sliders)
             if (nextType == "input") {
@@ -547,7 +414,7 @@ function initGame() {
                 $(newTextInput).attr("id", nextItem.name);
             }
             if (nextType == "slider") {
-                newSliderElement = display.makeSlider(nextItem, playerIndex);
+                newSliderElement = display.makeSlider();
                 $(indexCell).append(newSliderElement);
                 $(newSliderElement).attr("id", nextItem.name + "_slider");
             }
@@ -562,7 +429,6 @@ function initGame() {
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, playerIndex, offsetR, offsetC) {
         console.log("modifyGridRegion: " + whichItem.name);
-        console.log("  playerIndex: " + playerIndex);
 
         if (playerIndex) {
             playerIndex = "_" + playerIndex;
@@ -580,7 +446,7 @@ function initGame() {
             nextRowObject = tableRows[nextRow];
             colspans = this.checkColumnSpans(nextRowObject, nextRow, nextCol);
             rowspans = this.checkRowSpans(nextRow, nextCol);
-            // console.log("  rowspans: " + rowspans);
+            console.log("  rowspans: " + rowspans);
             totalSpanOffset = nextCol - colspans - rowspans;
 
             if (regionType == "merge") {
@@ -591,7 +457,6 @@ function initGame() {
                     if (row > 0) {
                         totalColOffset = totalSpanOffset;
                     }
-
                     // remove all but index cell in merge area
                     if ((row == 0) && (col == 0)) {
                         indexCell = $(nextRowObject).children()[totalSpanOffset];
@@ -599,7 +464,6 @@ function initGame() {
                         nextCell = $(nextRowObject).children()[totalColOffset];
                         $(nextCell).remove();
                     }
-
                 }
 
                 // == set row/colspans on index cell to fill space
@@ -851,7 +715,9 @@ function initGame() {
         this.deckPointsArray = [];
         this.currentPlayer = 0;
         this.currentScreen = null;
+        this.currentSubscreenIndex = 0;
         this.playerNamesArray = [];
+        this.playerStatesArray = ["inactive", "active", "placeBets", "hitMeHoldMe", "turnOver", "handOver"]
         this.playerObjectsArray = [player1, player2, player3, dealer];
         this.screenObjectsArray = [splash, nameEnter, enterPlay, playGame];
         this.subcreenObjectsArray = [player1_scr, player2_scr, player3_scr, dealer_scr, scoreboard_scr];
@@ -861,23 +727,239 @@ function initGame() {
     }
 
 
+    // ======= ======= ======= dealCards ======= ======= =======
+    Game.prototype.dealCards = function(indexCell, whichAction) {
+        console.log("dealCards");
+
+        var winnersArray = [];
+        var nextPlayer, nextSuit, nextValue, nextPoints, cardPointsArray, nextCard, nextPoints;
+
+        // ======= initialize deck
+        var suitArray = ['C','D','H','S'];
+        var valueArray = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+        var pointsArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+        var tableString, nextValue, nextPoints, cardPoints, nextCard, nextPlayer;
+
+        for (var i = 0; i < suitArray.length; i++) {
+            nextSuit = suitArray[i];
+            for (var j = 0; j < valueArray.length; j++) {
+                nextValue = valueArray[j];
+                nextPoints = pointsArray[j];
+                this.deckArray.push(nextValue + nextSuit);
+                this.deckPointsArray.push(nextPoints);
+            }
+        }
+
+        // ======= clear previous player hands
+        for (var i = 0; i < (this.playerNamesArray.length); i++) {
+            nextPlayer = this.playerObjectsArray[i];
+            nextPlayer.hand = [];
+        }
+
+        // ======= deal cards to each player and dealer
+        for (var i = 0; i < (this.playerNamesArray.length); i++) {
+            nextPlayer = this.playerObjectsArray[i];
+            nextPlayerScreen = this.subcreenObjectsArray[i];
+            console.log('  nextPlayer.name: ' + nextPlayer.name);
+
+            // ======= getNextCard
+            for (var j = 0; j < 2; j++) {
+                cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+                nextCard = cardPointsArray[0];
+                nextPoints = cardPointsArray[1];
+                nextPlayer.hand.push(nextCard);
+                nextPlayer.score = nextPlayer.score + nextPoints;   // calculate player score
+                this.displayNextCard(nextPlayer, nextPlayerScreen);
+            }
+
+            // ======= if Ace card and > 21 (2 aces)
+            if (nextPlayer.score > 21) {
+                console.log('  2 aces: ' + nextPlayer.score);
+                for (var k = 0; k < nextPlayer.hand.length; k++) {
+                    nextCard = nextPlayer.hand[k];
+
+                    // ======= change Ace value to 1
+                    if (nextCard.indexOf("A") > 0) {
+                        nextPlayer.score = nextPlayer.score - 10;
+                        console.log('  found ace: ' + nextPlayer.score);
+                        break;
+                    }
+                }
+            }
+
+            // ======= instant winner
+            if (nextPlayer.score == 21) {
+                winnersArray.push(nextPlayer);
+            }
+
+            // this.updatePlayerScoreText(nextPlayer);
+
+            // var playerParamsArray = [nextPlayer.sliderParams.betOnesBtn, nextPlayer.sliderParams.betFivesBtn, nextPlayer.sliderParams.betTensBtn, nextPlayer.textParams.pBet_1s, nextPlayer.textParams.pBet_5s, nextPlayer.textParams.pBet_10s, nextPlayer.textParams.pBet];
+            // for (var j = 0; j < playerParamsArray.length; j++) {
+            //     nextItem = playerParamsArray[j];
+            //     if (nextItem != null) {
+            //         display.modifyGridRegion(nextItem, "next");
+            //     }
+            // }
+            $("#tooltips").text("Click PLAY button to place bets");
+        }
+
+        // ======= deal to dealer
+        dealer.hand = []
+        for (var j = 0; j < 2; j++) {
+            cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+            nextCard = cardPointsArray[0];
+            nextPoints = cardPointsArray[1];
+            dealer.hand.push(nextCard);
+            dealer.score = dealer.score + nextPoints;           // calculate player score
+            this.displayNextCard(dealer, nextPlayerScreen);
+        }
+        // this.updatePlayerScoreText(dealer);
+
+        // ======= set default player (unless winner)
+        if (winnersArray.length > 0) {
+            // calculateWinner();
+        } else {
+            console.log("  ** to bet");
+            this.activePlayer = 1;
+            this.currentGameState = "deal";
+            sequencer.nextGameState();
+        }
+        this.flipCards();
+    }
+
+    // ======= ======= ======= displayNextCard ======= ======= =======
+    Game.prototype.displayNextCard = function(whichPlayer, whichSubscreen) {
+        console.log("displayNextCard");
+
+        var whichMerge, cardDivString;
+        var playerIndex = whichPlayer.id;
+        var subscreenTextObjects = whichSubscreen.text;
+        for (var i = 0; i < subscreenTextObjects.length; i++) {
+            nextTextObject = subscreenTextObjects[i];
+            nextTextObjectName = subscreenTextObjects[i].name;
+            nextTextObjectClass = subscreenTextObjects[i].class;
+            if (nextTextObjectName == "pCards") {
+                whichCardObject = nextTextObject;
+                whichClass = nextTextObjectClass;
+                break;
+            }
+        }
+        var whichName = whichCardObject.name;
+        var cardCount = whichPlayer.hand.length;
+        var cardValue = whichPlayer.hand[cardCount - 1];
+
+        var whichSuit = cardValue.substr(cardValue.length - 1);
+        var whichValue = cardValue.substring(0, cardValue.length - 1);
+        switch(whichSuit) {
+            case "C":
+                imageString = "<img src='images/clubs.png' alt='clubs'>";
+                break;
+            case "D":
+                imageString = "<img src='images/diamonds.png' alt='diamonds'>";
+                break;
+            case "H":
+                imageString = "<img src='images/hearts.png' alt='hearts'>";
+                break;
+            case "S":
+                imageString = "<img src='images/spades.png' alt='spades'>";
+                break;
+        }
+
+        if (whichPlayer.name == "dealer") {
+            offsetC = cardCount - 1;
+        } else {
+            offsetC = -(cardCount - 1);
+        }
+        offsetR = 0;
+
+        indexCell = display.modifyGridRegion(whichCardObject, playerIndex, offsetR, offsetC)
+
+        cardDivString = "<div class='flip-container'>";
+        cardDivString += "<div id='" + cardValue + "' class='cardFlip'><div class='front " + whichClass + "'><p class='cardText'>&nbsp;</p></div>";
+        // cardDivString += "<div class='back " + whichClass + "'><p class='cardText'>" + cardValue + "</p></div></div></div>";
+        cardDivString += "<div class='back " + whichClass + "'>" + imageString + "<p class='cardText'>" + whichValue + "</p></div></div></div>";
+
+        $(indexCell).append(cardDivString);
+
+    }
+
+    // ======= ======= ======= flipCards ======= ======= =======
+    Game.prototype.flipCards = function() {
+        console.log("flipCards");
+
+        self = this;
+        interval = 400;
+        cardIndex = -1;
+        cardCount = 0;
+        playerIndex = 0;
+        nextPlayer = this.playerObjectsArray[0];
+
+        flipCards = setInterval(function() {
+            cardCount++;
+            if (cardCount > 20) {
+                stopFlips();
+            }
+            if (interval > 400) {
+                stopFlips();
+            }
+            cardIndex++;
+            if (cardIndex > nextPlayer.hand.length - 1) {
+                if (nextPlayer.name == "dealer") {
+                    interval = 1000;
+                } else {
+                    playerIndex++;
+                    if (playerIndex > self.playerNamesArray.length - 1) {
+                        nextPlayer = self.dealer;
+                    } else {
+                        nextPlayer = self.playerObjectsArray[playerIndex];
+                    }
+                }
+                cardIndex = 0;
+            }
+            nextCard = nextPlayer.hand[cardIndex];
+            $("#" + nextCard).addClass('flipper');
+        }, interval);
+
+        function stopFlips() {
+            clearInterval(flipCards);
+        }
+    }
+
+    // ======= ======= ======= getNextCard ======= ======= =======
+    Game.prototype.getNextCard = function() {
+        // console.log("getNextCard");
+		var cardIndex = parseInt(Math.random() * this.deckArray.length);
+		var nextCard = this.deckArray[cardIndex];
+		var nextPoints = this.deckPointsArray[cardIndex];
+		this.deckArray.splice(cardIndex, 1);
+		this.deckPointsArray.splice(cardIndex, 1);
+		return [nextCard, nextPoints];
+	}
+
     // ======= ======= ======= startGame ======= ======= =======
     Game.prototype.startGame = function() {
         console.log("startGame");
 
-        display.nextSubscreen(4);   // create dealer screen elements
+        this.currentPlayer = game.playerObjectsArray[0];
+        display.nextSubscreen(4, "inactive");
         display.nextGameScreen();
-        for (var i = 0; i < this.playerNamesArray.length; i++) {
-            nextPlayer = this.playerObjectsArray[i];
-            nextPlayerScreen = this.subcreenObjectsArray[i];
-            nextPlayerId = nextPlayer.id;
-            display.updateSubscreen(nextPlayerId, "placeBets");
-        }
+        game.dealCards();
+        display.nextSubscreen(1, "placeBets");
+        // game.updateSubscreens("placeBets");
+        // for (var i = 0; i < game.playerNamesArray.length) {
+        //     nextPlayer = playerObjectsArray[i];
+        //     nextPlayerId = nextPlayer.id;
+        //     display.nextSubscreen(nextPlayerId);
+        // }
 
+    }
 
-        // this.currentPlayer = game.playerObjectsArray[0];
-        // deal()
-        // activatePlayer1()
+    // ======= ======= ======= updateSubscreens ======= ======= =======
+    Game.prototype.updateSubscreens = function(whichSubscreen) {
+        console.log("updateSubscreens");
+
+        game.currentSubscreenIndex = game.playerStatesarray.indexOf(whichSubscreen);
 
     }
 
@@ -891,11 +973,11 @@ function initGame() {
         if (playerName) {
             playerCount = this.playerNamesArray.length;
             if (playerCount < 3) {
-                console.log("  playerCount: " + playerCount);
                 newPlayer = this.playerObjectsArray[playerCount];
                 this.playerNamesArray.push(newPlayer.name);
                 playerCount = this.playerNamesArray.length;
-                display.nextSubscreen(playerCount);
+                playerState = this.playerStatesArray[0];
+                display.nextSubscreen(playerCount, "inactive");
                 // this.updatePlayerNames(newPlayer, playerCount);
                 $("#tooltips").text("Enter another name or press 'start'");
             }
