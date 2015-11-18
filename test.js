@@ -41,7 +41,7 @@ function initGame() {
             inactive: ["borderH", "borderV", "pName", "pScore", "pBank"],
             active: ["borderH", "borderV", "pName", "pScore", "pBank"],
             placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "betOnes", "betFives", "betTens"],
-            hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "hitMeBtn", "holdMeBtn"],
+            hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "hitMeBtn", "holdMeBtn"],
             turnOver: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
             handOver: ["borderH", "borderV", "pName", "pScore", "pBank"]
         };
@@ -622,6 +622,12 @@ function initGame() {
                     $(nextCell).addClass(whichItem.class);
                     if ((row == 0) && (col == 0)) {
                         indexCell = $(nextRowObject).children()[temp_iC];
+                        if (whichItem.image != null) {
+                            newImage = $(new Image()).attr('src', "images/" + whichItem.image).appendTo($(indexCell));
+                            $(newImage).attr("id", whichItem.name);
+                        } else {
+                            $(indexCell).attr("id", whichItem.name);
+                        }
                         $(indexCell).attr("id", whichItem.name + playerIndex);
                     } else {
                         $(nextCell).attr("id", (nextRow) + "-" + (nextCol + col));
@@ -667,6 +673,17 @@ function initGame() {
                     }
                     if (row > 0) {
                         display.toggleRowspans(whichItem, offsetR, offsetC, "off")
+                    }
+                }
+            } else {
+                for (var col = 0; col < whichItem.iW; col++) {
+                    nextCell = $(nextRowObject).children()[temp_iC + col];
+                    if (whichItem.type == "slider") {
+                        $(nextCell).empty();
+                    } else {
+                        $(nextCell).removeClass();
+                        $(nextCell).addClass("cell");
+                        $(nextCell).attr("id", (nextRow) + "-" + (temp_iC + col));
                     }
                 }
             }
@@ -727,8 +744,31 @@ function initGame() {
                     display.moveSlider(event);
                 });
                 break;
+            case "playGame":
+                $(indexCell).off("click").on("click", function(){
+                    console.log("");
+                    console.log("-- -- -- playGame -- -- -- ");
+                    game.playGame();
+                    $("#tooltips").text("");
+                });
+                break;
         }
     }
+
+    // ======= ======= ======= playGame ======= ======= =======
+    Game.prototype.playGame = function() {
+        console.log("playGame");
+        this.currentPlayer = game.playerObjectsArray[0];
+        for (var i = 0; i < this.playerNamesArray.length; i++) {
+            nextPlayer = this.playerObjectsArray[i];
+            if (nextPlayer.name == this.currentPlayer.name) {
+                display.updateSubscreen(nextPlayer.id, "hitMeHoldMe");
+            } else {
+                display.updateSubscreen(nextPlayer.id, "inactive");
+            }
+        }
+    }
+
 
     // ======= ======= ======= deActivateNextItem ======= ======= =======
     Display.prototype.deActivateNextItem = function(whichItem, indexCell) {
