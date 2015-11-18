@@ -44,8 +44,8 @@ function initGame() {
         this.rowSpansArray = null;
         this.playerStateItems = {
             inactive: ["borderH", "borderV", "pName", "pScore", "pBank"],
-            active: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
-            placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "betOnesSlider", "betFivesSlider", "betTensSlider"],
+            active: ["borderH", "borderV", "pName", "pScore", "pBank"],
+            placeBets: ["borderH", "borderV", "pName", "pScore", "pBank", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "betOnesSlider", "betFivesSlider", "betTensSlider"],
             hitMeHoldMe: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards", "pBet", "pBet_1s", "pBet_5s", "pBet_10s", "hitMeBtn", "holdMeBtn"],
             turnOver: ["borderH", "borderV", "pName", "pScore", "pBank", "pCards"],
             handOver: ["borderH", "borderV", "pName", "pScore", "pBank"]
@@ -230,7 +230,6 @@ function initGame() {
     Display.prototype.makeSlider = function(whichItem, playerIndex) {
         console.log("makeSlider");
         console.log("  whichItem: " + whichItem.name);
-        console.log("  playerIndex: " + playerIndex);
 
         var sliderLoc = $("#" + whichItem.name + "_" + playerIndex).offset();   // location of grid cell
         var locX =  sliderLoc.left + 100;
@@ -266,10 +265,10 @@ function initGame() {
 
         var REMprevNames = $(prevPlayerItems).not(nextPlayerItems).get();
         var ADDnextNames = $(nextPlayerItems).not(prevPlayerItems).get();
-        console.log("  prevPlayerItems: " + prevPlayerItems);
-        console.log("  nextPlayerItems: " + nextPlayerItems);
-        console.log("  REMprevNames: " + REMprevNames);
-        console.log("  ADDnextNames: " + ADDnextNames);
+        // console.log("  prevPlayerItems: " + prevPlayerItems);
+        // console.log("  nextPlayerItems: " + nextPlayerItems);
+        // console.log("  REMprevNames: " + REMprevNames);
+        // console.log("  ADDnextNames: " + ADDnextNames);
 
         itemTypesArray = ["bg", "btn", "slider", "text", "input", "image"];
         for (var i = 0; i < itemTypesArray.length; i++) {
@@ -282,7 +281,7 @@ function initGame() {
                         nextItemName = nextItem.name;
                         var found = $.inArray(nextItemName, REMprevNames) > -1;
                         if (found) {
-                            console.log("  nextItemName: " + nextItemName);
+                            // console.log("  nextItemName: " + nextItemName);
                             REMprevItems.push(nextItem);
                         }
                     }
@@ -291,7 +290,7 @@ function initGame() {
                     nextItemName = nextItem.name;
                     var found = $.inArray(nextItemName, REMprevNames) > -1;
                     if (found) {
-                        console.log("  nextItemName: " + nextItemName);
+                        // console.log("  nextItemName: " + nextItemName);
                         REMprevItems.push(nextItem);
                     }
                 }
@@ -308,7 +307,7 @@ function initGame() {
                         nextItemName = nextItem.name;
                         var found = $.inArray(nextItemName, ADDnextNames) > -1;
                         if (found) {
-                            console.log("  nextItemName: " + nextItemName);
+                            // console.log("  nextItemName: " + nextItemName);
                             ADDnextItems.push(nextItem);
                         }
                     }
@@ -317,14 +316,14 @@ function initGame() {
                     nextItemName = nextItem.name;
                     var found = $.inArray(nextItemName, ADDnextNames) > -1;
                     if (found) {
-                        console.log("  nextItemName: " + nextItemName);
+                        // console.log("  nextItemName: " + nextItemName);
                         ADDnextItems.push(nextItem);
                     }
                 }
             }
         }
-        console.log("  REMprevItems: " + REMprevItems);
-        console.log("  ADDnextItems: " + ADDnextItems);
+        // console.log("  REMprevItems: " + REMprevItems);
+        // console.log("  ADDnextItems: " + ADDnextItems);
 
         this.addRemoveScreenItems(REMprevItems, ADDnextItems, playerIndex);
     }
@@ -575,7 +574,6 @@ function initGame() {
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, playerIndex, offsetR, offsetC) {
         console.log("modifyGridRegion: " + whichItem.name);
-        console.log("  playerIndex: " + playerIndex);
 
         if (playerIndex) {
             playerIndex = "_" + playerIndex;
@@ -585,18 +583,17 @@ function initGame() {
         var tableRows = $("tr");
         var regionType = whichItem.merge;
         // console.log("  whichItem.merge: " + whichItem.merge);
+        var loopCount = 0
 
         // == remove cells from merge area (check row/colspans in each row)
         for (var row = 0; row < whichItem.iH; row++) {
+            loopCount++;
             nextRow = whichItem.iR + offsetR + row;
             nextCol = whichItem.iC + offsetC;
             nextRowObject = tableRows[nextRow];
             colspans = this.checkColumnSpans(nextRowObject, nextRow, nextCol);
             rowspans = this.checkRowSpans(nextRow, nextCol);
             temp_iC = nextCol - colspans - rowspans;
-            console.log("  colspans: " + colspans);
-            console.log("  rowspans: " + rowspans);
-            console.log("  temp_iC: " + temp_iC);
 
             if (regionType == "merge") {
                 for (var col = 0; col < whichItem.iW; col++) {
@@ -611,19 +608,16 @@ function initGame() {
                     // remove all but index cell in merge area
                     if ((row == 0) && (col == 0)) {
                         indexCell = $(nextRowObject).children()[temp_iC];
+                        $(indexCell).attr("colSpan", whichItem.iW);
+                        $(indexCell).attr("rowSpan", whichItem.iH);
+                        $(indexCell).addClass(whichItem.class);
+                        if (whichItem.type != "input") {
+                            $(indexCell).attr("id", whichItem.name + playerIndex);
+                        }
                     } else {
                         nextCell = $(nextRowObject).children()[totalColOffset];
-                        console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
                         $(nextCell).remove();
                     }
-                }
-
-                // == set row/colspans on index cell to fill space
-                $(indexCell).attr("colSpan", whichItem.iW);
-                $(indexCell).attr("rowSpan", whichItem.iH);
-                $(indexCell).addClass(whichItem.class);
-                if (whichItem.type != "input") {
-                    $(indexCell).attr("id", whichItem.name + playerIndex);
                 }
 
                 // == modify item class via item class parameters
@@ -738,7 +732,7 @@ function initGame() {
 
     // ======= ======= ======= deActivateNextItem ======= ======= =======
     Display.prototype.deActivateNextItem = function(whichItem, indexCell) {
-        console.log("deActivateNextItem: " + whichItem.name);
+        // console.log("deActivateNextItem: " + whichItem.name);
     }
 
     // ======= ======= ======= checkRowSpans ======= ======= =======
@@ -866,7 +860,7 @@ function initGame() {
         console.log("dealCards");
 
         var winnersArray = [];
-        var dealer = this.playerObjectsArray[3];
+        // var dealer = this.playerObjectsArray[3];
         var dealerScreen = this.subcreenObjectsArray[3];
         var nextPlayer, nextSuit, nextValue, nextPoints, cardPointsArray, nextCard, nextPoints;
 
@@ -893,13 +887,9 @@ function initGame() {
         }
 
         // ======= deal cards to each player and dealer
-        console.log('  this.playerNamesArray.length: ' + this.playerNamesArray.length);
-        console.log('  this.playerNamesArray[3]: ' + this.playerNamesArray[3]);
         for (var i = 0; i < (this.playerNamesArray.length); i++) {
             nextPlayer = this.playerObjectsArray[i];
             nextPlayerScreen = this.subcreenObjectsArray[i];
-            console.log('');
-            console.log('  ******* nextPlayer.name: ' + nextPlayer.name);
 
             // ======= getNextCard
             for (var j = 0; j < 2; j++) {
@@ -935,7 +925,7 @@ function initGame() {
 
             $("#tooltips").text("Click PLAY button to place bets");
         }
-        
+
         // ======= deal to dealer
         dealer.hand = []
         for (var j = 0; j < 2; j++) {
@@ -956,6 +946,8 @@ function initGame() {
 
         var whichMerge, cardDivString;
         var playerIndex = whichPlayer.id;
+
+        // == get player card object for positioning
         var subscreenTextObjects = whichSubscreen.text;
         for (var i = 0; i < subscreenTextObjects.length; i++) {
             nextTextObject = subscreenTextObjects[i];
@@ -999,7 +991,6 @@ function initGame() {
 
         cardDivString = "<div class='flip-container'>";
         cardDivString += "<div id='" + cardValue + "' class='cardFlip'><div class='front " + whichClass + "'><p class='cardText'>&nbsp;</p></div>";
-        // cardDivString += "<div class='back " + whichClass + "'><p class='cardText'>" + cardValue + "</p></div></div></div>";
         cardDivString += "<div class='back " + whichClass + "'>" + imageString + "<p class='cardText'>" + whichValue + "</p></div></div></div>";
 
         $(indexCell).append(cardDivString);
@@ -1076,7 +1067,6 @@ function initGame() {
         cardCount = 0;
         playerIndex = 0;
         nextPlayer = this.playerObjectsArray[0];
-        // console.log("  nextPlayer.name: " + nextPlayer.name);
 
         flipCards = setInterval(function() {
             cardCount++;
@@ -1092,7 +1082,11 @@ function initGame() {
                     interval = 1000;
                 } else {
                     playerIndex++;
-                    nextPlayer = self.playerObjectsArray[playerIndex];
+                    if (playerIndex > self.playerNamesArray.length - 1) {
+                        nextPlayer = dealer;
+                    } else {
+                        nextPlayer = self.playerObjectsArray[playerIndex];
+                    }
                 }
                 cardIndex = 0;
             }
