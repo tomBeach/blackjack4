@@ -1099,7 +1099,7 @@ function initGame() {
     }
 
     // ======= ======= ======= placeBet ======= ======= =======
-    Game.prototype.placeBet = function(whichBet, whichPlayer) {
+    Game.prototype.placeBet = function(whichBet, whichPlayer, whichPlayerScreen) {
         console.log("placeBet");
         console.log("  whichPlayer: " + whichPlayer.name);
 
@@ -1148,8 +1148,8 @@ function initGame() {
             whichPlayer.onesBet = onesBet;
             whichPlayer.fivesBet = fivesBet;
             whichPlayer.tensBet = tensBet;
-            whichPlayer.totalBank = onesBank + fivesBank + tensBank;
-            game.updateBetButtonText(whichPlayer);
+            // whichPlayer.totalBank = onesBank + fivesBank + tensBank;
+            // display.updatePlayerScreenText(whichPlayer, whichPlayerScreen);
         } else {
             $("#tooltips").text("Oops you're out of money!");
         }
@@ -1157,7 +1157,7 @@ function initGame() {
     }
 
     // ======= ======= ======= returnBet ======= ======= =======
-    Game.prototype.returnBet = function(whichBet, whichPlayer) {
+    Game.prototype.returnBet = function(whichBet, whichPlayer, whichPlayerScreen) {
         console.log("returnBet");
 
         var onesBank = whichPlayer.onesBank;
@@ -1205,8 +1205,8 @@ function initGame() {
             whichPlayer.onesBet = onesBet;
             whichPlayer.fivesBet = fivesBet;
             whichPlayer.tensBet = tensBet;
-            whichPlayer.totalBank = onesBank + fivesBank + tensBank;
-            game.updateBetButtonText(whichPlayer);
+            // whichPlayer.totalBank = onesBank + fivesBank + tensBank;
+            // display.updatePlayerScreenText(whichPlayer, whichPlayerScreen);
         } else {
             $("#tooltips").text("Total bet is returned");
         }
@@ -1281,21 +1281,40 @@ function initGame() {
 	        },
 	        updateSvgs: function (dX) {
 	            console.log('updateSvgs');
-	            currentChips = slider.player_chips;
-                player_object = game.playerObjectsArray[this.player_index];
+	            var currentChips = slider.player_chips;
+                var player_object = game.playerObjectsArray[this.player_index];
+                var player_screen = game.subcreenObjectsArray[this.player_index];
                 console.log("   player_object.name: " + player_object.name);
 
             	if (dX > 0) {
             		updateChips = setInterval(function() {
                         console.log("   dX+: " + dX);
                         game.placeBet(currentChips, player_object);
+                        updatePlayerScreenText();
             		}, 300);
             	} else {
             		updateChips = setInterval(function() {
                         console.log("   dX-: " + dX);
                         game.returnBet(currentChips, player_object);
+                        updatePlayerScreenText();
 	            	}, 300);
 	            }
+
+                function updatePlayerScreenText() {
+                    console.log('updatePlayerScreenText');
+                    console.log("   player_object.onesBet: " + player_object.onesBet);
+                    console.log("   player_screen.slider[0].name: " + player_screen.slider[0].name);
+                    // $("#" + player_screen.slider[0].name + "_" + player_object.id).text("$" + player_object.onesBank);
+                    // $("#" + player_screen.slider[1].name + "_" + player_object.id).text("$" + player_object.fivesBank);
+                    // $("#" + player_screen.slider[2].name + "_" + player_object.id).text("$" + player_object.tensBank);
+                    $("#" + player_screen.text[4].name + "_" + player_object.id).text("$" + player_object.onesBet);
+                    $("#" + player_screen.text[5].name + "_" + player_object.id).text("$" + player_object.fivesBet);
+                    $("#" + player_screen.text[6].name + "_" + player_object.id).text("$" + player_object.tensBet);
+                    var totalBet = player_object.onesBet + player_object.fivesBet + player_object.tensBet;
+                    var totalBank = player_object.onesBank + player_object.fivesBank + player_object.tensBank;
+                    $("#" + player_screen.text[1].name + "_" + player_object.id).text("$" + totalBank);
+                    $("#" + player_screen.text[3].name + "_" + player_object.id).text("$" + totalBet);
+                }
 	        },
 
 	        // ======= MOUSE_UP ======= MOUSE_UP ======= MOUSE_UP ======= MOUSE_UP =======
@@ -1355,19 +1374,26 @@ function initGame() {
         }
     }
 
-    // ======= ======= ======= updateBetButtonText ======= ======= =======
-    Display.prototype.updateBetButtonText = function(whichPlayer) {
-        console.log("updateBetButtonText");
-        $("#" + whichPlayer.sliderParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
-        $("#" + whichPlayer.sliderParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
-        $("#" + whichPlayer.sliderParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
-        $("#" + whichPlayer.textParams.pBet_1s.name).text("$" + whichPlayer.onesBet);
-        $("#" + whichPlayer.textParams.pBet_5s.name).text("$" + whichPlayer.fivesBet);
-        $("#" + whichPlayer.textParams.pBet_10s.name).text("$" + whichPlayer.tensBet);
-        var totalBet = whichPlayer.onesBet + whichPlayer.fivesBet + whichPlayer.tensBet;
-        $("#" + whichPlayer.textParams.pBet.name).text("$" + totalBet);
-        $("#" + whichPlayer.textParams.pBank.name).text("$" + whichPlayer.totalBank);
-    }
+    // ======= ======= ======= updatePlayerScreenText ======= ======= =======
+    // Display.prototype.updatePlayerScreenText = function(whichPlayer, whichPlayerScreen) {
+    //     console.log("updatePlayerScreenText");
+    //
+    //     $("#" + whichPlayer.sliderParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
+    //
+    //     betOnes_1
+    //     pBet_1s_1
+    //
+    //
+    //     $("#" + whichPlayer.sliderParams.betOnesBtn.name).text("$" + whichPlayer.onesBank);
+    //     $("#" + whichPlayer.sliderParams.betFivesBtn.name).text("$" + whichPlayer.fivesBank);
+    //     $("#" + whichPlayer.sliderParams.betTensBtn.name).text("$" + whichPlayer.tensBank);
+    //     $("#" + whichPlayer.textParams.pBet_1s.name).text("$" + whichPlayer.onesBet);
+    //     $("#" + whichPlayer.textParams.pBet_5s.name).text("$" + whichPlayer.fivesBet);
+    //     $("#" + whichPlayer.textParams.pBet_10s.name).text("$" + whichPlayer.tensBet);
+    //     var totalBet = whichPlayer.onesBet + whichPlayer.fivesBet + whichPlayer.tensBet;
+    //     $("#" + whichPlayer.textParams.pBet.name).text("$" + totalBet);
+    //     $("#" + whichPlayer.textParams.pBank.name).text("$" + whichPlayer.totalBank);
+    // }
 
     // ======= ======= ======= updatePlayerBetText ======= ======= =======
     Display.prototype.updatePlayerBetText = function(whichPlayer) {
