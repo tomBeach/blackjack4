@@ -1,4 +1,100 @@
 
+// ======= ======= ======= sortPrevNextItems ======= ======= =======
+Display.prototype.sortPrevNextItems = function(prevScreen, nextScreen) {
+    console.log("sortPrevNextItems");
+    console.log("  prevScreen: " + prevScreen.name);
+    console.log("  nextScreen: " + nextScreen.name);
+
+    // transitioning from screen to screen requires distinguishing item changes
+    // some items should be removed, others added, others left as-is
+    // add and remove lists are built based on item names
+    // add/remove name lists are used to create add/remove object lists
+
+    var REMprevItems = [];
+    var ADDnextItems = [];
+    var tempNamesPrev = [];
+    var tempNamesNext = [];
+    var tempItemsPrev = [];
+    var tempItemsNext = [];
+
+    // create lists of screen item NAMES for prev and next screen items
+    itemTypesArray = ["bg", "btn", "slider", "text", "input", "image"];
+    for (var i = 0; i < itemTypesArray.length; i++) {
+        nextItemType = itemTypesArray[i];
+        console.log("  nextItemType: " + nextItemType);
+        if (prevScreen) {
+            if (prevScreen[nextItemType]) {
+                items = Array.isArray(prevScreen[nextItemType]);
+                if (items) {
+                    for (var j = 0; j < prevScreen[nextItemType].length; j++) {
+                        nextItem = prevScreen[nextItemType][j];
+                        nextItemName = nextItem.name;
+                        tempItemsPrev.push(nextItem);
+                        tempNamesPrev.push(nextItemName);
+                    }
+                } else {
+                    nextItem = prevScreen[nextItemType];
+                    nextItemName = nextItem.name;
+                    tempItemsPrev.push(nextItem);
+                    tempNamesPrev.push(nextItemName);
+                }
+            }
+        }
+        if (nextScreen[nextItemType]) {
+            console.log("  nextScreen[nextItemType]: " + nextScreen[nextItemType]);
+            items = Array.isArray(nextScreen[nextItemType]);
+            console.log("  items: " + items);
+            if (items) {
+                for (var j = 0; j < nextScreen[nextItemType].length; j++) {
+                    nextItem = nextScreen[nextItemType][j];
+                    nextItemName = nextItem.name;
+                    console.log("  nextItem: " + nextItem);
+                    tempItemsNext.push(nextItem);
+                    tempNamesNext.push(nextItemName);
+                }
+            } else {
+                nextItem = nextScreen[nextItemType];
+                nextItemName = nextItem.name;
+                console.log("  nextItem: " + nextItem);
+                tempItemsNext.push(nextItem);
+                tempNamesNext.push(nextItemName);
+            }
+        }
+    }
+
+    // == identify items to add or remove (by comparison of NAME strings)
+    REMprevNames = $(tempNamesPrev).not(tempNamesNext).get();
+    ADDnextNames = $(tempNamesNext).not(tempNamesPrev).get();
+    console.log("  tempNamesPrev: " + tempNamesPrev);
+    console.log("  tempNamesNext: " + tempNamesNext);
+    console.log("  REMprevNames: " + REMprevNames);
+    console.log("  ADDnextNames: " + ADDnextNames);
+
+    // == get screen item OBJECTS from lists of screen item NAMES
+    if (tempItemsPrev) {
+        for (var i = 0; i < tempItemsPrev.length; i++) {
+            nextItem = tempItemsPrev[i];
+            nextItemName = nextItem.name;
+            var found = $.inArray(nextItemName, REMprevNames)
+            if (found > -1) {
+                REMprevItems.push(nextItem);
+            }
+        }
+    }
+    for (var i = 0; i < tempItemsNext.length; i++) {
+        nextItem = tempItemsNext[i];
+        nextItemName = nextItem.name;
+        var found = $.inArray(nextItemName, ADDnextNames)
+        if (found > -1) {
+            ADDnextItems.push(nextItem);
+        }
+    }
+    return [REMprevItems, ADDnextItems];
+}
+
+
+
+
 
 var player1_scr = new Screen(
     /* name:   */ "player1",
