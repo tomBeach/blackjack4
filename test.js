@@ -7,6 +7,107 @@ $(document).ready(function(){
 function initGame() {
     console.log('initGame');
 
+    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
+
+    var player1_scr = new Screen("player1", "player");
+        player1_scr.borderH = { name:"borderH", type:"bg", iR:1,iC:0,iW:6,iH:1, merge:null, class:"pBorder-1" };
+        player1_scr.borderV = { name:"borderV", type:"bg",iR:1,iC:5,iW:1,iH:3, merge:null, class:"pBorder-1" };
+
+        player1_scr.hitMeBtn = { name:"hitMeBtn", callback:"hitMe", type:"btn",iR:1,iC:7,iW:1,iH:1, merge:null, class:"button", image:"hitMeBW.png", value:"hit me!" };
+        player1_scr.holdMeBtn = { name:"holdMeBtn", callback:"holdMe", type:"btn",iR:1,iC:8,iW:1,iH:1, merge:null, class:"button", image:"holdMeBW.png", value:"hold" };
+        player1_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:1,iC:6,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver:"slide to bet $1", tooltipOut:""  };
+        player1_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:2,iC:6,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"slide to bet $5", tooltipOut:""  };
+        player1_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:3,iC:6,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"slide to bet $10", tooltipOut:""  };
+
+        player1_scr.pName = { name:"pName", type:"text",iR:1,iC:1,iW:3,iH:1, merge:"merge", class:"pBorder-1", value:null };
+        player1_scr.pBank = { name:"pBank", type:"text",iR:1,iC:5,iW:1,iH:1, merge:null, class:"pBorder-1 bank", value:"100" };
+        player1_scr.pScore = { name:"pScore", type:"text",iR:2,iC:5,iW:1,iH:1, merge:null, class:"pBorder-1", value:0 };
+        player1_scr.pBet = { name:"pBet", type:"text",iR:4,iC:15,iW:1,iH:1, merge:null, class:"pBorder-1 bet", value:"0" };
+        player1_scr.pBet_1s = { name:"pBet_1s", type:"text",iR:4,iC:12,iW:1,iH:1, merge:null, class:"pBorder-1 table", value:"0" };
+        player1_scr.pBet_5s = { name:"pBet_5s", type:"text",iR:4,iC:13,iW:1,iH:1, merge:null, class:"pBorder-1 table", value:"0" };
+        player1_scr.pBet_10s = { name:"pBet_10s", type:"text",iR:4,iC:14,iW:1,iH:1, merge:null, class:"pBorder-1 table", value:"0" };
+        player1_scr.pCards = { name:"pCards", type:"text",iR:2,iC:4,iW:1,iH:2, merge:"merge", class:"card-1", value:null };
+        player1_scr.pBetOnes = { name:"pBetOnes", type:"text",iR:1,iC:6,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver:"$1 chips", tooltipOut:""  };
+        player1_scr.pBetFives = { name:"pBetFives", type:"text",iR:2,iC:6,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"$5 chips", tooltipOut:""  };
+        player1_scr.pBetTens = { name:"pBetTens", type:"text",iR:3,iC:6,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"$10 chips", tooltipOut:""  };
+
+    var player2_scr = new Screen("player2", "player");
+        player2_scr.borderH = { name: "borderH", type: "bg", iR:5, iC:1, iW:6, iH:1, merge: null, class: "pBorder-2" };
+        player2_scr.borderV = { name: "borderV", type: "bg", iR:5, iC:6, iW:1, iH:3, merge: null, class: "pBorder-2" };
+
+        player2_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn", iR:5, iC:8, iW:1, iH:1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" };
+        player2_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn", iR:5, iC:9, iW:1, iH:1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" };
+        player2_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "slide to bet $1", tooltipOut: ""  };
+        player2_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "slide to bet $5", tooltipOut: ""  };
+        player2_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "slide to bet $10", tooltipOut: ""  };
+
+        player2_scr.pName = { name: "pName", type: "text", iR:5, iC:2, iW:3, iH:1, merge: "merge", class: "pBorder-2", value: null };
+        player2_scr.pBank = { name: "pBank", type: "text", iR:5, iC:6, iW:1, iH:1, merge: null, class: "pBorder-2 bank", value: "100" };
+        player2_scr.pScore = { name: "pScore", type: "text", iR:6, iC:6, iW:1, iH:1, merge: null, class: "pBorder-2", value: 0 };
+        player2_scr.pBet = { name: "pBet", type: "text", iR:5, iC:15, iW:1, iH:1, merge: null, class: "pBorder-2 bet", value: "0" };
+        player2_scr.pBet_1s = { name: "pBet_1s", type: "text", iR:5, iC:12, iW:1, iH:1, merge: null, class: "pBorder-2 table", value: "0" };
+        player2_scr.pBet_5s = { name: "pBet_5s", type: "text", iR:5, iC:13, iW:1, iH:1, merge: null, class: "pBorder-2 table", value: "0" };
+        player2_scr.pBet_10s = { name: "pBet_10s", type: "text", iR:5, iC:14, iW:1, iH:1, merge: null, class: "pBorder-2 table", value: "0" };
+        player2_scr.pCards = { name: "pCards", type: "text", iR:6, iC:5, iW:1, iH:2, merge: "merge", class: "card-2", value: null };
+        player2_scr.pBetOnes = { name:"pBetOnes", type:"text", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1 chips", tooltipOut: ""  };
+        player2_scr.pBetFives = { name:"pBetFives", type:"text", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5 chips", tooltipOut: ""  };
+        player2_scr.pBetTens = { name:"pBetTens", type:"text", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10 chips", tooltipOut: ""  };
+
+    var player3_scr = new Screen("player3", "player");
+        player3_scr.borderH = { name: "borderH", type: "bg", iR:9, iC:2, iW:6, iH:1, merge: null, class: "pBorder-3" };
+        player3_scr.borderV = { name: "borderV", type: "bg", iR:9, iC:7, iW:1, iH:3, merge: null, class: "pBorder-3" };
+
+        player3_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn", iR:9, iC:9, iW:1, iH:1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" };
+        player3_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn", iR:9, iC:10, iW:1, iH:1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" };
+        player3_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1", tooltipOut: ""  };
+        player3_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5", tooltipOut: ""  };
+        player3_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10", tooltipOut: ""  };
+
+        player3_scr.pName = { name: "pName", type: "text", iR:9, iC:3, iW:3, iH:1, merge: "merge", class: "pBorder-3", value: null };
+        player3_scr.pBank = { name: "pBank", type: "text", iR:9, iC:7, iW:1, iH:1, merge: null, class: "pBorder-3 bank", value: "100" };
+        player3_scr.pScore = { name: "pScore", type: "text", iR:10, iC:7, iW:1, iH:1, merge: null, class: "pBorder-3", value: 0 };
+        player3_scr.pBet = { name: "pBet", type: "text", iR:6, iC:15, iW:1, iH:1, merge: null, class: "pBorder-3 bet", value: "0" };
+        player3_scr.pBet_1s = { name: "pBet_1s", type: "text", iR:6, iC:12, iW:1, iH:1, merge: null, class: "pBorder-3 table", value: "0" };
+        player3_scr.pBet_5s = { name: "pBet_5s", type: "text", iR:6, iC:13, iW:1, iH:1, merge: null, class: "pBorder-3 table", value: "0" };
+        player3_scr.pBet_10s = { name: "pBet_10s", type: "text", iR:6, iC:14, iW:1, iH:1, merge: null, class: "pBorder-3 table", value: "0" };
+        player3_scr.pCards = { name: "pCards", type: "text", iR:10, iC:6, iW:1, iH:2, merge: "merge", class: "card-3", value: null };
+        player3_scr.pBetOnes = { name:"pBetOnes", type:"text", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1 chips", tooltipOut: ""  };
+        player3_scr.pBetFives = { name:"pBetFives", type:"text", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5 chips", tooltipOut: ""  };
+        player3_scr.pBetTens = { name:"pBetTens", type:"text", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10 chips", tooltipOut: ""  };
+
+    var dealer_scr = new Screen("dealer", "player");
+        dealer_scr.borderH = { name: "borderH", type: "bg", iR:3, iC:10, iW:6, iH:1, merge: null, class: "dBorder" };
+        dealer_scr.borderV = { name: "borderV", type: "bg", iR:1, iC:10, iW:1, iH:3, merge: null, class: "dBorder" };
+        dealer_scr.pName = { name: "pName", type: "text", iR:3, iC:12, iW:3, iH:1, merge: "merge", class: "dBorder", value: null };
+        dealer_scr.pScore = { name: "pScore", type: "text", iR:3, iC:10, iW:1, iH:1, merge: null, class: "dBorder", value: 0 };
+        dealer_scr.pCards = { name: "pCards", type: "text", iR:1, iC:11, iW:1, iH:2, merge: "merge", class: "card-d", value: null };
+
+    var scoreboard_scr = new Screen();
+
+    var gameScreen = new Screen("gameScreen", "game");
+        gameScreen.orbBtn = { name:"orbBtn", callback:"nextGameScreen", type:"btn", iR:5,iC:12,iW:3,iH:1, merge:"merge", class:"orbBtn", value:"START", tooltipOver:"start the game!", tooltipOut:"" };
+        gameScreen.tooltips = { name:"tooltips", type:"text", iR:9,iC:11,iW:5,iH:2, merge:"merge", class:"tooltips", value: "" };
+        gameScreen.enterBtn = { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR:6,iC:12,iW:3,iH:1, merge: "merge", class: "enterBtn", value: "ENTER", tooltipOver:  "click ENTER to save player", tooltipOut: "" };
+        gameScreen.playerName = { name: "playerName", type: "input",iR:5,iC:12,iW:3,iH:1, merge: "merge", class: "inputText", value: "playerName" };
+        gameScreen.startBtn = { name: "startBtn", callback: "startGame", type: "btn", iR:7,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "START", tooltipOver: "start game", tooltipOut: "click DEAL to deal cards" };
+        gameScreen.playBtn = { name: "playBtn", callback: "playGame", type: "btn", iR:7,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "BET", tooltipOver: "place bets", tooltipOut: "" };
+        gameScreen.playAgainBtn = { name: "playAgainBtn", callback: "playAgain", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playAgainBtn", value: "AGAIN", tooltipOver: "play another hand", tooltipOut: "" };
+        gameScreen.newGameBtn = { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "NEW", tooltipOver: "start a new game", tooltipOut: "" };
+
+
+
+
+
+        // ======= ======= ======= ======= ======= OBJECTS ======= ======= ======= ======= =======
+        // ======= ======= ======= ======= ======= OBJECTS ======= ======= ======= ======= =======
+        // ======= ======= ======= ======= ======= OBJECTS ======= ======= ======= ======= =======
+
+
+
+
+
     function Screen(name, type) {
         console.log('Screen');
         this.name = name;
@@ -62,6 +163,18 @@ function initGame() {
         this.tensBet = 0;
     }
 
+
+
+
+
+    // ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
+    // ======= ======= ======= ======= ======= DISPLAY ======= ======= ======= ======= =======
+
+
+
+
+
     // ======= ======= ======= addRemoveScreenItems ======= ======= =======
     Display.prototype.addRemoveScreenItems = function(removeItemsArray, addItemsArray, playerIndex) {
         console.log("addRemoveScreenItems");
@@ -110,124 +223,6 @@ function initGame() {
             }
         }
     }
-
-    // ======= ======= ======= turnOver ======= ======= =======
-    Game.prototype.turnOver = function() {
-	    console.log("turnOver");
-        console.log("  PREV player: " + this.currentPlayer.name);
-
-        var currentPlayerIndex = this.currentPlayer.id;
-        var currentPlayer = this.currentPlayer;
-        var nextPlayer;
-
-        if (currentPlayerIndex < (this.playerNamesArray.length)) {
-            display.updateSubscreen(currentPlayerIndex, "turnOver");
-            nextPlayer = this.playerObjectsArray[currentPlayerIndex];
-            this.currentPlayer = nextPlayer;
-            console.log("  NEXT player: " + this.currentPlayer.name);
-            display.updateSubscreen(currentPlayerIndex + 1, "hitMeHoldMe");
-            $("#tooltips").text(nextPlayer.name + "'s turn");
-        } else {
-            display.updateSubscreen(currentPlayerIndex, "turnOver");
-            this.currentPlayer = this.dealer;
-            $("#tooltips").text("dealer's turn");
-            this.hitDealer();
-        }
-    }
-
-    // ======= ======= ======= hitDealer ======= ======= =======
-    Game.prototype.hitDealer = function() {
-	    console.log("");
-        console.log("hitDealer");
-
-        self = this;
-        // == hit dealer again or end hand
-        if (dealer.score < 18) {
-            console.log("  dealer.hand.length1: " + dealer.hand.length);
-            cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
-            nextCard = cardPointsArray[0];
-            nextPoints = cardPointsArray[1];
-            dealer.hand.push(nextCard);
-            console.log("  dealer.hand.length1: " + dealer.hand.length);
-            dealer.score = dealer.score + nextPoints;           // calculate dealer score
-            this.displayNextCard(dealer, dealer_scr);                          // display new card
-            $("#pScore_D").text(nextPlayer.score);
-
-            flipCards = setTimeout(function(){
-                nextCard = dealer.hand[dealer.hand.length - 1];
-                 $("#" + nextCard).addClass('flipper');
-                 if (dealer.score < 18) {
-                     self.hitDealer();
-                 } else {
-                     display.nextGameScreen();
-                     game.doTheMath();
-                     $("#tooltips").text("");
-                 }
-             }, 800);
-
-        } else {
-            display.nextGameScreen();
-            game.doTheMath();
-            $("#tooltips").text("");
-        }
-    }
-
-    // ======= ======= ======= doTheMath ======= ======= =======
-    Game.prototype.doTheMath = function() {
-	    console.log("doTheMath");
-
-	    var nextPlayer, nextName, winLossLabel;
-	    var dealerScore = game.dealer.score;
-	    var playerWinLoss = 0;
-	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n\n';
-
-	    // =======
-	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
-	    	nextPlayer = game.playerObjectsArray[i];
-            nextPlayerScreen = game.subscreenObjectsArray[i];
-	    	nextName = nextPlayer.name;
-	    	console.log("   nextName: " + nextName);
-
-	    	// ======= calculate win/loss results
-	    	playerWinLoss = nextPlayer.onesBet + nextPlayer.fivesBet + nextPlayer.tensBet;
-	    	console.log("   playerWinLoss: " + playerWinLoss);
-
-    		// ======= calculate wins/losses for players
-	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
-	    		winLossLabel = ' and won $';
-                nextPlayer.onesBank += (nextPlayer.onesBet * 2);
-                nextPlayer.fivesBank += (nextPlayer.fivesBet * 2);
-                nextPlayer.tensBank += (nextPlayer.tensBet * 2);
-	    		nextPlayer.totalBank = nextPlayer.totalBank + (playerWinLoss * 2);
-	    	} else if ((dealerScore > 21) && (nextPlayer.score < 22)) {
-                winLossLabel = ' and won $';
-                nextPlayer.onesBank += (nextPlayer.onesBet * 2);
-                nextPlayer.fivesBank += (nextPlayer.fivesBet * 2);
-                nextPlayer.tensBank += (nextPlayer.tensBet * 2);
-	    		nextPlayer.totalBank = nextPlayer.totalBank + (playerWinLoss * 2);
-	    	} else if (((nextPlayer.score > 21) || (nextPlayer.score < dealerScore)) && (dealerScore < 22)) {
-                winLossLabel = ' and lost $';
-            } else {
-                winLossLabel = ' tie game' + '\n';
-                nextPlayer.onesBank += nextPlayer.onesBet;
-                nextPlayer.fivesBank += nextPlayer.fivesBet;
-                nextPlayer.tensBank += nextPlayer.tensBet;
-                nextPlayer.totalBank = nextPlayer.totalBank + playerWinLoss;
-                playerWinLoss = ' no wins/losses' + '\n';
-            }
-            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n\n';
-            nextPlayer.score = 0;
-            nextPlayer.onesBet = 0;
-            nextPlayer.fivesBet = 0;
-            nextPlayer.tensBet = 0;
-            display.initPlayerScreenData(nextPlayerScreen, nextPlayer);
-	    }
-        dealer.score = 0;
-
-        flipCardsP = setTimeout(function(){
-            alert(playerWinLossString);
-        }, 1000);
-	}
 
     // ======= ======= ======= updateSubscreen ======= ======= =======
     Display.prototype.updateSubscreen = function(playerIndex, nextPlayerState) {
@@ -410,97 +405,6 @@ function initGame() {
             $("#pScore_" + whichPlayer.id).text(whichPlayer.score);
         }
     }
-
-
-
-    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
-    // ======= ======= ======= ======= ======= SCREENS ======= ======= ======= ======= =======
-
-    var player1_scr = new Screen("player1", "player");
-        player1_scr.borderH = { name:"borderH", type:"bg", iR:1,iC:0,iW:6,iH:1, merge:null, class:"pBorder-1" };
-        player1_scr.borderV = { name:"borderV", type:"bg",iR:1,iC:5,iW:1,iH:3, merge:null, class:"pBorder-1" };
-
-        player1_scr.hitMeBtn = { name:"hitMeBtn", callback:"hitMe", type:"btn",iR:1,iC:7,iW:1,iH:1, merge:null, class:"button", image:"hitMeBW.png", value:"hit me!" };
-        player1_scr.holdMeBtn = { name:"holdMeBtn", callback:"holdMe", type:"btn",iR:1,iC:8,iW:1,iH:1, merge:null, class:"button", image:"holdMeBW.png", value:"hold" };
-        player1_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:1,iC:6,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver:"slide to bet $1", tooltipOut:""  };
-        player1_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:2,iC:6,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"slide to bet $5", tooltipOut:""  };
-        player1_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:3,iC:6,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"slide to bet $10", tooltipOut:""  };
-
-        player1_scr.pName = { name:"pName", type:"text",iR:1,iC:1,iW:3,iH:1, merge:"merge", class:"pBorder-1", value:null };
-        player1_scr.pBank = { name:"pBank", type:"text",iR:1,iC:5,iW:1,iH:1, merge:null, class:"pBorder-1 bank", value:"100" };
-        player1_scr.pScore = { name:"pScore", type:"text",iR:2,iC:5,iW:1,iH:1, merge:null, class:"pBorder-1", value:0 };
-        player1_scr.pBet = { name:"pBet", type:"text",iR:4,iC:15,iW:1,iH:1, merge:null, class:"pBorder-1 bet", value:"0" };
-        player1_scr.pBet_1s = { name:"pBet_1s", type:"text",iR:4,iC:12,iW:1,iH:1, merge:null, class:"pBorder-1 table", value:"0" };
-        player1_scr.pBet_5s = { name:"pBet_5s", type:"text",iR:4,iC:13,iW:1,iH:1, merge:null, class:"pBorder-1 table", value:"0" };
-        player1_scr.pBet_10s = { name:"pBet_10s", type:"text",iR:4,iC:14,iW:1,iH:1, merge:null, class:"pBorder-1 table", value:"0" };
-        player1_scr.pCards = { name:"pCards", type:"text",iR:2,iC:4,iW:1,iH:2, merge:"merge", class:"card-1", value:null };
-        player1_scr.pBetOnes = { name:"pBetOnes", type:"text",iR:1,iC:6,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver:"$1 chips", tooltipOut:""  };
-        player1_scr.pBetFives = { name:"pBetFives", type:"text",iR:2,iC:6,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"$5 chips", tooltipOut:""  };
-        player1_scr.pBetTens = { name:"pBetTens", type:"text",iR:3,iC:6,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"$10 chips", tooltipOut:""  };
-
-    var player2_scr = new Screen("player2", "player");
-        player2_scr.borderH = { name: "borderH", type: "bg", iR:5, iC:1, iW:6, iH:1, merge: null, class: "pBorder-2" };
-        player2_scr.borderV = { name: "borderV", type: "bg", iR:5, iC:6, iW:1, iH:3, merge: null, class: "pBorder-2" };
-
-        player2_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn", iR:5, iC:8, iW:1, iH:1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" };
-        player2_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn", iR:5, iC:9, iW:1, iH:1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" };
-        player2_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "slide to bet $1", tooltipOut: ""  };
-        player2_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "slide to bet $5", tooltipOut: ""  };
-        player2_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "slide to bet $10", tooltipOut: ""  };
-
-        player2_scr.pName = { name: "pName", type: "text", iR:5, iC:2, iW:3, iH:1, merge: "merge", class: "pBorder-2", value: null };
-        player2_scr.pBank = { name: "pBank", type: "text", iR:5, iC:6, iW:1, iH:1, merge: null, class: "pBorder-2 bank", value: "100" };
-        player2_scr.pScore = { name: "pScore", type: "text", iR:6, iC:6, iW:1, iH:1, merge: null, class: "pBorder-2", value: 0 };
-        player2_scr.pBet = { name: "pBet", type: "text", iR:5, iC:15, iW:1, iH:1, merge: null, class: "pBorder-2 bet", value: "0" };
-        player2_scr.pBet_1s = { name: "pBet_1s", type: "text", iR:5, iC:12, iW:1, iH:1, merge: null, class: "pBorder-2 table", value: "0" };
-        player2_scr.pBet_5s = { name: "pBet_5s", type: "text", iR:5, iC:13, iW:1, iH:1, merge: null, class: "pBorder-2 table", value: "0" };
-        player2_scr.pBet_10s = { name: "pBet_10s", type: "text", iR:5, iC:14, iW:1, iH:1, merge: null, class: "pBorder-2 table", value: "0" };
-        player2_scr.pCards = { name: "pCards", type: "text", iR:6, iC:5, iW:1, iH:2, merge: "merge", class: "card-2", value: null };
-        player2_scr.pBetOnes = { name:"pBetOnes", type:"text", iR:5, iC:7, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1 chips", tooltipOut: ""  };
-        player2_scr.pBetFives = { name:"pBetFives", type:"text", iR:6, iC:7, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5 chips", tooltipOut: ""  };
-        player2_scr.pBetTens = { name:"pBetTens", type:"text", iR:7, iC:7, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10 chips", tooltipOut: ""  };
-
-    var player3_scr = new Screen("player3", "player");
-        player3_scr.borderH = { name: "borderH", type: "bg", iR:9, iC:2, iW:6, iH:1, merge: null, class: "pBorder-3" };
-        player3_scr.borderV = { name: "borderV", type: "bg", iR:9, iC:7, iW:1, iH:3, merge: null, class: "pBorder-3" };
-
-        player3_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn", iR:9, iC:9, iW:1, iH:1, merge: null, class: "button", image: "hitMeBW.png", value: "hit me!" };
-        player3_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn", iR:9, iC:10, iW:1, iH:1, merge: null, class: "button", image: "holdMeBW.png", value: "hold" };
-        player3_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1", tooltipOut: ""  };
-        player3_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5", tooltipOut: ""  };
-        player3_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10", tooltipOut: ""  };
-
-        player3_scr.pName = { name: "pName", type: "text", iR:9, iC:3, iW:3, iH:1, merge: "merge", class: "pBorder-3", value: null };
-        player3_scr.pBank = { name: "pBank", type: "text", iR:9, iC:7, iW:1, iH:1, merge: null, class: "pBorder-3 bank", value: "100" };
-        player3_scr.pScore = { name: "pScore", type: "text", iR:10, iC:7, iW:1, iH:1, merge: null, class: "pBorder-3", value: 0 };
-        player3_scr.pBet = { name: "pBet", type: "text", iR:6, iC:15, iW:1, iH:1, merge: null, class: "pBorder-3 bet", value: "0" };
-        player3_scr.pBet_1s = { name: "pBet_1s", type: "text", iR:6, iC:12, iW:1, iH:1, merge: null, class: "pBorder-3 table", value: "0" };
-        player3_scr.pBet_5s = { name: "pBet_5s", type: "text", iR:6, iC:13, iW:1, iH:1, merge: null, class: "pBorder-3 table", value: "0" };
-        player3_scr.pBet_10s = { name: "pBet_10s", type: "text", iR:6, iC:14, iW:1, iH:1, merge: null, class: "pBorder-3 table", value: "0" };
-        player3_scr.pCards = { name: "pCards", type: "text", iR:10, iC:6, iW:1, iH:2, merge: "merge", class: "card-3", value: null };
-        player3_scr.pBetOnes = { name:"pBetOnes", type:"text", iR:9, iC:8, iW:1, iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1 chips", tooltipOut: ""  };
-        player3_scr.pBetFives = { name:"pBetFives", type:"text", iR:10, iC:8, iW:1, iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5 chips", tooltipOut: ""  };
-        player3_scr.pBetTens = { name:"pBetTens", type:"text", iR:11, iC:8, iW:1, iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10 chips", tooltipOut: ""  };
-
-    var dealer_scr = new Screen("dealer", "player");
-        dealer_scr.borderH = { name: "borderH", type: "bg", iR:3, iC:10, iW:6, iH:1, merge: null, class: "dBorder" };
-        dealer_scr.borderV = { name: "borderV", type: "bg", iR:1, iC:10, iW:1, iH:3, merge: null, class: "dBorder" };
-        dealer_scr.pName = { name: "pName", type: "text", iR:3, iC:12, iW:3, iH:1, merge: "merge", class: "dBorder", value: null };
-        dealer_scr.pScore = { name: "pScore", type: "text", iR:3, iC:10, iW:1, iH:1, merge: null, class: "dBorder", value: 0 };
-        dealer_scr.pCards = { name: "pCards", type: "text", iR:1, iC:11, iW:1, iH:2, merge: "merge", class: "card-d", value: null };
-
-    var scoreboard_scr = new Screen();
-
-    var gameScreen = new Screen("gameScreen", "game");
-        gameScreen.orbBtn = { name:"orbBtn", callback:"nextGameScreen", type:"btn", iR:5,iC:12,iW:3,iH:1, merge:"merge", class:"orbBtn", value:"START", tooltipOver:"start the game!", tooltipOut:"" };
-        gameScreen.tooltips = { name:"tooltips", type:"text", iR:9,iC:11,iW:5,iH:2, merge:"merge", class:"tooltips", value: "" };
-        gameScreen.enterBtn = { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR:6,iC:12,iW:3,iH:1, merge: "merge", class: "enterBtn", value: "ENTER", tooltipOver:  "click ENTER to save player", tooltipOut: "" };
-        gameScreen.playerName = { name: "playerName", type: "input",iR:5,iC:12,iW:3,iH:1, merge: "merge", class: "inputText", value: "playerName" };
-        gameScreen.startBtn = { name: "startBtn", callback: "startGame", type: "btn", iR:7,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "START", tooltipOver: "start game", tooltipOut: "click DEAL to deal cards" };
-        gameScreen.playBtn = { name: "playBtn", callback: "playGame", type: "btn", iR:7,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "BET", tooltipOver: "place bets", tooltipOut: "" };
-        gameScreen.playAgainBtn = { name: "playAgainBtn", callback: "playAgain", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playAgainBtn", value: "AGAIN", tooltipOver: "play another hand", tooltipOut: "" };
-        gameScreen.newGameBtn = { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "NEW", tooltipOver: "start a new game", tooltipOut: "" };
 
 
 
@@ -881,7 +785,7 @@ function initGame() {
 
 	        // ======= MOUSE_MOVE ======= MOUSE_MOVE ======= MOUSE_MOVE ======= MOUSE_MOVE =======
 	        dragSlider: function (newEvent) {
-	            // console.log('dragSlider');
+	            // console.log("dragSlider");
 
 		        var evt = newEvent || window.event;
 	            dX = parseInt(evt.clientX) - parseInt(slider.start_mouseX);
@@ -898,27 +802,42 @@ function initGame() {
 	            }
 	        },
 	        updateSlider: function (dX) {
-	            // console.log('updateSlider');
-	            slider.slider_element.style.left = slider.start_elementX + dX + 'px';
+	            // console.log("updateSlider");
+	            slider.slider_element.style.left = slider.start_elementX + dX + "px";
 	            slider.drag_elementX = slider.start_elementX + dX;
 	        },
 	        updateSvgs: function (dX) {
-	            console.log('updateSvgs');
-	            var currentChips = slider.player_chips;
+	            console.log("updateSvgs");
                 var player_object = game.playerObjectsArray[this.player_index];
                 var player_screen = game.subcreenObjectsArray[this.player_index];
-                console.log("   player_object.name: " + player_object.name);
-
+                console.log("  slider.player_chips: " + slider.player_chips);
+                switch(slider.player_chips) {
+                    case "ones":
+                        whichBet = "onesBet";
+                        whichBank = "onesBank";
+                        increment = 1;
+                        break;
+                    case "fives":
+                        whichBet = "fivesBet";
+                        whichBank = "fivesBank";
+                        increment = 5;
+                        break;
+                    case "tens":
+                        whichBet = "tensBet";
+                        whichBank = "tensBank";
+                        increment = 10;
+                        break;
+                }
             	if (dX > 0) {
             		updateChips = setInterval(function() {
                         console.log("   dX+: " + dX);
-                        game.placeBet(currentChips, player_object);
+                        game.placeBet(player_object, whichBet, whichBank, -increment);
                         display.initPlayerScreenData(player_screen, player_object);
             		}, 300);
             	} else {
             		updateChips = setInterval(function() {
                         console.log("   dX-: " + dX);
-                        game.returnBet(currentChips, player_object);
+                        game.placeBet(player_object, whichBet, whichBank, increment);
                         display.initPlayerScreenData(player_screen, player_object);
 	            	}, 300);
 	            }
@@ -926,7 +845,7 @@ function initGame() {
 
 	        // ======= MOUSE_UP ======= MOUSE_UP ======= MOUSE_UP ======= MOUSE_UP =======
 	        dropSlider: function(newEvent) {
-	            console.log('dropSlider');
+	            console.log("dropSlider");
                 console.log("   slider.start_elementX: " + slider.start_elementX);
                 console.log("   slider.slider_element.id: " + slider.slider_element.id);
                 console.log("   slider.slider_element.style.left: " + slider.slider_element.style.left);
@@ -962,11 +881,133 @@ function initGame() {
 
 
 
+
+
     // ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= =======
     // ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= =======
     // ======= ======= ======= ======= ======= GAME ======= ======= ======= ======= =======
 
 
+
+
+
+    // ======= ======= ======= turnOver ======= ======= =======
+    Game.prototype.turnOver = function() {
+	    console.log("turnOver");
+        console.log("  PREV player: " + this.currentPlayer.name);
+
+        var currentPlayerIndex = this.currentPlayer.id;
+        var currentPlayer = this.currentPlayer;
+        var nextPlayer;
+
+        if (currentPlayerIndex < (this.playerNamesArray.length)) {
+            display.updateSubscreen(currentPlayerIndex, "turnOver");
+            nextPlayer = this.playerObjectsArray[currentPlayerIndex];
+            this.currentPlayer = nextPlayer;
+            console.log("  NEXT player: " + this.currentPlayer.name);
+            display.updateSubscreen(currentPlayerIndex + 1, "hitMeHoldMe");
+            $("#tooltips").text(nextPlayer.name + "'s turn");
+        } else {
+            display.updateSubscreen(currentPlayerIndex, "turnOver");
+            this.currentPlayer = this.dealer;
+            $("#tooltips").text("dealer's turn");
+            this.hitDealer();
+        }
+    }
+
+    // ======= ======= ======= hitDealer ======= ======= =======
+    Game.prototype.hitDealer = function() {
+	    console.log("");
+        console.log("hitDealer");
+
+        self = this;
+        // == hit dealer again or end hand
+        if (dealer.score < 18) {
+            console.log("  dealer.hand.length1: " + dealer.hand.length);
+            cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
+            nextCard = cardPointsArray[0];
+            nextPoints = cardPointsArray[1];
+            dealer.hand.push(nextCard);
+            console.log("  dealer.hand.length1: " + dealer.hand.length);
+            dealer.score = dealer.score + nextPoints;           // calculate dealer score
+            this.displayNextCard(dealer, dealer_scr);                          // display new card
+            $("#pScore_D").text(nextPlayer.score);
+
+            flipCards = setTimeout(function(){
+                nextCard = dealer.hand[dealer.hand.length - 1];
+                 $("#" + nextCard).addClass('flipper');
+                 if (dealer.score < 18) {
+                     self.hitDealer();
+                 } else {
+                     display.nextGameScreen();
+                     game.doTheMath();
+                     $("#tooltips").text("");
+                 }
+             }, 800);
+
+        } else {
+            display.nextGameScreen();
+            game.doTheMath();
+            $("#tooltips").text("");
+        }
+    }
+
+    // ======= ======= ======= doTheMath ======= ======= =======
+    Game.prototype.doTheMath = function() {
+	    console.log("doTheMath");
+
+	    var nextPlayer, nextName, winLossLabel;
+	    var dealerScore = game.dealer.score;
+	    var playerWinLoss = 0;
+	    var playerWinLossString = 'RESULTS!!\nDealer score:  ' + dealerScore + '\n\n';
+
+	    // =======
+	    for (var i = 0; i < (game.playerNamesArray.length); i++) {
+	    	nextPlayer = game.playerObjectsArray[i];
+            nextPlayerScreen = game.subscreenObjectsArray[i];
+	    	nextName = nextPlayer.name;
+	    	console.log("   nextName: " + nextName);
+
+	    	// ======= calculate win/loss results
+	    	playerWinLoss = nextPlayer.onesBet + nextPlayer.fivesBet + nextPlayer.tensBet;
+	    	console.log("   playerWinLoss: " + playerWinLoss);
+
+    		// ======= calculate wins/losses for players
+	    	if ((nextPlayer.score > dealerScore) && (nextPlayer.score < 22)) {
+	    		winLossLabel = ' and won $';
+                nextPlayer.onesBank += (nextPlayer.onesBet * 2);
+                nextPlayer.fivesBank += (nextPlayer.fivesBet * 2);
+                nextPlayer.tensBank += (nextPlayer.tensBet * 2);
+	    		nextPlayer.totalBank = nextPlayer.totalBank + (playerWinLoss * 2);
+	    	} else if ((dealerScore > 21) && (nextPlayer.score < 22)) {
+                winLossLabel = ' and won $';
+                nextPlayer.onesBank += (nextPlayer.onesBet * 2);
+                nextPlayer.fivesBank += (nextPlayer.fivesBet * 2);
+                nextPlayer.tensBank += (nextPlayer.tensBet * 2);
+	    		nextPlayer.totalBank = nextPlayer.totalBank + (playerWinLoss * 2);
+	    	} else if (((nextPlayer.score > 21) || (nextPlayer.score < dealerScore)) && (dealerScore < 22)) {
+                winLossLabel = ' and lost $';
+            } else {
+                winLossLabel = ' tie game' + '\n';
+                nextPlayer.onesBank += nextPlayer.onesBet;
+                nextPlayer.fivesBank += nextPlayer.fivesBet;
+                nextPlayer.tensBank += nextPlayer.tensBet;
+                nextPlayer.totalBank = nextPlayer.totalBank + playerWinLoss;
+                playerWinLoss = ' no wins/losses' + '\n';
+            }
+            playerWinLossString += nextName + "'s score:  " + nextPlayer.score + winLossLabel + playerWinLoss + '\n\n';
+            nextPlayer.score = 0;
+            nextPlayer.onesBet = 0;
+            nextPlayer.fivesBet = 0;
+            nextPlayer.tensBet = 0;
+            display.initPlayerScreenData(nextPlayerScreen, nextPlayer);
+	    }
+        dealer.score = 0;
+
+        flipCardsP = setTimeout(function(){
+            alert(playerWinLossString);
+        }, 1000);
+	}
 
     // ======= ======= ======= hitMe ======= ======= =======
     Game.prototype.hitMe = function() {
@@ -1263,117 +1304,33 @@ function initGame() {
     }
 
     // ======= ======= ======= placeBet ======= ======= =======
-    Game.prototype.placeBet = function(whichBet, whichPlayer, whichPlayerScreen) {
+    Game.prototype.placeBet = function(whichPlayer, whichBet, whichBank, increment) {
         console.log("placeBet");
-        console.log("  whichPlayer: " + whichPlayer.name);
-
-        var onesBank = whichPlayer.onesBank;
-        var fivesBank = whichPlayer.fivesBank;
-        var tensBank = whichPlayer.tensBank;
-        var onesBet = whichPlayer.onesBet;
-        var fivesBet = whichPlayer.fivesBet;
-        var tensBet = whichPlayer.tensBet;
         var limitFlag = false;
-
-        switch(whichBet) {
-            case "ones":
-                onesBank = onesBank - 1;
-                if (onesBank < 0) {
-                    onesBank = 0;
-                    limitFlag = true;
-                } else {
-                    onesBet = onesBet + 1;
-                }
-                break;
-            case "fives":
-                fivesBank = fivesBank - 5;
-                if (fivesBank < 0) {
-                    fivesBank = 0;
-                    limitFlag = true;
-                } else {
-                    fivesBet = fivesBet + 5;
-                }
-                break;
-            case "tens":
-                tensBank = tensBank - 10;
-                if (tensBank < 0) {
-                    tensBank = 0;
-                    limitFlag = true;
-                } else {
-                    tensBet = tensBet + 10;
-                }
-                break;
-        }
-
-        if (limitFlag == false) {
-            whichPlayer.onesBank = onesBank;
-            whichPlayer.fivesBank = fivesBank;
-            whichPlayer.tensBank = tensBank;
-            whichPlayer.onesBet = onesBet;
-            whichPlayer.fivesBet = fivesBet;
-            whichPlayer.tensBet = tensBet;
-            // whichPlayer.totalBank = onesBank + fivesBank + tensBank;
-            // display.updatePlayerScreenText(whichPlayer, whichPlayerScreen);
+        if (increment < 0) {
+            whichPlayer[whichBank] = whichPlayer[whichBank] + increment;
+            if (whichPlayer[whichBank] < 0) {
+                whichPlayer[whichBank] = 0;
+                limitFlag = true;
+            } else {
+                whichPlayer[whichBet] = whichPlayer[whichBet] - increment;
+            }
+            if (limitFlag == true) {
+                $("#tooltips").text("Oops you're out of chips!");
+            }
         } else {
-            $("#tooltips").text("Oops you're out of money!");
+            whichPlayer[whichBet] = whichPlayer[whichBet] + increment;
+            if (whichPlayer[whichBet] < 0) {
+                whichPlayer[whichBet] = 0;
+                limitFlag = true;
+            } else {
+                whichPlayer[whichBank] = whichPlayer[whichBank] - increment;
+            }
+            if (limitFlag == true) {
+                $("#tooltips").text("Total bet is returned");
+            }
         }
 
-    }
-
-    // ======= ======= ======= returnBet ======= ======= =======
-    Game.prototype.returnBet = function(whichBet, whichPlayer, whichPlayerScreen) {
-        console.log("returnBet");
-
-        var onesBank = whichPlayer.onesBank;
-        var fivesBank = whichPlayer.fivesBank;
-        var tensBank = whichPlayer.tensBank;
-        var onesBet = whichPlayer.onesBet;
-        var fivesBet = whichPlayer.fivesBet;
-        var tensBet = whichPlayer.tensBet;
-        var limitFlag = false;
-
-        switch(whichBet) {
-            case "ones":
-                onesBet = onesBet - 1;
-                if (onesBet < 0) {
-                    onesBet = 0;
-                    limitFlag = true;
-                } else {
-                    onesBank = onesBank + 1;
-                }
-                break;
-            case "fives":
-                fivesBet = fivesBet - 5;
-                if (fivesBet < 0) {
-                    fivesBet = 0;
-                    limitFlag = true;
-                } else {
-                    fivesBank = fivesBank + 5;
-                }
-                break;
-            case "tens":
-                tensBet = tensBet - 10;
-                if (tensBet < 0) {
-                    tensBet = 0;
-                    limitFlag = true;
-                } else {
-                    tensBank = tensBank + 10;
-                }
-                break;
-        }
-
-        if (limitFlag == false) {
-            whichPlayer.onesBank = onesBank;
-            whichPlayer.fivesBank = fivesBank;
-            whichPlayer.tensBank = tensBank;
-            whichPlayer.onesBet = onesBet;
-            whichPlayer.fivesBet = fivesBet;
-            whichPlayer.tensBet = tensBet;
-            // whichPlayer.totalBank = onesBank + fivesBank + tensBank;
-            // display.updatePlayerScreenText(whichPlayer, whichPlayerScreen);
-        } else {
-            $("#tooltips").text("Total bet is returned");
-        }
     }
 
     // ======= ======= ======= playGame ======= ======= =======
@@ -1405,6 +1362,5 @@ function initGame() {
 
     display.initRowSpans();
     display.nextGameScreen();
-    // display.getNextsubscreen();
 
 }
