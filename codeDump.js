@@ -1,4 +1,67 @@
 
+
+// ======= ======= ======= unModifyGridRegion ======= ======= =======
+Display.prototype.unModifyGridRegion = function(whichItem, offsetR, offsetC) {
+    console.log("unModifyGridRegion: " + whichItem.name);
+
+    if (!offsetR) { offsetR = 0 };
+    if (!offsetC) { offsetC = 0 };
+    var tableRows = $("tr");
+    var regionType = whichItem.merge;
+
+    // == remove cells from merge area (check row/colspans in each row)
+    for (var row = 0; row < whichItem.iH; row++) {
+        nextRow = whichItem.iR + offsetR + row;
+        nextCol = whichItem.iC + offsetC;
+        nextRowObject = tableRows[nextRow];
+        colspans = this.checkColumnSpans(nextRowObject, nextRow, nextCol);
+        rowspans = this.checkRowSpans(nextRow, nextCol);
+        temp_iC = nextCol - colspans - rowspans;
+        console.log("  colspans: " + colspans);
+        console.log("  rowspans: " + rowspans);
+        console.log("  temp_iC: " + temp_iC);
+
+        if (regionType == "merge") {
+            for (var col = 0; col < (whichItem.iW); col++) {
+                if ((row == 0) && (col == 0)) {
+                    indexCell = $(nextRowObject).children()[temp_iC];
+                    $(indexCell).remove();
+                    console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
+                }
+                indexRowCell = $(nextRowObject).children()[temp_iC - 1];
+                for (var col = 0; col < whichItem.iW; col++) {
+                    var newCell = document.createElement("td");
+                    $(indexRowCell).after(newCell);
+                    $(newCell).addClass("cell");
+                    $(newCell).attr("id", (nextRow) + "-" + (nextCol + col));
+                }
+                if (row > 0) {
+                    display.toggleRowspans(whichItem, offsetR, offsetC, "off")
+                }
+            }
+        } else {
+            for (var col = 0; col < whichItem.iW; col++) {
+                nextCell = $(nextRowObject).children()[temp_iC + col];
+                if (whichItem.type == "slider") {
+                    $(nextCell).empty();
+                } else {
+                    if (whichItem.type == "btn") {
+                        $(nextCell).empty();
+                    }
+                    $(nextCell).removeClass();
+                    $(nextCell).addClass("cell");
+                    $(nextCell).attr("id", (nextRow) + "-" + (temp_iC + col));
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
 // ======= ======= ======= sortPrevNextItems ======= ======= =======
 Display.prototype.sortPrevNextItems = function(prevScreen, nextScreen) {
     console.log("sortPrevNextItems");
