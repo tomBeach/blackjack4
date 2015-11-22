@@ -83,10 +83,10 @@ function initGame() {
     var gameScreen = new Screen("gameScreen", "game");
         gameScreen.orbBtn = { name:"orbBtn", callback:"nextGameScreen", type:"btn", iR:7,iC:12,iW:3,iH:1, merge:"merge", class:"orbBtn", value:"START", tooltipOver:"start the game!", tooltipOut:"" };
         gameScreen.tooltips = { name:"tooltips", type:"text", iR:9,iC:11,iW:5,iH:2, merge:"merge", class:"tooltips", value: "" };
-        gameScreen.enterBtn = { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR:7,iC:12,iW:3,iH:1, merge: "merge", class: "enterBtn", value: "ENTER", tooltipOver:  "click ENTER to save player", tooltipOut: "" };
-        gameScreen.playerName = { name: "playerName", type: "input",iR:6,iC:12,iW:3,iH:1, merge: "merge", class: "inputText", value: "playerName" };
-        gameScreen.startBtn = { name: "startBtn", callback: "startGame", type: "btn", iR:8,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "START", tooltipOver: "start game", tooltipOut: "" };
-        gameScreen.playBtn = { name: "playBtn", callback: "playGame", type: "btn", iR:8,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "BET", tooltipOver: "Click to hit or hold after betting", tooltipOut: "Use sliders to place bets" };
+        gameScreen.enterBtn = { name: "enterBtn", callback: "saveNewPlayer", type: "btn", iR:6,iC:12,iW:3,iH:1, merge: "merge", class: "enterBtn", value: "ENTER", tooltipOver:  "click ENTER to save player", tooltipOut: "" };
+        gameScreen.playerName = { name: "playerName", type: "input",iR:5,iC:12,iW:3,iH:1, merge: "merge", class: "inputText", value: "playerName" };
+        gameScreen.startBtn = { name: "startBtn", callback: "startGame", type: "btn", iR:7,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "START", tooltipOver: "start game", tooltipOut: "" };
+        gameScreen.playBtn = { name: "playBtn", callback: "playGame", type: "btn", iR:8,iC:12,iW:3,iH:1, merge: "merge", class: "startBtn", value: "BET", tooltipOver: "Click to hit or hold after betting", tooltipOut: "Place bets with sliders" };
         gameScreen.playAgainBtn = { name: "playAgainBtn", callback: "playAgain", type: "btn", iR: 8, iC: 12, iW: 3, iH: 1, merge: "merge", class: "playAgainBtn", value: "AGAIN", tooltipOver: "play another hand", tooltipOut: "" };
         gameScreen.newGameBtn = { name: "newGameBtn", callback: "newGame", type: "btn", iR: 11, iC: 13, iW: 1, iH: 1, merge: null, class: "newGameBtn", value: "NEW", tooltipOver: "start a new game", tooltipOut: "" };
 
@@ -1192,26 +1192,19 @@ function initGame() {
             whichPlayer[whichBank] = whichPlayer[whichBank] + increment;
             if (whichPlayer[whichBank] < 0) {
                 whichPlayer[whichBank] = 0;
-                limitFlag = true;
+                $("#tooltips").text("Oops you're out of chips!");
             } else {
                 whichPlayer[whichBet] = whichPlayer[whichBet] - increment;
             }
-            if (limitFlag == true) {
-                $("#tooltips").text("Oops you're out of chips!");
-            }
         } else {
-            whichPlayer[whichBet] = whichPlayer[whichBet] + increment;
+            whichPlayer[whichBet] = whichPlayer[whichBet] - increment;
             if (whichPlayer[whichBet] < 0) {
                 whichPlayer[whichBet] = 0;
-                limitFlag = true;
-            } else {
-                whichPlayer[whichBank] = whichPlayer[whichBank] - increment;
-            }
-            if (limitFlag == true) {
                 $("#tooltips").text("Total bet is returned");
+            } else {
+                whichPlayer[whichBank] = whichPlayer[whichBank] + increment;
             }
         }
-
     }
 
     // ======= ======= ======= playGame ======= ======= =======
@@ -1243,7 +1236,7 @@ function initGame() {
         $("#pScore_" + nextPlayer.id).text(nextPlayer.score);
 
 		// ======= check for Aces and adjust score
-		if (nextPlayer.score > 35) {
+		if (nextPlayer.score > 21) {
 			for (var i = 0; i < nextPlayer.hand.length; i++) {
 				nextCard = nextPlayer.hand[i];
 
@@ -1256,7 +1249,7 @@ function initGame() {
 			}
 
 			// ======= score still high after adjustment
-			if (nextPlayer.score > 35) {
+			if (nextPlayer.score > 21) {
                 $("#tooltips").text("Bummer... you're over 21!");
 				this.turnOver();
 			}
@@ -1307,12 +1300,10 @@ function initGame() {
         self = this;
         // == hit dealer again or end hand
         if (dealer.score < 18) {
-            console.log("  dealer.hand.length1: " + dealer.hand.length);
             cardPointsArray = game.getNextCard();				// get card from deck; shrink deck
             nextCard = cardPointsArray[0];
             nextPoints = cardPointsArray[1];
             dealer.hand.push(nextCard);
-            console.log("  dealer.hand.length1: " + dealer.hand.length);
             dealer.score = dealer.score + nextPoints;           // calculate dealer score
             this.displayNextCard(dealer, dealer_scr);                          // display new card
             $("#pScore_D").text(nextPlayer.score);
@@ -1389,9 +1380,21 @@ function initGame() {
         dealer.score = 0;
 
         flipCardsP = setTimeout(function(){
-            // alert(playerWinLossString);
+            alert(playerWinLossString);
         }, 1000);
 	}
+
+    // ======= ======= ======= playAgain ======= ======= =======
+    Game.prototype.playAgain = function() {
+	    console.log("playAgain");
+        display.clearAllCardstacks();
+        for (var i = 0; i < game.playerNamesArray.length; i++) {
+            nextPlayer = game.playerObjectsArray[i];
+            display.updateSubscreen(nextPlayer.id, "placeBets");
+        }
+        display.nextGameScreen();
+        game.dealCards();
+    }
 
     // ======= ======= ======= clearAllCardstacks ======= ======= =======
     Display.prototype.clearAllCardstacks = function() {
@@ -1422,17 +1425,6 @@ function initGame() {
             console.log("  offsetC: " + offsetC);
             this.unModifyGridRegion(dealerCardObject, offsetR, offsetC)
         }
-    }
-
-    // ======= ======= ======= playAgain ======= ======= =======
-    Game.prototype.playAgain = function() {
-	    console.log("playAgain");
-        display.clearAllCardstacks();
-        for (var i = 0; i < game.playerNamesArray.length; i++) {
-            display.updateSubscreen(nextPlayer.id, "placeBets");
-        }
-        display.nextGameScreen();
-        game.dealCards();
     }
 
     // ======= ======= ======= newGame ======= ======= =======
