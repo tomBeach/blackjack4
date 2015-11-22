@@ -1,5 +1,15 @@
 
 
+for (var i = 0; i < self.playerNamesArray.length; i++) {
+    nextPlayer = self.playerObjectsArray[i];
+    nextPlayerScreen = self.subscreenObjectsArray[i];
+    display.updatePlayerScreenData(nextPlayerScreen, nextPlayer);
+}
+dealer = self.playerObjectsArray[3];
+dealerScreen = self.subscreenObjectsArray[3];
+display.updatePlayerScreenData(dealerScreen, dealer);
+
+
 // ======= ======= ======= unModifyGridRegion ======= ======= =======
 Display.prototype.unModifyGridRegion = function(whichItem, offsetR, offsetC) {
     console.log("unModifyGridRegion: " + whichItem.name);
