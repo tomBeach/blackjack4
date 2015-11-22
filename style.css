@@ -29,7 +29,9 @@ body {
     /*font-family: 'Orbitron', sans-serif;*/
     font-family: 'Michroma', sans-serif;
     /*font-family: 'Allerta Stencil', sans-serif;*/
-    background-color: #EBEBFF;
+    /*background-color: #EBEBFF;*/
+    /*background: linear-gradient(#EBEBFF, white);*/
+    background: linear-gradient(gray, white);
 }
 .container {
     position: relative;
@@ -50,8 +52,9 @@ body {
 .cell {
      width: 50px;
      height: 50px;
-     background-color: #EBEBFF;
-     border: 1px solid rebeccapurple;
+     /*background-color: #EBEBFF;*/
+     /*background: linear-gradient(white, #EBEBFF);*/
+     /*border: 1px solid rebeccapurple;*/
 }
 .indexCell {
      background-color: red;
@@ -128,16 +131,20 @@ body {
     font-size: 30px;
 }
 .dBorder {
-    background: #FFB2B2;
+    /*background: #FFB2B2;*/
+    background: linear-gradient(white, #FFB2B2);
 }
 .pBorder-1 {
-    background: #FFE0C2;
+    /*background: #FFE0C2;*/
+    background: linear-gradient(white, #FFE0C2);
 }
 .pBorder-2 {
-    background: #EBC2FF;
+    /*background: #EBC2FF;*/
+    background: linear-gradient(white, #EBC2FF);
 }
 .pBorder-3 {
-    background: #E0D1FF;
+    /*background: #E0D1FF;*/
+    background: linear-gradient(white, #E0D1FF);
 }
 .bet, .bank {
     border: 2px solid red;
@@ -164,6 +171,8 @@ body {
 }
 .ones, .fives, .tens {
     background-color: lawngreen;
+    box-shadow: 4px 4px 4px #888888;
+    border-radius: 25px;
     z-index: 9;
 }
 .slider {
@@ -186,7 +195,8 @@ body {
     z-index: 0;
 }
 .table {
-    z-index: 9;
+    border-radius: 25px;
+    box-shadow: 4px 4px 4px #888888;
 }
 .green_grid {
     background-color: lawngreen;
