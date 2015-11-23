@@ -1,5 +1,18 @@
 
 
+} else {
+    if (nextGame == "newGame") {
+        nextItemNames = display.gameStateItems["splash"];
+        game.currentScreen = "splash";
+    } else if (nextGame == "playAgain"){
+        nextItemNames = display.gameStateItems["playGame"];
+        game.currentScreen = "playGame";
+    }
+    nextGameScreenName = game.screenNamesArray[nextScreenIndex];
+    prevItemNames = display.gameStateItems[game.currentScreen];
+}
+
+
 for (var i = 0; i < self.playerNamesArray.length; i++) {
     nextPlayer = self.playerObjectsArray[i];
     nextPlayerScreen = self.subscreenObjectsArray[i];

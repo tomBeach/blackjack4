@@ -144,7 +144,8 @@ function initGame() {
             placeBets: ["borderH","borderV","pName","pScore","pBank","pBank1s","pBank5s","pBank10s","chips1s","chips5s","chips10s","pBet","pBet1s","pBet5s","pBet10s"],
             hitMeHoldMe: ["borderH","borderV","pName","pScore","pBank","pBank1s","pBank5s","pBank10s","pBet","pBet1s","pBet5s","pBet10s","hitMeBtn","holdMeBtn"],
             turnOver: ["borderH","borderV","pName","pScore","pBank","pBank1s","pBank5s","pBank10s","pBet","pBet1s","pBet5s","pBet10s"],
-            handOver: ["borderH","borderV","pName","pScore","pBank"]
+            handOver: ["borderH","borderV","pName","pScore","pBank"],
+            gameOver: []
         };
         this.gameStateItems = {
             splash: ["orbBtn","tooltips"],
@@ -166,10 +167,53 @@ function initGame() {
 
 
 
+    // ======= ======= ======= newGame ======= ======= =======
+    Game.prototype.newGame = function() {
+	    console.log("newGame");
+        console.log("  dealer: " + dealer);
+        console.log("  game.currentScreen: " + game.currentScreen);
+
+        var nextPlayer, nextPlayerScreen, playerIndex, nextPlayerState;
+
+        display.clearAllCardstacks();
+        console.log("  dealer: " + dealer);
+        display.initRowSpans();
+        display.nextGameScreen("newGame");
+
+        // == clear subscreens for previous game players
+        for (var i = 0; i < game.playerNamesArray.length; i++) {
+            nextPlayer = game.playerObjectsArray[i];
+            nextPlayerScreen = game.subscreenObjectsArray[i];
+            nextPlayerState = "gameOver";
+            display.clearPlayerScreenData(nextPlayerScreen, nextPlayer);
+            display.updateSubscreen(nextPlayer.id, nextPlayerState);
+        }
+        // dealer = game.playerObjectsArray[3];
+        dealerObject = game.playerObjectsArray[3];
+        dealerScreen = game.subscreenObjectsArray[3];
+        dealerState = "gameOver";
+        display.clearPlayerScreenData(dealerScreen, dealerObject);
+        display.updateSubscreen(dealerObject.id, dealerState);
+        this.playerNamesArray = [];
+        this.currentPlayer = 0;
+
+        player1 = null;
+        player2 = null;
+        player3 = null;
+        dealer = null;
+
+        var player1 = new Player(1, "player1");
+        var player2 = new Player(2, "player2");
+        var player3 = new Player(3, "player3");
+        var dealer = new Player(4, "dealer");
+        // var display = new Display("display1");
+    }
+
     // ======= ======= ======= nextGameScreen ======= ======= =======
-    Display.prototype.nextGameScreen = function() {
+    Display.prototype.nextGameScreen = function(nextGame) {
         console.log("");
         console.log("nextGameScreen");
+        console.log("  dealer: " + dealer);
         console.log("== PREV gameScreen == " + game.currentScreen);
 
         // identify where we are in the game (prev screen/next screen/selected screen)
@@ -180,21 +224,29 @@ function initGame() {
         var ADDnextItems = [];
 
         // == game start initialize first screen ("splash")
-        if (game.currentScreen == null) {
+        if ((game.currentScreen == null) && (nextGame == null)) {
             game.currentScreen = "splash";
             prevItemNames = [];
             nextItemNames = display.gameStateItems[game.currentScreen];
-
-        // increment screen index to get next screen object
         } else {
-            nextScreenIndex = game.screenNamesArray.indexOf(game.currentScreen) + 1;
-            if (nextScreenIndex == game.screenNamesArray.length) {
-                nextScreenIndex = game.screenNamesArray.indexOf("playGame")
-            }
-            nextGameScreenName = game.screenNamesArray[nextScreenIndex];
             prevItemNames = display.gameStateItems[game.currentScreen];
-            nextItemNames = display.gameStateItems[game.screenNamesArray[nextScreenIndex]];
-            game.currentScreen = nextGameScreenName;
+            if (nextGame == "newGame") {
+                nextItemNames = display.gameStateItems["splash"];
+                game.currentScreen = "splash";
+            } else if (nextGame == "playAgain"){
+                nextItemNames = display.gameStateItems["playGame"];
+                game.currentScreen = "playGame";
+
+            // increment screen index to get next screen object
+            } else {
+                nextScreenIndex = game.screenNamesArray.indexOf(game.currentScreen) + 1;
+                if (nextScreenIndex == game.screenNamesArray.length) {
+                    nextScreenIndex = game.screenNamesArray.indexOf("playGame")
+                }
+                nextGameScreenName = game.screenNamesArray[nextScreenIndex];
+                nextItemNames = display.gameStateItems[nextGameScreenName];
+                game.currentScreen = nextGameScreenName;
+            }
         }
 
         console.log("== NEXT gameScreen == " + game.currentScreen);
@@ -230,17 +282,23 @@ function initGame() {
     }
 
     // ======= ======= ======= updateSubscreen ======= ======= =======
-    Display.prototype.updateSubscreen = function(playerIndex, nextPlayerState) {
+    Display.prototype.updateSubscreen = function(playerId, nextPlayerState) {
         console.log("");
         console.log("updateSubscreen");
-        console.log("  playerIndex: " + playerIndex);
+        console.log("  dealer: " + dealer);
+        console.log("  playerId: " + playerId);
 
         var prevItemNames, nextItemNames, nextScreenIndex;
         var REMprevItems = [];
         var ADDnextItems = [];
 
-        var whichPlayer = game.playerObjectsArray[playerIndex - 1];
-        var whichPlayerScreen = game.subscreenObjectsArray[playerIndex - 1];
+        if (playerId == "D") {
+            playerId = 4;
+        }
+
+        var whichPlayer = game.playerObjectsArray[playerId - 1];
+        console.log("  whichPlayer.name: " + whichPlayer.name);
+        var whichPlayerScreen = game.subscreenObjectsArray[playerId - 1];
         var prevPlayerState = whichPlayer.state;
         prevItemNames = this.playerStateItems[prevPlayerState];
         whichPlayer.state = nextPlayerState;
@@ -277,12 +335,13 @@ function initGame() {
         }
 
         // == send screen data to screen building functions
-        this.addRemoveScreenItems(REMprevItems, ADDnextItems, playerIndex);
+        this.addRemoveScreenItems(REMprevItems, ADDnextItems, playerId);
     }
 
     // ======= ======= ======= nextSubscreen ======= ======= =======
     Display.prototype.nextSubscreen = function(playerIndex) {
         console.log("nextSubscreen");
+        console.log("  dealer: " + dealer);
 
         // == player screen items include player index as suffix (e.g. "_1")
         // == makePlayerItems adds current player suffix to generic item names
@@ -529,6 +588,7 @@ function initGame() {
             } else {
                 for (var col = 0; col < whichItem.iW; col++) {
                     nextCell = $(nextRowObject).children()[temp_iC + col];
+                    console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
                     if (whichItem.type == "slider") {
                         $(nextCell).empty();
                         display.deActivateNextItem(whichItem, nextCell);
@@ -726,6 +786,28 @@ function initGame() {
                     }
                 }
             }
+        }
+    }
+
+    // ======= ======= ======= clearPlayerScreenData ======= ======= =======
+    Display.prototype.clearPlayerScreenData = function(whichPlayerScreen, whichPlayer) {
+        console.log("clearPlayerScreenData");
+
+        if (whichPlayer.id < 4) {
+            $("#pName_" + whichPlayer.id).text("");
+            $("#pScore_" + whichPlayer.id).text("");
+            $("#pBank_" + whichPlayer.id).text("");
+            $("#pBank1s_" + whichPlayer.id).text("");
+            $("#pBank5s_" + whichPlayer.id).text("");
+            $("#pBank10s_" + whichPlayer.id).text("");
+            $("#pBet_" + whichPlayer.id).text("");
+            $("#pBet1s_" + whichPlayer.id).text("");
+            $("#pBet5s_" + whichPlayer.id).text("");
+            $("#pBet10s_" + whichPlayer.id).text("");
+        } else {
+            whichPlayer.id = "D";
+            $("#pName_" + whichPlayer.id).text("");
+            $("#pScore_" + whichPlayer.id).text("");
         }
     }
 
@@ -1187,9 +1269,9 @@ function initGame() {
                 nextPlayerScreen = self.subscreenObjectsArray[i];
                 display.updatePlayerScreenData(nextPlayerScreen, nextPlayer);
             }
-            dealer = self.playerObjectsArray[3];
+            dealerObject = self.playerObjectsArray[3];
             dealerScreen = self.subscreenObjectsArray[3];
-            display.updatePlayerScreenData(dealerScreen, dealer);
+            display.updatePlayerScreenData(dealerScreen, dealerObject);
         }
     }
 
@@ -1296,7 +1378,8 @@ function initGame() {
             $("#tooltips").text(nextPlayer.name + "'s turn");
         } else {
             display.updateSubscreen(currentPlayerIndex, "turnOver");
-            this.currentPlayer = this.dealer;
+            // this.currentPlayer = this.dealer;
+            this.currentPlayer = dealer;
             $("#tooltips").text("dealer's turn");
             this.hitDealer();
         }
@@ -1341,6 +1424,7 @@ function initGame() {
     // ======= ======= ======= doTheMath ======= ======= =======
     Game.prototype.doTheMath = function() {
 	    console.log("doTheMath");
+        console.log("  dealer1: " + dealer);
 
 	    var nextPlayer, nextName, winLossLabel;
 	    var dealerScore = dealer.score;
@@ -1388,6 +1472,7 @@ function initGame() {
             nextPlayer.tensBet = 0;
 	    }
         dealer.score = 0;
+        console.log("  dealer2: " + dealer);
 
         flipCardsP = setTimeout(function(){
             alert(playerWinLossString);
@@ -1406,13 +1491,14 @@ function initGame() {
             nextPlayer = game.playerObjectsArray[i];
             display.updateSubscreen(nextPlayer.id, "placeBets");
         }
-        display.nextGameScreen();
+        display.nextGameScreen("playAgain");
         game.dealCards();
     }
 
     // ======= ======= ======= clearAllCardstacks ======= ======= =======
     Display.prototype.clearAllCardstacks = function() {
 	    console.log("clearAllCardstacks");
+        console.log("  dealer: " + dealer);
 
         var cardCount;
         var offsetR = 0;
@@ -1429,7 +1515,7 @@ function initGame() {
                 this.unModifyGridRegion(playerCardObject, offsetR, offsetC)
             }
         }
-        dealer = game.playerObjectsArray[3];
+        // dealer = game.playerObjectsArray[3];
         dealerScreen = game.subscreenObjectsArray[3];
         nextHand = dealer.hand;
         cardCount = dealer.hand.length;
@@ -1439,33 +1525,6 @@ function initGame() {
             console.log("  offsetC: " + offsetC);
             this.unModifyGridRegion(dealerCardObject, offsetR, offsetC)
         }
-    }
-
-    // ======= ======= ======= newGame ======= ======= =======
-    Game.prototype.newGame = function() {
-	    console.log("newGame");
-        console.log("  display: " + display);
-
-        display.clearAllCardstacks();
-        display.initRowSpans();
-        this.currentScreen = null;
-        display.nextGameScreen();
-        this.playerNamesArray = [];
-        this.currentPlayer = 0;
-        this.currentScreen = null;
-
-        player1 = null;
-        player2 = null;
-        player3 = null;
-        dealer = null;
-
-        var player1 = new Player(1, "player1");
-        var player2 = new Player(2, "player2");
-        var player3 = new Player(3, "player3");
-        var dealer = new Player(4, "dealer");
-        // var display = new Display("display1");
-
-
     }
 
     // ======= ======= ======= ======= ======= initialize ======= ======= ======= ======= =======

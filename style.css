@@ -67,6 +67,7 @@ body {
 }
 .tooltips {
     background-color: white;
+    padding: 10px;
     /*border: 4px solid rebeccapurple;*/
 }
 
@@ -162,6 +163,7 @@ body {
 }
 #playAgainBtn {
     background-color: orangered;
+    z-index: 9;
 }
 #hitMeBtn {
     background-color: chartreuse;
