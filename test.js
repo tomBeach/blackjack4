@@ -167,48 +167,6 @@ function initGame() {
 
 
 
-    // ======= ======= ======= newGame ======= ======= =======
-    Game.prototype.newGame = function() {
-	    console.log("newGame");
-        console.log("  dealer: " + dealer);
-        console.log("  game.currentScreen: " + game.currentScreen);
-
-        var nextPlayer, nextPlayerScreen, playerIndex, nextPlayerState;
-
-        display.clearAllCardstacks();
-        console.log("  dealer: " + dealer);
-        display.initRowSpans();
-        display.nextGameScreen("newGame");
-
-        // == clear subscreens for previous game players
-        for (var i = 0; i < game.playerNamesArray.length; i++) {
-            nextPlayer = game.playerObjectsArray[i];
-            nextPlayerScreen = game.subscreenObjectsArray[i];
-            nextPlayerState = "gameOver";
-            display.clearPlayerScreenData(nextPlayerScreen, nextPlayer);
-            display.updateSubscreen(nextPlayer.id, nextPlayerState);
-        }
-        // dealer = game.playerObjectsArray[3];
-        dealerObject = game.playerObjectsArray[3];
-        dealerScreen = game.subscreenObjectsArray[3];
-        dealerState = "gameOver";
-        display.clearPlayerScreenData(dealerScreen, dealerObject);
-        display.updateSubscreen(dealerObject.id, dealerState);
-        this.playerNamesArray = [];
-        this.currentPlayer = 0;
-
-        player1 = null;
-        player2 = null;
-        player3 = null;
-        dealer = null;
-
-        var player1 = new Player(1, "player1");
-        var player2 = new Player(2, "player2");
-        var player3 = new Player(3, "player3");
-        var dealer = new Player(4, "dealer");
-        // var display = new Display("display1");
-    }
-
     // ======= ======= ======= nextGameScreen ======= ======= =======
     Display.prototype.nextGameScreen = function(nextGame) {
         console.log("");
@@ -458,6 +416,68 @@ function initGame() {
 
 
 
+    // ======= ======= ======= resetGridCells ======= ======= =======
+    Display.prototype.resetGridCells = function() {
+        console.log("resetGridCells");
+
+        var tableRows = $("tr");
+        for (var row = 0; row < 12; row++){
+            var addCells = 0;
+            nextRow = $(tableRows)[row];
+            cellCount = $(nextRow).children().length;
+            for (var col = 0; col < cellCount; col++) {
+                nextCell = $(nextRow).children()[col];
+                rowspans = $(nextCell).attr('rowSpan');
+                colspans = $(nextCell).attr('colSpan');
+                if (rowspans > 1) {
+                    $(nextCell).empty();
+                    $(nextCell).removeClass();
+                    $(nextCell).addClass("cell");
+                    $(nextCell).removeAttr('colSpan');
+                    $(nextCell).removeAttr('rowSpan');
+                    $(nextCell).attr("id", row + "-" + col);
+                }
+                if (colspans > 1) {
+                    $(nextCell).empty();
+                    $(nextCell).removeClass();
+                    $(nextCell).addClass("cell");
+                    $(nextCell).removeAttr('colSpan');
+                    $(nextCell).removeAttr('rowSpan');
+                    $(nextCell).attr("id", row + "-" + col);
+                    for (var newCellCol = 1; newCellCol < colspans; newCellCol++) {
+                        var newCell = document.createElement("td");
+                        $(nextCell).after(newCell);
+                        $(newCell).addClass("cell");
+                        $(newCell).attr("id", row + "-" + (col + newCellCol));
+                    }
+                    col = col + (colspans - 1);
+                } else {
+                    $(nextCell).empty();
+                    $(nextCell).removeClass();
+                    $(nextCell).addClass("cell");
+                    $(nextCell).removeAttr('colSpan');
+                    $(nextCell).removeAttr('rowSpan');
+                    $(nextCell).attr("id", row + "-" + col);
+                }
+            }
+            var tableRowsTest = $("tr");
+            nextRowTest = $(tableRowsTest)[row];
+            cellCountTest = $(nextRowTest).children().length;
+            if (cellCountTest < 18) {
+                addCells = 18 - cellCountTest;
+            }
+            if (addCells > 0) {
+                indexCell = $(nextRowTest).children()[cellCountTest - 1];
+                for (var i = 0; i < addCells; i++) {
+                    var newCell = document.createElement("td");
+                    $(indexCell).after(newCell);
+                    $(newCell).addClass("cell");
+                    $(newCell).attr("id", row + "-" + (cellCountTest + i));
+                }
+            }
+        }
+    }
+
     // ======= ======= ======= modifyGridRegion ======= ======= =======
     Display.prototype.modifyGridRegion = function(whichItem, playerIndex, offsetR, offsetC) {
         console.log("modifyGridRegion: " + whichItem.name);
@@ -526,6 +546,8 @@ function initGame() {
                             if (whichItem.image != null) {
                                 newImage = $(new Image()).attr('src', "images/" + whichItem.image).appendTo($(indexCell));
                                 $(newImage).attr("id", whichItem.name + playerSuffix);
+                                $(indexCell).attr("id", (nextRow) + "-" + (nextCol + col));
+                                console.log("  $(indexCell).attr('id'): " + $(indexCell).attr('id'));
                             } else {
                                 $(indexCell).attr("id", whichItem.name + playerSuffix);
                             }
@@ -567,11 +589,13 @@ function initGame() {
                     }
                     if (temp_iC < 1) {
                         indexRowCell = $(nextRowObject).children()[0];
+                        colId = 0;
                         gridEdgeFlag = true;
                     } else {
                         indexRowCell = $(nextRowObject).children()[temp_iC - 1];
+                        colId = nextCol + (whichItem.iW - 1 - col);
                     }
-                    for (var col = 0; col < whichItem.iW; col++) {
+                    // for (var col = 0; col < whichItem.iW; col++) {
                         var newCell = document.createElement("td");
                         if ((gridEdgeFlag == true) && (offsetC == 0)) {
                             $(indexRowCell).before(newCell);
@@ -579,8 +603,10 @@ function initGame() {
                             $(indexRowCell).after(newCell);
                         }
                         $(newCell).addClass("cell");
-                        $(newCell).attr("id", (nextRow) + "-" + (nextCol + col));
-                    }
+                        console.log("  colId: " + colId);
+                        $(newCell).attr("id", (nextRow) + "-" + colId);
+                        console.log("  $(newCell).attr('id'): " + $(newCell).attr('id'));
+                    // }
                     if (row > 0) {
                         display.toggleRowspans(whichItem, offsetR, offsetC, "off")
                     }
@@ -588,7 +614,6 @@ function initGame() {
             } else {
                 for (var col = 0; col < whichItem.iW; col++) {
                     nextCell = $(nextRowObject).children()[temp_iC + col];
-                    console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
                     if (whichItem.type == "slider") {
                         $(nextCell).empty();
                         display.deActivateNextItem(whichItem, nextCell);
@@ -599,7 +624,11 @@ function initGame() {
                         }
                         $(nextCell).removeClass();
                         $(nextCell).addClass("cell");
-                        $(nextCell).attr("id", (nextRow) + "-" + (temp_iC + col));
+                        // colId = nextCol + (whichItem.iW - 1 - col);
+                        colId = nextCol + col;
+                        console.log("  colId: " + colId);
+                        $(nextCell).attr("id", (nextRow) + "-" + colId);
+                        console.log("  $(nextCell).attr('id'): " + $(nextCell).attr('id'));
                     }
                 }
             }
@@ -716,6 +745,7 @@ function initGame() {
         for (var col = 0; col < 18; col++) {
             if (col < whichCol) {
                 rowspanSpanObject = this.rowSpansArray[whichRow][col];
+                // console.log("  rowspanSpanObject: " + rowspanSpanObject.R + " " + rowspanSpanObject.C + " " + rowspanSpanObject.rspan);
                 if (rowspanSpanObject.rspan == true) {
                     rowspans++;
                 }
@@ -1493,6 +1523,32 @@ function initGame() {
         }
         display.nextGameScreen("playAgain");
         game.dealCards();
+    }
+
+    // ======= ======= ======= newGame ======= ======= =======
+    Game.prototype.newGame = function() {
+	    console.log("newGame");
+        console.log("  dealer: " + dealer);
+        console.log("  game.currentScreen: " + game.currentScreen);
+
+        this.playerNamesArray = [];
+        this.currentPlayer = 0;
+        this.currentScreen = null;
+
+        display.resetGridCells();
+
+        player1 = null;
+        player2 = null;
+        player3 = null;
+        dealer = null;
+
+        var player1 = new Player(1, "player1");
+        var player2 = new Player(2, "player2");
+        var player3 = new Player(3, "player3");
+        var dealer = new Player(4, "dealer");
+        // var display = new Display("display1");
+        display.initRowSpans();
+        display.nextGameScreen();
     }
 
     // ======= ======= ======= clearAllCardstacks ======= ======= =======
