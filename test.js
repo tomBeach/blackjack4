@@ -14,11 +14,6 @@ function initGame() {
     var player1_scr = new Screen("player1", "player");
         player1_scr.borderH = { name:"borderH", type:"bg", iR:1,iC:1,iW:6,iH:1, merge:null, class:"pBorder-1" };
         player1_scr.borderV = { name:"borderV", type:"bg",iR:1,iC:6,iW:1,iH:3, merge:null, class:"pBorder-1" };
-        player1_scr.hitMeBtn = { name:"hitMeBtn", callback:"hitMe", type:"btn",iR:1,iC:8,iW:1,iH:1, merge:null, class:"ones", image:"hitMeBW.png", value:"hit me!" };
-        player1_scr.holdMeBtn = { name:"holdMeBtn", callback:"holdMe", type:"btn",iR:1,iC:9,iW:1,iH:1, merge:null, class:"ones", image:"holdMeBW.png", value:"hold" };
-        player1_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:1,iC:8,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver:"slide to bet $1", tooltipOut:""  };
-        player1_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:2,iC:8,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"slide to bet $5", tooltipOut:""  };
-        player1_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:3,iC:8,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"slide to bet $10", tooltipOut:""  };
         player1_scr.pName = { name:"pName", type:"text",iR:1,iC:2,iW:3,iH:1, merge:"merge", class:"pBorder-1", value:null };
         player1_scr.pScore = { name:"pScore", type:"text",iR:2,iC:6,iW:1,iH:1, merge:null, class:"pBorder-1", value:0 };
         player1_scr.pBet = { name:"pBet", type:"text",iR:5,iC:11,iW:1,iH:1, merge:null, class:"pBorder-1 bet", value:"0" };
@@ -30,15 +25,15 @@ function initGame() {
         player1_scr.pBank5s = { name:"pBank5s", type:"text",iR:2,iC:7,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"$5 chips", tooltipOut:""  };
         player1_scr.pBank10s = { name:"pBank10s", type:"text",iR:3,iC:7,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"$10 chips", tooltipOut:""  };
         player1_scr.pCards = { name:"pCards", type:"text",iR:2,iC:5,iW:1,iH:2, merge:"merge", class:"card-1", value:null };
+        player1_scr.hitMeBtn = { name:"hitMeBtn", callback:"hitMe", type:"btn",iR:1,iC:8,iW:1,iH:1, merge:null, class:"ones", image:"hitMeBW.png", value:"hit me!", tooltipOver:"hit me!", tooltipOut:""};
+        player1_scr.holdMeBtn = { name:"holdMeBtn", callback:"holdMe", type:"btn",iR:1,iC:9,iW:1,iH:1, merge:null, class:"ones", image:"holdMeBW.png", value:"hold", tooltipOver:"hold...", tooltipOut:"" };
+        player1_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:1,iC:8,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver:"slide to bet $1", tooltipOut:""  };
+        player1_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:2,iC:8,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver:"slide to bet $5", tooltipOut:""  };
+        player1_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:3,iC:8,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver:"slide to bet $10", tooltipOut:""  };
 
     var player2_scr = new Screen("player2", "player");
         player2_scr.borderH = { name: "borderH", type: "bg",iR:5,iC:1,iW:6,iH:1, merge: null, class: "pBorder-2" };
         player2_scr.borderV = { name: "borderV", type: "bg",iR:5,iC:6,iW:1,iH:3, merge: null, class: "pBorder-2" };
-        player2_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn",iR:5,iC:8,iW:1,iH:1, merge: null, class: "ones", image: "hitMeBW.png", value: "hit me!" };
-        player2_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn",iR:5,iC:9,iW:1,iH:1, merge: null, class: "ones", image: "holdMeBW.png", value: "hold" };
-        player2_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:5,iC:8,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "slide to bet $1", tooltipOut: ""  };
-        player2_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:6,iC:8,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "slide to bet $5", tooltipOut: ""  };
-        player2_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:7,iC:8,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "slide to bet $10", tooltipOut: ""  };
         player2_scr.pName = { name: "pName", type: "text",iR:5,iC:2,iW:3,iH:1, merge: "merge", class: "pBorder-2", value: null };
         player2_scr.pScore = { name: "pScore", type: "text",iR:6,iC:6,iW:1,iH:1, merge: null, class: "pBorder-2", value: 0 };
         player2_scr.pBet = { name: "pBet", type: "text",iR:6,iC:11,iW:1,iH:1, merge: null, class: "pBorder-2 bet", value: "0" };
@@ -50,15 +45,15 @@ function initGame() {
         player2_scr.pBank5s = { name:"pBank5s", type:"text",iR:6,iC:7,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5 chips", tooltipOut: ""  };
         player2_scr.pBank10s = { name:"pBank10s", type:"text",iR:7,iC:7,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10 chips", tooltipOut: ""  };
         player2_scr.pCards = { name: "pCards", type: "text",iR:6,iC:5,iW:1,iH:2, merge: "merge", class: "card-2", value: null };
+        player2_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn",iR:5,iC:8,iW:1,iH:1, merge: null, class: "ones", image: "hitMeBW.png", value: "hit me!", tooltipOver:"hit me!", tooltipOut:""  };
+        player2_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn",iR:5,iC:9,iW:1,iH:1, merge: null, class: "ones", image: "holdMeBW.png", value: "hold", tooltipOver:"hold...", tooltipOut:""  };
+        player2_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:5,iC:8,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "slide to bet $1", tooltipOut: ""  };
+        player2_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:6,iC:8,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "slide to bet $5", tooltipOut: ""  };
+        player2_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:7,iC:8,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "slide to bet $10", tooltipOut: ""  };
 
     var player3_scr = new Screen("player3", "player");
         player3_scr.borderH = { name: "borderH", type: "bg",iR:9,iC:1,iW:6,iH:1, merge: null, class: "pBorder-3" };
         player3_scr.borderV = { name: "borderV", type: "bg",iR:9,iC:6,iW:1,iH:3, merge: null, class: "pBorder-3" };
-        player3_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn",iR:9,iC:8,iW:1,iH:1, merge: null, class: "ones", image: "hitMeBW.png", value: "hit me!" };
-        player3_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn",iR:9,iC:9,iW:1,iH:1, merge: null, class: "ones", image: "holdMeBW.png", value: "hold" };
-        player3_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:9,iC:8,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1", tooltipOut: ""  };
-        player3_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:10,iC:8,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5", tooltipOut: ""  };
-        player3_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:11,iC:8,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10", tooltipOut: ""  };
         player3_scr.pName = { name: "pName", type: "text",iR:9,iC:2,iW:3,iH:1, merge: "merge", class: "pBorder-3", value: null };
         player3_scr.pScore = { name: "pScore", type: "text",iR:10,iC:6,iW:1,iH:1, merge: null, class: "pBorder-3", value: 0 };
         player3_scr.pBet = { name: "pBet", type: "text",iR:7,iC:11,iW:1,iH:1, merge: null, class: "pBorder-3 bet", value: "0" };
@@ -70,6 +65,11 @@ function initGame() {
         player3_scr.pBank5s = { name:"pBank5s", type:"text",iR:10,iC:7,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5 chips", tooltipOut: ""  };
         player3_scr.pBank10s = { name:"pBank10s", type:"text",iR:11,iC:7,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10 chips", tooltipOut: ""  };
         player3_scr.pCards = { name: "pCards", type: "text",iR:10,iC:5,iW:1,iH:2, merge: "merge", class: "card-3", value: null };
+        player3_scr.hitMeBtn = { name: "hitMeBtn", callback: "hitMe", type: "btn",iR:9,iC:8,iW:1,iH:1, merge: null, class: "ones", image: "hitMeBW.png", value: "hit me!", tooltipOver:"hit me!", tooltipOut:""  };
+        player3_scr.holdMeBtn = { name: "holdMeBtn", callback: "holdMe", type: "btn",iR:9,iC:9,iW:1,iH:1, merge: null, class: "ones", image: "holdMeBW.png", value: "hold", tooltipOver:"hold...", tooltipOut:""  };
+        player3_scr.chips1s = { name:"chips1s", callback:"mngBets", type:"slider",iR:9,iC:8,iW:1,iH:1, merge:null, class:"ones", value:"$20", tooltipOver: "$1", tooltipOut: ""  };
+        player3_scr.chips5s = { name:"chips5s", callback:"mngBets", type:"slider",iR:10,iC:8,iW:1,iH:1, merge:null, class:"fives", value:"$30", tooltipOver: "$5", tooltipOut: ""  };
+        player3_scr.chips10s = { name:"chips10s", callback:"mngBets", type:"slider",iR:11,iC:8,iW:1,iH:1, merge:null, class:"tens", value:"$50", tooltipOver: "$10", tooltipOut: ""  };
 
     var dealer_scr = new Screen("dealer", "player");
         dealer_scr.borderH = { name: "borderH", type: "bg",iR:3,iC:10,iW:6,iH:1, merge: null, class: "dBorder" };
@@ -297,20 +297,21 @@ function initGame() {
     }
 
     // ======= ======= ======= nextSubscreen ======= ======= =======
-    Display.prototype.nextSubscreen = function(playerIndex) {
+    Display.prototype.nextSubscreen = function(playerID) {
+        console.log("");
         console.log("nextSubscreen");
-        console.log("  dealer: " + dealer);
 
         // == player screen items include player index as suffix (e.g. "_1")
         // == makePlayerItems adds current player suffix to generic item names
 
         var nextSubscreenItems = [];
-        currentPlayer = game.playerObjectsArray[playerIndex - 1];
-        currentPlayerScreen = game.subscreenObjectsArray[playerIndex - 1];
+        currentPlayer = game.playerObjectsArray[playerID - 1];
+        currentPlayerScreen = game.subscreenObjectsArray[playerID - 1];
+        console.log("  currentPlayer.state: " + currentPlayer.state);
 
         // == check for special case of dealer
-        if (playerIndex == 4) {
-            playerIndex = "D";
+        if (playerID == 4) {
+            playerID = "D";
         }
 
         // == game start initialize first screen ("splash")
@@ -334,7 +335,7 @@ function initGame() {
         for (var j = 0; j < nextSubscreenItems.length; j++) {
             nextItem = nextSubscreenItems[j];
             nextType = nextItem.type;
-            indexCell = display.modifyGridRegion(nextItem, playerIndex);
+            indexCell = display.modifyGridRegion(nextItem, playerID);
             if (nextType == "input") {
                 newTextInput = "<input id='" + nextItem.name + "Input' class='" + nextItem.class + "' type='text' value='Tom'>"
                 $(indexCell).append(newTextInput);
@@ -377,6 +378,8 @@ function initGame() {
                 $(indexCell).append(newTextInput);
                 $(newTextInput).attr("id", nextItem.name);
             }
+
+            // == activate interacive elements (buttons/sliders)
             if (nextType == "slider") {
 
                 // == get location of target grid cell
@@ -391,14 +394,15 @@ function initGame() {
                 $("#" + targetCellId).append(sliderString);
                 $("#" + sliderId).css("left", locX);
                 $("#" + sliderId).css("top", locY);
-            }
-
-            // == activate interacive elements (buttons/sliders)
-            if (nextType == "btn") {
+                indexCell = $("#" + sliderId);
                 display.activateNextItem(nextItem, indexCell);
             }
-            if (nextType == "slider") {
-                indexCell = $("#" + sliderId);
+
+            // == click listener added to image for image-based buttons
+            if (nextType == "btn") {
+                if (nextItem.image != null) {
+                    indexCell = $("#" + nextItem.name + "_" + playerIndex)
+                }
                 display.activateNextItem(nextItem, indexCell);
             }
         }
@@ -420,6 +424,7 @@ function initGame() {
     Display.prototype.resetGridCells = function() {
         console.log("resetGridCells");
 
+        // == get current cell conditions
         var tableRows = $("tr");
         for (var row = 0; row < 12; row++){
             var addCells = 0;
@@ -429,21 +434,15 @@ function initGame() {
                 nextCell = $(nextRow).children()[col];
                 rowspans = $(nextCell).attr('rowSpan');
                 colspans = $(nextCell).attr('colSpan');
+
+                // == remove all spans and classes; set class to "cell"
                 if (rowspans > 1) {
-                    $(nextCell).empty();
-                    $(nextCell).removeClass();
-                    $(nextCell).addClass("cell");
-                    $(nextCell).removeAttr('colSpan');
-                    $(nextCell).removeAttr('rowSpan');
-                    $(nextCell).attr("id", row + "-" + col);
+                    cleanUpCell(nextCell);
                 }
+
+                // == add cells to space left by col-spanned cell
                 if (colspans > 1) {
-                    $(nextCell).empty();
-                    $(nextCell).removeClass();
-                    $(nextCell).addClass("cell");
-                    $(nextCell).removeAttr('colSpan');
-                    $(nextCell).removeAttr('rowSpan');
-                    $(nextCell).attr("id", row + "-" + col);
+                    cleanUpCell(nextCell);
                     for (var newCellCol = 1; newCellCol < colspans; newCellCol++) {
                         var newCell = document.createElement("td");
                         $(nextCell).after(newCell);
@@ -452,20 +451,21 @@ function initGame() {
                     }
                     col = col + (colspans - 1);
                 } else {
-                    $(nextCell).empty();
-                    $(nextCell).removeClass();
-                    $(nextCell).addClass("cell");
-                    $(nextCell).removeAttr('colSpan');
-                    $(nextCell).removeAttr('rowSpan');
-                    $(nextCell).attr("id", row + "-" + col);
+                    cleanUpCell(nextCell);
                 }
             }
+
+            // == check cleaned-up row for missing cells (should be 18 total)
             var tableRowsTest = $("tr");
             nextRowTest = $(tableRowsTest)[row];
             cellCountTest = $(nextRowTest).children().length;
+
+            // == count how many cells are missing
             if (cellCountTest < 18) {
                 addCells = 18 - cellCountTest;
             }
+
+            // == add new cells
             if (addCells > 0) {
                 indexCell = $(nextRowTest).children()[cellCountTest - 1];
                 for (var i = 0; i < addCells; i++) {
@@ -475,6 +475,19 @@ function initGame() {
                     $(newCell).attr("id", row + "-" + (cellCountTest + i));
                 }
             }
+        }
+
+        // == remove children, classes, spans; add "cell" class and id
+        function cleanUpCell(whichCell) {
+            // console.log("cleanUpCell");
+            $(whichCell).off("mouseenter");
+            $(whichCell).off("mouseout");
+            $(whichCell).empty();
+            $(whichCell).removeClass();
+            $(whichCell).removeAttr('colSpan');
+            $(whichCell).removeAttr('rowSpan');
+            $(whichCell).addClass("cell");
+            $(whichCell).attr("id", row + "-" + col);
         }
     }
 
@@ -645,7 +658,8 @@ function initGame() {
 
         // ======= tooltips =======
         $(indexCell).off("mouseenter").on("mouseenter", function(event){
-            // console.log("-- mouseenter");
+            console.log("-- mouseenter");
+            console.log("  event.target.id: " + event.target.id);
             indexElement = event.target;
             tooltip = display.getTooltip(indexElement, "over");
         });
@@ -1064,6 +1078,11 @@ function initGame() {
         playerName = $('#playerNameInput').val();
         if (playerName) {
             playerCount = this.playerNamesArray.length;
+            if (playerCount == 0) {
+
+                // == activates play game button if all players now entered
+                display.nextGameScreen();
+            }
             if (playerCount < 3) {
 
                 // == get pre-made player object and set player name on it
@@ -1078,11 +1097,6 @@ function initGame() {
                 playerNameCell = "#pName_" + newPlayer.id;
                 $(playerNameCell).text(newPlayer.name);
                 $("#tooltips").text("Enter another name or press 'start'");
-            }
-            if (playerCount == 1) {
-
-                // == activates play game button if no more players to enter
-                display.nextGameScreen();
             }
             if (playerCount == 3) {
 
